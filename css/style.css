@@ -1,0 +1,262 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  font-size: 13px;
+  --color: #eee;
+  color: var(--color);
+  background-image: url(img/fondo.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  padding: 0;
+  text-align: left;
+}
+
+header .logo {
+  width: 150px; /* Ajusta el tamaño */
+  height: auto;
+  margin: 0;
+  display: block;
+}
+
+section.banner {
+  height: 100vh;
+  background-image: url(../img/banner.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+section.banner h2 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.paragraph {
+  position: relative;
+  overflow: hidden;
+  height: 100vh; /* Ajusta el alto de la sección */
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+}
+
+.video-container {
+  width: 80%; /* Ajusta el tamaño del contenedor del video */
+  height: 80%; /* Ajusta el tamaño del video */
+  z-index: -1; /* Asegura que el video quede en el fondo */
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Para que el video cubra el fondo sin distorsionarse */
+}
+
+
+
+.slider {
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slider .slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider .slide {
+  width: 33.33%; /* Para hacer 3 columnas */
+  padding: 10px; /* Espaciado entre las imágenes */
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease; /* Transición suave al agrandarse */
+}
+
+.slider .slide:hover img {
+  transform: scale(1.1); /* Aumenta el tamaño de la imagen al pasar el cursor */
+}
+
+
+nav {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: var(--color);
+  font-size: 16px;
+}
+
+section.banner .btn {
+  margin-top: 20px;
+  padding: 15px 25px;
+  background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+section.banner .btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.5s ease;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+section.banner .btn:hover {
+  background: linear-gradient(45deg, #f5c032, #d4af37); /* Efecto de inversión del degradado */
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
+  color: #000;
+}
+
+section.banner .btn:hover::before {
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+}
+
+/* Estilo para la sección de reservas */
+section.reservation {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #f4f4f4;
+}
+
+section.reservation h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.calendar-container {
+  display: inline-block;
+  margin: 20px 0;
+}
+
+#reservation-date {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  outline: none;
+}
+
+#reservation-btn {
+  margin-top: 20px;
+  padding: 15px 25px;
+  background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: not-allowed; /* Cambiar el cursor cuando esté deshabilitado */
+}
+
+#reservation-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.5s ease;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#reservation-btn:hover {
+  background: linear-gradient(45deg, #f5c032, #d4af37); /* Efecto de inversión del degradado */
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
+  color: #000;
+}
+
+#reservation-btn:hover::before {
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+}
+
+#reservation-btn:disabled {
+  background: linear-gradient(45deg, #ccc, #aaa); /* Fondo para el estado deshabilitado */
+  cursor: not-allowed; /* Cursor deshabilitado */
+  box-shadow: none; /* Eliminar la sombra cuando está deshabilitado */
+}
+
+
+
+section.map {
+  padding: 50px 0;
+  text-align: center;
+  background-color: #fff;
+}
+
+section.map h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.map-container {
+  width: 100%;  /* Asegura que el contenedor ocupe todo el ancho */
+  height: 400px;  /* Ajusta la altura del mapa según lo necesites */
+  margin: 0 auto;
+  position: relative;
+}
+
