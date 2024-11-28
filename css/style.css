@@ -25,17 +25,6 @@ header {
   text-align: left;
 }
 
-header .logo {
-  width: 200px; /* Tamaño del logo */
-  height: auto;
-  position: fixed; /* Fija el logo en la pantalla */
-  top: 0; /* Alineado al borde superior */
-  left: 0; /* Alineado al borde izquierdo */
-  z-index: 1000; /* Asegura que esté encima de otros elementos */
-  margin: 0; /* Sin márgenes adicionales */
-  padding: 10px; /* Espaciado interno si lo necesitas */
-}
-
 
 section.banner {
   position: relative;
@@ -51,6 +40,16 @@ section.banner {
   text-align: center;
   color: white;
 }
+
+section.banner .logo {
+  width: 300px; /* Ajusta el tamaño del logo */
+  height: auto;
+  margin-bottom: 20px; /* Espacio entre el logo y el h1 */
+  display: block;
+  margin-left: auto;
+  margin-right: auto; /* Centra el logotipo */
+}
+
 section.banner h1 {
   font-size: 50px;
   color: white; /* Dorado */
@@ -104,13 +103,40 @@ iframe {
   object-fit: cover; /* Para que el video cubra el fondo sin distorsionarse */
 }
 
-
-
 .slider {
   width: 80%;
   display: flex;
   margin: 0 auto;
   overflow: hidden;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.slider-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px; /* Separación entre el título y el slider */
+}
+
+.slider-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Cambia según el diseño */
+  margin-bottom: 10px; /* Ajusta el espaciado */
+  margin-top: 50px;
+  position: relative;
+}
+
+.slider-title::after {
+  content: "";
+  position: absolute;
+  bottom: -20px; /* Ajusta la distancia entre el texto y la línea */
+  left: 50%; /* Centra la línea */
+  transform: translateX(-50%);
+  width: 20%; /* La línea ocupará el 50% del ancho del texto */
+  height: 2px; /* Grosor inicial de la línea */
+  background: linear-gradient(to right, transparent, #333, transparent); /* Línea de grosor variable */
+  transition: height 0.3s ease-in-out;
 }
 
 .slider .slides {
