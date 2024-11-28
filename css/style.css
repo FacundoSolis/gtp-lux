@@ -25,14 +25,11 @@ header {
   text-align: left;
 }
 
-
+/* Estilos para el banner */
 section.banner {
   position: relative;
+  margin-top: 0px;
   height: 100vh;
-  background-image: url(../img/banner.jpg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* Efecto de parallax */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,44 +38,86 @@ section.banner {
   color: white;
 }
 
-section.banner .logo {
-  width: 300px; /* Ajusta el tamaño del logo */
-  height: auto;
-  margin-bottom: 20px; /* Espacio entre el logo y el h1 */
-  display: block;
-  margin-left: auto;
-  margin-right: auto; /* Centra el logotipo */
-}
-
-section.banner h1 {
-  font-size: 50px;
-  color: white; /* Dorado */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-section.banner h2 {
-  font-size: 30px;
-  color: white; /* Naranja oscuro */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-
-section.banner::before {
-  content: "";
+/* Video de fondo */
+.banner-video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  color: white;
+  object-fit: cover; /* Hace que el video cubra todo el área */
+  z-index: -1; /* Asegura que el video quede en el fondo */
+}
+
+/* Capa de opacidad sobre el video */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Ajusta el nivel de opacidad */
+  z-index: 0;
+}
+
+/* Contenido del banner (logo, texto y botón) */
+.banner-content {
+  position: relative;
   z-index: 1;
 }
 
+section.banner .logo {
+  width: 300px; /* Ajusta el tamaño del logo */
+  height: auto;
+  margin-bottom: -80px; /* Espacio entre el logo y el h1 */
+}
+
+section.banner h1 {
+  font-size: 50px;
+  color: white; /* Puedes cambiar el color según lo necesites */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+section.banner h2 {
+  font-size: 30px;
+  color: white; /* Puedes cambiar el color según lo necesites */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  margin-bottom: 50px;
+}
 
 section.banner a {
-  position: relative;
-  z-index: 2; /* Asegura que estos elementos queden por encima */
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f1c40f;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;  /* Asegura que no haya borde */
+  outline: none; /* Elimina el contorno (círculo) cuando el ratón pasa por encima o se hace clic */
 }
+
+section.banner .btn {
+  margin-top: 20px;
+  padding: 15px 25px;
+  background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+section.banner .btn:hover {
+  background: linear-gradient(45deg, #f5c032, #d4af37); /* Efecto de inversión del degradado */
+  box-shadow: 0 0 20px 8px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
+  color: #000;
+}
+
 
 
 
@@ -186,46 +225,6 @@ nav a {
   font-size: 16px;
 }
 
-section.banner .btn {
-  margin-top: 20px;
-  padding: 15px 25px;
-  background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-section.banner .btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  height: 300%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.5s ease;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-section.banner .btn:hover {
-  background: linear-gradient(45deg, #f5c032, #d4af37); /* Efecto de inversión del degradado */
-  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
-  color: #000;
-}
-
-section.banner .btn:hover::before {
-  width: 120%;
-  height: 120%;
-  top: -10%;
-  left: -10%;
-}
 
 /* Estilo para la sección de reservas */
 section.reservation {
@@ -424,7 +423,6 @@ input, textarea {
   left: -10%;
 }
 
-
 /* Estilo general del footer */
 footer {
   background-color: #000; /* Fondo negro */
@@ -470,6 +468,7 @@ footer {
   /* Aquí puedes agregar más contenido si lo deseas */
 }
 
+/* CONFIGURACIÓN PANTALLA MOVILES */
 
 
 
