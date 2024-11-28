@@ -20,21 +20,59 @@
       <img src="img/logo.png" alt="Logo" class="logo">
       <h1>Alquiler de Barco en Denia</h1>
       <h2>GTP LUX | Sun & Mediterranean Sea</h2>
-      <a href="#rental" class="btn">Reservas</a>
+      <a href="#rental" class="btn">Reservar</a>
     </div>
   </section>
-  <!-- Slider -->
 
-<section class="slider-container">
-  <h2 class="slider-title">Te ofrecemos una experiencia inolvidable</h2>
-  <div class="slider">
-    <div class="slides">
-      <div class="slide"><img src="img/yates.png" alt="Slide 1"></div>
-      <div class="slide"><img src="img/yates2.png" alt="Slide 2"></div>
-      <div class="slide"><img src="img/yates3.png" alt="Slide 3"></div>
+  <!-- Slider -->
+  <section class="slider-container">
+    <!-- Título principal -->
+    <h2 class="slider-title">Te ofrecemos una experiencia inolvidable</h2>
+    
+    <!-- Primera sección: Imagen derecha, texto izquierda -->
+    <div class="info-row">
+      <div class="slider-with-arrows">
+        <button class="prev">&lt;</button>
+        <div class="slider">
+          <div class="slides">
+            <img src="img/yates.png" alt="Imagen 1">
+            <img src="img/yates2.png" alt="Imagen 2">
+          </div>
+        </div>
+        <button class="next">&gt;</button>
+      </div>
+      <div class="info-text">
+        <h3>VALKYRYA</h3>
+        <p>Valkyrya es el inicio de una experiencia exclusiva en el mar. 
+          Con un diseño elegante, solarium, toldo retráctil, música de alta calidad y nevera, es el yate perfecto para explorar las aguas cristalinas de la isla. 
+          Su motor de 200CV garantiza una navegación suave, permitiéndote disfrutar de cada parada con lujo y confort.
+        <button id="reservation-btn" class="btn" disabled>VER DISPONIBILIDAD</button>
+      </div>
     </div>
-  </div>
-</section>
+  
+    <!-- Segunda sección: Imagen izquierda, texto derecha -->
+    <div class="info-row reverse">
+      <div class="slider-with-arrows">
+        <button class="prev">&lt;</button>
+        <div class="slider">
+          <div class="slides">
+            <img src="img/yates3.png" alt="Imagen 3">
+            <img src="img/yates4.png" alt="Imagen 4">
+          </div>
+        </div>
+        <button class="next">&gt;</button>
+      </div>
+      <div class="info-text">
+        <h3>NADINE</h3>
+        <p>Nadine es el barco perfecto para una experiencia inolvidable. 
+          Con dos potentes motores de 300CV, toldo retráctil, solarium, música y nevera, te ofrece el máximo confort y personalización para recorrer los rincones más exclusivos del mar. 
+          Disfruta de una jornada de lujo adaptada a tus deseos.</p>
+        <button id="reservation-btn" class="btn" disabled>VER DISPONIBILIDAD</button>
+      </div>
+    </div>
+  </section>
+  
+
 
    <!-- Calendario de Reservas -->
 <section class="reservation">
@@ -44,19 +82,6 @@
   </div>
   <button id="reservation-btn" class="btn" disabled>CONFIRMAR RESERVA</button>
 </section>
-
-  <!-- Video -->
-
-  <section class="paragraph">
-    <div class="video-container">
-      <iframe 
-        src="https://www.youtube.com/embed/7AM8qK13TbQ?autoplay=1&mute=1&loop=1&playlist=7AM8qK13TbQ"
-        frameborder="0" 
-        allow="autoplay; fullscreen" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
 
     <!-- Mapa -->
 

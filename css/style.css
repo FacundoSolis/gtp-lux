@@ -4,10 +4,9 @@ body {
   font-size: 13px;
   --color: #eee;
   color: var(--color);
-  background-image: url(img/fondo.jpg);
-  background-size: cover;
-  background-position: center;
+  background: none; /* Elimina cualquier fondo que esté aplicado */
 }
+
 
 a {
   text-decoration: none;
@@ -28,13 +27,15 @@ header {
 /* Estilos para el banner */
 section.banner {
   position: relative;
-  height: 100vh;
+  height: 70vh; /* Mantén la altura ajustada */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Alinea el contenido al inicio, hacia la parte superior */
   align-items: center;
   text-align: center;
   color: white;
+  margin-top: 0;
+  padding-top: 20px; /* Ajusta este valor para agregar o quitar espacio arriba */
 }
 
 /* Video de fondo */
@@ -68,13 +69,14 @@ section.banner {
 section.banner .logo {
   width: 300px; /* Ajusta el tamaño del logo */
   height: auto;
-  margin-bottom: -10px; /* Espacio entre el logo y el h1 */
+  margin-bottom: 0px; /* Espacio entre el logo y el h1 */
 }
 
 section.banner h1 {
   font-size: 50px;
   color: white; /* Puedes cambiar el color según lo necesites */
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  margin-top: -30px;
 }
 
 section.banner h2 {
@@ -100,7 +102,7 @@ section.banner .btn {
   margin-top: 20px;
   padding: 15px 25px;
   background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
-  color: #fff;
+  color: black;
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
@@ -114,28 +116,7 @@ section.banner .btn {
 section.banner .btn:hover {
   background: linear-gradient(45deg, #f5c032, #d4af37); /* Efecto de inversión del degradado */
   box-shadow: 0 0 20px 8px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
-  color: #000;
-}
-
-
-
-
-.paragraph {
-  position: relative;
-  overflow: hidden;
-  height: 100vh; /* Ajusta el alto de la sección */
-  display: flex;
-  justify-content: center; /* Centra el contenido horizontalmente */
-  align-items: center; /* Centra el contenido verticalmente */
-}
-
-.video-container {
-  width: 100%; /* Ajusta el tamaño del contenedor del video */
-  height: 100%; /* Ajusta el tamaño del video */
-  z-index: -1; /* Asegura que el video quede en el fondo */
-  position: absolute;
-  top: 0;
-  left: 0;
+  color: white;
 }
 
 iframe {
@@ -144,62 +125,144 @@ iframe {
   object-fit: cover; /* Para que el video cubra el fondo sin distorsionarse */
 }
 
-.slider {
-  width: 80%;
-  display: flex;
-  margin: 0 auto;
-  overflow: hidden;
-  margin-top: 50px;
-  margin-bottom: 70px;
-}
-
+/* Slider título */
 .slider-container {
   width: 100%;
   text-align: center;
-  margin-bottom: 20px; /* Separación entre el título y el slider */
+  box-sizing: border-box;
+  padding: 0 20px;
+  max-width: 1200px; /* Define un ancho máximo */
+  margin: 0 auto; /* Centra todo el contenedor */
 }
 
 .slider-title {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
-  color: #333; /* Cambia según el diseño */
-  margin-bottom: 10px; /* Ajusta el espaciado */
+  color: #333;
+  margin-bottom: 30px;
   margin-top: 50px;
+  text-align: center;
   position: relative;
 }
 
 .slider-title::after {
   content: "";
   position: absolute;
-  bottom: -20px; /* Ajusta la distancia entre el texto y la línea */
-  left: 50%; /* Centra la línea */
+  bottom: -20px;
+  left: 50%;
   transform: translateX(-50%);
-  width: 20%; /* La línea ocupará el 50% del ancho del texto */
-  height: 2px; /* Grosor inicial de la línea */
-  background: linear-gradient(to right, transparent, #333, transparent); /* Línea de grosor variable */
+  width: 20%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #333, transparent);
   transition: height 0.3s ease-in-out;
 }
 
-.slider .slides {
+/* Estructura del slider: 2 columnas, 2 filas */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  gap: 30px; /* Espacio entre columnas */
+  max-width: 1100px; /* Límite del ancho del contenido */
+  margin-left: auto;
+  margin-right: auto; /* Centra la fila */
+  margin-bottom: 50px;
+}
+
+.info-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.slider-with-arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 48%; /* Reduce el ancho del slider */
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slides {
   display: flex;
   transition: transform 0.5s ease-in-out;
 }
 
-.slider .slide {
-  width: 33.33%; /* Para hacer 3 columnas */
-  padding: 10px; /* Espaciado entre las imágenes */
-}
-
-.slider img {
-  width: 100%;
+.slides img {
+  max-width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.3s ease; /* Transición suave al agrandarse */
+  object-fit: cover;
+  margin: 0 auto;
 }
 
-.slider .slide:hover img {
-  transform: scale(1.1); /* Aumenta el tamaño de la imagen al pasar el cursor */
+/* Flechas de navegación */
+button.prev,
+button.next {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 20px;
+  color: white;
+  transition: color 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
 }
+
+button.prev {
+  left: -10px;
+}
+
+button.next {
+  right: -10px;
+}
+
+button.prev:hover,
+button.next:hover {
+  color: #000;
+}
+
+/* Texto slider */
+.info-text {
+  flex: 1;
+  padding: 20px;
+  max-width: 48%; /* Asegura que el texto no ocupe toda la fila */
+  text-align: left;
+}
+
+.info-text h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.info-text p {
+  font-size: 16px;
+  color: #555;
+}
+
+#reservation-btn {
+  margin-top: 20px;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+#reservation-btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
 
 
 nav {
@@ -225,11 +288,12 @@ nav a {
 }
 
 
-/* Estilo para la sección de reservas */
+/* Estilo reservas */
 section.reservation {
   text-align: center;
   padding: 50px 0;
   background-color: #f4f4f4;
+  margin-top: 30px;
 }
 
 section.reservation h2 {
@@ -251,8 +315,6 @@ section.reservation h2::after {
   transition: height 0.3s ease-in-out;
 }
 
-
-
 .calendar-container {
   display: inline-block;
   margin: 20px 0;
@@ -273,7 +335,7 @@ section.reservation h2::after {
   margin-top: 20px;
   padding: 10px 20px;
   background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
-  color: #fff;
+  color: black;
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
@@ -360,6 +422,7 @@ h3 {
 form {
   display: flex;
   flex-direction: column;
+  width: 70%;
   gap: 15px;
   margin-bottom: 40px;
 }
