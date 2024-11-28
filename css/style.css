@@ -92,9 +92,12 @@ section.banner a {
 }
 
 .video-container {
-  width: 80%; /* Ajusta el tamaño del contenedor del video */
-  height: 80%; /* Ajusta el tamaño del video */
+  width: 100%; /* Ajusta el tamaño del contenedor del video */
+  height: 100%; /* Ajusta el tamaño del video */
   z-index: -1; /* Asegura que el video quede en el fondo */
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 iframe {
@@ -235,24 +238,42 @@ section.reservation h2 {
   font-size: 32px;
   margin-bottom: 20px;
   color: black;
+  position: relative; /* Necesario para posicionar la línea debajo */
 }
+
+section.reservation h2::after {
+  content: "";
+  position: absolute;
+  bottom: -20px; /* Ajusta la distancia entre el texto y la línea */
+  left: 50%; /* Centra la línea */
+  transform: translateX(-50%);
+  width: 20%; /* La línea ocupará el 20% del ancho del texto */
+  height: 2px; /* Grosor de la línea */
+  background: linear-gradient(to right, transparent, #333, transparent);
+  transition: height 0.3s ease-in-out;
+}
+
+
 
 .calendar-container {
   display: inline-block;
   margin: 20px 0;
+  margin-bottom: 30px;
 }
 
 #reservation-date {
   padding: 10px;
+  margin-right: 10px;
   font-size: 16px;
   border: 2px solid #d4af37;
   border-radius: 10px;
   outline: none;
+  margin-bottom: 30px;
 }
 
 #reservation-btn {
   margin-top: 20px;
-  padding: 15px 25px;
+  padding: 10px 20px;
   background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
   color: #fff;
   font-size: 18px;
@@ -300,22 +321,155 @@ section.reservation h2 {
 
 
 
-section.map {
-  padding: 50px 0;
-  text-align: center;
-  background-color: #fff;
-}
-
-section.map h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: black;
+.map-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 50px;
+  justify-content: center; /* Centra todo el contenido */
 }
 
 .map-container {
-  width: 100%;  /* Asegura que el contenedor ocupe todo el ancho */
-  height: 400px;  /* Ajusta la altura del mapa según lo necesites */
-  margin: 0 auto;
-  position: relative;
+  width: 500px; /* Tamaño del mapa (ajústalo como desees) */
+  height: 500px; /* Mismo valor para obtener un cuadrado */
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Centra el mapa dentro de su contenedor */
 }
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.form-container {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+label {
+  font-weight: bold;
+  color: black;
+}
+
+input, textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+/* Estilo para el botón en el formulario */
+.form-button {
+  margin-top: 20px;
+  padding: 15px 25px;
+  background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: inline-block; /* Para que el botón no ocupe todo el ancho */
+  max-width: 250px;
+  
+}
+
+.form-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.5s ease;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-button:hover {
+  background: linear-gradient(45deg, #f5c032, #d4af37); /* Inversión del degradado */
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
+  color: #000;
+}
+
+.form-button:hover::before {
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+}
+
+
+/* Estilo general del footer */
+footer {
+  background-color: #000; /* Fondo negro */
+  color: #fff; /* Color de texto blanco */
+  padding: 20px 0; /* Espaciado superior e inferior */
+}
+
+.footer-container {
+  display: flex; /* Flexbox para dividir en columnas */
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Espaciado interno */
+}
+
+.footer-left {
+  width: 50%; /* 50% de ancho */
+}
+
+.footer-logo {
+  max-width: 100px; /* Ajusta el tamaño del logo */
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  margin-right: 15px; /* Espaciado entre los iconos */
+}
+
+.social-icons img {
+  width: 30px; /* Tamaño de los iconos */
+  height: 30px; /* Tamaño de los iconos */
+}
+
+.contact-email, .location {
+  margin-top: 10px;
+}
+
+.footer-right {
+  width: 50%; /* 50% de ancho */
+  /* Aquí puedes agregar más contenido si lo deseas */
+}
+
+
+
 
