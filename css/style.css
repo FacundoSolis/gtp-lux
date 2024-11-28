@@ -44,8 +44,8 @@ section.banner {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Hace que el video cubra todo el área */
-  z-index: -1; /* Asegura que el video quede en el fondo */
+  object-fit: cover; /* Asegura que el video cubra toda la sección */
+  z-index: -1; /* Envía el video al fondo */
 }
 
 /* Capa de opacidad sobre el video */
@@ -55,14 +55,14 @@ section.banner {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Ajusta el nivel de opacidad */
-  z-index: 0;
+  background: rgba(0, 0, 0, 0.5); /* Ajusta la transparencia según lo necesites */
+  z-index: 0; /* Justo encima del video */
 }
 
 /* Contenido del banner (logo, texto y botón) */
 .banner-content {
   position: relative;
-  z-index: 1;
+  z-index: 1; /* Asegura que esté sobre el video y la capa de opacidad */
 }
 
 section.banner .logo {
