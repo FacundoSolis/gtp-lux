@@ -28,7 +28,6 @@ header {
 /* Estilos para el banner */
 section.banner {
   position: relative;
-  margin-top: 0px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -69,7 +68,7 @@ section.banner {
 section.banner .logo {
   width: 300px; /* Ajusta el tamaño del logo */
   height: auto;
-  margin-bottom: -80px; /* Espacio entre el logo y el h1 */
+  margin-bottom: -10px; /* Espacio entre el logo y el h1 */
 }
 
 section.banner h1 {
