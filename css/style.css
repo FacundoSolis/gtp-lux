@@ -140,11 +140,12 @@ iframe {
 
 
 .slider-title {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
+  font-style: italic;
   color: white;
-  margin-bottom: 30px;
-  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   text-align: center;
   position: relative;
   margin-left: 0; /* Elimina los márgenes laterales */
@@ -154,7 +155,8 @@ iframe {
 .slider-title::after {
   content: "";
   position: absolute;
-  bottom: -20px;
+  
+  bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
   width: 20%;
@@ -169,7 +171,7 @@ iframe {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 80px;
   gap: 30px; /* Espacio entre columnas */
   max-width: 1200px; /* Límite del ancho del contenido */
   margin-left: auto;
@@ -284,21 +286,44 @@ nav a {
   font-size: 16px;
   color: white;
 }
-
-
 /* Estilo reservas */
 section.reservation {
+  position: relative;  /* Necesario para el posicionamiento absoluto del ::after */
   text-align: center;
-  padding: 50px 0;
-  background-color: #374342;
+  padding: 40px;
+  background-color: #FFFFFF;
   margin-top: 0;
+  background-image: url('../img/olas.jpg');
+  background-size: cover;
+  background-position: bottom center; /* Coloca la imagen alineada a la parte inferior */
+  background-repeat: no-repeat;
+  border-radius: 8px;  /* Opcional: redondea los bordes si lo necesitas */
+}
+
+section.reservation::after {
+  content: '';  /* Crea la capa */
+  position: absolute;  /* Se coloca encima de la imagen */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);  /* Sombreado con opacidad */
+  border-radius: 8px;  /* Opcional: si redondeas los bordes de la sección */
+  z-index: 0;  /* Asegura que el sombreado quede detrás del contenido */
+}
+
+section.reservation .content {
+  position: relative;  /* Hace que el contenido quede encima del sombreado */
+  z-index: 1;  /* Asegura que el contenido se muestre encima del sombreado */
+  color: white;  /* Opcional: para que el texto sea legible sobre el sombreado */
 }
 
 section.reservation h2 {
   font-size: 32px;
   margin-bottom: 20px;
-  color: black;
+  color: white;
   position: relative; /* Necesario para posicionar la línea debajo */
+  z-index: 2;  /* Asegura que el título esté por encima del sombreado */
 }
 
 section.reservation h2::after {
@@ -309,14 +334,16 @@ section.reservation h2::after {
   transform: translateX(-50%);
   width: 20%; /* La línea ocupará el 20% del ancho del texto */
   height: 2px; /* Grosor de la línea */
-  background: linear-gradient(to right, transparent, #333, transparent);
+  background: linear-gradient(to right, transparent, white, transparent);
   transition: height 0.3s ease-in-out;
+  z-index: 2;  /* Asegura que la línea también esté por encima del sombreado */
 }
 
 .calendar-container {
   display: inline-block;
   margin: 20px 0;
   margin-bottom: 30px;
+  z-index: 2;  /* Asegura que el calendario esté por encima del sombreado */
 }
 
 #reservation-date {
@@ -327,7 +354,9 @@ section.reservation h2::after {
   border-radius: 10px;
   outline: none;
   margin-bottom: 30px;
+  z-index: 3;  /* Asegura que el input del calendario esté por encima del sombreado */
 }
+
 #reservation-btn {
   margin-top: 20px;
   padding: 15px 25px;
@@ -343,6 +372,7 @@ section.reservation h2::after {
   transition: all 0.3s ease;
   display: inline-block; /* Para que el botón no ocupe todo el ancho */
   max-width: 250px;
+  z-index: 2;  /* Asegura que el botón esté por encima del sombreado */
 }
 
 #reservation-btn::before {
@@ -356,12 +386,14 @@ section.reservation h2::after {
   transition: all 0.5s ease;
   border-radius: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;  /* Asegura que el efecto de hover esté por encima del sombreado */
 }
 
 #reservation-btn:hover {
   background: linear-gradient(45deg, #f5c032, #d4af37); /* Inversión del degradado */
   box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
   color: #000;
+  z-index: 3;  /* Asegura que el botón esté siempre por encima */
 }
 
 #reservation-btn:hover::before {
@@ -369,7 +401,9 @@ section.reservation h2::after {
   height: 120%;
   top: -10%;
   left: -10%;
+  z-index: 3;  /* Asegura que el efecto hover también esté por encima */
 }
+
 
 .map-form {
   display: flex;
