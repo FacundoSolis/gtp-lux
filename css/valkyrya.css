@@ -1,0 +1,138 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  font-size: 13px;
+  --color: #eee;
+  color: var(--color);
+  background: none; /* Elimina cualquier fondo que esté aplicado */
+}
+
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Estilos para el header */
+.header-valkyrya {
+  display: flex;
+  position: relative;
+  justify-content: space-between; /* Separar logotipo y menú */
+  align-items: center; /* Centrar verticalmente */
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: #000; /* Fondo negro */
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc; /* Línea divisoria */
+}
+
+/* Estilos para el logotipo */
+.header-valkyrya .logo img {
+  max-height: 130px; /* Tamaño máximo del logo */
+  margin:auto;
+}
+
+/* Estilos para el menú de navegación */
+.nav-menu ul {
+  list-style: none; /* Quitar puntos de la lista */
+  display: flex; /* Alinear los elementos en fila */
+  margin: 0; /* Eliminar márgenes */
+  padding: 0; /* Eliminar relleno */
+}
+
+.nav-menu ul li {
+  margin-left: 0px; /* Separación entre los enlaces */
+}
+
+.nav-menu ul li a {
+  text-decoration: none; /* Quitar subrayado */
+  color: #fff; /* Color blanco para el texto */
+  font-size: 15px; /* Tamaño del texto */
+  margin-right: 40px;
+  font-weight:lighter; /* Negrita */
+  transition: color 0.3s ease; /* Efecto suave al pasar el mouse */
+}
+
+.nav-menu ul li a:hover {
+  color: #d4af37; /* Color al pasar el mouse */
+}
+
+
+.container-valkyrya h2 {
+  font-size: 2.5rem; /* Cambia el tamaño del texto */
+  color: black; /* Cambia el color del texto */
+  text-align: left; /* Centra el texto */
+  margin-left: 10px;
+  margin-bottom: 20px; /* Espaciado debajo del título */
+}
+/* Estilo para las imágenes */
+.slider-valkyrya img {
+  width: 100%; /* Las imágenes ocupan el 100% del contenedor de su respectivo slide */
+  height:auto; /* Mantiene la proporción de la imagen */
+  object-fit: cover; /* Asegura que las imágenes no se deformen */
+}
+
+/* Estilo para el contenedor del slider */
+.slider-valkyrya {
+  position: relative;
+  overflow: hidden; /* Oculta las imágenes que están fuera del contenedor */
+  width: 100%; /* Asegura que el slider ocupe todo el contenedor */
+  height: 300px; /* Puedes ajustar la altura según lo necesites */
+}
+
+/* Contenedor de las imágenes */
+.slider-container {
+  display: flex; /* Hace que las imágenes estén alineadas horizontalmente */
+  transition: transform 0.5s ease-in-out; /* Movimiento suave al cambiar de imagen */
+  width: 300%; /* Esto hace que el contenedor de imágenes sea tres veces más ancho que el contenedor visible */
+}
+
+/* Cada "slide" dentro del slider */
+.slides-valkyrya {
+  display: flex;
+  width: 33.33%; /* Hace que cada imagen ocupe un tercio del contenedor */
+}
+
+/* Flechas de navegación */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transform: translateY(-50%);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+/* Efecto hover para las flechas */
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+
+
+
+

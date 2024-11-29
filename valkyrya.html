@@ -4,26 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valkyrya - Yate</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/valkyrya.css">
 </head>
 <body>
-<!-- Página de Valkyrya -->
-<section class="container">
-    <!-- Título -->
-    <h2>VALKYRYA</h2>
-  
-    <!-- Slider de imágenes -->
-    <div class="slider-container">
-      <div class="slider">
-        <div class="slides">
-          <img src="img/valkyrya1.jpg" alt="Imagen 1">
-          <img src="img/valkyrya2.jpg" alt="Imagen 2">
-          <img src="img/valkyrya3.jpg" alt="Imagen 3">
-          <img src="img/valkyrya4.jpg" alt="Imagen 4">
-          <img src="img/valkyrya5.jpg" alt="Imagen 5">
-        </div>
-      </div>
+
+  <!-- Header con logotipo y menú -->
+  <header class="header-valkyrya">
+    <!-- Logotipo -->
+    <div class="logo">
+      <img src="img/logo.png" alt="Logotipo Valkyrya">
     </div>
+
+    <!-- Menú de navegación -->
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#">INICIO</a></li>
+        <li><a href="#">NUESTROS BARCOS</a></li>
+        <li><a href="#">SOBRE NOSOTROS</a></li>
+        <li><a href="#">CONTACTO</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Resto del contenido de la página -->
+  <section class="container-valkyrya">
+    <h2>VALKYRYA</h2>
+
+     <!-- Slider de imágenes -->
+    <div class="slider-valkyrya">
+      <div class="slides-valkyrya">
+        <img src="img/val1.jpg" alt="Imagen 1">
+        <img src="img/val2.jpg" alt="Imagen 2">
+        <img src="img/val3.jpg" alt="Imagen 3">
+        <img src="img/val4.jpg" alt="Imagen 4">
+        <img src="img/val5.jpg" alt="Imagen 5">
+        <img src="img/val6.jpg" alt="Imagen 6">
+        <img src="img/val7.jpg" alt="Imagen 7">
+        <img src="img/val8.jpg" alt="Imagen 8">
+        <img src="img/val9.jpg" alt="Imagen 9">
+      </div>
+
+      <!-- Flechas de navegación -->
+      <span class="prev" onclick="moveSlide(-1)">&#10094;</span>
+      <span class="next" onclick="moveSlide(1)">&#10095;</span>
+    </div>
+  </section>
+
   
     <!-- Características del barco -->
     <section class="characteristics">
@@ -92,5 +118,8 @@
   <footer>
     <button><a href="index.html">Volver</a></button>
   </footer>
+
+  <script src="js/slider-valkyrya.js"></script>
+
 </body>
 </html>
