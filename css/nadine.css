@@ -2,11 +2,10 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   font-size: 13px;
-  --color: #eee;
+  --color: #FFFFFF;
   color: var(--color);
   background: none; /* Elimina cualquier fondo que esté aplicado */
 }
-
 
 a {
   text-decoration: none;
@@ -24,7 +23,7 @@ header {
   text-align: left;
 }
 
-/* Estilos para el header */
+/* HEADER */
 .header-valkyrya {
   display: flex;
   position: relative;
@@ -36,15 +35,17 @@ header {
   border-bottom: 1px solid #ccc; /* Línea divisoria */
 }
 
-/* Estilos para el logotipo */
+/* LOGO*/
 .header-valkyrya .logo img {
   max-height: 130px; /* Tamaño máximo del logo */
   margin:auto;
 }
 
-/* Estilos para el menú de navegación */
+/* MENÚ */
 .nav-menu ul {
+  font-size: 1vw;
   list-style: none; /* Quitar puntos de la lista */
+  font-family: serif;
   display: flex; /* Alinear los elementos en fila */
   margin: 0; /* Eliminar márgenes */
   padding: 0; /* Eliminar relleno */
@@ -75,14 +76,15 @@ header {
   margin-left: 10px;
   margin-bottom: 20px; /* Espaciado debajo del título */
 }
-/* Estilo para las imágenes */
+
+/* IMAGENES */
 .slider-valkyrya img {
   width: 100%; /* Las imágenes ocupan el 100% del contenedor de su respectivo slide */
   height:auto; /* Mantiene la proporción de la imagen */
   object-fit: cover; /* Asegura que las imágenes no se deformen */
 }
 
-/* Estilo para el contenedor del slider */
+/* SLIDER */
 .slider-valkyrya {
   position: relative;
   overflow: hidden; /* Oculta las imágenes que están fuera del contenedor */
@@ -90,7 +92,7 @@ header {
   height: 300px; /* Puedes ajustar la altura según lo necesites */
 }
 
-/* Contenedor de las imágenes */
+/* SLIDER IMAGENES */
 .slider-container {
   display: flex; /* Hace que las imágenes estén alineadas horizontalmente */
   transition: transform 0.5s ease-in-out; /* Movimiento suave al cambiar de imagen */
@@ -103,13 +105,13 @@ header {
   width: 33.33%; /* Hace que cada imagen ocupe un tercio del contenedor */
 }
 
-/* Flechas de navegación */
+/* FLECHAS SLIDER*/
 .prev, .next {
   position: absolute;
   top: 50%;
   padding: 16px;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
@@ -126,11 +128,405 @@ header {
   right: 0;
 }
 
-/* Efecto hover para las flechas */
+/* EFECTO FLECHAS SLIDER */
 .prev:hover, .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.parrafo p{
+  color: #000;
+  font-family: serif;
+  font-size: 1vw;
+  text-align: left;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 30px;
+  text-align: center;
+  
+  
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Características del barco */
+.characteristics {
+  background-color: #0E1724;
+  border: 1px solid #2D353F;
+  border-radius: 8px;
+  padding: 20px;
+  margin-left: 30px;
+  margin-top: 35px;
+  width: 50%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.characteristics h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.info-row.light {
+  background-color: #2D353F;
+}
+
+.info-row span {
+  font-size: 1rem;
+}
+
+/* Recuadro derecho con cajas */
+.right-boxes {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  gap: 20px;
+  width: 35%;
+}
+.right-boxes h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row.large .box {
+  width: calc(50% - 5px);
+}
+
+.box {
+  flex: 1;
+  height: 100px;
+  background-color: #2D353F;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 1rem;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.pricing {
+  color: black;
+}
+/* Contenedor para las dos columnas */
+.pricing-details-columns {
+  display: flex;
+  justify-content: space-between; /* Separación entre columnas */
+  gap: 30px; /* Aumentamos la separación entre las columnas */
+  margin: 50px auto; /* Centramos el contenedor y lo separa de los bordes */
+  max-width: 1200px; /* Limita el tamaño máximo del contenedor */
+  padding: 0 20px; /* Espaciado a los lados del contenedor */
+}
+
+/* Ajuste de tamaño más pequeño */
+.characteristics2, .characteristics3 {
+  background-color: #F4F4F4;
+  margin-top: 30px;
+  border-radius: 8px;
+  padding: 20px;
+  width: 40%; /* Tamaño original */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos */
+.characteristics2 h3, .characteristics3 h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem; /* Tamaño más pequeño */
+  color: black;
+}
+
+/* Listas */
+.info-list2, .info-list3 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: black;
+}
+
+/* Filas de contenido */
+.info-row2, .info-row3 {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px; /* Espaciado interno */
+  border-radius: 4px;
+  background-color: #E9ECEF; /* Fondo más claro para cada fila */
+}
+
+.info-row2 span, .info-row3 span {
+  font-size: 0.9rem; /* Tamaño ajustado */
+}
+
+/* Estilo general */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Contenedor principal para las dos columnas */
+.form-container {
+  display: flex;
+  justify-content: space-between; /* Para separar las dos columnas */
+  gap: 40px; /* Espacio entre las columnas */
+  margin: 40px auto;
+  max-width: 1200px; /* Limita el tamaño del contenedor */
+  padding: 0 20px; /* Espaciado a los lados del contenedor */
+}
+
+/* Estilo de la columna del formulario */
+
+.Formulario {
+  background-color: #F0F0F0; /* Cambia este color al que desees */
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.Formulario h3{
+  color: black;
+  font-size: 2vw;
+  text-align: center;
+}
+
+.form {
+  background-color: #F4F4F4;
+  border-radius: 8px;
+  padding: 20px;
+  width: 45%; /* Tamaño del formulario */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  margin-bottom: 3px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.form input {
+  padding: 5px;
+  margin-bottom: 0;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.form input[type="submit"] {
+  background-color: #d4af37;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #c89a30;
+}
+
+/* Estilo de la columna de precios y calendario */
+.pricing-and-calendar {
+  width: 45%; /* Tamaño de la columna de precios y calendario */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Precios */
+.pricing {
+  background-color: #F4F4F4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pricing h3 {
+  margin-bottom: 15px;
+  font-size: 1vw;
+}
+
+.price-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.price-radio {
+  width: 10px; /* Tamaño del círculo */
+  height: 10px; /* Tamaño del círculo */
+  margin-top: 10px; /* Espacio entre el precio y el círculo */
+  accent-color: #d4af37; /* Color del círculo (puedes cambiarlo) */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el círculo */
+}
+
+.price-columns div {
+  width: 30%; /* Ajusta el tamaño de cada columna de precio */
+}
+
+.price-columns h4 {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.price-columns p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Calendario de reserva */
+.reservation {
+  background-color: #F4F4F4;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.reservation h3 {
+  margin-bottom: 15px;
+  font-size: 1vw;
+}
+
+.calendar {
+  width: 95%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #d4af37;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #c89a30;
+}
+
+
+
+/* Estilo general del footer */
+footer {
+  background-color: #000; /* Fondo negro */
+  color: #fff; /* Color de texto blanco */
+  padding: 20px 0; /* Espaciado superior e inferior */
+}
+
+.footer-container {
+  display: flex; /* Flexbox para dividir en columnas */
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Espaciado interno */
+}
+
+.footer-left {
+  width: 50%; /* 50% de ancho */
+}
+
+.footer-logo {
+  max-width: 100px; /* Ajusta el tamaño del logo */
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  margin-right: 15px; /* Espaciado entre los iconos */
+}
+
+.social-icons img {
+  width: 30px; /* Tamaño de los iconos */
+  height: 30px; /* Tamaño de los iconos */
+}
+
+.contact-email, .location {
+  margin-top: 10px;
+}
+
+.footer-right {
+  width: 50%; /* 50% de ancho */
+  /* Aquí puedes agregar más contenido si lo deseas */
+}
+
+/* CONFIGURACIÓN PANTALLA MOVILES */
+
+
+/* Media Query para móviles */
+@media (max-width: 768px) {
+  .banner-content h1, .banner-content h2 {
+    font-size: 20px;
+  }
+
+  .info-row {
+    display: block;
+    padding: 10px;
+  }
+
+  .info-text {
+    margin-top: 20px;
+  }
+
+  .slider-with-arrows {
+    width: 100%;
+    position: relative;
+  }
+
+  .slider img {
+    width: 100%;
+    height: auto;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 200px;
+  }
+
+  .form-container form {
+    width: 100%;
+  }
+
+  .footer-container {
+    display: block;
+    text-align: center;
+  }
+}
 
 
 
