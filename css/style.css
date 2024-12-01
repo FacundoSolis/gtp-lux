@@ -468,19 +468,19 @@ section.reservation h2::after {
   z-index: 3;  /* Asegura que el efecto hover también esté por encima */
 }
 
-
+/* Estilo SECTION MAPA */
 .map-form {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
+  flex-direction: column; /* Organiza el mapa y el formulario en una columna */
+  justify-content: center;
+  align-items: center; /* Centra todo el contenido horizontalmente */
+  gap: 20px; /* Espaciado entre el mapa y el formulario */
   margin-top: 50px;
-  justify-content: center; /* Centra todo el contenido */
 }
 
 .map-container {
-  width: 80vw; /* Tamaño del mapa (ajústalo como desees) */
-  height: 50vh; /* Mismo valor para obtener un cuadrado */
+  width: 70%; /* Tamaño del mapa en porcentaje del ancho de la pantalla */
+  height: 300px; /* Ajusta la altura del mapa */
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
@@ -495,10 +495,11 @@ iframe {
 }
 
 .form-container {
-  width: 45%;
+  width: 45%; /* Tamaño del formulario en porcentaje del ancho de la pantalla */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 15px; /* Espaciado entre los campos del formulario */
 }
 
 h3 {
@@ -510,9 +511,8 @@ h3 {
 form {
   display: flex;
   flex-direction: column;
-  width: 70%;
-  gap: 15px;
-  margin-bottom: 40px;
+  width: 100%; /* El formulario ocupa todo el ancho de su contenedor */
+  gap: 15px; /* Espaciado entre los elementos del formulario */
 }
 
 label {
@@ -526,13 +526,13 @@ input, textarea {
   border-radius: 4px;
 }
 
-
 /* Estilo para el botón en el formulario */
 .form-button {
-  margin-top: 20px;
+  margin-top: 20px auto;
+  margin-bottom: 20px;
   padding: 15px 25px;
   background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
-  color: black; /* Mismo color que el botón del formulario */
+  color: black;
   font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
@@ -541,7 +541,7 @@ input, textarea {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  display: inline-block; /* Para que el botón no ocupe todo el ancho */
+  display: block; /* El botón no ocupará todo el ancho */
   max-width: 250px;
 }
 
@@ -570,6 +570,7 @@ input, textarea {
   top: -10%;
   left: -10%;
 }
+
 /* Estilo general del footer */
 footer {
   background-color: #000; /* Fondo negro */
@@ -615,7 +616,7 @@ footer {
   /* Aquí puedes agregar más contenido si lo deseas */
 }
 
-/* CONFIGURACIÓN PANTALLA MOVILES */
+/* -------------------------- CONFIGURACIÓN PANTALLA MOVILES ------------------------------------- */
 
 /* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
@@ -624,14 +625,18 @@ footer {
     padding: 10px;
   }
 
-  /* Banner: reducir el tamaño del texto */
-  .banner-content h1, .banner-content h2 {
-    font-size: 3rem; /* Ajustar el tamaño del texto */
+  /* Banner: ajustar el tamaño del texto */
+  .banner-content h1 {
+    font-size: 1.5rem; /* Hacer h1 un poco más pequeño */
+  }
+
+  .banner-content h2 {
+    font-size: 2.5rem; /* Hacer h2 más pequeño */
   }
 
   /* Ajuste del logo */
   .banner .logo {
-    width: 200px; /* Hacer el logo más pequeño */
+    width: 300px; /* Hacer el logo un poco más grande */
   }
 
   /* Sección de texto: ajustes en las columnas */
@@ -646,9 +651,24 @@ footer {
     text-align: center; /* Centrar el texto */
   }
 
+  /* Hacer la image-column más grande */
+  .image-column {
+    flex: 1 1 60%; /* Cambiar el ancho de la imagen a un 60% */
+  }
+
+  /* Hacer h2 más pequeño en text-column */
+  .text-column h2 {
+    font-size: 1.2rem; /* Hacer h2 más pequeño */
+  }
+
+  /* Hacer el p más pequeño */
+  .text-column p {
+    font-size: 1rem; /* Hacer el párrafo más pequeño */
+  }
+
   /* Ajuste de los títulos en los slider */
   .slider-title {
-    font-size: 2.5rem; /* Reducir tamaño del título */
+    font-size: 2rem; /* Reducir tamaño del título */
   }
 
   .info-row {
@@ -664,10 +684,18 @@ footer {
   .map-container {
     width: 100%; /* Mapa ocupa todo el ancho */
     height: 300px; /* Ajustar el alto del mapa */
+    margin-top: 50px; /* Mover el mapa hacia abajo */
   }
 
+  /* Formulario: hacer que no se vea en dos columnas */
   .form-container form {
     width: 100%; /* Formularios en toda la pantalla */
+  }
+
+  /* Ajustes del botón de reserva */
+  .reservation-btn {
+    font-size: 1rem; /* Hacer el botón un poco más pequeño */
+    padding: 10px 20px; /* Reducir el padding */
   }
 
   /* Footer */
@@ -681,24 +709,13 @@ footer {
 @media (max-width: 1024px) {
   /* Ajustes del header */
   header {
-    padding: 15px;
-  }
-
-  /* Sección del banner */
-  .banner-content h1, .banner-content h2 {
-    font-size: 3rem; /* Reducir el tamaño del texto ligeramente */
-  }
-
-  .banner .logo {
-    width: 100%; /* Cambiar para que el logo se ajuste al contenedor */
-    max-width: 250px; /* Limitar el tamaño máximo en pantallas grandes */
+    padding: 10px;
   }
 
   /* Sección de texto */
   .text-home .container {
     flex-direction: row; /* Mostrar las columnas en fila */
     padding: 0 10px; /* Reducir el padding en dispositivos móviles */
-
   }
 
   .text-column, .image-column {
@@ -706,8 +723,9 @@ footer {
     padding: 10px; /* Ajustar el padding para no sobrecargar el espacio */
   }
 
+  /* Ajustes en los títulos */
   .slider-title {
-    font-size: 3rem; /* Ajuste del tamaño del título */
+    font-size: 2.5rem; /* Ajuste del tamaño del título */
   }
 
   .info-row {
@@ -723,16 +741,15 @@ footer {
   /* Footer */
   .footer-container {
     display: flex;
-    flex-direction: column; /* Apilar los elementos del footer en móviles */
+    flex-direction: column; /* Apilar los elementos del footer */
     justify-content: center;
     align-items: center;
   }
-  
 
   .form-container form {
     width: 100%; /* Asegura que los formularios sean fluidos */
   }
-  
 }
+
 
 

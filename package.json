@@ -1,7 +1,7 @@
 {
-  "name": " ",
+  "name": "Gtp-Lux",
   "version": "0.0.1",
-  "description": "",
+  "description": "Proyecto web con Webpack y normalización de estilos con normalize.css",
   "private": true,
   "keywords": [
     ""
