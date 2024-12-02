@@ -137,16 +137,7 @@ header {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.parrafo p {
-  color: #000;
-  font-family: serif;
-  font-size: 1vw;
-  text-align: left;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: 30px;
-  text-align: center;
-}
+
 
 .layout {
   display: flex;
@@ -232,9 +223,7 @@ header {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.pricing {
-  color: black;
-}
+
 
 .pricing-details-columns {
   display: flex;
@@ -345,58 +334,18 @@ body {
   background-color: #c89a30;
 }
 
-.pricing-and-calendar {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.pricing {
-  background-color: #F4F4F4;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.pricing h3 {
-  margin-bottom: 15px;
-  font-size: 1vw;
-}
-
-.price-columns {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.price-radio {
-  width: 10px;
-  height: 10px;
-  margin-top: 10px;
-  accent-color: #d4af37;
-  cursor: pointer;
-}
-
-.price-columns div {
-  width: 30%;
-}
-
-.price-columns h4 {
-  margin: 10px 0;
-  font-size: 1.1rem;
-}
-
-.price-columns p {
-  font-size: 1rem;
-  color: #333;
-}
 
 .reservation {
   background-color: #F4F4F4;
   padding: 50px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  max-width: 400px; /* Ajusta el tamaño máximo de la caja que contiene la reserva */
+  margin: 0; /* Centra la caja de reserva */
+  margin-bottom: 20px;
+
 }
 
 .reservation h3 {
@@ -405,12 +354,12 @@ body {
 }
 
 .calendar {
-  width: 95%;
+  width: 94%;
   padding: 10px;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 3px;
   border: 1px solid #ccc;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .btn {
