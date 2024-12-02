@@ -1,12 +1,10 @@
 {
-  "name": "Gtp-Lux",
+  "name": "gtp-lux",
   "version": "0.0.1",
   "description": "Proyecto web con Webpack y normalización de estilos con normalize.css",
   "private": true,
-  "keywords": [
-    ""
-  ],
-  "license": "",
+  "keywords": [],
+  "license": "ISC",
   "author": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,14 +12,22 @@
     "build": "webpack --config webpack.config.prod.js"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "babel-loader": "^9.2.1",
     "copy-webpack-plugin": "^11.0.0",
-    "html-webpack-plugin": "^5.6.0",
-    "webpack": "^5.91.0",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4",
+    "webpack-dev-server": "^5.1.0",
     "webpack-merge": "^5.10.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1"
-  }
+    "normalize.css": "^8.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "main": "index.js"
 }
