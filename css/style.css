@@ -616,137 +616,177 @@ footer {
   /* Aquí puedes agregar más contenido si lo deseas */
 }
 
-/* -------------------------- CONFIGURACIÓN PANTALLA MOVILES ------------------------------------- */
 
-/* Media Query para dispositivos móviles */
+/* =================== RESPONSIVE  =================== */
+
 @media (max-width: 768px) {
-  /* Estilos del header */
-  header {
-    padding: 10px;
-  }
-
-  /* Banner: ajustar el tamaño del texto */
+  /* Banner: ajustar el tamaño de los textos */
   .banner-content h1 {
-    font-size: 1.5rem; /* Hacer h1 un poco más pequeño */
+    font-size: 1.5rem; /* Hacer h1 más pequeño */
   }
 
   .banner-content h2 {
     font-size: 2.5rem; /* Hacer h2 más pequeño */
   }
 
-  /* Ajuste del logo */
-  .banner .logo {
-    width: 300px; /* Hacer el logo un poco más grande */
-  }
-
-  /* Sección de texto: ajustes en las columnas */
-  .text-home .container {
-    flex-direction: column; /* Poner las columnas en fila para móviles */
-    padding: 0 20px; /* Espaciado de los bordes */
-  }
-
-  .text-column, .image-column {
-    flex: 1 1 100%; /* Las columnas ocuparán el 100% del espacio */
-    padding: 15px; /* Reducir el padding */
-    text-align: center; /* Centrar el texto */
-  }
-
-  /* Hacer la image-column más grande */
-  .image-column {
-    flex: 1 1 60%; /* Cambiar el ancho de la imagen a un 60% */
-  }
-
-  /* Hacer h2 más pequeño en text-column */
+  /* Sección de texto: centrar h2 */
   .text-column h2 {
+    text-align: center; /* Centrar el h2 */
     font-size: 1.2rem; /* Hacer h2 más pequeño */
   }
 
-  /* Hacer el p más pequeño */
-  .text-column p {
-    font-size: 1rem; /* Hacer el párrafo más pequeño */
+  /* Imagen debajo del texto y más grande */
+  .image-column {
+    width: 100%; /* La imagen ocupa todo el ancho */
+    margin-top: 20px; /* Añadir un poco de espacio entre el texto y la imagen */
+    display: flex;
+    justify-content: center; /* Centrar la imagen */
   }
 
-  /* Ajuste de los títulos en los slider */
-  .slider-title {
-    font-size: 2rem; /* Reducir tamaño del título */
+  .image-column .oval-image {
+    width: 50vw; /* Hacer la imagen más grande */
+    height: 30vw; /* Ajustar la altura proporcionalmente */
+  }
+
+  /* Slider: hacer las imágenes más grandes */
+  .slider-container {
+    padding: 30px 20px;
   }
 
   .info-row {
-    display: block; /* Apilar las columnas */
+    display: block; /* Apilar columnas */
     padding: 15px 0;
   }
 
   .slider-with-arrows {
-    width: 100%; /* Ancho completo para las imágenes */
+    width: 100%; /* Las imágenes ocupan el 100% */
   }
 
-  /* Ajustes del mapa */
-  .map-container {
-    width: 100%; /* Mapa ocupa todo el ancho */
-    height: 300px; /* Ajustar el alto del mapa */
-    margin-top: 50px; /* Mover el mapa hacia abajo */
+  .slides img {
+    width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    height: auto;
   }
 
-  /* Formulario: hacer que no se vea en dos columnas */
-  .form-container form {
-    width: 100%; /* Formularios en toda la pantalla */
-  }
-
-  /* Ajustes del botón de reserva */
-  .reservation-btn {
-    font-size: 1rem; /* Hacer el botón un poco más pequeño */
-    padding: 10px 20px; /* Reducir el padding */
-  }
-
-  /* Footer */
-  .footer-container {
-    display: block;
+  .info-text {
     text-align: center;
+    max-width: 100%; /* Asegura que el texto ocupe todo el espacio */
+    margin-bottom: 20px; /* Espacio debajo del texto */
+  }
+
+  /* Ajustes en los botones del slider */
+  .info-text button {
+    font-size: 1rem; /* Reducir el tamaño de los botones */
+    padding: 10px 20px;
+  }
+
+  /* Ajuste en el mapa */
+  .map-container {
+    width: 100%;
+    height: 200px; /* Mapa más pequeño */
+    margin-top: 30px; /* Mover un poco hacia abajo */
+  }
+
+  .form-container form {
+    width: 100%;
+  }
+
+  /* Ajuste en los botones de formulario */
+  .form-button {
+    font-size: 1rem; /* Reducir el tamaño del botón */
+    padding: 12px 20px;
   }
 }
 
-/* Media Query para tablets (pantallas entre 768px y 1024px) */
+/* =================== VERSIÓN TABLET =================== */
+
 @media (max-width: 1024px) {
-  /* Ajustes del header */
-  header {
-    padding: 10px;
+  /* Banner: ajustar el tamaño de los textos */
+  .banner-content h1 {
+    font-size: 2rem; /* Hacer h1 un poco más pequeño */
   }
 
-  /* Sección de texto */
+  .banner-content h2 {
+    font-size: 3rem; /* Hacer h2 un poco más pequeño */
+  }
+
   .text-home .container {
-    flex-direction: row; /* Mostrar las columnas en fila */
-    padding: 0 10px; /* Reducir el padding en dispositivos móviles */
+    display: flex;
+    flex-direction: column; /* Organizar en una sola columna */
+    align-items: center; /* Centrar todo el contenido */
+    padding: 0 20px; /* Espaciado de los lados */
   }
 
-  .text-column, .image-column {
-    flex: 1 1 100%; /* Mantener las columnas en fila */
-    padding: 10px; /* Ajustar el padding para no sobrecargar el espacio */
+  /* Sección de texto: centrar h2 */
+  .text-column h2 {
+    text-align: center; /* Centrar el h2 */
+    font-size: 2rem; /* Hacer h2 más pequeño */
+    text-align: center;
   }
 
-  /* Ajustes en los títulos */
-  .slider-title {
-    font-size: 2.5rem; /* Ajuste del tamaño del título */
+  .text-column p {
+    text-align: center; /* Centrar el h2 */
+    font-size: 1.2rem; /* Hacer h2 más pequeño */
+    text-align: center;
+  }
+
+  /* Imagen debajo del texto y más grande */
+  .image-column {
+    width: 100%; /* La imagen ocupa todo el ancho */
+    margin-top: 20px; /* Añadir espacio entre el texto y la imagen */
+    display: flex;
+    justify-content: center; /* Centrar la imagen */
+  }
+
+  .image-column .oval-image {
+    width: 40vw; /* Hacer la imagen más grande */
+    height: 25vw; /* Ajustar la altura proporcionalmente */
+  }
+
+  /* Slider: hacer las imágenes más grandes */
+  .slider-container {
+    padding: 40px 20px;
   }
 
   .info-row {
-    display: flex;
-    justify-content: space-between;
+    display: block; /* Apilar columnas */
+    padding: 15px 0;
   }
 
-  /* Ajustes del slider */
   .slider-with-arrows {
-    width: 45%; /* Ajustar el tamaño de las imágenes */
+    width: 100%; /* Las imágenes ocupan el 100% */
   }
 
-  /* Footer */
-  .footer-container {
-    display: flex;
-    flex-direction: column; /* Apilar los elementos del footer */
-    justify-content: center;
-    align-items: center;
+  .slides img {
+    width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    height: auto;
+  }
+
+  .info-text {
+    text-align: center;
+    max-width: 100%; /* Asegura que el texto ocupe todo el espacio */
+    margin-bottom: 20px; /* Espacio debajo del texto */
+  }
+
+  /* Ajustes en los botones del slider */
+  .info-text button {
+    font-size: 1rem; /* Reducir el tamaño de los botones */
+    padding: 10px 20px;
+  }
+
+  /* Ajuste en el mapa */
+  .map-container {
+    width: 100%;
+    height: 250px; /* Ajustar el tamaño del mapa */
+    margin-top: 40px; /* Añadir espacio */
   }
 
   .form-container form {
-    width: 100%; /* Asegura que los formularios sean fluidos */
+    width: 100%;
+  }
+
+  /* Ajuste en los botones de formulario */
+  .form-button {
+    font-size: 1rem; /* Reducir el tamaño del botón */
+    padding: 12px 20px;
   }
 }
