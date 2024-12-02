@@ -137,21 +137,21 @@
       <h3>¡Reserva ya!</h3>
     </div>
     <div class="form-container">
-      <!-- Nueva sección con entradas superiores -->
       <div class="reservation-top">
-        <label for="num-persons">Número de Personas:</label>
-        <input type="number" id="num-persons" name="num-persons" placeholder="Número de Personas" min="1" max="12">
-  
         <label for="pickup-date">Fecha de Recogida:</label>
         <input type="date" id="pickup-date" name="pickup-date">
-  
+        
         <label for="return-date">Fecha de Entrega:</label>
         <input type="date" id="return-date" name="return-date">
       </div>
   
       <!-- Formulario -->
       <div class="form">
-        <form>
+        <form action="/reservations" method="POST">
+          <!-- Token CSRF de Laravel -->
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+
           <label for="fname">Nombre:</label>
           <input type="text" id="fname" name="fname" placeholder="Nombre">
           <label for="lname">Apellido:</label>
@@ -169,6 +169,7 @@
               <a href="condiciones.html" target="_blank">condiciones de alquiler</a>.
             </label>
           </div>
+          
           <button type="submit" class="btn">Reservar</button>
         </form>
       </div>
