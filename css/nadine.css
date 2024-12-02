@@ -4,7 +4,7 @@ body {
   font-size: 13px;
   --color: #FFFFFF;
   color: var(--color);
-  background: none; /* Elimina cualquier fondo que esté aplicado */
+  background: none;
 }
 
 a {
@@ -23,89 +23,94 @@ header {
   text-align: left;
 }
 
-/* HEADER */
 .header-valkyrya {
   display: flex;
-  position: relative;
-  justify-content: space-between; /* Separar logotipo y menú */
-  align-items: center; /* Centrar verticalmente */
-  padding: 10px 20px; /* Espaciado interno */
-  background-color: #000; /* Fondo negro */
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ccc; /* Línea divisoria */
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000;
 }
 
-/* LOGO*/
 .header-valkyrya .logo img {
-  max-height: 130px; /* Tamaño máximo del logo */
-  margin:auto;
+  max-height: 100px;
 }
 
-/* MENÚ */
+.nav-menu {
+  display: flex;
+}
+
 .nav-menu ul {
-  font-size: 1vw;
-  list-style: none; /* Quitar puntos de la lista */
-  font-family: serif;
-  display: flex; /* Alinear los elementos en fila */
-  margin: 0; /* Eliminar márgenes */
-  padding: 0; /* Eliminar relleno */
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-menu ul li {
-  margin-left: 0px; /* Separación entre los enlaces */
+  margin: 0 20px; 
 }
 
 .nav-menu ul li a {
-  text-decoration: none; /* Quitar subrayado */
-  color: #fff; /* Color blanco para el texto */
-  font-size: 15px; /* Tamaño del texto */
-  margin-right: 40px;
-  font-weight:lighter; /* Negrita */
-  transition: color 0.3s ease; /* Efecto suave al pasar el mouse */
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 .nav-menu ul li a:hover {
-  color: #d4af37; /* Color al pasar el mouse */
+  color: #d4af37;
 }
 
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.hamburger-menu span {
+  display: block;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
 
 .container-valkyrya h2 {
-  font-size: 2.5rem; /* Cambia el tamaño del texto */
-  color: black; /* Cambia el color del texto */
-  text-align: left; /* Centra el texto */
+  font-size: 2.5rem;
+  color: black;
+  text-align: left;
   margin-left: 10px;
-  margin-bottom: 20px; /* Espaciado debajo del título */
+  margin-bottom: 20px;
 }
 
-/* IMAGENES */
 .slider-valkyrya img {
-  width: 100%; /* Las imágenes ocupan el 100% del contenedor de su respectivo slide */
-  height:auto; /* Mantiene la proporción de la imagen */
-  object-fit: cover; /* Asegura que las imágenes no se deformen */
+  width: 100%;
+  height:auto;
+  object-fit: cover;
 }
 
-/* SLIDER */
 .slider-valkyrya {
   position: relative;
-  overflow: hidden; /* Oculta las imágenes que están fuera del contenedor */
-  width: 100%; /* Asegura que el slider ocupe todo el contenedor */
-  height: 300px; /* Puedes ajustar la altura según lo necesites */
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
 }
 
-/* SLIDER IMAGENES */
 .slider-container {
-  display: flex; /* Hace que las imágenes estén alineadas horizontalmente */
-  transition: transform 0.5s ease-in-out; /* Movimiento suave al cambiar de imagen */
-  width: 300%; /* Esto hace que el contenedor de imágenes sea tres veces más ancho que el contenedor visible */
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 300%;
 }
 
-/* Cada "slide" dentro del slider */
 .slides-valkyrya {
   display: flex;
-  width: 33.33%; /* Hace que cada imagen ocupe un tercio del contenedor */
+  width: 33.33%;
 }
 
-/* FLECHAS SLIDER*/
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -128,12 +133,11 @@ header {
   right: 0;
 }
 
-/* EFECTO FLECHAS SLIDER */
 .prev:hover, .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.parrafo p{
+.parrafo p {
   color: #000;
   font-family: serif;
   font-size: 1vw;
@@ -142,11 +146,8 @@ header {
   margin-bottom: 50px;
   margin-left: 30px;
   text-align: center;
-  
-  
 }
 
-/* LAYOUT */
 .layout {
   display: flex;
   justify-content: space-between;
@@ -154,7 +155,6 @@ header {
   gap: 20px;
 }
 
-/* Características del barco */
 .characteristics {
   background-color: #0E1724;
   border: 1px solid #2D353F;
@@ -193,7 +193,6 @@ header {
   font-size: 1rem;
 }
 
-/* Recuadro derecho con cajas */
 .right-boxes {
   display: flex;
   flex-direction: column;
@@ -201,6 +200,7 @@ header {
   gap: 20px;
   width: 35%;
 }
+
 .right-boxes h3 {
   margin-bottom: 20px;
   font-size: 1.5rem;
@@ -235,34 +235,31 @@ header {
 .pricing {
   color: black;
 }
-/* Contenedor para las dos columnas */
+
 .pricing-details-columns {
   display: flex;
-  justify-content: space-between; /* Separación entre columnas */
-  gap: 30px; /* Aumentamos la separación entre las columnas */
-  margin: 50px auto; /* Centramos el contenedor y lo separa de los bordes */
-  max-width: 1200px; /* Limita el tamaño máximo del contenedor */
-  padding: 0 20px; /* Espaciado a los lados del contenedor */
+  justify-content: space-between;
+  gap: 30px;
+  margin: 50px auto;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
-/* Ajuste de tamaño más pequeño */
 .characteristics2, .characteristics3 {
   background-color: #F4F4F4;
   margin-top: 30px;
   border-radius: 8px;
   padding: 20px;
-  width: 40%; /* Tamaño original */
+  width: 40%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Títulos */
 .characteristics2 h3, .characteristics3 h3 {
   margin-bottom: 20px;
-  font-size: 1.2rem; /* Tamaño más pequeño */
+  font-size: 1.2rem;
   color: black;
 }
 
-/* Listas */
 .info-list2, .info-list3 {
   display: flex;
   flex-direction: column;
@@ -270,43 +267,39 @@ header {
   color: black;
 }
 
-/* Filas de contenido */
 .info-row2, .info-row3 {
   display: flex;
   justify-content: space-between;
-  padding: 8px; /* Espaciado interno */
+  padding: 8px;
   border-radius: 4px;
-  background-color: #E9ECEF; /* Fondo más claro para cada fila */
+  background-color: #E9ECEF;
 }
 
 .info-row2 span, .info-row3 span {
-  font-size: 0.9rem; /* Tamaño ajustado */
+  font-size: 0.9rem;
 }
 
-/* Estilo general */
 body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Contenedor principal para las dos columnas */
 .form-container {
   display: flex;
-  justify-content: space-between; /* Para separar las dos columnas */
-  gap: 40px; /* Espacio entre las columnas */
+  justify-content: space-between;
+  gap: 40px;
   margin: 40px auto;
-  max-width: 1200px; /* Limita el tamaño del contenedor */
-  padding: 0 20px; /* Espaciado a los lados del contenedor */
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
-/* Estilo de la columna del formulario */
-
 .Formulario {
-  background-color: #F0F0F0; /* Cambia este color al que desees */
+  background-color: #F0F0F0;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-.Formulario h3{
+
+.Formulario h3 {
   color: black;
   font-size: 2vw;
   text-align: center;
@@ -316,7 +309,7 @@ body {
   background-color: #F4F4F4;
   border-radius: 8px;
   padding: 20px;
-  width: 45%; /* Tamaño del formulario */
+  width: 45%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -352,15 +345,13 @@ body {
   background-color: #c89a30;
 }
 
-/* Estilo de la columna de precios y calendario */
 .pricing-and-calendar {
-  width: 45%; /* Tamaño de la columna de precios y calendario */
+  width: 45%;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Precios */
 .pricing {
   background-color: #F4F4F4;
   padding: 20px;
@@ -380,15 +371,15 @@ body {
 }
 
 .price-radio {
-  width: 10px; /* Tamaño del círculo */
-  height: 10px; /* Tamaño del círculo */
-  margin-top: 10px; /* Espacio entre el precio y el círculo */
-  accent-color: #d4af37; /* Color del círculo (puedes cambiarlo) */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el círculo */
+  width: 10px;
+  height: 10px;
+  margin-top: 10px;
+  accent-color: #d4af37;
+  cursor: pointer;
 }
 
 .price-columns div {
-  width: 30%; /* Ajusta el tamaño de cada columna de precio */
+  width: 30%;
 }
 
 .price-columns h4 {
@@ -401,7 +392,6 @@ body {
   color: #333;
 }
 
-/* Calendario de reserva */
 .reservation {
   background-color: #F4F4F4;
   padding: 50px;
@@ -438,29 +428,26 @@ body {
   background-color: #c89a30;
 }
 
-
-
-/* Estilo general del footer */
 footer {
-  background-color: #000; /* Fondo negro */
-  color: #fff; /* Color de texto blanco */
-  padding: 20px 0; /* Espaciado superior e inferior */
+  background-color: #000;
+  color: #fff;
+  padding: 20px 0;
 }
 
 .footer-container {
-  display: flex; /* Flexbox para dividir en columnas */
+  display: flex;
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px; /* Espaciado interno */
+  padding: 0 20px;
 }
 
 .footer-left {
-  width: 50%; /* 50% de ancho */
+  width: 50%;
 }
 
 .footer-logo {
-  max-width: 100px; /* Ajusta el tamaño del logo */
+  max-width: 100px;
 }
 
 .social-icons {
@@ -468,12 +455,12 @@ footer {
 }
 
 .social-icons a {
-  margin-right: 15px; /* Espaciado entre los iconos */
+  margin-right: 15px;
 }
 
 .social-icons img {
-  width: 30px; /* Tamaño de los iconos */
-  height: 30px; /* Tamaño de los iconos */
+  width: 30px;
+  height: 30px;
 }
 
 .contact-email, .location {
@@ -481,26 +468,169 @@ footer {
 }
 
 .footer-right {
-  width: 50%; /* 50% de ancho */
-  /* Aquí puedes agregar más contenido si lo deseas */
+  width: 50%;
 }
 
-/* CONFIGURACIÓN PANTALLA MOVILES */
-
-
-/* Media Query para móviles */
 @media (max-width: 768px) {
-  .banner-content h1, .banner-content h2 {
-    font-size: 20px;
+  .header-valkyrya {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+  }
+
+  .header-valkyrya .logo img {
+    max-height: 100px;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background-color: #000;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-menu ul li {
+    margin: 10px 0px;
+  }
+
+  #nav-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+  }
+
+  #nav-menu ul li a:hover {
+    color: #d4af37;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .hamburger-menu span {
+    display: block;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .banner-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .banner-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .text-home .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .text-column h2 {
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  .text-column p {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .image-column {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-column .oval-image {
+    width: 80%;
+    height: auto;
+  }
+
+  .slider-container {
+    padding: 20px;
+  }
+
+  .slider-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .slider-title::after {
+    width: 50%;
+    height: 3px;
   }
 
   .info-row {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     padding: 10px;
   }
 
   .info-text {
-    margin-top: 20px;
+    text-align: center;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .info-text h3 {
+    font-size: 1.4rem;
+  }
+
+  .info-text button {
+    font-size: 0.8rem;
+    padding: 8px 12px;
   }
 
   .slider-with-arrows {
@@ -508,27 +638,82 @@ footer {
     position: relative;
   }
 
-  .slider img {
+  .slides img {
     width: 100%;
     height: auto;
   }
 
-  .map-container iframe {
+  .characteristics {
     width: 100%;
-    height: 200px;
+    margin: 20px 0;
+    padding: 10px;
   }
 
-  .form-container form {
+  .characteristics h3 {
+    font-size: 1.2rem;
+  }
+
+  .info-row span {
+    font-size: 0.9rem;
+  }
+
+  .right-boxes {
     width: 100%;
+    gap: 10px;
+  }
+
+  .row.large .box {
+    width: 100%;
+  }
+
+  .box {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .form-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .form {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .form label {
+    font-size: 0.9rem;
+  }
+
+  .form input[type="submit"] {
+    padding: 8px 10px;
+  }
+
+  .reservation {
+    padding: 20px;
+  }
+
+  .reservation h3 {
+    font-size: 1rem;
+  }
+
+  .calendar {
+    font-size: 0.9rem;
+  }
+
+  footer {
+    text-align: center;
   }
 
   .footer-container {
-    display: block;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .social-icons img {
+    width: 25px;
+    height: 25px;
   }
 }
-
-
-
-
-

@@ -1,13 +1,11 @@
-
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   font-size: 1rem;
   --color: #eee;
   color: var(--color);
-  background: none; /* Elimina cualquier fondo que esté aplicado */
+  background: none;
 }
-
 
 a {
   text-decoration: none;
@@ -25,64 +23,60 @@ header {
   text-align: left;
 }
 
-/* Estilos para el banner */
 section.banner {
   position: relative;
-  height: 70vh; /* Mantén la altura ajustada */
+  height: 70vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinea el contenido al inicio, hacia la parte superior */
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
   color: white;
   margin-top: 0;
-  padding-top: 20px; /* Ajusta este valor para agregar o quitar espacio arriba */
+  padding-top: 20px;
 }
 
-/* Video de fondo */
 .banner-video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Asegura que el video cubra toda la sección */
-  z-index: -1; /* Envía el video al fondo */
+  object-fit: cover;
+  z-index: -1;
 }
 
-/* Capa de opacidad sobre el video */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Ajusta la transparencia según lo necesites */
-  z-index: 0; /* Justo encima del video */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
 }
 
-/* Contenido del banner (logo, texto y botón) */
 .banner-content {
   position: relative;
-  z-index: 1; /* Asegura que esté sobre el video y la capa de opacidad */
+  z-index: 1;
 }
 
 section.banner .logo {
-  width: 20vw; /* Ajusta el tamaño del logo */
+  width: 20vw;
   height: auto;
-  margin-bottom: 0px; /* Espacio entre el logo y el h1 */
+  margin-bottom: 0px;
 }
 
 section.banner h1 {
   font-size: 3rem;
-  color: white; /* Puedes cambiar el color según lo necesites */
+  color: white;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   margin-top: -30px;
 }
 
 section.banner h2 {
   font-size: 30px;
-  color: white; /* Puedes cambiar el color según lo necesites */
+  color: white;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   margin-bottom: 3rem;
 }
@@ -102,7 +96,7 @@ section.banner a {
 section.banner .btn {
   margin-top: 20px;
   padding: 1rem 2rem;
-  background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
+  background: linear-gradient(45deg, #d4af37, #f5c032);
   color: black;
   font-size: 15px;
   font-weight: bold;
@@ -115,40 +109,38 @@ section.banner .btn {
 }
 
 section.banner .btn:hover {
-  background: linear-gradient(45deg, #f5c032, #d4af37); /* Efecto de inversión del degradado */
-  box-shadow: 0 0 20px 8px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
+  background: linear-gradient(45deg, #f5c032, #d4af37);
+  box-shadow: 0 0 20px 8px rgba(255, 215, 0, 0.6);
   color: white;
 }
 
 iframe {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Para que el video cubra el fondo sin distorsionarse */
-
+  object-fit: cover;
 }
-/* Estilo para la sección de bienvenida */
 
 .text-home {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 50px 0;
-  background-color: #f9f9f9; /* Fondo claro */
+  background-color: #f9f9f9;
 }
 
 .text-home .container {
   display: flex;
-  max-width: 1200px; /* Alineado con el slider */
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  gap: 20px; /* Espaciado entre las columnas */
+  gap: 20px;
 }
 
 .text-column {
-  flex: 1; /* Ocupa una columna */
+  flex: 1;
   color: #000;
   padding: 50px;
-  text-align: left; /* Alineación izquierda */
+  text-align: left;
 }
 
 .text-column h2 {
@@ -164,30 +156,27 @@ iframe {
 }
 
 .image-column {
-  flex: 1; /* Ocupa una columna */
+  flex: 1;
   display: flex;
-  justify-content: flex-end; /* Alineación derecha */
+  justify-content: flex-end;
   align-items: center;
   padding: 20px;
 }
 
 .image-column .oval-image {
-  width: 30vw; /* Ajusta el tamaño de la imagen */
-  height: 20vw; /* Mismo valor para obtener un círculo */
-  border-radius: 50%; /* Hace el marco ovalado */
-  object-fit: cover; /* Ajusta la imagen dentro del marco sin distorsión */
-  border: 1px solid #d4af37; /* Color del marco (puedes cambiarlo) */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para un efecto flotante */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efectos al pasar el mouse */
+  width: 30vw;
+  height: 20vw;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #d4af37;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efecto al pasar el ratón */
 .image-column .oval-image:hover {
-  transform: scale(1.1); /* Ampliar ligeramente la imagen */
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); /* Aumenta la sombra con un tono dorado */
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
 }
-
-/* Slider título */
 
 .slider-container {
   width: 100%;
@@ -195,13 +184,12 @@ iframe {
   box-sizing: border-box;
   background-color: #000;
   padding: 50px 20px;
-  max-width: 100%; /* Utiliza todo el ancho disponible */
-  margin: 0; /* Elimina el margen central */
-  background: #0D0D0D; /* Degradado de negro a transparente */
-  color: white; /* Asegura que el texto sea visible sobre el fondo oscuro */
+  max-width: 100%;
+  margin: 0;
+  background: #0D0D0D;
+  color: white;
   box-sizing: border-box;
 }
-
 
 .slider-title {
   font-size: 40px;
@@ -212,14 +200,13 @@ iframe {
   margin-top: 20px;
   text-align: center;
   position: relative;
-  margin-left: 0; /* Elimina los márgenes laterales */
-  margin-right: 0; /* Elimina los márgenes laterales */
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .slider-title::after {
   content: "";
   position: absolute;
-  
   bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
@@ -229,17 +216,15 @@ iframe {
   transition: height 0.3s ease-in-out;
 }
 
-/* Estructura del slider: 2 columnas, 2 filas */
-/* Estructura del slider: 2 columnas, 2 filas */
 .info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 80px;
-  gap: 30px; /* Espacio entre columnas */
-  max-width: 1200px; /* Límite del ancho del contenido */
+  gap: 30px;
+  max-width: 1200px;
   margin-left: auto;
-  margin-right: auto; /* Centra la fila */
+  margin-right: auto;
   margin-bottom: 50px;
 }
 
@@ -252,9 +237,9 @@ iframe {
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 43%; /* Imagen más pequeña */
-  margin-left: 0; /* Espacio desde el borde izquierdo */
-  margin-right: 0; /* Espacio desde el borde derecho */
+  width: 43%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .slider {
@@ -269,14 +254,13 @@ iframe {
 }
 
 .slides img {
-  width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+  width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
   margin: 0 auto;
 }
 
-/* Flechas de navegación */
 button.prev,
 button.next {
   background: none;
@@ -305,9 +289,6 @@ button.next:hover {
   color: #000;
 }
 
-
-
-/* Flechas de navegación */
 nav {
   display: flex;
   justify-content: left;
@@ -330,13 +311,10 @@ nav a {
   font-size: 16px;
 }
 
-
-/* Texto slider */
-
 .info-text {
   flex: 1;
   padding: 20px;
-  max-width: 48%; /* Asegura que el texto no ocupe toda la fila */
+  max-width: 48%;
   text-align: left;
 }
 
@@ -350,64 +328,64 @@ nav a {
   font-size: 16px;
   color: white;
 }
-/* Estilo reservas */
+
 section.reservation {
-  position: relative;  /* Necesario para el posicionamiento absoluto del ::after */
+  position: relative;
   text-align: center;
   padding: 40px;
   background-color: #FFFFFF;
   margin-top: 0;
   background-image: url('../img/olas.jpg');
   background-size: cover;
-  background-position: bottom center; /* Coloca la imagen alineada a la parte inferior */
+  background-position: bottom center;
   background-repeat: no-repeat;
-  border-radius: 8px;  /* Opcional: redondea los bordes si lo necesitas */
+  border-radius: 8px;
 }
 
 section.reservation::after {
-  content: '';  /* Crea la capa */
-  position: absolute;  /* Se coloca encima de la imagen */
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);  /* Sombreado con opacidad */
-  border-radius: 8px;  /* Opcional: si redondeas los bordes de la sección */
-  z-index: 0;  /* Asegura que el sombreado quede detrás del contenido */
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  z-index: 0;
 }
 
 section.reservation .content {
-  position: relative;  /* Hace que el contenido quede encima del sombreado */
-  z-index: 1;  /* Asegura que el contenido se muestre encima del sombreado */
-  color: white;  /* Opcional: para que el texto sea legible sobre el sombreado */
+  position: relative;
+  z-index: 1;
+  color: white;
 }
 
 section.reservation h2 {
   font-size: 32px;
   margin-bottom: 20px;
   color: white;
-  position: relative; /* Necesario para posicionar la línea debajo */
-  z-index: 2;  /* Asegura que el título esté por encima del sombreado */
+  position: relative;
+  z-index: 2;
 }
 
 section.reservation h2::after {
   content: "";
   position: absolute;
-  bottom: -20px; /* Ajusta la distancia entre el texto y la línea */
-  left: 50%; /* Centra la línea */
+  bottom: -20px;
+  left: 50%;
   transform: translateX(-50%);
-  width: 20%; /* La línea ocupará el 20% del ancho del texto */
-  height: 2px; /* Grosor de la línea */
+  width: 20%;
+  height: 2px;
   background: linear-gradient(to right, transparent, white, transparent);
   transition: height 0.3s ease-in-out;
-  z-index: 2;  /* Asegura que la línea también esté por encima del sombreado */
+  z-index: 2;
 }
 
 .calendar-container {
   display: inline-block;
   margin: 20px 0;
   margin-bottom: 30px;
-  z-index: 2;  /* Asegura que el calendario esté por encima del sombreado */
+  z-index: 2;
 }
 
 #reservation-date {
@@ -418,14 +396,14 @@ section.reservation h2::after {
   border-radius: 10px;
   outline: none;
   margin-bottom: 30px;
-  z-index: 3;  /* Asegura que el input del calendario esté por encima del sombreado */
+  z-index: 3;
 }
 
 #reservation-btn {
   margin-top: 20px;
   padding: 15px 25px;
-  background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
-  color: black; /* Mismo color que el botón del formulario */
+  background: linear-gradient(45deg, #d4af37, #f5c032);
+  color: black;
   font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
@@ -434,9 +412,9 @@ section.reservation h2::after {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  display: inline-block; /* Para que el botón no ocupe todo el ancho */
+  display: inline-block;
   max-width: 50%;
-  z-index: 2;  /* Asegura que el botón esté por encima del sombreado */
+  z-index: 2;
 }
 
 #reservation-btn::before {
@@ -450,14 +428,14 @@ section.reservation h2::after {
   transition: all 0.5s ease;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;  /* Asegura que el efecto de hover esté por encima del sombreado */
+  z-index: 2;
 }
 
 #reservation-btn:hover {
-  background: linear-gradient(45deg, #f5c032, #d4af37); /* Inversión del degradado */
-  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
+  background: linear-gradient(45deg, #f5c032, #d4af37);
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6);
   color: #000;
-  z-index: 3;  /* Asegura que el botón esté siempre por encima */
+  z-index: 3;
 }
 
 #reservation-btn:hover::before {
@@ -465,27 +443,26 @@ section.reservation h2::after {
   height: 120%;
   top: -10%;
   left: -10%;
-  z-index: 3;  /* Asegura que el efecto hover también esté por encima */
+  z-index: 3;
 }
 
-/* Estilo SECTION MAPA */
 .map-form {
   display: flex;
-  flex-direction: column; /* Organiza el mapa y el formulario en una columna */
+  flex-direction: column;
   justify-content: center;
-  align-items: center; /* Centra todo el contenido horizontalmente */
-  gap: 20px; /* Espaciado entre el mapa y el formulario */
+  align-items: center;
+  gap: 20px;
   margin-top: 50px;
 }
 
 .map-container {
-  width: 70%; /* Tamaño del mapa en porcentaje del ancho de la pantalla */
-  height: 300px; /* Ajusta la altura del mapa */
+  width: 70%;
+  height: 300px;
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; /* Centra el mapa dentro de su contenedor */
+  margin: 0 auto;
 }
 
 iframe {
@@ -495,11 +472,11 @@ iframe {
 }
 
 .form-container {
-  width: 45%; /* Tamaño del formulario en porcentaje del ancho de la pantalla */
+  width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 15px; /* Espaciado entre los campos del formulario */
+  gap: 15px;
 }
 
 h3 {
@@ -511,8 +488,8 @@ h3 {
 form {
   display: flex;
   flex-direction: column;
-  width: 100%; /* El formulario ocupa todo el ancho de su contenedor */
-  gap: 15px; /* Espaciado entre los elementos del formulario */
+  width: 100%;
+  gap: 15px;
 }
 
 label {
@@ -526,12 +503,11 @@ input, textarea {
   border-radius: 4px;
 }
 
-/* Estilo para el botón en el formulario */
 .form-button {
   margin-top: 20px auto;
   margin-bottom: 20px;
   padding: 15px 25px;
-  background: linear-gradient(45deg, #d4af37, #f5c032); /* Degradado dorado */
+  background: linear-gradient(45deg, #d4af37, #f5c032);
   color: black;
   font-size: 15px;
   font-weight: bold;
@@ -541,7 +517,7 @@ input, textarea {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  display: block; /* El botón no ocupará todo el ancho */
+  display: block;
   max-width: 250px;
 }
 
@@ -559,8 +535,8 @@ input, textarea {
 }
 
 .form-button:hover {
-  background: linear-gradient(45deg, #f5c032, #d4af37); /* Inversión del degradado */
-  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6); /* Resplandor dorado alrededor del botón */
+  background: linear-gradient(45deg, #f5c032, #d4af37);
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6);
   color: #000;
 }
 
@@ -571,27 +547,26 @@ input, textarea {
   left: -10%;
 }
 
-/* Estilo general del footer */
 footer {
-  background-color: #000; /* Fondo negro */
-  color: #fff; /* Color de texto blanco */
-  padding: 20px 0; /* Espaciado superior e inferior */
+  background-color: #000;
+  color: #fff;
+  padding: 20px 0;
 }
 
 .footer-container {
-  display: flex; /* Flexbox para dividir en columnas */
+  display: flex;
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2 rem; /* Espaciado interno */
+  padding: 0 2 rem;
 }
 
 .footer-left {
-  width: 50%; /* 50% de ancho */
+  width: 50%;
 }
 
 .footer-logo {
-  max-width: 100px; /* Ajusta el tamaño del logo */
+  max-width: 100px;
 }
 
 .social-icons {
@@ -599,12 +574,12 @@ footer {
 }
 
 .social-icons a {
-  margin-right: 15px; /* Espaciado entre los iconos */
+  margin-right: 15px;
 }
 
 .social-icons img {
-  width: 30px; /* Tamaño de los iconos */
-  height: 30px; /* Tamaño de los iconos */
+  width: 30px;
+  height: 30px;
 }
 
 .contact-email, .location {
@@ -612,66 +587,57 @@ footer {
 }
 
 .footer-right {
-  width: 50%; /* 50% de ancho */
+  width: 50%;
 }
 
-
-/* =================== RESPONSIVE  =================== */
-
-
 @media (max-width: 768px) {
-
-  /* Banner: ajustar el tamaño de los textos */
   .banner-content h1 {
-    font-size: 2rem; /* Tamaño ajustado */
+    font-size: 2rem;
   }
 
   .banner-content h2 {
-    font-size: 3rem; /* Tamaño ajustado */
+    font-size: 3rem;
   }
 
   .text-home .container {
     display: flex;
-    flex-direction: column; /* Organizar en una sola columna */
-    align-items: center; /* Centrar todo el contenido */
-    padding: 0 20px; /* Espaciado de los lados */
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
   }
 
-  /* Sección de texto: centrar h2 */
   .text-column h2 {
-    text-align: center; /* Centrar el h2 */
-    font-size: 2rem; /* Ajustar tamaño */
+    text-align: center;
+    font-size: 2rem;
   }
 
   .text-column p {
-    text-align: center; /* Centrar el texto */
-    font-size: 1.2rem; /* Tamaño reducido */
-    line-height: 1.5; /* Mejora legibilidad */
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5;
   }
 
-  /* Imagen debajo del texto y más grande */
   .image-column {
-    width: 100%; /* Imagen ocupa todo el ancho */
-    margin-top: 10px; /* Añadir espacio entre el texto y la imagen */
+    width: 100%;
+    margin-top: 10px;
     display: flex;
-    justify-content: center; /* Centrar la imagen */
+    justify-content: center;
   }
 
   .image-column .oval-image {
-    width: 70%; /* Imagen más grande */
-    height: auto; /* Ajustar la altura proporcionalmente */
+    width: 70%;
+    height: auto;
   }
 
-  /* Slider: hacer las imágenes más grandes */
   .slider-container {
     padding: 40px 20px;
   }
 
   .slider-title {
-    font-size: 1.8rem; /* Reducir el tamaño del título */
-    text-align: center; /* Centrar el texto */
-    margin: 0 auto; /* Asegurar que esté centrado */
-    margin-bottom: 20px; /* Espacio debajo del título */
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
   }
 
   .slider-title::after {
@@ -680,63 +646,62 @@ footer {
     bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 40%; /* Línea más larga */
+    width: 40%;
     height: 2px;
     background: linear-gradient(to right, transparent, white, transparent);
     transition: height 0.3s ease-in-out;
   }
 
   .info-row {
-    display: block; /* Cambiar a columna */
+    display: block;
     padding: 15px 0;
   }
 
   .slider-with-arrows {
-    width: 100%; /* Las imágenes ocupan el 100% */
+    width: 100%;
   }
 
   .slides img {
-    width: 100%; /* Imagen ocupa todo el contenedor */
-    height: auto; /* Mantener proporción */
+    width: 100%;
+    height: auto;
   }
 
   .info-text {
-    text-align: center; /* Centrar texto */
-    max-width: 100%; /* Ajustar al contenedor */
-    margin-bottom: 20px; /* Espaciado inferior */
+    text-align: center;
+    max-width: 100%;
+    margin-bottom: 20px;
   }
 
   .info-text h3 {
-    font-size: 2rem; /* Ajustar subtítulos */
+    font-size: 2rem;
   }
 
   .info-text button {
-    font-size: 1rem; /* Reducir tamaño del botón */
+    font-size: 1rem;
     padding: 10px 20px;
   }
 
   #reservation-btn {
-    font-size: 0.8rem; /* Tamaño del texto del botón */
-    padding: 8px 12px; /* Ajusta el espacio interno del botón */
-    max-width: 150px; /* Limita el ancho del botón */
-    border-radius: 5px; /* Bordes redondeados */
-    margin: 10px auto; /* Centrar el botón horizontalmente */
-    text-align: center; /* Asegura que el texto esté centrado */
+    font-size: 0.8rem;
+    padding: 8px 12px;
+    max-width: 150px;
+    border-radius: 5px;
+    margin: 10px auto;
+    text-align: center;
   }
 
-
   .map-container {
-    width: 100%; /* Mapa ocupa todo el ancho */
-    height: 250px; /* Ajustar tamaño */
+    width: 100%;
+    height: 250px;
     margin-top: 20px;
   }
 
   .form-container form {
-    width: 100%; /* Formularios ocupan el ancho completo */
+    width: 100%;
   }
 
   .form-button {
-    font-size: 1rem; /* Reducir tamaño del botón */
+    font-size: 1rem;
     padding: 12px 20px;
   }
 }

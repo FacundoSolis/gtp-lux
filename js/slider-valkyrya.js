@@ -59,3 +59,4 @@ setInterval(() => {
   index++;
   moveSlider();
 }, 3000);
+
