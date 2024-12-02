@@ -133,8 +133,23 @@
 
   <!-- Formulario de reserva -->
   <section class="Formulario">
-    <div class="title-form"><h3>¡Reserva ya!</h3></div>
+    <div class="title-form">
+      <h3>¡Reserva ya!</h3>
+    </div>
     <div class="form-container">
+      <!-- Nueva sección con entradas superiores -->
+      <div class="reservation-top">
+        <label for="num-persons">Número de Personas:</label>
+        <input type="number" id="num-persons" name="num-persons" placeholder="Número de Personas" min="1" max="12">
+  
+        <label for="pickup-date">Fecha de Recogida:</label>
+        <input type="date" id="pickup-date" name="pickup-date">
+  
+        <label for="return-date">Fecha de Entrega:</label>
+        <input type="date" id="return-date" name="return-date">
+      </div>
+  
+      <!-- Formulario -->
       <div class="form">
         <form>
           <label for="fname">Nombre:</label>
@@ -149,23 +164,20 @@
           <input type="text" id="nif" name="nif" placeholder="NIF/CIF">
           <div class="terms">
             <input type="checkbox" id="terms" name="terms" required>
-            <label for="terms">He leído y acepto las <a href="condiciones.html" target="_blank">condiciones de alquiler</a>.</label>
+            <label for="terms">
+              He leído y acepto las 
+              <a href="condiciones.html" target="_blank">condiciones de alquiler</a>.
+            </label>
           </div>
-          <input type="submit" value="Enviar">
+          <button type="submit" class="btn">Reservar</button>
         </form>
       </div>
-
-      <!-- Calendario de Reserva -->
-      <section class="reservation">
-        <h3>Reserva Ahora</h3>
-        <input type="date" name="reservation-date" class="calendar">
-        <div id="react-root"></div>
-        <button class="btn">Reservar</button>
-      </section>
     </div>
   </section>
+  
 
-  <footer>
+
+<footer>
     <div class="footer-container">
       <div class="footer-left">
         <img src="img/logo.png" alt="Logo" class="footer-logo">
@@ -178,7 +190,7 @@
       </div>
       <div class="footer-right"></div>
     </div>
-  </footer>
+</footer>
 
   <script src="js/slider-valkyrya.js"></script>
   <script src="dist/bundle.js"></script>

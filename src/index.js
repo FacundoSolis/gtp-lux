@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import ValkyryaReservation from './components/ValkyryaReservation';
 
-const root = ReactDOM.createRoot(document.getElementById('react-root'));
-root.render(<ValkyryaReservation />);
+ReactDOM.render(<ValkyryaReservation />, document.getElementById('react-root'));
