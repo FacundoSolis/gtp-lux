@@ -223,8 +223,6 @@ header {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-
-
 .pricing-details-columns {
   display: flex;
   justify-content: space-between;
@@ -333,7 +331,6 @@ body {
 .form input[type="submit"]:hover {
   background-color: #c89a30;
 }
-
 
 .reservation {
   background-color: #F4F4F4;
