@@ -9,11 +9,11 @@ class Port extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name']; // Rellena con los campos relevantes
+    protected $fillable = ['name', 'location'];
 
-    // Relación: Un puerto tiene muchos barcos
     public function boats()
     {
         return $this->hasMany(Boat::class);
     }
 }
+

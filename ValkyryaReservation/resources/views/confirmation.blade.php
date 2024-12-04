@@ -1,25 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Reserva</title>
-</head>
-<body>
-    <h1>¡Reserva Confirmada!</h1>
-    <p>Gracias por tu reserva. Los detalles de tu reserva son los siguientes:</p>
-    
-    <h3>Detalles de la Reserva:</h3>
-    <ul>
-        <li><strong>Puerto:</strong> {{ $reservationDetails['port_id'] }}</li>
-        <li><strong>Barco:</strong> {{ $reservationDetails['boat_id'] }}</li>
-        <li><strong>Fecha de Recogida:</strong> {{ $reservationDetails['pickup_date'] }}</li>
-        <li><strong>Fecha de Entrega:</strong> {{ $reservationDetails['return_date'] }}</li>
-        <li><strong>Nombre:</strong> {{ $reservationDetails['name'] }}</li>
-        <li><strong>Correo Electrónico:</strong> {{ $reservationDetails['email'] }}</li>
-        <li><strong>Teléfono:</strong> {{ $reservationDetails['phone'] }}</li>
-    </ul>
+@extends('layouts.app')
 
-    <p>¡Esperamos que disfrutes tu experiencia a bordo del Valkyrya!</p>
-</body>
-</html>
+@section('title', 'Confirmación de Reserva')
+
+@section('content')
+<div class="container mt-4">
+    <h1 class="text-success">¡Reserva Confirmada!</h1>
+    <p>Gracias por tu reserva. Los detalles de tu reserva son los siguientes:</p>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title">Detalles de la Reserva:</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Puerto:</strong> {{ $reservation->port->name }}</li>
+                <li class="list-group-item"><strong>Barco:</strong> {{ $reservation->boat->name }}</li>
+                <li class="list-group-item"><strong>Fecha de Recogida:</strong> {{ $reservation->pickup_date }}</li>
+                <li class="list-group-item"><strong>Fecha de Entrega:</strong> {{ $reservation->return_date }}</li>
+                <li class="list-group-item"><strong>Nombre:</strong> {{ $reservation->name }}</li>
+                <li class="list-group-item"><strong>Correo Electrónico:</strong> {{ $reservation->email }}</li>
+                <li class="list-group-item"><strong>Teléfono:</strong> {{ $reservation->phone }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <p class="mt-4">¡Esperamos que disfrutes tu experiencia a bordo del barco!</p>
+</div>
+@endsection

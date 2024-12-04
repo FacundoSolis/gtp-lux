@@ -2,27 +2,33 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\BoatController;
-use App\Http\Controllers\PortController;
-use App\Http\Controllers\PaymentController;
 
-// Ruta de bienvenida
+// Ruta de inicio
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Rutas para cada paso del sistema
-Route::get('/step1', [ReservationController::class, 'step1'])->name('step1');
-Route::post('/step1', [ReservationController::class, 'saveStep1'])->name('saveStep1');
+// Rutas para disponibilidad
+Route::get('/reservations/calendar/{boat}', [ReservationController::class, 'calendar']);
 
-Route::get('/step2', [ReservationController::class, 'step2'])->name('step2');
-Route::post('/step2', [ReservationController::class, 'saveStep2'])->name('saveStep2');
+// Rutas para barcos específicos
+Route::get('/valkyrya', [BoatController::class, 'showValkyrya'])->name('valkyrya');
+Route::get('/nadine', [BoatController::class, 'showNadine'])->name('nadine');
 
-Route::get('/step3', [ReservationController::class, 'step3'])->name('step3');
-Route::post('/step3', [ReservationController::class, 'saveDetails'])->name('saveDetails');
+// Ruta para obtener barcos según un puerto en formato JSON
+Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort']);
 
-// Rutas para el pago y confirmación
-Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
-Route::post('/payment', [PaymentController::class, 'processPayment'])->name('processPayment');
+// Rutas para reservas directas
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+Route::get('/payment/{reservation}', [ReservationController::class, 'payment'])->name('payment');
+Route::get('/confirmation/{reservation}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
-Route::get('/confirmation', [ReservationController::class, 'confirmation'])->name('confirmation');
+// Rutas para el panel administrativo
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/reservations', [AdminReservationController::class, 'index'])->name('reservations.index');
+    Route::get('/reservations/create', [AdminReservationController::class, 'create'])->name('reservations.create');
+    Route::post('/reservations', [AdminReservationController::class, 'store'])->name('reservations.store');
+    Route::delete('/reservations/{reservation}', [AdminReservationController::class, 'destroy'])->name('reservations.destroy');
+});

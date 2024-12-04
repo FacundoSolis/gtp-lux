@@ -10,23 +10,20 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 
-        'email', 
-        'phone', 
-        'boat_id', 
-        'port_id', 
-        'pickup_date', 
-        'return_date', 
-        'total_price'
+        'boat_id',
+        'port_id',
+        'pickup_date',
+        'return_date',
+        'name',
+        'email',
+        'phone',
     ];
 
-    // Relación con barcos
     public function boat()
     {
         return $this->belongsTo(Boat::class);
     }
 
-    // Relación con puertos
     public function port()
     {
         return $this->belongsTo(Port::class);

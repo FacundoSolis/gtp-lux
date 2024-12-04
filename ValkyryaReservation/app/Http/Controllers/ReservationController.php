@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
+    // Paso 1: Seleccionar puerto
     public function step1()
     {
-        $ports = Port::all(); // Obtener los puertos disponibles
+        $ports = Port::all();
         return view('step1', compact('ports'));
     }
 
@@ -21,15 +22,43 @@ class ReservationController extends Controller
             'port_id' => 'required|exists:ports,id',
         ]);
 
-        session(['port_id' => $validated['port_id']]);
+        session()->put('reservation', $validated);
 
         return redirect()->route('step2');
     }
 
+    // Método para manejar disponibilidad
+    public function calendar($boatId)
+    {
+        $reservations = Reservation::where('boat_id', $boatId)->get(['pickup_date', 'return_date']);
+
+    // Formatear datos para FullCalendar
+    $events = [];
+    foreach ($reservations as $reservation) {
+        $start = new \DateTime($reservation->pickup_date);
+        $end = new \DateTime($reservation->return_date);
+        $end->modify('+1 day'); // FullCalendar requiere que el día final no se incluya.
+
+        $events[] = [
+            'title' => 'Reservado',
+            'start' => $start->format('Y-m-d'),
+            'end' => $end->format('Y-m-d'),
+            'color' => 'red',
+        ];
+    }
+
+    return response()->json($events);
+    }
+
+    // Paso 2: Seleccionar barco y fechas
     public function step2()
     {
-        $portId = session('port_id');
-        $boats = Boat::where('port_id', $portId)->get(); // Filtrar barcos según el puerto seleccionado
+        $reservation = session('reservation');
+        if (!$reservation) {
+            return redirect()->route('step1')->with('error', 'Completa el paso anterior.');
+        }
+
+        $boats = Boat::where('port_id', $reservation['port_id'])->get();
         return view('step2', compact('boats'));
     }
 
@@ -37,15 +66,16 @@ class ReservationController extends Controller
     {
         $validated = $request->validate([
             'boat_id' => 'required|exists:boats,id',
-            'pickup_date' => 'required|date',
+            'pickup_date' => 'required|date|after:today',
             'return_date' => 'required|date|after:pickup_date',
         ]);
 
-        session(['step2' => $validated]);
+        session()->put('reservation', array_merge(session('reservation'), $validated));
 
         return redirect()->route('step3');
     }
 
+    // Paso 3: Datos del cliente
     public function step3()
     {
         return view('step3');
@@ -59,65 +89,97 @@ class ReservationController extends Controller
             'phone' => 'required|string|max:15',
         ]);
 
-        $step1 = session('port_id');
-        $step2 = session('step2');
-
-        $reservationData = array_merge($step2, $validated);
-        $reservationData['port_id'] = $step1;
-
-        // Calcular el precio total basado en la temporada
-        $startDate = new \DateTime($reservationData['pickup_date']);
-        $endDate = new \DateTime($reservationData['return_date']);
-        $days = $endDate->diff($startDate)->days;
-
-        $totalPrice = 0;
-        $currentDate = clone $startDate;
-
-        while ($currentDate <= $endDate) {
-            // Encontrar la temporada para la fecha actual
-            $season = \App\Models\Season::where('start_date', '<=', $currentDate->format('Y-m-d'))
-                ->where('end_date', '>=', $currentDate->format('Y-m-d'))
-                ->first();
-
-            if ($season) {
-                $totalPrice += $season->price_per_day;
-            } else {
-                throw new \Exception('No se encontró temporada para la fecha: ' . $currentDate->format('Y-m-d'));
-            }
-
-            $currentDate->modify('+1 day');
-        }
-
-        $reservationData['total_price'] = $totalPrice;
-
-        // Crear y guardar la reserva
-        $reservation = new Reservation($reservationData);
-        $reservation->save();
+        $reservationData = array_merge(session('reservation'), $validated);
+        $reservation = Reservation::create($reservationData);
 
         return redirect()->route('payment');
     }
 
-    // Agregar el método de confirmación
-    public function confirmation()
-{
-    // Recuperar la última reserva del usuario
-    $reservation = Reservation::latest()->first(); // Puedes ajustar esto según tu lógica.
+    // Confirmación
+    public function confirmation($reservationId)
+    {
+        // Obtener la reserva por ID
+        $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
 
-    if (!$reservation) {
-        abort(404, 'No se encontró ninguna reserva.');
+        // Pasar la reserva a la vista de confirmación
+        return view('confirmation', compact('reservation'));
     }
 
-    // Preparar los detalles de la reserva
-    $reservationDetails = [
-        'port_id' => $reservation->port->name ?? 'Desconocido', // Asegúrate de que exista la relación port
-        'boat_id' => $reservation->boat->name ?? 'Desconocido', // Asegúrate de que exista la relación boat
-        'pickup_date' => $reservation->pickup_date,
-        'return_date' => $reservation->return_date,
-        'name' => $reservation->name,
-        'email' => $reservation->email,
-        'phone' => $reservation->phone,
-    ];
+    // Guardar reservas desde Nadine
+    public function store(Request $request)
+    {
+        // Validar los datos del formulario
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'lastname' => 'nullable|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:15',
+            'port_id' => 'required|exists:ports,id',
+            'boat_id' => 'required|exists:boats,id',
+            'pickup_date' => 'required|date|after:today',
+            'return_date' => 'required|date|after:pickup_date',
+        ]);
+    
+        // Verificar si las fechas ya están reservadas
+        $conflictingReservations = Reservation::where('boat_id', $validated['boat_id'])
+            ->where(function ($query) use ($validated) {
+                $query->whereBetween('pickup_date', [$validated['pickup_date'], $validated['return_date']])
+                      ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
+                      ->orWhere(function ($query) use ($validated) {
+                          $query->where('pickup_date', '<=', $validated['pickup_date'])
+                                ->where('return_date', '>=', $validated['return_date']);
+                      });
+            })->exists();
+    
+        if ($conflictingReservations) {
+            return redirect()->back()->withErrors([
+                'pickup_date' => 'El barco no está disponible en estas fechas. Por favor elige otras fechas.'
+            ])->withInput();
+        }
+    
+        // Obtener el barco seleccionado
+        $boat = \App\Models\Boat::findOrFail($validated['boat_id']);
+    
+        // Calcular el precio total basado en las temporadas
+        $pickupDate = new \DateTime($validated['pickup_date']);
+        $returnDate = new \DateTime($validated['return_date']);
+        $days = $returnDate->diff($pickupDate)->days + 1;
+    
+        $totalPrice = 0;
+        $currentDate = clone $pickupDate;
+    
+        while ($currentDate <= $returnDate) {
+            $season = \App\Models\Season::where('start_date', '<=', $currentDate->format('Y-m-d'))
+                ->where('end_date', '>=', $currentDate->format('Y-m-d'))
+                ->first();
+    
+            if ($season) {
+                // Sumar precio base más el modificador del barco
+                $totalPrice += $season->price_per_day + $boat->price_modifier;
+            } else {
+                throw new \Exception('No se encontró temporada para la fecha: ' . $currentDate->format('Y-m-d'));
+            }
+    
+            $currentDate->modify('+1 day');
+        }
+    
+        // Agregar el precio total a los datos validados
+        $validated['total_price'] = $totalPrice;
+    
+        // Crear la reserva
+        $reservation = Reservation::create($validated);
+    
+        // Redirigir a la página de pago
+        return redirect()->route('payment', ['reservation' => $reservation->id]);
+    }
+   
 
-    return view('confirmation', compact('reservationDetails'));
+    public function payment($reservationId)
+{
+    // Obtener la reserva por ID
+    $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
+
+    // Pasar la reserva a la vista de pago
+    return view('payment', compact('reservation'));
 }
 }

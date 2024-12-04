@@ -17,7 +17,7 @@ class CreateReservationsTable extends Migration
             $table->foreignId('boat_id')->constrained('boats')->onDelete('cascade'); // Relación con Barcos
             $table->date('pickup_date'); // Fecha de recogida
             $table->date('return_date'); // Fecha de entrega
-            $table->decimal('total_price', 8, 2); // Precio total
+            $table->decimal('total_price', 10, 2)->default(0);
             $table->timestamps();
         });
     }
