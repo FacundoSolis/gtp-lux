@@ -51,4 +51,34 @@ class AdminReservationController extends Controller
 
         return redirect()->route('admin.reservations.index')->with('success', 'Reserva eliminada correctamente.');
     }
+
+    // Mostrar el formulario para editar una reserva
+    public function edit($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $ports = Port::all();
+        $boats = Boat::all();
+
+        return view('admin.reservations.edit', compact('reservation', 'ports', 'boats'));
+    }
+
+    // Actualizar los datos de la reserva
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:15',
+            'port_id' => 'required|exists:ports,id',
+            'boat_id' => 'required|exists:boats,id',
+            'pickup_date' => 'required|date|after:today',
+            'return_date' => 'required|date|after:pickup_date',
+        ]);
+
+        $reservation = Reservation::findOrFail($id);
+        $reservation->update($validated);
+
+        return redirect()->route('admin.reservations.index')->with('success', 'Reserva actualizada correctamente.');
+    }
 }
+

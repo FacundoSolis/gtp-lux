@@ -30,5 +30,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/reservations', [AdminReservationController::class, 'index'])->name('reservations.index');
     Route::get('/reservations/create', [AdminReservationController::class, 'create'])->name('reservations.create');
     Route::post('/reservations', [AdminReservationController::class, 'store'])->name('reservations.store');
+    Route::get('/reservations/{reservation}/edit', [AdminReservationController::class, 'edit'])->name('reservations.edit');
+    Route::put('/reservations/{reservation}', [AdminReservationController::class, 'update'])->name('reservations.update');
     Route::delete('/reservations/{reservation}', [AdminReservationController::class, 'destroy'])->name('reservations.destroy');
 });
