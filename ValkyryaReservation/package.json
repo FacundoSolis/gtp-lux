@@ -1,16 +1,19 @@
 {
+    "name": "gtp-lux",
+    "version": "0.0.1",
+    "description": "Proyecto web con Laravel",
     "private": true,
+    "keywords": [],
+    "license": "ISC",
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
+      "start": "php artisan serve",
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
-        "axios": "^1.1.2",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+      "laravel-mix": "^6.0.0"
+    },
+    "dependencies": {
+      "laravel/framework": "^8.0"
     }
-}
+  }
+  
