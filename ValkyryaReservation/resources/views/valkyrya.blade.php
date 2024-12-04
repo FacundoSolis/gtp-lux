@@ -59,56 +59,36 @@
         <h5>Calendario de Disponibilidad</h5>
     </div>
     <div class="card-body">
-        <div id="availability-calendar" style="min-height: 500px;"></div>
+        <div id="availability-calendar" style="min-height: 500px; border: 1px solid red;" data-boat-id="{{ $boatId }}"></di>
     </div>
 </div>
 
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const availabilityCalendarEl = document.getElementById('availability-calendar');
-        const availabilityCalendar = new FullCalendar.Calendar(availabilityCalendarEl, {
-            themeSystem: 'bootstrap',
-            initialView: 'dayGridMonth', // Mostrar el calendario completo
+        const calendarEl = document.getElementById('availability-calendar'); // ID del div del calendario
+        const boatId = @json($boatId); // Pasar el ID del barco desde PHP
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            themeSystem: 'bootstrap', // Opcional para temas de Bootstrap
+            locale : 'es',
+            initialView: 'dayGridMonth',
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             events: async function (fetchInfo, successCallback, failureCallback) {
                 try {
-                    const response = await axios.get(`/reservations/calendar/{{ $boatId }}`);
+                    const response = await axios.get(`/reservations/calendar/${boatId}`);
                     const reservations = response.data;
 
                     const events = reservations.map(reservation => ({
-                        title: reservation.title,
+                        title: reservation.title || 'Reservado',
                         start: reservation.start,
                         end: reservation.end,
-                        color: reservation.color,
+                        color: reservation.color || 'red', // Rojo para reservados
                     }));
-
-                    // Añadir días disponibles (verde) automáticamente
-                    const start = new Date(fetchInfo.start);
-                    const end = new Date(fetchInfo.end);
-
-                    let currentDate = start;
-                    while (currentDate <= end) {
-                        const formattedDate = currentDate.toISOString().split('T')[0];
-                        const isReserved = reservations.some(reservation =>
-                            new Date(reservation.start) <= currentDate &&
-                            currentDate < new Date(reservation.end)
-                        );
-
-                        if (!isReserved) {
-                            events.push({
-                                title: 'Disponible',
-                                start: formattedDate,
-                                color: 'green',
-                            });
-                        }
-
-                        currentDate.setDate(currentDate.getDate() + 1);
-                    }
 
                     successCallback(events);
                 } catch (error) {
@@ -118,6 +98,6 @@
             }
         });
 
-        availabilityCalendar.render();
+        calendar.render(); // Renderizar el calendario
     });
 </script>
