@@ -9,11 +9,19 @@ use Illuminate\Http\Request;
 
 class AdminReservationController extends Controller
 {
-    // Listar todas las reservas
-    public function index()
+    // Listar todas las reservas con opción de ordenarlas y filtrar por criterios
+    public function index(Request $request)
     {
-        $reservations = Reservation::with('boat', 'port')->get();
-        return view('admin.reservations.index', compact('reservations'));
+        // Obtener el criterio de ordenación desde la solicitud
+        $sortBy = $request->input('sort_by', 'name'); // Orden por nombre por defecto
+        $sortDirection = $request->input('sort_direction', 'asc'); // Ascendente por defecto
+
+        // Filtrar y ordenar las reservas
+        $reservations = Reservation::with('boat', 'port')
+            ->orderBy($sortBy, $sortDirection)
+            ->get();
+
+        return view('admin.reservations.index', compact('reservations', 'sortBy', 'sortDirection'));
     }
 
     // Mostrar el formulario de creación de una reserva
@@ -52,6 +60,18 @@ class AdminReservationController extends Controller
         return redirect()->route('admin.reservations.index')->with('success', 'Reserva eliminada correctamente.');
     }
 
+    // Eliminar varias reservas seleccionadas
+    public function destroyMultiple(Request $request)
+{
+    $ids = $request->input('ids'); // Obtener los IDs seleccionados
+    if ($ids) {
+        Reservation::whereIn('id', $ids)->delete(); // Eliminar las reservas
+        return redirect()->route('admin.reservations.index')->with('success', 'Reservas eliminadas correctamente.');
+    }
+
+    return redirect()->route('admin.reservations.index')->with('error', 'No se seleccionaron reservas.');
+}
+
     // Mostrar el formulario para editar una reserva
     public function edit($id)
     {
@@ -80,5 +100,5 @@ class AdminReservationController extends Controller
 
         return redirect()->route('admin.reservations.index')->with('success', 'Reserva actualizada correctamente.');
     }
+    
 }
-

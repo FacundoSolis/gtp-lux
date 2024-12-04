@@ -33,4 +33,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/reservations/{reservation}/edit', [AdminReservationController::class, 'edit'])->name('reservations.edit');
     Route::put('/reservations/{reservation}', [AdminReservationController::class, 'update'])->name('reservations.update');
     Route::delete('/reservations/{reservation}', [AdminReservationController::class, 'destroy'])->name('reservations.destroy');
+    // Ruta para eliminar múltiples reservas
+    Route::post('/reservations/destroy-multiple', [AdminReservationController::class, 'destroyMultiple'])->name('reservations.destroyMultiple');
 });
