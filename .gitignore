@@ -4,3 +4,9 @@
 node_modules
 dist
 .cache
+# Ignorar la carpeta vendor que contiene las dependencias
+/vendor/
+
+# Ignorar los archivos composer.lock y composer.json (si no deseas rastrearlos)
+composer.lock
+composer.json
