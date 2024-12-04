@@ -23,23 +23,25 @@ class BoatController extends Controller
         return response()->json($boats);
     }
 
-        public function showValkyrya()
+    public function showValkyrya()
     {
-        $ports = Port::all(); // Obtener todos los puertos
-        $boatId = Boat::where('name', 'Valkyrya')->value('id'); // Obtener el ID de Valkyrya
-
-        return view('valkyrya', compact('ports', 'boatId'));
+        $boat = Boat::where('name', 'Valkyrya')->firstOrFail();
+        $ports = Port::all();
+    
+        return view('valkyrya', [
+            'boatId' => $boat->id, // ID del barco Valkyrya
+            'ports' => $ports      // Lista de puertos
+        ]);
     }
 
-        public function showNadine()
+    public function showNadine()
     {
         $boat = Boat::where('name', 'Nadine')->firstOrFail();
         $ports = Port::all();
 
         return view('nadine', [
             'boatId' => $boat->id, // ID del barco Nadine
-            'ports' => $ports      // Lista de puertos
+            'ports' => $ports
         ]);
     }
-
 }

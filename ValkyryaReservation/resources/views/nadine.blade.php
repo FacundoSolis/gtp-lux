@@ -53,56 +53,56 @@
     </form>
 
     <!-- Calendario de Disponibilidad -->
-<div class="card shadow-sm mt-5">
-    <div class="card-header bg-info text-white">
-        <h5>Calendario de Disponibilidad</h5>
-    </div>
-    <div class="card-body">
-        <div id="availability-calendar"></div>
+    <div class="card shadow-sm mt-5">
+        <div class="card-header bg-info text-white">
+            <h5>Calendario de Disponibilidad</h5>
+        </div>
+        <div class="card-body">
+            <div id="availability-calendar" style="min-height: 500px; border: 1px solid red;" data-boat-id="{{ $boatId }}"></div>
+        </div>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const availabilityCalendarEl = document.getElementById('availability-calendar');
-        const availabilityCalendar = new FullCalendar.Calendar(availabilityCalendarEl, {
-            themeSystem: 'bootstrap',
-            initialView: 'dayGridMonth',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth'
-            },
-            events: async function (fetchInfo, successCallback, failureCallback) {
-                try {
-                    const response = await axios.get(`/reservations/calendar/{{ $boatId }}`);
-                    const reservations = response.data;
+    const calendarEl = document.getElementById('availability-calendar');
+    const boatId = calendarEl.dataset.boatId; // Recuperar el ID del barco desde el atributo data
 
-                    // Transformar reservas en eventos
-                    const events = reservations.map(reservation => ({
-                        title: 'Reservado',
-                        start: reservation.pickup_date,
-                        end: reservation.return_date,
-                        color: 'red',
-                    }));
+    console.log('Contenedor del calendario:', calendarEl);
+    console.log('Boat ID:', boatId);
 
-                    successCallback(events);
-                } catch (error) {
-                    console.error('Error al cargar las reservas:', error);
-                    failureCallback(error);
-                }
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        themeSystem: 'bootstrap',
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth'
+        },
+        events: async function (fetchInfo, successCallback, failureCallback) {
+            try {
+                const response = await axios.get(`/reservations/calendar/${boatId}`);
+                const reservations = response.data;
+
+                console.log('Reservas obtenidas:', reservations);
+
+                const events = reservations.map(reservation => ({
+                    title: reservation.title,
+                    start: reservation.start,
+                    end: reservation.end,
+                    color: reservation.color,
+                }));
+
+                successCallback(events);
+            } catch (error) {
+                console.error('Error al cargar las reservas:', error);
+                failureCallback(error);
             }
-        });
-
-        availabilityCalendar.render();
+        }
     });
-</script>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    calendar.render();
+});
+
+</script>
+@endsection

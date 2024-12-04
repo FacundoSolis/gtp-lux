@@ -2,69 +2,115 @@
 
 @section('content')
 <div class="container">
-    <h1>Reserva Valkyrya</h1>
-    <form action="{{ route('reservations.store') }}" method="POST">
-    @csrf
-    <input type="hidden" name="boat_id" value="3"> <!-- ID de Valkyrya -->
+    <h1>Valkyrya</h1>
 
-    <label for="fname">Nombre:</label>
-    <input type="text" id="fname" name="name" placeholder="Nombre" required>
-
-    <label for="lname">Apellido:</label>
-    <input type="text" id="lname" name="lastname" placeholder="Apellido">
-
-    <label for="email">Correo Electrónico:</label>
-    <input type="email" id="email" name="email" placeholder="Correo" required>
-
-    <label for="phone">Teléfono:</label>
-    <input type="tel" id="phone" name="phone" placeholder="Teléfono" required>
-
-    <label for="port">Puerto:</label>
-    <select id="port" name="port_id" required>
-        <option value="">Selecciona un puerto</option>
-        @foreach($ports as $port)
-            <option value="{{ $port->id }}">{{ $port->name }}</option>
-        @endforeach
-    </select>
-
-    <label for="pickup-date">Fecha de Recogida:</label>
-    <input type="date" id="pickup-date" name="pickup_date" required>
-
-    <label for="return-date">Fecha de Entrega:</label>
-    <input type="date" id="return-date" name="return_date" required>
-
-    <button type="submit" class="btn btn-primary">Reservar</button>
-</form>
-
-
-    <section class="availability">
-        <h3>Disponibilidad</h3>
-        <div id="calendar-container">
-            <div id="calendar"></div>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
-    </section>
+    @endif
+
+    <form action="{{ route('reservations.store') }}" method="POST">
+        @csrf
+        <input type="hidden" name="boat_id" value="{{ $boatId }}"> <!-- Establecer el ID del barco -->
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Teléfono:</label>
+            <input type="tel" id="phone" name="phone" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="port_id" class="form-label">Puerto:</label>
+            <select id="port_id" name="port_id" class="form-control" required>
+                <option value="">Seleccione un puerto</option>
+                @foreach($ports as $port)
+                    <option value="{{ $port->id }}">{{ $port->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
+            <input type="date" id="pickup_date" name="pickup_date" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="return_date" class="form-label">Fecha de Entrega:</label>
+            <input type="date" id="return_date" name="return_date" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Reservar</button>
+    </form>
+
+    <!-- Calendario de Disponibilidad -->
+
+    <div class="card shadow-sm mt-5">
+    <div class="card-header bg-info text-white">
+        <h5>Calendario de Disponibilidad</h5>
+    </div>
+    <div class="card-body">
+        <div id="availability-calendar" style="min-height: 500px;"></div>
+    </div>
 </div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const calendarEl = document.getElementById('calendar');
-        const calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
+        const availabilityCalendarEl = document.getElementById('availability-calendar');
+        const availabilityCalendar = new FullCalendar.Calendar(availabilityCalendarEl, {
+            themeSystem: 'bootstrap',
+            initialView: 'dayGridMonth', // Mostrar el calendario completo
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                right: 'dayGridMonth'
             },
             events: async function (fetchInfo, successCallback, failureCallback) {
                 try {
                     const response = await axios.get(`/reservations/calendar/{{ $boatId }}`);
-                    const reservations = response.data.map(reservation => ({
-                        title: 'Reservado',
-                        start: reservation.pickup_date,
-                        end: reservation.return_date,
-                        color: 'red'
+                    const reservations = response.data;
+
+                    const events = reservations.map(reservation => ({
+                        title: reservation.title,
+                        start: reservation.start,
+                        end: reservation.end,
+                        color: reservation.color,
                     }));
-                    successCallback(reservations);
+
+                    // Añadir días disponibles (verde) automáticamente
+                    const start = new Date(fetchInfo.start);
+                    const end = new Date(fetchInfo.end);
+
+                    let currentDate = start;
+                    while (currentDate <= end) {
+                        const formattedDate = currentDate.toISOString().split('T')[0];
+                        const isReserved = reservations.some(reservation =>
+                            new Date(reservation.start) <= currentDate &&
+                            currentDate < new Date(reservation.end)
+                        );
+
+                        if (!isReserved) {
+                            events.push({
+                                title: 'Disponible',
+                                start: formattedDate,
+                                color: 'green',
+                            });
+                        }
+
+                        currentDate.setDate(currentDate.getDate() + 1);
+                    }
+
+                    successCallback(events);
                 } catch (error) {
                     console.error('Error al cargar las reservas:', error);
                     failureCallback(error);
@@ -72,7 +118,6 @@
             }
         });
 
-        calendar.render();
+        availabilityCalendar.render();
     });
 </script>
-@endsection
