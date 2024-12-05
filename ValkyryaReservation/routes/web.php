@@ -11,7 +11,7 @@ Route::get('/', function () {
 });
 
 // Rutas para disponibilidad
-Route::get('/reservations/calendar/{boat}', [ReservationController::class, 'calendar']);
+Route::get('/reservations/calendar/{boatId?}/{portId?}/{startDate?}/{endDate?}', [ReservationController::class, 'calendar']);
 
 // Rutas para barcos específicos
 Route::get('/valkyrya', [BoatController::class, 'showValkyrya'])->name('valkyrya');

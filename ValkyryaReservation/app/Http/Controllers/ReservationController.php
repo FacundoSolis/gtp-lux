@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Port;
 use App\Models\Boat;
 use App\Models\Reservation;
+use App\Models\Season; // Para calcular los precios según las temporadas
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -27,52 +28,86 @@ class ReservationController extends Controller
         return redirect()->route('step2');
     }
 
-    // Método para manejar disponibilidad
-    public function calendar($boatId)
-{
-    $reservations = Reservation::where('boat_id', $boatId)->get(['pickup_date', 'return_date']);
+    // Método para calcular el precio de una reserva según el barco y la temporada
+    public function calculatePrice($boat, $date)
+    {
+        // Lógica para calcular el precio según la temporada
+        $season = \App\Models\Season::where('start_date', '<=', $date->format('Y-m-d'))
+            ->where('end_date', '>=', $date->format('Y-m-d'))
+            ->first();
 
-    // Formatear datos para FullCalendar
-    $events = [];
-    $occupiedDates = [];
-
-    // Agregar las reservas como días ocupados
-    foreach ($reservations as $reservation) {
-        $start = new \DateTime($reservation->pickup_date);
-        $end = new \DateTime($reservation->return_date);
-        $end->modify('+1 day'); // FullCalendar requiere que el día final no se incluya.
-
-        $occupiedDates[] = $start->format('Y-m-d');
-        $occupiedDates[] = $end->format('Y-m-d');
-
-        $events[] = [
-            'title' => 'Reservado',
-            'start' => $start->format('Y-m-d'),
-            'end' => $end->format('Y-m-d'),
-            'color' => 'red', // Rojo para los días ocupados
-        ];
+        $price = $season ? $season->price_per_day : 100; // Asumir un precio base si no hay temporada
+        return $price + $boat->price_modifier; // Sumar el precio del barco
     }
 
-    // Obtener días libres y marcarlos en verde
-    $startDate = now()->startOfMonth();
-    $endDate = now()->endOfMonth();
-    $currentDate = $startDate;
-    
-    while ($currentDate <= $endDate) {
-        $dateStr = $currentDate->format('Y-m-d');
-        if (!in_array($dateStr, $occupiedDates)) {
+    // Método para manejar la disponibilidad del calendario
+    public function calendar($boatId = null, $portId = null, $startDate = null, $endDate = null)
+    {
+        $reservations = Reservation::where('boat_id', $boatId)->get(['pickup_date', 'return_date']);
+        $events = [];
+        $occupiedDates = [];
+
+        // Agregar las reservas como días ocupados
+        foreach ($reservations as $reservation) {
+            $start = new \DateTime($reservation->pickup_date);
+            $end = new \DateTime($reservation->return_date);
+            $end->modify('+1 day'); // FullCalendar requiere que el día final no se incluya.
+
+            $occupiedDates[] = $start->format('Y-m-d');
+            $occupiedDates[] = $end->format('Y-m-d');
+
             $events[] = [
-                'title' => 'Disponible',
-                'start' => $dateStr,
-                'end' => $dateStr,
-                'color' => 'green', // Verde para los días libres
+                'title' => 'Reservado',
+                'start' => $start->format('Y-m-d'),
+                'end' => $end->format('Y-m-d'),
+                'color' => 'red', // Rojo para los días ocupados
             ];
         }
-        $currentDate->modify('+1 day');
-    }
 
-    return response()->json($events);
-}
+        // Si el puerto fue seleccionado, mostrar los barcos disponibles con precios y temporadas
+        if ($portId) {
+            $boats = Boat::where('port_id', $portId)->get();
+            $startDate = $startDate ? new \DateTime($startDate) : now();
+            $endDate = $endDate ? new \DateTime($endDate) : now()->addMonths(1);
+
+            // Generar fechas disponibles y asociar colores según la temporada
+            $currentDate = clone $startDate;
+            while ($currentDate <= $endDate) {
+                $dateStr = $currentDate->format('Y-m-d');
+                if (!in_array($dateStr, $occupiedDates)) {
+                    foreach ($boats as $boat) {
+                        // Verificar la temporada del día
+                        $season = \App\Models\Season::where('start_date', '<=', $currentDate->format('Y-m-d'))
+                            ->where('end_date', '>=', $currentDate->format('Y-m-d'))
+                            ->first();
+
+                        $price = $this->calculatePrice($boat, $currentDate); // Obtener el precio
+
+                        // Determinar el color según la temporada
+                        $color = 'green'; // Default color for available dates
+                        if ($season) {
+                            if ($season->name == 'Alta') {
+                                $color = 'red'; // Alta temporada (rojo)
+                            } elseif ($season->name == 'Media') {
+                                $color = 'yellow'; // Media temporada (amarillo)
+                            }
+                        }
+
+                        $events[] = [
+                            'title' => $boat->name,
+                            'start' => $dateStr,
+                            'end' => $dateStr,
+                            'color' => $color, // Verde para libres, rojo/amarillo para temporada
+                            'price' => $price, // Precio para el día
+                        ];
+                    }
+                }
+                $currentDate->modify('+1 day');
+            }
+        }
+
+        return response()->json($events);
+    }
 
     // Paso 2: Seleccionar barco y fechas
     public function step2()
@@ -143,67 +178,66 @@ class ReservationController extends Controller
             'pickup_date' => 'required|date|after:today',
             'return_date' => 'required|date|after:pickup_date',
         ]);
-    
+
         // Verificar si las fechas ya están reservadas
         $conflictingReservations = Reservation::where('boat_id', $validated['boat_id'])
             ->where(function ($query) use ($validated) {
                 $query->whereBetween('pickup_date', [$validated['pickup_date'], $validated['return_date']])
-                      ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
-                      ->orWhere(function ($query) use ($validated) {
-                          $query->where('pickup_date', '<=', $validated['pickup_date'])
-                                ->where('return_date', '>=', $validated['return_date']);
-                      });
+                    ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
+                    ->orWhere(function ($query) use ($validated) {
+                        $query->where('pickup_date', '<=', $validated['pickup_date'])
+                            ->where('return_date', '>=', $validated['return_date']);
+                    });
             })->exists();
-    
+
         if ($conflictingReservations) {
             return redirect()->back()->withErrors([
                 'pickup_date' => 'El barco no está disponible en estas fechas. Por favor elige otras fechas.'
             ])->withInput();
         }
-    
+
         // Obtener el barco seleccionado
         $boat = \App\Models\Boat::findOrFail($validated['boat_id']);
-    
+
         // Calcular el precio total basado en las temporadas
         $pickupDate = new \DateTime($validated['pickup_date']);
         $returnDate = new \DateTime($validated['return_date']);
         $days = $returnDate->diff($pickupDate)->days + 1;
-    
+
         $totalPrice = 0;
         $currentDate = clone $pickupDate;
-    
+
         while ($currentDate <= $returnDate) {
             $season = \App\Models\Season::where('start_date', '<=', $currentDate->format('Y-m-d'))
                 ->where('end_date', '>=', $currentDate->format('Y-m-d'))
                 ->first();
-    
+
             if ($season) {
                 // Sumar precio base más el modificador del barco
                 $totalPrice += $season->price_per_day + $boat->price_modifier;
             } else {
                 throw new \Exception('No se encontró temporada para la fecha: ' . $currentDate->format('Y-m-d'));
             }
-    
+
             $currentDate->modify('+1 day');
         }
-    
+
         // Agregar el precio total a los datos validados
         $validated['total_price'] = $totalPrice;
-    
+
         // Crear la reserva
         $reservation = Reservation::create($validated);
-    
+
         // Redirigir a la página de pago
         return redirect()->route('payment', ['reservation' => $reservation->id]);
     }
-   
 
     public function payment($reservationId)
-{
-    // Obtener la reserva por ID
-    $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
+    {
+        // Obtener la reserva por ID
+        $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
 
-    // Pasar la reserva a la vista de pago
-    return view('payment', compact('reservation'));
-}
+        // Pasar la reserva a la vista de pago
+        return view('payment', compact('reservation'));
+    }
 }
