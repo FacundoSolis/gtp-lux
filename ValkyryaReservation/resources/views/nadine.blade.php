@@ -58,7 +58,7 @@
             <h5>Calendario de Disponibilidad</h5>
         </div>
         <div class="card-body">
-            <div id="availability-calendar" style="min-height: 300px; width: 100%; font-size: 0.85rem; border: 1px solid red;" data-boat-id="{{ $boatId }}"></div>
+            <div id="availability-calendar" style="min-height: 500px; border: 1px solid red;" data-boat-id="{{ $boatId }}"></div>
         </div>
     </div>
 </div>
@@ -98,10 +98,18 @@
         });
 
         calendar.render(); // Renderizar el calendario
+
+        // Sincronización de la fecha de entrega con la fecha de recogida
+        const pickupDateInput = document.getElementById('pickup_date');
+        const returnDateInput = document.getElementById('return_date');
+
+        pickupDateInput.addEventListener('change', function () {
+            const pickupDate = new Date(pickupDateInput.value);
+            // Ajustamos la fecha de entrega para que sea la misma que la de recogida o posterior
+            returnDateInput.setAttribute('min', pickupDate.toISOString().split('T')[0]);
+            returnDateInput.value = pickupDate.toISOString().split('T')[0]; // Establece la fecha de entrega por defecto
     });
-</script>
 
-
-
+});
 </script>
 @endsection

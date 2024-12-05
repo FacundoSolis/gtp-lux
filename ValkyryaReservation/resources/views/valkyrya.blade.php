@@ -53,16 +53,15 @@
     </form>
 
     <!-- Calendario de Disponibilidad -->
-
     <div class="card shadow-sm mt-5">
-    <div class="card-header bg-info text-white">
-        <h5>Calendario de Disponibilidad</h5>
-    </div>
-    <div class="card-body">
-        <div id="availability-calendar" style="min-height: 500px; border: 1px solid red;" data-boat-id="{{ $boatId }}"></di>
+        <div class="card-header bg-info text-white">
+            <h5>Calendario de Disponibilidad</h5>
+        </div>
+        <div class="card-body">
+            <div id="availability-calendar" style="min-height: 500px; border: 1px solid red;" data-boat-id="{{ $boatId }}"></div>
+        </div>
     </div>
 </div>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -71,7 +70,7 @@
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
             themeSystem: 'bootstrap', // Opcional para temas de Bootstrap
-            locale : 'es',
+            locale: 'es',
             initialView: 'dayGridMonth',
             headerToolbar: {
                 left: 'prev,next today',
@@ -99,5 +98,20 @@
         });
 
         calendar.render(); // Renderizar el calendario
+
+        calendar.render(); // Renderizar el calendario
+
+        // Sincronización de la fecha de entrega con la fecha de recogida
+        const pickupDateInput = document.getElementById('pickup_date');
+        const returnDateInput = document.getElementById('return_date');
+
+        pickupDateInput.addEventListener('change', function () {
+            const pickupDate = new Date(pickupDateInput.value);
+            // Ajustamos la fecha de entrega para que sea la misma que la de recogida o posterior
+            returnDateInput.setAttribute('min', pickupDate.toISOString().split('T')[0]);
+            returnDateInput.value = pickupDate.toISOString().split('T')[0]; // Establece la fecha de entrega por defecto
     });
+
+});
 </script>
+@endsection

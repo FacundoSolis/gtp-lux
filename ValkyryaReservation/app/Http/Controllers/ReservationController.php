@@ -29,26 +29,50 @@ class ReservationController extends Controller
 
     // Método para manejar disponibilidad
     public function calendar($boatId)
-    {
-        $reservations = Reservation::where('boat_id', $boatId)->get(['pickup_date', 'return_date']);
+{
+    $reservations = Reservation::where('boat_id', $boatId)->get(['pickup_date', 'return_date']);
 
     // Formatear datos para FullCalendar
     $events = [];
+    $occupiedDates = [];
+
+    // Agregar las reservas como días ocupados
     foreach ($reservations as $reservation) {
         $start = new \DateTime($reservation->pickup_date);
         $end = new \DateTime($reservation->return_date);
         $end->modify('+1 day'); // FullCalendar requiere que el día final no se incluya.
 
+        $occupiedDates[] = $start->format('Y-m-d');
+        $occupiedDates[] = $end->format('Y-m-d');
+
         $events[] = [
             'title' => 'Reservado',
             'start' => $start->format('Y-m-d'),
             'end' => $end->format('Y-m-d'),
-            'color' => 'red',
+            'color' => 'red', // Rojo para los días ocupados
         ];
     }
 
-    return response()->json($events);
+    // Obtener días libres y marcarlos en verde
+    $startDate = now()->startOfMonth();
+    $endDate = now()->endOfMonth();
+    $currentDate = $startDate;
+    
+    while ($currentDate <= $endDate) {
+        $dateStr = $currentDate->format('Y-m-d');
+        if (!in_array($dateStr, $occupiedDates)) {
+            $events[] = [
+                'title' => 'Disponible',
+                'start' => $dateStr,
+                'end' => $dateStr,
+                'color' => 'green', // Verde para los días libres
+            ];
+        }
+        $currentDate->modify('+1 day');
     }
+
+    return response()->json($events);
+}
 
     // Paso 2: Seleccionar barco y fechas
     public function step2()
