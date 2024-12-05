@@ -112,53 +112,33 @@
         </div>
     @endif
 
-    <form action="{{ route('reservations.store') }}" method="POST">
-        @csrf
-        <input type="hidden" name="boat_id" value="{{ $boatId }}">
+    <form action="{{ route('reserve.nadine') }}" method="POST">
+    @csrf
+    <div class="mb-3">
+        <label for="port_id" class="form-label">Puerto:</label>
+        <select id="port_id" name="port_id" class="form-control" required>
+            <option value="{{ $portId ?? '' }}" selected>{{ $portId ? \App\Models\Port::find($portId)->name : 'Seleccione un puerto' }}</option>
+            @foreach($ports as $port)
+                <option value="{{ $port->id }}" {{ $port->id == $portId ? 'selected' : '' }}>{{ $port->name }}</option>
+            @endforeach
+        </select>
+    </div>
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Nombre:</label>
-            <input type="text" id="name" name="name" class="form-control" required>
-        </div>
+    <div class="mb-3">
+        <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
+        <input type="text" id="pickup_date" name="pickup_date" class="form-control" readonly required value="{{ $startDate ?? '' }}">
+    </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" class="form-control" required>
-        </div>
+    <div class="mb-3">
+        <label for="return_date" class="form-label">Fecha de Entrega:</label>
+        <input type="text" id="return_date" name="return_date" class="form-control" readonly required value="{{ $endDate ?? '' }}">
+    </div>
 
-        <div class="mb-3">
-            <label for="phone" class="form-label">Teléfono:</label>
-            <input type="tel" id="phone" name="phone" class="form-control" required>
-        </div>
+    <button type="submit" class="btn btn-primary">Reservar</button>
+</form>
 
-        <div class="mb-3">
-            <label for="port_id" class="form-label">Puerto:</label>
-            <select id="port_id" name="port_id" class="form-control" required>
-                <option value="">Seleccione un puerto</option>
-                @foreach($ports as $port)
-                    <option value="{{ $port->id }}">{{ $port->name }}</option>
-                @endforeach
-            </select>
-        </div>
 
-        <!-- Fecha de Recogida y Entrega -->
-        <div class="mb-3 row">
-            <div class="col">
-                <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
-                <input type="text" id="pickup_date" name="pickup_date" class="form-control" readonly required>
-            </div>
-            <div class="col">
-                <label for="return_date" class="form-label">Fecha de Entrega:</label>
-                <input type="text" id="return_date" name="return_date" class="form-control" readonly required>
-            </div>
-        </div>
 
-        <!-- Calendario de Disponibilidad -->
-        <div id="availability-calendar" style="display: none; min-height: 300px; border: 1px solid #ccc; margin-top: 20px;"></div>
-
-        <button type="submit" class="btn btn-primary">Reservar</button>
-    </form>
-</div>
 
 <!-- Footer -->
 <footer>

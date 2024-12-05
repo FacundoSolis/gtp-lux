@@ -8,6 +8,10 @@ use App\Http\Controllers\BoatController;
 // Ruta de inicio
 Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
 
+// Ruta para redirigir a la página del barco seleccionado desde welcome
+Route::get('/redirect-to-boat', [ReservationController::class, 'redirectToBoat'])->name('reservations.redirect');
+Route::get('/valkyrya/{boat_id}', [BoatController::class, 'showValkyrya'])->name('valkyrya');
+
 // Rutas para disponibilidad
 Route::get('/reservations/calendar/{boatId?}/{portId?}/{startDate?}/{endDate?}', [ReservationController::class, 'calendar']);
 
@@ -25,6 +29,11 @@ Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort']);
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 Route::get('/payment/{reservation}', [ReservationController::class, 'payment'])->name('payment');
 Route::get('/confirmation/{reservation}', [ReservationController::class, 'confirmation'])->name('confirmation');
+
+// Rutas para reservar directamente para los barcos Valkyrya y Nadine
+Route::post('/valkyrya/reserve', [ReservationController::class, 'reserveValkyrya'])->name('reserve.valkyrya');
+Route::post('/nadine/reserve', [ReservationController::class, 'reserveNadine'])->name('reserve.nadine');
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 // Rutas para el panel administrativo
 Route::prefix('admin')->name('admin.')->group(function () {

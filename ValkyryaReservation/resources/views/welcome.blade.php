@@ -100,45 +100,46 @@
         {{ session('success') }}
       </div>
     @endif
-    <form action="{{ route('reservations.store') }}" method="POST">
-      @csrf
-      <div class="mb-3">
+    <form action="{{ route('welcome') }}" method="GET">
+    @csrf
+    <div class="mb-3">
         <label for="port_id" class="form-label">Puerto:</label>
         <select id="port_id" name="port_id" class="form-control" required>
-          <option value="">Seleccione un puerto</option>
-          @foreach($ports as $port)
-            <option value="{{ $port->id }}">{{ $port->name }}</option>
-          @endforeach
+            <option value="">Seleccione un puerto</option>
+            @foreach($ports as $port)
+                <option value="{{ $port->id }}">{{ $port->name }}</option>
+            @endforeach
         </select>
-      </div>
+    </div>
 
-      <div class="mb-3">
+    <div class="mb-3">
         <label for="boat_id" class="form-label">Selecciona un Barco:</label>
         <select id="boat_id" name="boat_id" class="form-control" required>
-          <option value="">Seleccione un barco</option>
-          @foreach($boats as $boat)
-            <option value="{{ $boat->id }}">{{ $boat->name }}</option>
-          @endforeach
+            <option value="">Seleccione un barco</option>
+            @foreach($boats as $boat)
+                <option value="{{ $boat->id }}">{{ $boat->name }}</option>
+            @endforeach
         </select>
-      </div>
+    </div>
 
-      <!-- Fechas de recogida y entrega -->
-      <div class="mb-3 row">
+    <!-- Fechas de recogida y entrega -->
+    <div class="mb-3 row">
         <div class="col">
-          <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
-          <input type="text" id="pickup_date" name="pickup_date" class="form-control" readonly required>
+            <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
+            <input type="text" id="pickup_date" name="pickup_date" class="form-control" readonly required>
         </div>
         <div class="col">
-          <label for="return_date" class="form-label">Fecha de Entrega:</label>
-          <input type="text" id="return_date" name="return_date" class="form-control" readonly required>
+            <label for="return_date" class="form-label">Fecha de Entrega:</label>
+            <input type="text" id="return_date" name="return_date" class="form-control" readonly required>
         </div>
-      </div>
+    </div>
 
-      <div id="availability-calendar" style="display: none; min-height: 300px; border: 1px solid #ccc; margin-top: 20px;"></div>
+    <div id="availability-calendar" style="display: none; min-height: 300px; border: 1px solid #ccc; margin-top: 20px;"></div>
 
-      <button type="submit" class="btn btn-primary">Reservar</button>
-    </form>
-  </div>
+    <button type="submit" class="btn btn-primary">Reservar</button>
+</form>
+
+
 
   <!-- Mapa -->
   <section class="map-form">

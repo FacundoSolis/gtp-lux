@@ -12,39 +12,108 @@ class ReservationController extends Controller
 {
     // Método para cargar la página de bienvenida
     public function showWelcomePage(Request $request)
-    {
-        // Obtener todos los puertos
-        $ports = Port::all();
-        
-        // Obtener todos los barcos disponibles
-        $boats = Boat::all(); // Obtener todos los barcos disponibles
+{
+    $ports = Port::all();
+    
+    // Obtener todos los barcos disponibles
+    $boats = Boat::all(); // Obtener todos los barcos disponibles
 
-        // Si se recibe el puerto, barco y fechas desde el formulario, redirigir a la página correspondiente
-        if ($request->boat_id) {
-            $boatId = $request->boat_id;
-            $portId = $request->port_id;
-            $startDate = $request->start_date;
-            $endDate = $request->end_date;
+    // Si se recibe el puerto, barco y fechas desde el formulario, redirigir a la página correspondiente
+    if ($request->boat_id) {
+        $boatId = $request->boat_id;
+        $portId = $request->port_id;
+        $startDate = $request->pickup_date;
+        $endDate = $request->return_date;
 
-            // Redirigir a la página de Valkyrya o Nadine con los parámetros seleccionados
-            if ($boatId == 1) {
-                return redirect()->route('valkyrya', [
-                    'port_id' => $portId,
-                    'start_date' => $startDate,
-                    'end_date' => $endDate,
-                ]);
-            } elseif ($boatId == 2) {
-                return redirect()->route('nadine', [
-                    'port_id' => $portId,
-                    'start_date' => $startDate,
-                    'end_date' => $endDate,
-                ]);
-            }
+        // Redirigir a la página de Valkyrya o Nadine con los parámetros seleccionados
+        if ($boatId == 1) {
+            return redirect()->route('valkyrya', [
+                'port_id' => $portId,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+            ]);
+        } elseif ($boatId == 2) {
+            return redirect()->route('nadine', [
+                'port_id' => $portId,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+            ]);
         }
-
-        // Pasar las variables $ports y $boats a la vista
-        return view('welcome', compact('ports', 'boats'));
     }
+
+    // Pasar las variables $ports y $boats a la vista
+    return view('welcome', compact('ports', 'boats'));
+}
+
+public function reserveValkyrya(Request $request)
+{
+    // Validar los datos del formulario
+    $validated = $request->validate([
+        'port_id' => 'required|exists:ports,id',
+        'pickup_date' => 'required|date|after:today',
+        'return_date' => 'required|date|after:pickup_date',
+    ]);
+
+    // Aquí puedes agregar la lógica para crear la reserva para Valkyrya
+    // Ejemplo:
+    // Reservation::create($validated);
+
+    return redirect()->route('valkyrya')->with('success', 'Reserva realizada con éxito para Valkyrya.');
+}
+
+public function reserveNadine(Request $request)
+{
+    // Validar los datos del formulario
+    $validated = $request->validate([
+        'port_id' => 'required|exists:ports,id',
+        'pickup_date' => 'required|date|after:today',
+        'return_date' => 'required|date|after:pickup_date',
+    ]);
+
+    // Aquí puedes agregar la lógica para crear la reserva para Nadine
+    // Ejemplo:
+    // Reservation::create($validated);
+
+    return redirect()->route('nadine')->with('success', 'Reserva realizada con éxito para Nadine.');
+}
+
+    // Método para redirigir a la página del barco seleccionado
+    public function redirectToBoat(Request $request)
+{
+    $boatId = $request->boat_id;
+    $portId = $request->port_id;
+    $startDate = $request->start_date;
+    $endDate = $request->end_date;
+
+    // Validar que todos los datos estén presentes
+    if (!$boatId || !$portId || !$startDate || !$endDate) {
+        return redirect()->back()->with('error', 'Todos los campos son requeridos.');
+    }
+
+    // Verificar que el puerto exista
+    if (!$portId) {
+        return redirect()->back()->with('error', 'Puerto no válido.');
+    }
+
+    // Redirigir a la página correspondiente del barco
+    if ($boatId == 1) {
+        // Redirigir a la página de Valkyrya
+        return redirect()->route('valkyrya', [
+            'port_id' => $portId,
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+        ]);
+    } elseif ($boatId == 2) {
+        // Redirigir a la página de Nadine
+        return redirect()->route('nadine', [
+            'port_id' => $portId,
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+        ]);
+    }
+
+    return redirect()->back()->with('error', 'Barco no válido.');
+}
 
     // Método para calcular el precio de una reserva según el barco y la temporada
     public function calculatePrice($boat, $date)
@@ -139,28 +208,32 @@ class ReservationController extends Controller
     }
 
     // Método para mostrar la página de Valkyrya
-    public function showValkyrya(Request $request)
-    {
-        // Si viene desde la página de inicio con datos de puerto y fechas, se pasan a la vista
-        $portId = $request->port_id;
-        $startDate = $request->start_date;
-        $endDate = $request->end_date;
-        $ports = Port::all();  // Obtener todos los puertos
-
-        return view('valkyrya', compact('ports', 'portId', 'startDate', 'endDate'));
+    public function showValkyrya($boat_id, Request $request)
+{
+    // Recibimos los parámetros start_date y end_date desde la solicitud
+    // Obtén el puerto y otros parámetros
+    $portId = $request->input('port_id');
+    $startDate = $request->input('start_date');
+    $endDate = $request->input('end_date');
+    
+    // Verifica si estos parámetros existen
+    if (is_null($portId) || is_null($startDate) || is_null($endDate)) {
+        return redirect()->back()->with('error', 'Faltan parámetros necesarios.');
     }
 
+    // Pasar datos a la vista
+    return view('valkyrya', compact('portId', 'startDate', 'endDate', 'boatId'));
+}
     // Método para mostrar la página de Nadine
     public function showNadine(Request $request)
-    {
-        // Si viene desde la página de inicio con datos de puerto y fechas, se pasan a la vista
-        $portId = $request->port_id;
-        $startDate = $request->start_date;
-        $endDate = $request->end_date;
-        $ports = Port::all();  // Obtener todos los puertos
+{
+    $portId = $request->port_id;
+    $startDate = $request->start_date;
+    $endDate = $request->end_date;
+    $ports = Port::all();  // Obtener todos los puertos
 
-        return view('nadine', compact('ports', 'portId', 'startDate', 'endDate'));
-    }
+    return view('valkyrya', compact('portId', 'startDate', 'endDate', 'boatId'));
+}
 
     // Paso 2: Seleccionar barco y fechas
     public function step2()

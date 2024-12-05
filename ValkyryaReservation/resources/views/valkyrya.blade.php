@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/valkyrya.css') }}">
+<link rel="stylesheet" href="{{ asset('css/nadine.css') }}">
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
-    <h2>VALKYRYA</h2>
+    <h2>NADINE</h2>
 
     <div class="slider-valkyrya">
         <div class="slides-valkyrya">
@@ -29,13 +29,34 @@
     <section class="characteristics">
         <h3>Características del Barco</h3>
         <div class="info-list">
-            <div class="info-row light"><span><strong>Modelo:</strong></span><span>Valkyrya</span></div>
-            <div class="info-row"><span><strong>Eslora:</strong></span><span>12m</span></div>
-            <div class="info-row light"><span><strong>Manga:</strong></span><span>4.5m</span></div>
-            <div class="info-row"><span><strong>Capacidad:</strong></span><span>12 personas</span></div>
-            <div class="info-row light"><span><strong>Tripulación:</strong></span><span>2 personas</span></div>
-            <div class="info-row"><span><strong>Motor:</strong></span><span>200CV</span></div>
-            <div class="info-row light"><span><strong>Equipamiento:</strong></span><span>Solarium, toldo retráctil, música, nevera</span></div>
+            <div class="info-row light">
+                <span><strong>Modelo:</strong></span>
+                <span>Nadine</span>
+            </div>
+            <div class="info-row">
+                <span><strong>Eslora:</strong></span>
+                <span>12m</span>
+            </div>
+            <div class="info-row light">
+                <span><strong>Manga:</strong></span>
+                <span>4.5m</span>
+            </div>
+            <div class="info-row">
+                <span><strong>Capacidad:</strong></span>
+                <span>12 personas</span>
+            </div>
+            <div class="info-row light">
+                <span><strong>Tripulación:</strong></span>
+                <span>2 personas</span>
+            </div>
+            <div class="info-row">
+                <span><strong>Motor:</strong></span>
+                <span>200CV</span>
+            </div>
+            <div class="info-row light">
+                <span><strong>Equipamiento:</strong></span>
+                <span>Solarium, toldo retráctil, música, nevera</span>
+            </div>
         </div>
     </section>
 
@@ -80,10 +101,9 @@
         </div>
     </div>
 </section>
-
 <!-- Formulario de reserva -->
 <div class="container">
-    <h1>Reserva de Barco - VALKYRYA</h1>
+    <h1>Reserva de Barco - NADINE</h1>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -91,53 +111,37 @@
         </div>
     @endif
 
-    <form action="{{ route('reservations.store') }}" method="POST">
-        @csrf
-        <input type="hidden" name="boat_id" value="{{ $boatId }}">
+    <form action="{{ route('reserve.nadine') }}" method="POST">
+    @csrf
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Nombre:</label>
-            <input type="text" id="name" name="name" class="form-control" required>
-        </div>
+    <input type="hidden" name="boat_id" value="{{ $boatId }}">
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" class="form-control" required>
-        </div>
+    <div class="mb-3">
+        <label for="port_id" class="form-label">Puerto:</label>
+        <select id="port_id" name="port_id" class="form-control" required>
+            <option value="{{ $portId ?? '' }}" selected>{{ $portId ? \App\Models\Port::find($portId)->name : 'Seleccione un puerto' }}</option>
+            @foreach($ports as $port)
+                <option value="{{ $port->id }}" {{ $port->id == $portId ? 'selected' : '' }}>{{ $port->name }}</option>
+            @endforeach
+        </select>
+    </div>
 
-        <div class="mb-3">
-            <label for="phone" class="form-label">Teléfono:</label>
-            <input type="tel" id="phone" name="phone" class="form-control" required>
-        </div>
+    <div class="mb-3">
+        <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
+        <input type="text" id="pickup_date" name="pickup_date" class="form-control" readonly required value="{{ $startDate ?? '' }}">
+    </div>
 
-        <div class="mb-3">
-            <label for="port_id" class="form-label">Puerto:</label>
-            <select id="port_id" name="port_id" class="form-control" required>
-                <option value="">Seleccione un puerto</option>
-                @foreach($ports as $port)
-                    <option value="{{ $port->id }}">{{ $port->name }}</option>
-                @endforeach
-            </select>
-        </div>
+    <div class="mb-3">
+        <label for="return_date" class="form-label">Fecha de Entrega:</label>
+        <input type="text" id="return_date" name="return_date" class="form-control" readonly required value="{{ $endDate ?? '' }}">
+    </div>
 
-        <!-- Fecha de Recogida y Entrega -->
-        <div class="mb-3 row">
-            <div class="col">
-                <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
-                <input type="text" id="pickup_date" name="pickup_date" class="form-control" readonly required>
-            </div>
-            <div class="col">
-                <label for="return_date" class="form-label">Fecha de Entrega:</label>
-                <input type="text" id="return_date" name="return_date" class="form-control" readonly required>
-            </div>
-        </div>
-
-        <!-- Calendario de Disponibilidad -->
-        <div id="availability-calendar" style="display: none; min-height: 300px; border: 1px solid #ccc; margin-top: 20px;"></div>
-
-        <button type="submit" class="btn btn-primary">Reservar</button>
-    </form>
+    <button type="submit" class="btn btn-primary">Reservar</button>
+</form>
 </div>
+
+
+
 
 <!-- Footer -->
 <footer>
