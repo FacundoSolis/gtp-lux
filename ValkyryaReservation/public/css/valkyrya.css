@@ -196,6 +196,7 @@ header {
 
 .right-boxes h3 {
   margin-bottom: 20px;
+  margin-top: 20px;
   font-size: 1.5rem;
   color: black;
 }
@@ -302,6 +303,39 @@ header {
 .form-control::placeholder {
   color: black; /* Color del texto del placeholder */
 }
+
+.btn-primary {
+  margin-bottom: 20px;
+}
+
+/* Reducir el tamaño del calendario */
+.fc-view-harness {
+  height: 400px !important; /* Ajusta la altura según sea necesario */
+}
+
+.fc-dayGridMonth-view {
+  font-size: 12px; /* Reducir el tamaño de la fuente de los días */
+}
+
+.fc-daygrid-day-number {
+  font-size: 10px; /* Reducir el tamaño del número de día */
+}
+
+.fc-daygrid-day-frame {
+  padding: 2px; /* Reducir el padding de cada celda del día */
+}
+
+/* Ajustar el tamaño de los botones de navegación */
+.fc-prev-button, .fc-next-button {
+  font-size: 12px; /* Reducir el tamaño de los botones */
+}
+
+/* Ajustar la altura de las filas y columnas */
+.fc-daygrid-body td {
+  padding: 5px; /* Ajustar el padding de las celdas */
+}
+
+
 
 footer {
   position: relative;

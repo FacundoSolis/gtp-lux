@@ -5,27 +5,45 @@ namespace App\Http\Controllers;
 use App\Models\Port;
 use App\Models\Boat;
 use App\Models\Reservation;
-use App\Models\Season; // Para calcular los precios según las temporadas
+use App\Models\Season;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    // Paso 1: Seleccionar puerto
-    public function step1()
+    // Método para cargar la página de bienvenida
+    public function showWelcomePage(Request $request)
     {
+        // Obtener todos los puertos
         $ports = Port::all();
-        return view('step1', compact('ports'));
-    }
+        
+        // Obtener todos los barcos disponibles
+        $boats = Boat::all(); // Obtener todos los barcos disponibles
 
-    public function saveStep1(Request $request)
-    {
-        $validated = $request->validate([
-            'port_id' => 'required|exists:ports,id',
-        ]);
+        // Si se recibe el puerto, barco y fechas desde el formulario, redirigir a la página correspondiente
+        if ($request->boat_id) {
+            $boatId = $request->boat_id;
+            $portId = $request->port_id;
+            $startDate = $request->start_date;
+            $endDate = $request->end_date;
 
-        session()->put('reservation', $validated);
+            // Redirigir a la página de Valkyrya o Nadine con los parámetros seleccionados
+            if ($boatId == 1) {
+                return redirect()->route('valkyrya', [
+                    'port_id' => $portId,
+                    'start_date' => $startDate,
+                    'end_date' => $endDate,
+                ]);
+            } elseif ($boatId == 2) {
+                return redirect()->route('nadine', [
+                    'port_id' => $portId,
+                    'start_date' => $startDate,
+                    'end_date' => $endDate,
+                ]);
+            }
+        }
 
-        return redirect()->route('step2');
+        // Pasar las variables $ports y $boats a la vista
+        return view('welcome', compact('ports', 'boats'));
     }
 
     // Método para calcular el precio de una reserva según el barco y la temporada
@@ -43,7 +61,18 @@ class ReservationController extends Controller
     // Método para manejar la disponibilidad del calendario
     public function calendar($boatId = null, $portId = null, $startDate = null, $endDate = null)
     {
-        $reservations = Reservation::where('boat_id', $boatId)->get(['pickup_date', 'return_date']);
+        // Obtener reservas basadas en el barco y el puerto
+        $reservations = Reservation::where(function ($query) use ($boatId, $portId) {
+            if ($boatId) {
+                $query->where('boat_id', $boatId);
+            }
+            if ($portId) {
+                $query->whereHas('boat', function ($q) use ($portId) {
+                    $q->where('port_id', $portId);
+                });
+            }
+        })->get(['pickup_date', 'return_date']);
+
         $events = [];
         $occupiedDates = [];
 
@@ -107,6 +136,30 @@ class ReservationController extends Controller
         }
 
         return response()->json($events);
+    }
+
+    // Método para mostrar la página de Valkyrya
+    public function showValkyrya(Request $request)
+    {
+        // Si viene desde la página de inicio con datos de puerto y fechas, se pasan a la vista
+        $portId = $request->port_id;
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+        $ports = Port::all();  // Obtener todos los puertos
+
+        return view('valkyrya', compact('ports', 'portId', 'startDate', 'endDate'));
+    }
+
+    // Método para mostrar la página de Nadine
+    public function showNadine(Request $request)
+    {
+        // Si viene desde la página de inicio con datos de puerto y fechas, se pasan a la vista
+        $portId = $request->port_id;
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+        $ports = Port::all();  // Obtener todos los puertos
+
+        return view('nadine', compact('ports', 'portId', 'startDate', 'endDate'));
     }
 
     // Paso 2: Seleccionar barco y fechas
@@ -232,6 +285,7 @@ class ReservationController extends Controller
         return redirect()->route('payment', ['reservation' => $reservation->id]);
     }
 
+    // Método para el pago
     public function payment($reservationId)
     {
         // Obtener la reserva por ID

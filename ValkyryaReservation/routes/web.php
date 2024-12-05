@@ -6,9 +6,7 @@ use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\BoatController;
 
 // Ruta de inicio
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
 
 // Rutas para disponibilidad
 Route::get('/reservations/calendar/{boatId?}/{portId?}/{startDate?}/{endDate?}', [ReservationController::class, 'calendar']);
@@ -17,7 +15,10 @@ Route::get('/reservations/calendar/{boatId?}/{portId?}/{startDate?}/{endDate?}',
 Route::get('/valkyrya', [BoatController::class, 'showValkyrya'])->name('valkyrya');
 Route::get('/nadine', [BoatController::class, 'showNadine'])->name('nadine');
 
-// Ruta para obtener barcos según un puerto en formato JSON
+// Ruta para obtener los barcos disponibles según el puerto y las fechas
+Route::get('/available-boats', [ReservationController::class, 'getAvailableBoats']);
+
+// Rutas para obtener barcos según un puerto en formato JSON
 Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort']);
 
 // Rutas para reservas directas
