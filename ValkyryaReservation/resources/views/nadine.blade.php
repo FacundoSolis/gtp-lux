@@ -1,8 +1,110 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/nadine.css') }}">
+
+<!-- Slider de imágenes y características del barco -->
+<section class="container-valkyrya">
+    <h2>NADINE</h2>
+
+    <div class="slider-valkyrya">
+        <div class="slides-valkyrya">
+            <img src="{{ asset('img/val1.jpg') }}" alt="Imagen 1">
+            <img src="{{ asset('img/val2.jpg') }}" alt="Imagen 2">
+            <img src="{{ asset('img/val3.jpg') }}" alt="Imagen 3">
+            <img src="{{ asset('img/val4.jpg') }}" alt="Imagen 4">
+            <img src="{{ asset('img/val5.jpg') }}" alt="Imagen 5">
+            <img src="{{ asset('img/val6.jpg') }}" alt="Imagen 6">
+            <img src="{{ asset('img/val7.jpg') }}" alt="Imagen 7">
+            <img src="{{ asset('img/val8.jpg') }}" alt="Imagen 8">
+            <img src="{{ asset('img/val9.jpg') }}" alt="Imagen 9">
+        </div>
+        <span class="prev" onclick="moveSlide(-1)">&#10094;</span>
+        <span class="next" onclick="moveSlide(1)">&#10095;</span>
+    </div>
+</section>
+
+<!-- Características del barco -->
+<main class="layout">
+    <section class="characteristics">
+        <h3>Características del Barco</h3>
+        <div class="info-list">
+            <div class="info-row light">
+                <span><strong>Modelo:</strong></span>
+                <span>Nadine</span>
+            </div>
+            <div class="info-row">
+                <span><strong>Eslora:</strong></span>
+                <span>12m</span>
+            </div>
+            <div class="info-row light">
+                <span><strong>Manga:</strong></span>
+                <span>4.5m</span>
+            </div>
+            <div class="info-row">
+                <span><strong>Capacidad:</strong></span>
+                <span>12 personas</span>
+            </div>
+            <div class="info-row light">
+                <span><strong>Tripulación:</strong></span>
+                <span>2 personas</span>
+            </div>
+            <div class="info-row">
+                <span><strong>Motor:</strong></span>
+                <span>200CV</span>
+            </div>
+            <div class="info-row light">
+                <span><strong>Equipamiento:</strong></span>
+                <span>Solarium, toldo retráctil, música, nevera</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especificaciones -->
+    <section class="right-boxes">
+        <h3>Especificaciones</h3>
+        <div class="row">
+            <div class="box">Ícono 1</div>
+            <div class="box">Ícono 2</div>
+            <div class="box">Ícono 3</div>
+        </div>
+        <div class="row">
+            <div class="box">Ícono 4</div>
+            <div class="box">Ícono 5</div>
+            <div class="box">Ícono 6</div>
+        </div>
+        <div class="row large">
+            <div class="box">Ícono 7</div>
+            <div class="box">Ícono 8</div>
+        </div>
+    </section>
+</main>
+
+<!-- Detalles de precios -->
+<section class="pricing-details-columns">
+    <div class="characteristics2">
+        <h3>Incluido en el Precio</h3>
+        <div class="info-list2">
+            <div class="info-row2"><span>Seguro a todo riesgo</span><span>✔</span></div>
+            <div class="info-row2"><span>Bebidas</span><span>✔</span></div>
+            <div class="info-row2"><span>Equipo snorkel</span><span>✔</span></div>
+            <div class="info-row2"><span>Paddle surf</span><span>✔</span></div>
+            <div class="info-row2"><span>Toallas</span><span>✔</span></div>
+        </div>
+    </div>
+    <div class="characteristics3">
+        <h3>No Incluido en el Precio</h3>
+        <div class="info-list3">
+            <div class="info-row3"><span>Combustible</span><span>✘</span></div>
+            <div class="info-row3"><span>Bebidas premium</span><span>✘</span></div>
+            <div class="info-row3"><span>Equipos Especiales</span><span>✘</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulario de reserva -->
 <div class="container">
-    <h1>Reserva de Barco</h1>
+    <h1>Reserva de Barco - NADINE</h1>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -12,7 +114,7 @@
 
     <form action="{{ route('reservations.store') }}" method="POST">
         @csrf
-        <input type="hidden" name="boat_id" value="{{ $boatId }}"> <!-- Establecer el ID del barco -->
+        <input type="hidden" name="boat_id" value="{{ $boatId }}">
 
         <div class="mb-3">
             <label for="name" class="form-label">Nombre:</label>
@@ -58,6 +160,26 @@
     </form>
 </div>
 
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-left">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="footer-logo">
+            <div class="social-icons">
+                <a href="https://instagram.com" target="_blank"><img src="{{ asset('img/instagram.png') }}" alt="Instagram"></a>
+                <a href="https://facebook.com" target="_blank"><img src="{{ asset('img/facebook.png') }}" alt="Facebook"></a>
+            </div>
+            <p class="contact-email">contacto@empresa.com</p>
+            <p class="location">Marina Naviera Balear, Av. de Gabriel Roca, 07013 Palma, Balearic Islands</p>
+        </div>
+        <div class="footer-right"></div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');
@@ -69,7 +191,6 @@
         let selectedPickupDate = null;
         let selectedReturnDate = null;
 
-        // Configuración del calendario
         const calendar = new FullCalendar.Calendar(calendarEl, {
             themeSystem: 'bootstrap',
             locale: 'es',
@@ -88,8 +209,8 @@
                         title: reservation.title || reservation.boat_name || 'Disponible',
                         start: reservation.start,
                         end: reservation.end,
-                        color: reservation.color || 'red', // Rojo para reservado
-                        price: reservation.price || '', // Mostrar el precio si existe
+                        color: reservation.color || 'red',
+                        price: reservation.price || '',
                     }));
 
                     successCallback(events);
@@ -99,17 +220,15 @@
                 }
             },
             dateClick: function(info) {
-                // Reiniciar si se hace clic en una fecha ya seleccionada
                 if (selectedPickupDate === info.dateStr || selectedReturnDate === info.dateStr) {
                     selectedPickupDate = null;
                     selectedReturnDate = null;
                     document.getElementById('pickup_date').value = '';
                     document.getElementById('return_date').value = '';
-                    highlightSelectedDates();  // Reiniciar la selección de fechas
+                    highlightSelectedDates();
                     return;
                 }
 
-                // Seleccionar fecha de recogida o entrega
                 if (!selectedPickupDate) {
                     selectedPickupDate = info.dateStr;
                     document.getElementById('pickup_date').value = selectedPickupDate;
@@ -118,16 +237,10 @@
                     document.getElementById('return_date').value = selectedReturnDate;
                 }
 
-                highlightSelectedDates();  // Resaltar las fechas seleccionadas
-            },
-            eventRender: function(info) {
-                // Siempre mostrar eventos reservados en rojo
-                info.el.style.backgroundColor = 'red'; // Rojo para reservas existentes
-                info.el.style.borderColor = 'red'; // Rojo para reservas existentes
+                highlightSelectedDates();
             }
         });
 
-        // Mostrar calendario cuando el usuario haga clic en cualquier campo de fecha
         document.getElementById('pickup_date').addEventListener('click', function() {
             calendarEl.style.display = 'block';
             calendar.render();
@@ -138,54 +251,48 @@
             calendar.render();
         });
 
-        // Cerrar el calendario si el usuario hace clic fuera de él
         document.addEventListener('click', function(event) {
             if (!calendarEl.contains(event.target) && !event.target.matches('#pickup_date, #return_date')) {
                 calendarEl.style.display = 'none';
             }
         });
 
-        // Función para resaltar las fechas seleccionadas
         function highlightSelectedDates() {
-            // Reiniciar el estilo de todos los eventos
             calendar.getEvents().forEach(function(event) {
-                event.setProp('backgroundColor', '');  // Reiniciar color
-                event.setProp('borderColor', '');  // Reiniciar borde
+                event.setProp('backgroundColor', '');
+                event.setProp('borderColor', '');
             });
 
-            // Resaltar la fecha de recogida en morado
             if (selectedPickupDate) {
                 calendar.getEvents().forEach(function(event) {
                     if (event.startStr === selectedPickupDate) {
-                        event.setProp('backgroundColor', '#9b59b6'); // Morado para la fecha de recogida
+                        event.setProp('backgroundColor', '#9b59b6');
                         event.setProp('borderColor', '#9b59b6');
                     }
                 });
             }
 
-            // Resaltar la fecha de entrega en morado
             if (selectedReturnDate) {
                 calendar.getEvents().forEach(function(event) {
                     if (event.startStr === selectedReturnDate) {
-                        event.setProp('backgroundColor', '#9b59b6'); // Morado para la fecha de entrega
+                        event.setProp('backgroundColor', '#9b59b6');
                         event.setProp('borderColor', '#9b59b6');
                     }
                 });
             }
 
-            // Resaltar el rango de fechas seleccionadas en morado
             if (selectedPickupDate && selectedReturnDate) {
                 let currentDate = new Date(selectedPickupDate);
                 let returnDate = new Date(selectedReturnDate);
                 while (currentDate <= returnDate) {
-                    let currentDateStr = currentDate.toISOString().split('T')[0]; // Convertir a formato Y-m-d
+                    let currentDateStr = currentDate.toISOString().split('T')[0];
                     calendar.getEvents().forEach(function(event) {
                         if (event.startStr === currentDateStr) {
-                            event.setProp('backgroundColor', '#9b59b6'); // Resaltar todos los días seleccionados en morado
+                            event.setProp('backgroundColor', '#9b59b6');
                             event.setProp('borderColor', '#9b59b6');
                         }
                     });
-                    currentDate.setDate(currentDate.getDate() + 1); // Sumar un día
+                    currentDate.setDate(currentDate.getDate() + 1);
                 }
             }
         }
