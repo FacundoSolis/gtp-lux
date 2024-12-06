@@ -218,14 +218,20 @@
                         return;
                     }
 
-                    const response = await axios.get(`/reservations/calendar/${boatId}/${portId}`);
+                    const response = await axios.get(`/reservations/calendar/${boatId}/${portId}`, {
+                        params: {
+                            startDate: fetchInfo.startStr,
+                            endDate: fetchInfo.endStr
+                        }
+                    });
                     const reservations = response.data;
 
                     const events = reservations.map(reservation => ({
-                        title: reservation.title || 'Reservado',
+                        title: reservation.available ? 'Disponible' : 'Reservado',
                         start: reservation.start,
                         end: reservation.end,
                         color: reservation.available ? 'green' : 'red', // Verde para disponibles, rojo para reservados
+                        extendedProps: { available: reservation.available }, // Marcar días disponibles
                     }));
 
                     successCallback(events);
@@ -235,21 +241,28 @@
                 }
             },
             dateClick: function (info) {
-                if (selectedPickupDate === info.dateStr || selectedReturnDate === info.dateStr) {
-                    selectedPickupDate = null;
-                    selectedReturnDate = null;
-                    document.getElementById('pickup_date').value = '';
-                    document.getElementById('return_date').value = '';
-                    highlightSelectedDates();
+                // Comprobar si el día está reservado
+                const clickedEvent = calendar.getEvents().find(event =>
+                    event.startStr === info.dateStr && !event.extendedProps.available
+                );
+
+                if (clickedEvent) {
+                    alert('Este día ya está reservado. Por favor selecciona otra fecha.');
                     return;
                 }
 
+                // Actualizar fechas seleccionadas
                 if (!selectedPickupDate) {
                     selectedPickupDate = info.dateStr;
                     document.getElementById('pickup_date').value = selectedPickupDate;
                 } else if (!selectedReturnDate) {
                     selectedReturnDate = info.dateStr;
                     document.getElementById('return_date').value = selectedReturnDate;
+                } else {
+                    selectedPickupDate = info.dateStr;
+                    selectedReturnDate = null;
+                    document.getElementById('pickup_date').value = selectedPickupDate;
+                    document.getElementById('return_date').value = '';
                 }
 
                 highlightSelectedDates();
@@ -286,7 +299,7 @@
                 while (currentDate <= returnDate) {
                     let currentDateStr = currentDate.toISOString().split('T')[0];
                     calendar.getEvents().forEach(function (event) {
-                        if (event.startStr === currentDateStr) {
+                        if (event.startStr === currentDateStr && event.extendedProps.available) {
                             event.setProp('backgroundColor', '#9b59b6');
                             event.setProp('borderColor', '#9b59b6');
                         }
@@ -297,19 +310,21 @@
         }
 
         // Evento para actualizar el calendario al cambiar el puerto
-            portSelect.addEventListener('change', function () {
-                if (portSelect.value) {
-            calendarEl.style.display = 'block'; // Mostrar el calendario
-            calendar.gotoDate(new Date()); // Ir al mes actual
-            calendar.refetchEvents(); // Recargar eventos según el nuevo puerto
-        } else {
-            calendarEl.style.display = 'none'; // Ocultar el calendario si no hay puerto seleccionado
-            calendar.removeAllEvents(); // Limpiar los eventos
-        }
-    });
+        portSelect.addEventListener('change', function () {
+            if (portSelect.value) {
+                calendarEl.style.display = 'block'; // Mostrar el calendario
+                calendar.gotoDate(new Date()); // Ir al mes actual
+                calendar.refetchEvents(); // Recargar eventos según el nuevo puerto
+            } else {
+                calendarEl.style.display = 'none'; // Ocultar el calendario si no hay puerto seleccionado
+                calendar.removeAllEvents(); // Limpiar los eventos
+            }
+        });
 
         // Renderizar el calendario
         calendar.gotoDate(new Date()); // Ir al mes actual
         calendar.render();
     });
 </script>
+
+
