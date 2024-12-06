@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('node_modules/normalize.css/normalize.css') }}">

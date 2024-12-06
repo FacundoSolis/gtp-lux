@@ -321,4 +321,3 @@
         calendar.render();
     });
 </script>
-
