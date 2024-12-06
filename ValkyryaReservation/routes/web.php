@@ -10,7 +10,6 @@ Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcom
 
 // Ruta para redirigir a la página del barco seleccionado desde welcome
 Route::get('/redirect-to-boat', [ReservationController::class, 'redirectToBoat'])->name('reservations.redirect');
-Route::get('/valkyrya/{boat_id}', [BoatController::class, 'showValkyrya'])->name('valkyrya');
 
 // Rutas para disponibilidad
 Route::get('/reservations/calendar/{boatId?}/{portId?}/{startDate?}/{endDate?}', [ReservationController::class, 'calendar']);

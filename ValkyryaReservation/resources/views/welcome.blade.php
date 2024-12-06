@@ -116,9 +116,8 @@
         <label for="boat_id" class="form-label">Selecciona un Barco:</label>
         <select id="boat_id" name="boat_id" class="form-control" required>
             <option value="">Seleccione un barco</option>
-            @foreach($boats as $boat)
-                <option value="{{ $boat->id }}">{{ $boat->name }}</option>
-            @endforeach
+            <option value="3">Valkyrya</option> <!-- ID correcto según tu base de datos -->
+            <option value="2">Nadine</option>
         </select>
     </div>
 
@@ -137,7 +136,9 @@
     <div id="availability-calendar" style="display: none; min-height: 300px; border: 1px solid #ccc; margin-top: 20px;"></div>
 
     <button type="submit" class="btn btn-primary">Reservar</button>
-</form>
+    </form>
+</div>
+
 
 
 
