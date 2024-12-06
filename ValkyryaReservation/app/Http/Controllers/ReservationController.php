@@ -116,33 +116,61 @@ class ReservationController extends Controller
 
         return $totalPrice;
     }
-
     public function calendar($boatId = null, $portId = null, $startDate = null, $endDate = null)
     {
+        // Obtener las reservas del barco y puerto seleccionados
         $reservations = Reservation::where(function ($query) use ($boatId, $portId) {
             if ($boatId) $query->where('boat_id', $boatId);
             if ($portId) $query->whereHas('boat', function ($q) use ($portId) {
                 $q->where('port_id', $portId);
             });
         })->get(['pickup_date', 'return_date']);
-
+    
         $events = [];
+        $occupiedDates = [];
+    
+        // Procesar reservas como eventos ocupados
         foreach ($reservations as $reservation) {
             $start = new \DateTime($reservation->pickup_date);
             $end = new \DateTime($reservation->return_date);
-            $end->modify('+1 day');
-
+            $end->modify('+1 day'); // FullCalendar requiere que el día final no se incluya
+    
             $events[] = [
                 'title' => 'Reservado',
                 'start' => $start->format('Y-m-d'),
                 'end' => $end->format('Y-m-d'),
-                'color' => 'red',
+                'color' => 'red', // Días ocupados en rojo
+                'available' => false,
             ];
+    
+            // Guardar fechas ocupadas
+            $period = new \DatePeriod($start, new \DateInterval('P1D'), $end);
+            foreach ($period as $date) {
+                $occupiedDates[] = $date->format('Y-m-d');
+            }
         }
-
+    
+        // Generar días disponibles dentro del rango especificado o por defecto
+        $currentDate = $startDate ? new \DateTime($startDate) : new \DateTime();
+        $finalDate = $endDate ? new \DateTime($endDate) : (new \DateTime())->modify('+1 month');
+    
+        while ($currentDate <= $finalDate) {
+            $dateStr = $currentDate->format('Y-m-d');
+            if (!in_array($dateStr, $occupiedDates)) {
+                $events[] = [
+                    'title' => 'Disponible',
+                    'start' => $dateStr,
+                    'end' => $dateStr,
+                    'color' => 'green', // Días disponibles en verde
+                    'available' => true,
+                ];
+            }
+            $currentDate->modify('+1 day');
+        }
+    
         return response()->json($events);
     }
-
+    
     // Flujo de pasos para la reserva
     public function showStep1()
     {
@@ -211,4 +239,24 @@ class ReservationController extends Controller
         $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
         return view('reservations.confirmation', compact('reservation'));
     }
+
+    // Obtiene reservas para barco seleccionado en un puerto especifico
+    public function getReservationsByPort(Request $request)
+{
+        $boatId = $request->query('boat_id');
+        $portId = $request->query('port_id');
+
+        // Validar que ambos parámetros existan
+        if (!$boatId || !$portId) {
+            return response()->json(['error' => 'Faltan datos necesarios.'], 400);
+        }
+
+        // Obtener reservas para el barco y puerto seleccionados
+        $reservations = Reservation::where('boat_id', $boatId)
+            ->where('port_id', $portId)
+            ->get(['pickup_date', 'return_date', 'name']); // Selecciona los campos necesarios
+
+        return response()->json($reservations);
+}
+
 }

@@ -24,6 +24,10 @@ Route::get('/available-boats', [ReservationController::class, 'getAvailableBoats
 // Rutas para obtener barcos según un puerto en formato JSON
 Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort']);
 
+// Rutas para obtener las reservas
+Route::get('/reservations/by-port', [ReservationController::class, 'getReservationsByPort'])->name('reservations.by-port');
+
+
 // Rutas para reservas directas
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 Route::get('/payment/{reservation}', [ReservationController::class, 'payment'])->name('payment');

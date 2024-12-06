@@ -115,7 +115,7 @@
 
     <form id="reservation-form" action="{{ route('reserve.valkyrya') }}" method="POST">
         @csrf
-        <input type="hidden" name="boat_id" value="{{ $boatId }}">
+        <input type="hidden" name="boat_id" id="boat_id" value="{{ $boatId }}">
 
         <!-- Selección de puerto -->
         <div class="mb-3">
@@ -142,6 +142,14 @@
         <div class="mb-3">
             <label for="phone" class="form-label">Teléfono:</label>
             <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ingrese su teléfono" required>
+        </div>
+
+        <div id="reservations-container" class="mb-3">
+            <h3>Reservas Existentes:</h3>
+            <ul id="reservations-list">
+                <!-- Aquí se llenarán dinámicamente las reservas -->
+                <li>Seleccione un puerto para ver las resevas disponibles.</li>
+            </ul>
         </div>
 
         <!-- Calendario de disponibilidad -->
@@ -184,14 +192,11 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');
+        const portSelect = document.getElementById('port_id');
         const boatId = @json($boatId);
-        const portId = @json($portId ?? 'null');
-        const startDate = @json($startDate ?? now()->format('Y-m-d'));
-        const endDate = @json($endDate ?? now()->addMonths(1)->format('Y-m-d'));
 
         let selectedPickupDate = null;
         let selectedReturnDate = null;
@@ -207,15 +212,20 @@
             },
             events: async function (fetchInfo, successCallback, failureCallback) {
                 try {
-                    const response = await axios.get(`/reservations/calendar/${boatId || ''}/${portId || ''}/${startDate || ''}/${endDate || ''}`);
+                    const portId = portSelect.value; // Obtener puerto seleccionado
+                    if (!portId) {
+                        successCallback([]);
+                        return;
+                    }
+
+                    const response = await axios.get(`/reservations/calendar/${boatId}/${portId}`);
                     const reservations = response.data;
 
                     const events = reservations.map(reservation => ({
-                        title: reservation.title || reservation.boat_name || 'Disponible',
+                        title: reservation.title || 'Reservado',
                         start: reservation.start,
                         end: reservation.end,
-                        color: reservation.color || 'red',
-                        price: reservation.price || '',
+                        color: reservation.available ? 'green' : 'red', // Verde para disponibles, rojo para reservados
                     }));
 
                     successCallback(events);
@@ -224,7 +234,7 @@
                     failureCallback(error);
                 }
             },
-            dateClick: function(info) {
+            dateClick: function (info) {
                 if (selectedPickupDate === info.dateStr || selectedReturnDate === info.dateStr) {
                     selectedPickupDate = null;
                     selectedReturnDate = null;
@@ -246,30 +256,14 @@
             }
         });
 
-        document.getElementById('pickup_date').addEventListener('click', function() {
-            calendarEl.style.display = 'block';
-            calendar.render();
-        });
-
-        document.getElementById('return_date').addEventListener('click', function() {
-            calendarEl.style.display = 'block';
-            calendar.render();
-        });
-
-        document.addEventListener('click', function(event) {
-            if (!calendarEl.contains(event.target) && !event.target.matches('#pickup_date, #return_date')) {
-                calendarEl.style.display = 'none';
-            }
-        });
-
         function highlightSelectedDates() {
-            calendar.getEvents().forEach(function(event) {
+            calendar.getEvents().forEach(function (event) {
                 event.setProp('backgroundColor', '');
                 event.setProp('borderColor', '');
             });
 
             if (selectedPickupDate) {
-                calendar.getEvents().forEach(function(event) {
+                calendar.getEvents().forEach(function (event) {
                     if (event.startStr === selectedPickupDate) {
                         event.setProp('backgroundColor', '#9b59b6');
                         event.setProp('borderColor', '#9b59b6');
@@ -278,7 +272,7 @@
             }
 
             if (selectedReturnDate) {
-                calendar.getEvents().forEach(function(event) {
+                calendar.getEvents().forEach(function (event) {
                     if (event.startStr === selectedReturnDate) {
                         event.setProp('backgroundColor', '#9b59b6');
                         event.setProp('borderColor', '#9b59b6');
@@ -291,7 +285,7 @@
                 let returnDate = new Date(selectedReturnDate);
                 while (currentDate <= returnDate) {
                     let currentDateStr = currentDate.toISOString().split('T')[0];
-                    calendar.getEvents().forEach(function(event) {
+                    calendar.getEvents().forEach(function (event) {
                         if (event.startStr === currentDateStr) {
                             event.setProp('backgroundColor', '#9b59b6');
                             event.setProp('borderColor', '#9b59b6');
@@ -301,6 +295,21 @@
                 }
             }
         }
+
+        // Evento para actualizar el calendario al cambiar el puerto
+            portSelect.addEventListener('change', function () {
+                if (portSelect.value) {
+            calendarEl.style.display = 'block'; // Mostrar el calendario
+            calendar.gotoDate(new Date()); // Ir al mes actual
+            calendar.refetchEvents(); // Recargar eventos según el nuevo puerto
+        } else {
+            calendarEl.style.display = 'none'; // Ocultar el calendario si no hay puerto seleccionado
+            calendar.removeAllEvents(); // Limpiar los eventos
+        }
+    });
+
+        // Renderizar el calendario
+        calendar.gotoDate(new Date()); // Ir al mes actual
+        calendar.render();
     });
 </script>
-@endsection
