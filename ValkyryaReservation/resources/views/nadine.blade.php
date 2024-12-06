@@ -184,14 +184,11 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');
-        const boatId = @json($boatId);
-        const portId = @json($portId ?? 'null');
-        const startDate = @json($startDate ?? now()->format('Y-m-d'));
-        const endDate = @json($endDate ?? now()->addMonths(1)->format('Y-m-d'));
+        const portSelect = document.getElementById('port_id');
+        const boatId = @json($boatId); // Este será el ID específico para Nadine.
 
         let selectedPickupDate = null;
         let selectedReturnDate = null;
@@ -207,15 +204,27 @@
             },
             events: async function (fetchInfo, successCallback, failureCallback) {
                 try {
-                    const response = await axios.get(`/reservations/calendar/${boatId || ''}/${portId || ''}/${startDate || ''}/${endDate || ''}`);
+                    const portId = portSelect.value; // Obtener el puerto seleccionado
+                    if (!portId) {
+                        successCallback([]);
+                        return;
+                    }
+
+                    const response = await axios.get(`/reservations/calendar/${boatId}/${portId}`, {
+                        params: {
+                            startDate: fetchInfo.startStr,
+                            endDate: fetchInfo.endStr
+                        }
+                    });
+
                     const reservations = response.data;
 
                     const events = reservations.map(reservation => ({
-                        title: reservation.title || reservation.boat_name || 'Disponible',
+                        title: reservation.available ? 'Disponible' : 'Reservado',
                         start: reservation.start,
                         end: reservation.end,
-                        color: reservation.color || 'red',
-                        price: reservation.price || '',
+                        color: reservation.available ? 'green' : 'red', // Verde para disponibles, rojo para reservados
+                        extendedProps: { available: reservation.available }, // Marcar días disponibles
                     }));
 
                     successCallback(events);
@@ -224,52 +233,45 @@
                     failureCallback(error);
                 }
             },
-            dateClick: function(info) {
-                if (selectedPickupDate === info.dateStr || selectedReturnDate === info.dateStr) {
-                    selectedPickupDate = null;
-                    selectedReturnDate = null;
-                    document.getElementById('pickup_date').value = '';
-                    document.getElementById('return_date').value = '';
-                    highlightSelectedDates();
+            dateClick: function (info) {
+                // Comprobar si el día está reservado dentro de un rango
+                const clickedEvent = calendar.getEvents().find(event =>
+                    !event.extendedProps.available &&
+                    info.date >= new Date(event.start) &&
+                    info.date < new Date(event.end) // Comprueba el rango completo
+                );
+
+                if (clickedEvent) {
+                    alert('Este rango de fechas ya está reservado. Por favor selecciona otro.');
                     return;
                 }
 
+                // Actualizar fechas seleccionadas
                 if (!selectedPickupDate) {
                     selectedPickupDate = info.dateStr;
                     document.getElementById('pickup_date').value = selectedPickupDate;
                 } else if (!selectedReturnDate) {
                     selectedReturnDate = info.dateStr;
                     document.getElementById('return_date').value = selectedReturnDate;
+                } else {
+                    selectedPickupDate = info.dateStr;
+                    selectedReturnDate = null;
+                    document.getElementById('pickup_date').value = selectedPickupDate;
+                    document.getElementById('return_date').value = '';
                 }
 
                 highlightSelectedDates();
             }
         });
 
-        document.getElementById('pickup_date').addEventListener('click', function() {
-            calendarEl.style.display = 'block';
-            calendar.render();
-        });
-
-        document.getElementById('return_date').addEventListener('click', function() {
-            calendarEl.style.display = 'block';
-            calendar.render();
-        });
-
-        document.addEventListener('click', function(event) {
-            if (!calendarEl.contains(event.target) && !event.target.matches('#pickup_date, #return_date')) {
-                calendarEl.style.display = 'none';
-            }
-        });
-
         function highlightSelectedDates() {
-            calendar.getEvents().forEach(function(event) {
+            calendar.getEvents().forEach(function (event) {
                 event.setProp('backgroundColor', '');
                 event.setProp('borderColor', '');
             });
 
             if (selectedPickupDate) {
-                calendar.getEvents().forEach(function(event) {
+                calendar.getEvents().forEach(function (event) {
                     if (event.startStr === selectedPickupDate) {
                         event.setProp('backgroundColor', '#9b59b6');
                         event.setProp('borderColor', '#9b59b6');
@@ -278,7 +280,7 @@
             }
 
             if (selectedReturnDate) {
-                calendar.getEvents().forEach(function(event) {
+                calendar.getEvents().forEach(function (event) {
                     if (event.startStr === selectedReturnDate) {
                         event.setProp('backgroundColor', '#9b59b6');
                         event.setProp('borderColor', '#9b59b6');
@@ -291,8 +293,8 @@
                 let returnDate = new Date(selectedReturnDate);
                 while (currentDate <= returnDate) {
                     let currentDateStr = currentDate.toISOString().split('T')[0];
-                    calendar.getEvents().forEach(function(event) {
-                        if (event.startStr === currentDateStr) {
+                    calendar.getEvents().forEach(function (event) {
+                        if (event.startStr === currentDateStr && event.extendedProps.available) {
                             event.setProp('backgroundColor', '#9b59b6');
                             event.setProp('borderColor', '#9b59b6');
                         }
@@ -301,6 +303,22 @@
                 }
             }
         }
+
+        // Evento para actualizar el calendario al cambiar el puerto
+        portSelect.addEventListener('change', function () {
+            if (portSelect.value) {
+                calendarEl.style.display = 'block'; // Mostrar el calendario
+                calendar.gotoDate(new Date()); // Ir al mes actual
+                calendar.refetchEvents(); // Recargar eventos según el nuevo puerto
+            } else {
+                calendarEl.style.display = 'none'; // Ocultar el calendario si no hay puerto seleccionado
+                calendar.removeAllEvents(); // Limpiar los eventos
+            }
+        });
+
+        // Renderizar el calendario
+        calendar.gotoDate(new Date()); // Ir al mes actual
+        calendar.render();
     });
 </script>
-@endsection
+
