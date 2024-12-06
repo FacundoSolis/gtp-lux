@@ -241,13 +241,15 @@
                 }
             },
             dateClick: function (info) {
-                // Comprobar si el día está reservado
+                // Comprobar si el día está dentro de un rango reservado
                 const clickedEvent = calendar.getEvents().find(event =>
-                    event.startStr === info.dateStr && !event.extendedProps.available
+                    !event.extendedProps.available &&
+                    info.date >= new Date(event.start) &&
+                    info.date < new Date(event.end) // Comprueba el rango
                 );
 
                 if (clickedEvent) {
-                    alert('Este día ya está reservado. Por favor selecciona otra fecha.');
+                    alert('Este rango de fechas ya está reservado. Por favor selecciona otro.');
                     return;
                 }
 
@@ -326,5 +328,6 @@
         calendar.render();
     });
 </script>
+
 
 
