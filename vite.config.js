@@ -5,7 +5,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/js/app.jsx', // Cambiado a .jsx
+                'resources/js/app.jsx', 
                 'resources/css/nadine.css',
                 'resources/css/valkyrya.css',
                 'resources/css/style.css',
