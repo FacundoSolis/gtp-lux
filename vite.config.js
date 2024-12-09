@@ -1,13 +1,27 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                'resources/js/app.jsx', // Cambiado a .jsx
+                'resources/css/nadine.css',
+                'resources/css/valkyrya.css',
+                'resources/css/style.css',
+            ],
             refresh: true,
         }),
-        react(),
     ],
+    resolve: {
+        extensions: ['.js', '.jsx'], // Asegura que se resuelvan estos archivos
+    },
+    esbuild: {
+        jsxFactory: 'React.createElement',
+        jsxFragment: 'React.Fragment',
+        loader: {
+            '.js': 'jsx',    // Asegura que .js se trata como JSX
+            '.jsx': 'jsx',   // Agrega soporte explícito para .jsx
+        },
+    },
 });
