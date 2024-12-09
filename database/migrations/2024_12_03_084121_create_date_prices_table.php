@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('date_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('boat_id')->constrained('boats')->onDelete('cascade'); // Relación con Barcos
             $table->date('start_date'); // Fecha de inicio de la temporada
             $table->date('end_date'); // Fecha de fin de la temporada
             $table->decimal('price_per_day', 8, 2); // Precio por día
