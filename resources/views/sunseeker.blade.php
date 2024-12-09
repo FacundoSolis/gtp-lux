@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
-
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/valkyrya.css') }}">
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
-    <h2>Nartic</h2>
+    <h2>Reserva del Barco Sunseeker Portofino 53</h2>
 
     <div class="slider-valkyrya">
         <div class="slides-valkyrya">
@@ -32,7 +31,7 @@
         <div class="info-list">
             <div class="info-row light">
                 <span><strong>Modelo:</strong></span>
-                <span>Princess v65</span>
+                <span>Sunseeker Portofino 53</span>
             </div>
             <div class="info-row">
                 <span><strong>Eslora:</strong></span>
@@ -105,7 +104,7 @@
 
 <!-- Formulario de reserva -->
 <div class="container">
-    <h1>Reserva de Barco - Valkyrya</h1>
+    <h1>Reserva del Barco Sunseeker Portofino 53</h1>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -113,9 +112,9 @@
         </div>
     @endif
 
-    <form id="reservation-form" action="{{ route('reserve.valkyrya') }}" method="POST">
+    <form id="reservation-form" action="{{ route('reserve.sunseeker') }}" method="POST">
         @csrf
-        <input type="hidden" name="boat_id" id="boat_id" value="{{ $boatId }}">
+        <input type="hidden" name="boat_id" value="3"> <!-- ID de Sunseeker Portofino -->
 
         <!-- Selección de puerto -->
         <div class="mb-3">
@@ -144,14 +143,6 @@
             <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ingrese su teléfono" required>
         </div>
 
-        <div id="reservations-container" class="mb-3">
-            <h3>Reservas Existentes:</h3>
-            <ul id="reservations-list">
-                <!-- Aquí se llenarán dinámicamente las reservas -->
-                <li>Seleccione un puerto para ver las resevas disponibles.</li>
-            </ul>
-        </div>
-
         <!-- Calendario de disponibilidad -->
         <div id="availability-calendar" style="min-height: 400px; border: 1px solid #ccc; display: none;"></div>
 
@@ -170,8 +161,6 @@
         <button type="submit" class="btn btn-primary mt-3">Reservar</button>
     </form>
 </div>
-
-
 
 <!-- Footer -->
 <footer>
@@ -196,7 +185,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');
         const portSelect = document.getElementById('port_id');
-        const boatId = @json($boatId);
+        const boatId = 3; // Este es el ID de Sunseeker Portofino 53.
 
         let selectedPickupDate = null;
         let selectedReturnDate = null;
@@ -212,7 +201,7 @@
             },
             events: async function (fetchInfo, successCallback, failureCallback) {
                 try {
-                    const portId = portSelect.value; // Obtener puerto seleccionado
+                    const portId = portSelect.value; // Obtener el puerto seleccionado
                     if (!portId) {
                         successCallback([]);
                         return;
@@ -224,14 +213,15 @@
                             endDate: fetchInfo.endStr
                         }
                     });
+
                     const reservations = response.data;
 
                     const events = reservations.map(reservation => ({
                         title: reservation.available ? 'Disponible' : 'Reservado',
                         start: reservation.start,
                         end: reservation.end,
-                        color: reservation.available ? 'green' : 'red', // Verde para disponibles, rojo para reservados
-                        extendedProps: { available: reservation.available }, // Marcar días disponibles
+                        color: reservation.available ? 'green' : 'red',
+                        extendedProps: { available: reservation.available },
                     }));
 
                     successCallback(events);
@@ -241,11 +231,11 @@
                 }
             },
             dateClick: function (info) {
-                // Comprobar si el día está dentro de un rango reservado
+                // Lógica para seleccionar fechas
                 const clickedEvent = calendar.getEvents().find(event =>
                     !event.extendedProps.available &&
                     info.date >= new Date(event.start) &&
-                    info.date < new Date(event.end) // Comprueba el rango
+                    info.date < new Date(event.end)
                 );
 
                 if (clickedEvent) {
@@ -253,24 +243,19 @@
                     return;
                 }
 
-                // Actualizar fechas seleccionadas
                 if (!selectedPickupDate) {
                     selectedPickupDate = info.dateStr;
                     document.getElementById('pickup_date').value = selectedPickupDate;
                 } else if (!selectedReturnDate) {
                     selectedReturnDate = info.dateStr;
                     document.getElementById('return_date').value = selectedReturnDate;
-                } else {
-                    selectedPickupDate = info.dateStr;
-                    selectedReturnDate = null;
-                    document.getElementById('pickup_date').value = selectedPickupDate;
-                    document.getElementById('return_date').value = '';
                 }
 
                 highlightSelectedDates();
             }
         });
 
+        // Función para resaltar las fechas seleccionadas
         function highlightSelectedDates() {
             calendar.getEvents().forEach(function (event) {
                 event.setProp('backgroundColor', '');
@@ -294,40 +279,23 @@
                     }
                 });
             }
-
-            if (selectedPickupDate && selectedReturnDate) {
-                let currentDate = new Date(selectedPickupDate);
-                let returnDate = new Date(selectedReturnDate);
-                while (currentDate <= returnDate) {
-                    let currentDateStr = currentDate.toISOString().split('T')[0];
-                    calendar.getEvents().forEach(function (event) {
-                        if (event.startStr === currentDateStr && event.extendedProps.available) {
-                            event.setProp('backgroundColor', '#9b59b6');
-                            event.setProp('borderColor', '#9b59b6');
-                        }
-                    });
-                    currentDate.setDate(currentDate.getDate() + 1);
-                }
-            }
         }
 
-        // Evento para actualizar el calendario al cambiar el puerto
         portSelect.addEventListener('change', function () {
             if (portSelect.value) {
                 calendarEl.style.display = 'block'; // Mostrar el calendario
                 calendar.gotoDate(new Date()); // Ir al mes actual
-                calendar.refetchEvents(); // Recargar eventos según el nuevo puerto
+                calendar.refetchEvents(); // Recargar eventos
             } else {
-                calendarEl.style.display = 'none'; // Ocultar el calendario si no hay puerto seleccionado
+                calendarEl.style.display = 'none'; // Ocultar el calendario
                 calendar.removeAllEvents(); // Limpiar los eventos
             }
         });
 
         // Renderizar el calendario
-        calendar.gotoDate(new Date()); // Ir al mes actual
+        calendar.gotoDate(new Date());
         calendar.render();
     });
 </script>
 
-
-
+@endsection

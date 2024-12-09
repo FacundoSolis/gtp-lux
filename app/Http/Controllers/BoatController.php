@@ -25,29 +25,29 @@ class BoatController extends Controller
         return response()->json($boats);
     }
 
-    public function showValkyrya(Request $request)
+    public function showPrincessV65(Request $request)
 {
     $portId = $request->input('port_id', null); // Captura port_id de la solicitud
     $ports = Port::all(); // Obtén todos los puertos
-    $boatId = 3; // ID fijo del barco Valkyrya
+    $boatId = 4; // ID fijo del barco Princess
     $startDate = $request->input('start_date', now()); // Captura start_date o usa la fecha actual
     $endDate = $request->input('end_date', now()->addDays(7)); // Captura end_date o usa una fecha predeterminada
 
-    return view('valkyrya', compact('portId', 'ports', 'boatId', 'startDate', 'endDate'));
+    return view('princess', compact('portId', 'ports', 'boatId', 'startDate', 'endDate'));
 }
 
 
-    public function showNadine(Request $request)
+    public function showSunseekerPortofino(Request $request)
 {
-    $boat = Boat::where('name', 'Nadine')->firstOrFail();
+    $boat = Boat::where('name', 'Portofino')->firstOrFail();
     $ports = Port::all();
 
     // Obtener las fechas de inicio y fin del mes actual
     $startDate = now()->startOfMonth(); // Fecha de inicio del mes
     $endDate = now()->endOfMonth(); // Fecha de fin del mes
 
-    return view('nadine', [
-        'boatId' => $boat->id, // ID del barco Nadine
+    return view('portofino', [
+        'boatId' => $boat->id, // ID del barco Portofino
         'ports' => $ports,
         'startDate' => $startDate, // Pasar la fecha de inicio
         'endDate' => $endDate, // Pasar la fecha de fin

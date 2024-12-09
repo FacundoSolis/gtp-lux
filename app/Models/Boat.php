@@ -9,7 +9,7 @@ class Boat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'port_id', 'capacity', 'price_modifier'];
+    protected $fillable = ['name', 'port_id', 'price_modifier'];
 
     public function port()
     {

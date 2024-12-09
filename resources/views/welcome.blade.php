@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('node_modules/normalize.css/normalize.css') }}">
@@ -60,11 +59,11 @@
         <button class="next">&gt;</button>
       </div>
       <div class="info-text">
-        <h3>VALKYRYA</h3>
-        <p>Valkyrya es el inicio de una experiencia exclusiva en el mar. 
-          Con un diseño elegante, solarium, toldo retráctil, música de alta calidad y nevera, es el yate perfecto para explorar las aguas cristalinas de la isla. 
-          Su motor de 200CV garantiza una navegación suave, permitiéndote disfrutar de cada parada con lujo y confort.</p>
-        <a href="{{ route('valkyrya') }}">
+        <h3>Lancha Sunseeker Portofino 53 800cv</h3>
+        <p>Alquiler de Yates en Denia
+        Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
+        Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
+        <a href="{{ route('sunseeker') }}">
           <button id="reservation-btn" class="btn">VER DISPONIBILIDAD</button>
         </a>
       </div>
@@ -83,25 +82,25 @@
         <button class="next">&gt;</button>
       </div>
       <div class="info-text">
-        <h3>NADINE</h3>
-        <p>Nadine es el barco perfecto para una experiencia inolvidable. 
-          Con dos potentes motores de 300CV, toldo retráctil, solarium, música y nevera, te ofrece el máximo confort y personalización para recorrer los rincones más exclusivos del mar. 
-          Disfruta de una jornada de lujo adaptada a tus deseos.</p>
-        <a href="{{ route('nadine') }}">
+        <h3>Princess V65</h3>
+        <p>Navegue en el exclusivo Princess V65, un lujoso barco abierto de día diseñado para el confort y la relajación. Con capacidad para 10 invitados, este yate ofrece 3 baños completos y camarotes. 
+          Un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
+        <a href="{{ route('princess') }}">
           <button id="reservation-btn" class="btn">VER DISPONIBILIDAD</button>
         </a>
       </div>
     </div>
   </section>
-<!-- Formulario de Reserva -->
-<div class="container">
+
+  <!-- Formulario de Reserva -->
+  <div class="container">
     <h1>Reserva de Barco</h1>
     @if(session('success'))
       <div class="alert alert-success">
         {{ session('success') }}
       </div>
     @endif
-    <form action="{{ route('welcome') }}" method="GET">
+    <form action="{{ route('welcome') }}" method="GET" id="reservation-form">
     @csrf
     <div class="mb-3">
         <label for="port_id" class="form-label">Puerto:</label>
@@ -117,8 +116,8 @@
         <label for="boat_id" class="form-label">Selecciona un Barco:</label>
         <select id="boat_id" name="boat_id" class="form-control" required>
             <option value="">Seleccione un barco</option>
-            <option value="3">Valkyrya</option> <!-- ID correcto según tu base de datos -->
-            <option value="2">Nadine</option>
+            <option value="3">Sunseeker Portofino 53</option>
+            <option value="4">Princess V65</option>
         </select>
     </div>
 
@@ -138,10 +137,7 @@
 
     <button type="submit" class="btn btn-primary">Reservar</button>
     </form>
-</div>
-
-
-
+  </div>
 
   <!-- Mapa -->
   <section class="map-form">

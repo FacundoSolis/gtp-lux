@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
-
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/valkyrya.css') }}">
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
-    <h2>TORINO</h2>
+    <h2>Reserva del Barco Sunseeker Portofino 53</h2>
 
     <div class="slider-valkyrya">
         <div class="slides-valkyrya">
@@ -105,7 +104,7 @@
 
 <!-- Formulario de reserva -->
 <div class="container">
-    <h1>Reserva de Barco - Nadine</h1>
+    <h1>Reserva del Barco Sunseeker Portofino 53</h1>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -113,9 +112,9 @@
         </div>
     @endif
 
-    <form id="reservation-form" action="{{ route('reserve.nadine') }}" method="POST">
+    <form id="reservation-form" action="{{ route('reserve.sunseeker') }}" method="POST">
         @csrf
-        <input type="hidden" name="boat_id" value="{{ $boatId }}">
+        <input type="hidden" name="boat_id" id="boat_id" value="{{ $boatId }}">
 
         <!-- Selección de puerto -->
         <div class="mb-3">
@@ -163,8 +162,6 @@
     </form>
 </div>
 
-
-
 <!-- Footer -->
 <footer>
     <div class="footer-container">
@@ -188,7 +185,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');
         const portSelect = document.getElementById('port_id');
-        const boatId = @json($boatId); // Este será el ID específico para Nadine.
+        const boatId = 3; // Este es el ID de Sunseeker Portofino 53.
 
         let selectedPickupDate = null;
         let selectedReturnDate = null;
@@ -204,7 +201,7 @@
             },
             events: async function (fetchInfo, successCallback, failureCallback) {
                 try {
-                    const portId = portSelect.value; // Obtener el puerto seleccionado
+                    const portId = portSelect.value; // Obtener puerto seleccionado
                     if (!portId) {
                         successCallback([]);
                         return;
@@ -216,7 +213,6 @@
                             endDate: fetchInfo.endStr
                         }
                     });
-
                     const reservations = response.data;
 
                     const events = reservations.map(reservation => ({
@@ -234,11 +230,11 @@
                 }
             },
             dateClick: function (info) {
-                // Comprobar si el día está reservado dentro de un rango
+                // Comprobar si el día está dentro de un rango reservado
                 const clickedEvent = calendar.getEvents().find(event =>
                     !event.extendedProps.available &&
                     info.date >= new Date(event.start) &&
-                    info.date < new Date(event.end) // Comprueba el rango completo
+                    info.date < new Date(event.end) // Comprueba el rango
                 );
 
                 if (clickedEvent) {
@@ -304,20 +300,21 @@
             }
         }
 
-        // Evento para actualizar el calendario al cambiar el puerto
         portSelect.addEventListener('change', function () {
             if (portSelect.value) {
                 calendarEl.style.display = 'block'; // Mostrar el calendario
                 calendar.gotoDate(new Date()); // Ir al mes actual
-                calendar.refetchEvents(); // Recargar eventos según el nuevo puerto
+                calendar.refetchEvents(); // Recargar eventos
             } else {
-                calendarEl.style.display = 'none'; // Ocultar el calendario si no hay puerto seleccionado
+                calendarEl.style.display = 'none'; // Ocultar el calendario
                 calendar.removeAllEvents(); // Limpiar los eventos
             }
         });
 
         // Renderizar el calendario
-        calendar.gotoDate(new Date()); // Ir al mes actual
+        calendar.gotoDate(new Date());
         calendar.render();
     });
 </script>
+
+@endsection

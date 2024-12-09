@@ -14,9 +14,10 @@ Route::get('/redirect-to-boat', [ReservationController::class, 'redirectToBoat']
 // Rutas para disponibilidad
 Route::get('/reservations/calendar/{boatId?}/{portId?}/{startDate?}/{endDate?}', [ReservationController::class, 'calendar']);
 
-// Rutas para barcos específicos
-Route::get('/valkyrya', [BoatController::class, 'showValkyrya'])->name('valkyrya');
-Route::get('/nadine', [BoatController::class, 'showNadine'])->name('nadine');
+
+// Ruta para el barco Sunseeker Portofino 53
+Route::get('/sunseeker', [BoatController::class, 'showSunseekerPortofino'])->name('sunseeker');
+Route::get('/princess', [BoatController::class, 'showPrincessV65'])->name('princess');
 
 // Ruta para obtener los barcos disponibles según el puerto y las fechas
 Route::get('/available-boats', [ReservationController::class, 'getAvailableBoats']);
@@ -35,8 +36,9 @@ Route::get('/payment/{reservation}', [ReservationController::class, 'payment'])-
 Route::get('/confirmation/{reservation}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
 // Rutas para reservar directamente para los barcos Valkyrya y Nadine
-Route::post('/valkyrya/reserve', [ReservationController::class, 'reserveValkyrya'])->name('reserve.valkyrya');
-Route::post('/nadine/reserve', [ReservationController::class, 'reserveNadine'])->name('reserve.nadine');
+// Rutas para reservar directamente para los barcos Sunseeker Portofino 53 y Princess V65
+Route::post('/sunseeker/reserve', [ReservationController::class, 'reserveSunseeker'])->name('reserve.sunseeker');
+Route::post('/princess/reserve', [ReservationController::class, 'reservePrincess'])->name('reserve.princess');
 
 // Rutas para el panel administrativo
 Route::prefix('admin')->name('admin.')->group(function () {

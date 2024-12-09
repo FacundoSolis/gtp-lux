@@ -22,191 +22,135 @@ class ReservationController extends Controller
             $startDate = $request->pickup_date;
             $endDate = $request->return_date;
 
-            if ($boatId == 1) {
-                return redirect()->route('valkyrya', compact('portId', 'startDate', 'endDate'));
-            } elseif ($boatId == 2) {
-                return redirect()->route('nadine', compact('portId', 'startDate', 'endDate'));
+            // Redirigir según el barco seleccionado
+            if ($boatId == 3) {
+                return redirect()->route('sunseeker', compact('portId', 'startDate', 'endDate'));
+            } elseif ($boatId == 4) {
+                return redirect()->route('princess', compact('portId', 'startDate', 'endDate'));
             }
         }
 
         return view('welcome', compact('ports', 'boats'));
     }
 
-    public function reserveValkyrya(Request $request)
-{
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'phone' => 'required|string|max:15',
-        'port_id' => 'required|exists:ports,id',
-        'boat_id' => 'required|exists:boats,id',
-        'pickup_date' => 'required|date|after:today',
-        'return_date' => 'required|date|after:pickup_date',
-    ]);
-
-    // Verificar si ya existe una reserva en esas fechas para este barco
-    $conflictingReservations = Reservation::where('boat_id', 3)
-        ->where(function ($query) use ($validated) {
-            $query->whereBetween('pickup_date', [$validated['pickup_date'], $validated['return_date']])
-                  ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
-                  ->orWhere(function ($query) use ($validated) {
-                      $query->where('pickup_date', '<=', $validated['pickup_date'])
-                            ->where('return_date', '>=', $validated['return_date']);
-                  });
-        })->exists();
-
-    if ($conflictingReservations) {
-        return redirect()->back()->withErrors([
-            'pickup_date' => 'El barco ya está reservado en las fechas seleccionadas. Por favor elige otras fechas.',
-        ])->withInput();
-    }
-
-    // Crear la reserva
-    $reservation = Reservation::create([
-        'port_id' => $validated['port_id'],
-        'pickup_date' => $validated['pickup_date'],
-        'return_date' => $validated['return_date'],
-        'boat_id' => 3,
-        'name' => $validated['name'],
-        'email' => $validated['email'],
-        'phone' => $validated['phone'],
-        'total_price' => $this->calculateTotalPrice(3, $validated['pickup_date'], $validated['return_date']),
-    ]);
-
-    return redirect()->route('payment', ['reservation' => $reservation->id]);
-}
-
-    public function reserveNadine(Request $request)
-{
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'phone' => 'required|string|max:15',
-        'port_id' => 'required|exists:ports,id',
-        'boat_id' => 'required|exists:boats,id',
-        'pickup_date' => 'required|date|after:today',
-        'return_date' => 'required|date|after:pickup_date',
-    ]);
-
-    // Verificar si ya existe una reserva en esas fechas para este barco
-    $conflictingReservations = Reservation::where('boat_id', 4)
-        ->where(function ($query) use ($validated) {
-            $query->whereBetween('pickup_date', [$validated['pickup_date'], $validated['return_date']])
-                  ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
-                  ->orWhere(function ($query) use ($validated) {
-                      $query->where('pickup_date', '<=', $validated['pickup_date'])
-                            ->where('return_date', '>=', $validated['return_date']);
-                  });
-        })->exists();
-
-    if ($conflictingReservations) {
-        return redirect()->back()->withErrors([
-            'pickup_date' => 'El barco ya está reservado en las fechas seleccionadas. Por favor elige otras fechas.',
-        ])->withInput();
-    }
-
-    // Crear la reserva
-    $reservation = Reservation::create([
-        'port_id' => $validated['port_id'],
-        'pickup_date' => $validated['pickup_date'],
-        'return_date' => $validated['return_date'],
-        'boat_id' => 4,
-        'name' => $validated['name'],
-        'email' => $validated['email'],
-        'phone' => $validated['phone'],
-        'total_price' => $this->calculateTotalPrice(4, $validated['pickup_date'], $validated['return_date']),
-    ]);
-
-    return redirect()->route('payment', ['reservation' => $reservation->id]);
-}
-
-
-    // Crear reserva y devolver el ID
-    private function createReservation($boatId, $validated)
+    // Reserva para el barco Sunseeker Portofino 53
+    public function reserveSunseeker(Request $request)
     {
-        $validated['boat_id'] = $boatId;
-        $validated['total_price'] = $this->calculateTotalPrice($boatId, $validated['pickup_date'], $validated['return_date']);
-        $reservation = Reservation::create($validated);
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:15',
+            'port_id' => 'required|exists:ports,id',
+            'boat_id' => 'required|exists:boats,id',
+            'pickup_date' => 'required|date|after:today',
+            'return_date' => 'required|date|after:pickup_date',
+        ]);
 
-        return $reservation->id;
+        // Verificar si ya existe una reserva en esas fechas para este barco
+        $conflictingReservations = Reservation::where('boat_id', 3) // Sunseeker ID
+            ->where(function ($query) use ($validated) {
+                $query->whereBetween('pickup_date', [$validated['pickup_date'], $validated['return_date']])
+                    ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
+                    ->orWhere(function ($query) use ($validated) {
+                        $query->where('pickup_date', '<=', $validated['pickup_date'])
+                            ->where('return_date', '>=', $validated['return_date']);
+                    });
+            })->exists();
+
+        if ($conflictingReservations) {
+            return redirect()->back()->withErrors([
+                'pickup_date' => 'El barco ya está reservado en las fechas seleccionadas. Por favor elige otras fechas.',
+            ])->withInput();
+        }
+
+        // Crear la reserva para Sunseeker
+        $reservation = Reservation::create([
+            'port_id' => $validated['port_id'],
+            'pickup_date' => $validated['pickup_date'],
+            'return_date' => $validated['return_date'],
+            'boat_id' => 3, // ID del Sunseeker Portofino 53
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'total_price' => $this->calculateTotalPrice(3, $validated['pickup_date'], $validated['return_date']),
+        ]);
+
+        return redirect()->route('payment', ['reservation' => $reservation->id]);
     }
 
+    // Reserva para el barco Princess V65
+    public function reservePrincess(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:15',
+            'port_id' => 'required|exists:ports,id',
+            'boat_id' => 'required|exists:boats,id',
+            'pickup_date' => 'required|date|after:today',
+            'return_date' => 'required|date|after:pickup_date',
+        ]);
+
+        // Verificar si ya existe una reserva en esas fechas para este barco
+        $conflictingReservations = Reservation::where('boat_id', 4) // Princess V65 ID
+            ->where(function ($query) use ($validated) {
+                $query->whereBetween('pickup_date', [$validated['pickup_date'], $validated['return_date']])
+                    ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
+                    ->orWhere(function ($query) use ($validated) {
+                        $query->where('pickup_date', '<=', $validated['pickup_date'])
+                            ->where('return_date', '>=', $validated['return_date']);
+                    });
+            })->exists();
+
+        if ($conflictingReservations) {
+            return redirect()->back()->withErrors([
+                'pickup_date' => 'El barco ya está reservado en las fechas seleccionadas. Por favor elige otras fechas.',
+            ])->withInput();
+        }
+
+        // Crear la reserva para Princess V65
+        $reservation = Reservation::create([
+            'port_id' => $validated['port_id'],
+            'pickup_date' => $validated['pickup_date'],
+            'return_date' => $validated['return_date'],
+            'boat_id' => 4, // ID del Princess V65
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'total_price' => $this->calculateTotalPrice(4, $validated['pickup_date'], $validated['return_date']),
+        ]);
+
+        return redirect()->route('payment', ['reservation' => $reservation->id]);
+    }
+
+    // Función para calcular el precio total de la reserva
     public function calculateTotalPrice($boatId, $pickupDate, $returnDate)
     {
-        $boat = Boat::findOrFail($boatId);
-        $start = new \DateTime($pickupDate);
-        $end = new \DateTime($returnDate);
+        $boat = Boat::findOrFail($boatId); // Obtener los detalles del barco
+        $start = new \DateTime($pickupDate); // Fecha de inicio
+        $end = new \DateTime($returnDate); // Fecha de fin
 
         $totalPrice = 0;
+
+        // Recorrer cada día entre las fechas de la reserva
         while ($start <= $end) {
+            // Buscar la temporada que corresponde a la fecha actual
             $season = Season::where('start_date', '<=', $start->format('Y-m-d'))
-                ->where('end_date', '>=', $start->format('Y-m-d'))
-                ->first();
+                            ->where('end_date', '>=', $start->format('Y-m-d'))
+                            ->first();
 
-            $price = $season ? $season->price_per_day : 100;
-            $totalPrice += $price + $boat->price_modifier;
+            // Si se encuentra una temporada, añadir el precio correspondiente
+            $price = $season ? $season->price_per_day : 100; // Precio por defecto si no se encuentra una temporada
+            $totalPrice += $price + $boat->price_modifier; // Sumar el precio por día del barco y la temporada
 
+            // Pasar al siguiente día
             $start->modify('+1 day');
         }
 
-        return $totalPrice;
-    }
-    public function calendar($boatId = null, $portId = null, Request $request)
-{
-    $startDate = $request->query('startDate') ?? now()->format('Y-m-d');
-    $endDate = $request->query('endDate') ?? now()->addYear()->format('Y-m-d');
-
-    $reservations = Reservation::where('boat_id', $boatId)
-        ->where('port_id', $portId)
-        ->where(function ($query) use ($startDate, $endDate) {
-            $query->whereBetween('pickup_date', [$startDate, $endDate])
-                ->orWhereBetween('return_date', [$startDate, $endDate]);
-        })->get();
-
-    $events = [];
-    $occupiedDates = [];
-
-    foreach ($reservations as $reservation) {
-        $start = new \DateTime($reservation->pickup_date);
-        $end = new \DateTime($reservation->return_date);
-        $end->modify('+1 day'); // FullCalendar requiere que el día final no se incluya
-
-        $events[] = [
-            'title' => 'Reservado',
-            'start' => $start->format('Y-m-d'),
-            'end' => $end->format('Y-m-d'),
-            'color' => 'red',
-            'available' => false,
-        ];
-
-        $period = new \DatePeriod($start, new \DateInterval('P1D'), $end);
-        foreach ($period as $date) {
-            $occupiedDates[] = $date->format('Y-m-d');
-        }
+        return $totalPrice; // Devolver el precio total
     }
 
-    $currentDate = new \DateTime($startDate);
-    $finalDate = new \DateTime($endDate);
-
-    while ($currentDate <= $finalDate) {
-        $dateStr = $currentDate->format('Y-m-d');
-        if (!in_array($dateStr, $occupiedDates)) {
-            $events[] = [
-                'title' => 'Disponible',
-                'start' => $dateStr,
-                'end' => $dateStr,
-                'color' => 'green',
-                'available' => true,
-            ];
-        }
-        $currentDate->modify('+1 day');
-    }
-
-    return response()->json($events);
-}
-
-    
-    // Flujo de pasos para la reserva
+    // Flujo de pasos para la reserva (Step 1, Step 2, etc.)
     public function showStep1()
     {
         $ports = Port::all();
@@ -277,7 +221,7 @@ class ReservationController extends Controller
 
     // Obtiene reservas para barco seleccionado en un puerto especifico
     public function getReservationsByPort(Request $request)
-{
+    {
         $boatId = $request->query('boat_id');
         $portId = $request->query('port_id');
 
@@ -292,6 +236,5 @@ class ReservationController extends Controller
             ->get(['pickup_date', 'return_date', 'name']); // Selecciona los campos necesarios
 
         return response()->json($reservations);
-}
-
+    }
 }
