@@ -6,7 +6,7 @@
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
-    <h2>NADINE</h2>
+    <h2>TORINO</h2>
 
     <div class="slider-valkyrya">
         <div class="slides-valkyrya">
@@ -32,7 +32,7 @@
         <div class="info-list">
             <div class="info-row light">
                 <span><strong>Modelo:</strong></span>
-                <span>Nadine</span>
+                <span>Sunseeker Portofino 53</span>
             </div>
             <div class="info-row">
                 <span><strong>Eslora:</strong></span>
