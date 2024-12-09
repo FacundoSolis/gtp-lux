@@ -2,10 +2,9 @@
 
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('node_modules/normalize.css/normalize.css') }}">
-    @vite('resources/css/index.css')
-
-    <style>
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('node_modules/normalize.css/normalize.css') }}">
+  <style>
     html {
       scroll-behavior: smooth;
     }

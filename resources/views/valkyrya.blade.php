@@ -6,7 +6,7 @@
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
-    <h2>NADINE</h2>
+    <h2>VALKYRYA</h2>
 
     <div class="slider-valkyrya">
         <div class="slides-valkyrya">
