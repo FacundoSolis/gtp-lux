@@ -27,15 +27,16 @@ Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort']);
 // Rutas para obtener las reservas
 Route::get('/reservations/by-port', [ReservationController::class, 'getReservationsByPort'])->name('reservations.by-port');
 
-// Rutas para reservas directas
+// Ruta para las reservas públicas
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+
+// Rutas para reservas directas
 Route::get('/payment/{reservation}', [ReservationController::class, 'payment'])->name('payment');
 Route::get('/confirmation/{reservation}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
 // Rutas para reservar directamente para los barcos Valkyrya y Nadine
 Route::post('/valkyrya/reserve', [ReservationController::class, 'reserveValkyrya'])->name('reserve.valkyrya');
 Route::post('/nadine/reserve', [ReservationController::class, 'reserveNadine'])->name('reserve.nadine');
-Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 // Rutas para el panel administrativo
 Route::prefix('admin')->name('admin.')->group(function () {

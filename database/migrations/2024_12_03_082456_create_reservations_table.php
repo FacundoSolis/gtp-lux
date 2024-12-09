@@ -15,9 +15,10 @@ class CreateReservationsTable extends Migration
             $table->string('phone'); // Teléfono del cliente
             $table->integer('num_persons'); // Número de personas
             $table->foreignId('boat_id')->constrained('boats')->onDelete('cascade'); // Relación con Barcos
+            $table->foreignId('port_id')->constrained('ports')->onDelete('cascade'); // Relación con Puertos
             $table->date('pickup_date'); // Fecha de recogida
             $table->date('return_date'); // Fecha de entrega
-            $table->decimal('total_price', 10, 2)->default(0);
+            $table->decimal('total_price', 10, 2)->default(0); // Precio total
             $table->timestamps();
         });
     }
