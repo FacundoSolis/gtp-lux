@@ -19,7 +19,6 @@ class CreateReservationsTable extends Migration
             $table->date('pickup_date'); // Fecha de recogida
             $table->date('return_date'); // Fecha de entrega
             $table->decimal('total_price', 10, 2)->default(0); // Precio total
-            $table->timestamps(); // Marcas de tiempo (created_at y updated_at)
             $table->timestamps(); // Marcas de tiempo
         });
     }

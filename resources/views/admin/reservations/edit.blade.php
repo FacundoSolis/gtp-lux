@@ -54,6 +54,9 @@
         </div>
 
         <button type="submit" class="btn btn-success">Actualizar Reserva</button>
+
+        <!-- Botón para volver al listado de reservas -->
+        <a href="{{ route('admin.reservations.index') }}" class="btn btn-secondary mt-3">Volver al Listado</a>
     </form>
 </div>
 @endsection

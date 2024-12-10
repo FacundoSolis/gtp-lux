@@ -14,8 +14,8 @@ class CreateSeasonsTable extends Migration
             $table->date('start_date'); // Fecha de inicio
             $table->date('end_date'); // Fecha de fin
             $table->decimal('price_per_day', 8, 2); // Precio por día
-            $table->timestamps();
-    });
+            $table->timestamps(); // Marcas de tiempo (created_at y updated_at)
+        });
     }
 
     public function down()

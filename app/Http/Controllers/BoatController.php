@@ -39,7 +39,7 @@ class BoatController extends Controller
 
     public function showSunseekerPortofino(Request $request)
 {
-    $boat = Boat::where('name', 'Portofino')->firstOrFail();
+    $boat = Boat::where('name', 'Sunseeker Portofino')->firstOrFail();
     $ports = Port::all();
 
     // Obtener las fechas de inicio y fin del mes actual

@@ -34,6 +34,7 @@ class SeasonController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'price_per_day' => 'required|numeric|min:0',
+            'boat_id' => 'required|exists:boats,id', // Validar relación con barco
         ]);
 
         Season::create($data);

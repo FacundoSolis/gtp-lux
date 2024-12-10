@@ -15,4 +15,9 @@ class Season extends Model
         'end_date',
         'price_per_day',
     ];
+    // Relación: Una temporada pertenece a un barco
+    public function boat()
+    {
+        return $this->belongsTo(Boat::class);
+    }
 }

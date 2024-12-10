@@ -3,6 +3,8 @@
 @section('content')
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('node_modules/normalize.css/normalize.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+
   <style>
     html {
       scroll-behavior: smooth;
@@ -64,7 +66,7 @@
         Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
         Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
         <a href="{{ route('sunseeker') }}">
-          <button id="reservation-btn" class="btn">VER DISPONIBILIDAD</button>
+        <button id="reservation-btn" class="btn">VER DISPONIBILIDAD</button>
         </a>
       </div>
     </div>

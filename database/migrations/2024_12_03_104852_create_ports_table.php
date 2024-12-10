@@ -4,30 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePortsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('ports', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Clave primaria
             $table->string('name'); // Nombre del puerto
-            $table->string('location'); // Ubicación del puerto
-            $table->timestamps();
+            $table->timestamps(); // Timestamps (created_at y updated_at)
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('ports');
     }
-};
+}

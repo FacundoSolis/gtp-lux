@@ -102,7 +102,6 @@
         </div>
     </div>
 </section>
-
 <!-- Formulario de reserva -->
 <div class="container">
     <h1>Reserva del Barco Sunseeker Portofino 53</h1>
@@ -114,9 +113,9 @@
     @endif
 
     <!-- Único formulario de reserva -->
-    <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => 4]) }}" method="POST"> <!-- ID cambiado a 4 -->
+    <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => $boatId]) }}" method="POST">
         @csrf
-        <input type="hidden" name="boat_id" value="4"> <!-- ID de Princess V65 -->
+        <input type="hidden" name="boat_id" value="{{ $boatId }}">
 
         <!-- Selección del puerto -->
         <div class="mb-3">
@@ -196,7 +195,7 @@
         const returnInput = document.getElementById('return_date');
         const priceSummary = document.getElementById('price-summary');
         const totalPriceElement = document.getElementById('total-price');
-        const boatId = 4; // ID del barco actualizado
+        const boatId = @json($boatId); // ID del barco actual
 
         // Función para calcular el precio
         function calculatePrice(boatId, startDate, endDate) {
@@ -219,7 +218,6 @@
                     alert('No se pudo calcular el precio. Intenta nuevamente.');
                 });
         }
-
         // Muestra el precio en la tarjeta
         function showPriceSummary(totalPrice) {
             const priceCard = document.getElementById('price-summary');
@@ -229,12 +227,11 @@
 
             priceCard.style.display = 'block';  // Muestra la tarjeta de precios
         }
-
         // Llama a esta función después de que se seleccionen ambas fechas
         pickupInput.addEventListener('change', () => {
-            // Verificar si ambas fechas están seleccionadas
+        // Verificar si ambas fechas están seleccionadas
             if (pickupInput.value && returnInput.value) {
-                // Convertir las fechas a formato YYYY-MM-DD
+        // Convertir las fechas a formato YYYY-MM-DD
                 const startDate = new Date(pickupInput.value).toISOString().split('T')[0];
                 const endDate = new Date(returnInput.value).toISOString().split('T')[0];
 
@@ -244,9 +241,8 @@
 
                 // Llamar a la función para calcular el precio
                 calculatePrice(boatId, startDate, endDate);
-            }
-        });
-
+    }
+});
         returnInput.addEventListener('change', () => {
             // Verificar si ambas fechas están seleccionadas
             if (pickupInput.value && returnInput.value) {
@@ -257,7 +253,7 @@
                 // Llamar a la función para calcular el precio
                 calculatePrice(boatId, startDate, endDate);
             }
-        });
+});
 
         let selectedPickupDate = null;
         let selectedReturnDate = null;
@@ -334,11 +330,11 @@
                     }
 
                     // Verificar si el rango contiene días reservados
-                    const isRangeReserved = checkRangeOverlap(selectedPickupDate, clickedDate);
-                    if (isRangeReserved) {
-                        alert('El rango seleccionado incluye días ya reservados. Por favor selecciona otro rango.');
-                        return;
-                    }
+                const isRangeReserved = checkRangeOverlap(selectedPickupDate, clickedDate);
+                if (isRangeReserved) {
+                    alert('El rango seleccionado incluye días ya reservados. Por favor selecciona otro rango.');
+                    return;
+                }
 
                     selectedReturnDate = clickedDate;
                     returnInput.value = selectedReturnDate;
@@ -355,11 +351,10 @@
 
         function highlightSelectedDates() {
 
-            // Limpia estilos previos aplicados solo a las celdas seleccionadas
+                // Limpia estilos previos aplicados solo a las celdas seleccionadas
             document.querySelectorAll('.fc-day[data-date]').forEach(dayCell => {
                 dayCell.style.backgroundColor = ''; // Restablecer color
             });
-
             // Limpiar eventos visuales previos
             calendar.getEvents().forEach(event => {
                 event.setProp('backgroundColor', event.extendedProps.available ? 'green' : 'red');
@@ -392,7 +387,7 @@
                     const eventStart = new Date(event.startStr);
                     const eventEnd = new Date(event.endStr);
 
-                    // Verificar si algún día del rango seleccionado se solapa con un rango reservado
+                // Verificar si algún día del rango seleccionado se solapa con un rango reservado
                     return (
                         (start >= eventStart && start < eventEnd) || // Inicio dentro de un rango reservado
                         (end > eventStart && end <= eventEnd) || // Fin dentro de un rango reservado
@@ -400,7 +395,7 @@
                     );
                 }
                 return false;
-            });
+             });
         }
 
         function resetSelection() {
@@ -440,4 +435,6 @@
         calendar.render();
     });
 </script>
-@endsection
+
+
+

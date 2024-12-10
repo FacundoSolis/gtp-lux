@@ -64,6 +64,7 @@
                     <td>{{ $reservation->port->name }}</td>
                     <td>{{ $reservation->pickup_date }}</td>
                     <td>{{ $reservation->return_date }}</td>
+                    <td>{{ $reservation->total_price }} $</td> <!-- Aquí se muestra el precio total -->
                     <td>
                         <a href="{{ route('admin.reservations.edit', $reservation->id) }}" class="btn btn-warning btn-sm">Editar</a>
                         <a href="{{ route('admin.reservations.destroy', $reservation->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta reserva?')">Eliminar</a>
@@ -78,6 +79,7 @@
 </div>
 
 <script>
+    
     // Seleccionar/deseleccionar todas las casillas de verificación
     document.getElementById('select-all').addEventListener('click', function() {
         let checkboxes = document.querySelectorAll('input[name="ids[]"]');
