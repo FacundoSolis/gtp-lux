@@ -100,5 +100,14 @@ class AdminReservationController extends Controller
 
         return redirect()->route('admin.reservations.index')->with('success', 'Reserva actualizada correctamente.');
     }
+
+    public function deleted()
+{
+    // Obtener las reservas eliminadas (puedes manejarlo con un soft delete en la base de datos si lo tienes)
+    $reservations = Reservation::onlyTrashed()->get();
+
+    return view('admin.reservations.deleted', compact('reservations'));
+}
+
     
 }

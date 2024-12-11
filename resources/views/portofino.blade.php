@@ -70,7 +70,7 @@
     <h3>Descripción del Barco</h3>
     <p>Alquiler de Yates en Denia</p>
     <p>Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
-        Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
+    Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
 
     <!-- Botón para abrir el modal -->
     <button id="loadMoreDescriptionButton" class="btn-ver-más">Ver más</button>

@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\BoatController;
 use App\Http\Controllers\AdminReservationController;
-
+use App\Http\Controllers\Admin\AdminPaymentController;
 
 // Ruta de inicio
 Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
@@ -42,6 +42,7 @@ Route::get('/confirmation/{reservation}', [ReservationController::class, 'confir
 Route::prefix('admin')->group(function() {
     // Página de administración de reservas
     Route::get('/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
+    Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index'); // Agregar ruta para AdminPaymentController
 
     // Página de edición de una reserva
     Route::get('/reservations/{id}/edit', [AdminReservationController::class, 'edit'])->name('admin.reservations.edit');

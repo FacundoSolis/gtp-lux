@@ -11,18 +11,30 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Agregar el archivo CSS admin.css -->
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
 </head>
 <body>
-    <main class="py-4">
-        @yield('content')
-    </main>
-    
+    <!-- Sidebar -->
+    <div class="admin-wrapper">
+        <div class="admin-sidebar">
+            <h3>Panel de Administración</h3>
+            <ul>
+                <li><a href="{{ route('admin.reservations.index') }}">Listado de Reservas</a></li>
+                <li><a href="{{ route('admin.payments.index') }}">Pagos</a></li>
+                <!-- Agrega más secciones según sea necesario -->
+            </ul>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="admin-content" style="margin-left: 250px;">
+            @yield('content') <!-- Aquí se carga el contenido dinámico -->
+        </div>
+    </div>
+
     <script src="{{ asset('js/loadMoreDescription.js') }}"></script>
     <script src="{{ asset('js/loadMoreDescription2.js') }}"></script>
-
-
-    <!-- Aquí va el script de carga de imágenes adicionales -->
     <script src="{{ asset('js/loadMoreImages.js') }}"></script>
 
     <!-- Scripts de Bootstrap -->

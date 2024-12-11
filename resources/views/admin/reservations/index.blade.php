@@ -79,7 +79,6 @@
 </div>
 
 <script>
-    
     // Seleccionar/deseleccionar todas las casillas de verificación
     document.getElementById('select-all').addEventListener('click', function() {
         let checkboxes = document.querySelectorAll('input[name="ids[]"]');
