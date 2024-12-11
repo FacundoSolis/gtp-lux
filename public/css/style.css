@@ -408,32 +408,35 @@ nav a {
   content: none;
 }
 
-.fc-view-harness {
-  height: 500px !important; /* Reduce la altura del calendario */
-  
-}
-
-.fc-dayGridMonth-view {
-  font-size: 12px; /* Ajusta el tamaño de la fuente */
+#availability-calendar {
+  max-width: 500px;
+  margin: 0 auto;
+  display: none;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .fc-daygrid-body {
-  font-size: 15px; /* Ajusta el tamaño de los días en el calendario */
-}
-
-.fc-daygrid-day-number {
-  font-size: 10px; /* Ajusta el tamaño de los números de los días */
-  padding: 2px 5px; /* Ajusta el espacio alrededor del número */
+  font-size: 14px;  /* Reduce el tamaño de las fechas */
 }
 
 .fc-daygrid-day-frame {
-  height: 70px !important; /* Ajusta la altura de cada celda del día */
-  width: 70px !important; /* Ajusta el ancho de cada celda del día */
-  padding: 5px;
+  height: 40px !important;  /* Ajusta la altura de las celdas */
+  width: 40px !important;  /* Ajusta el ancho de las celdas */
 }
 
-.fc {
-  color: #000;
+.fc-daygrid-day-number {
+  font-size: 10px;  /* Ajusta el tamaño de los números de días */
+  padding: 2px 5px;
+}
+
+.fc-toolbar-title {
+  font-size: 5px;
+}
+
+.btn-form {
+  background-color: #007bff;
 }
 
 .element.style {

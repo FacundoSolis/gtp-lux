@@ -65,8 +65,8 @@
         <p>Alquiler de Yates en Denia
         Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
         Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
-        <a href="{{ route('sunseeker') }}">
-        <button id="reservation-btn" class="btn">VER DISPONIBILIDAD</button>
+        <a href="{{ route('sunseeker', ['pickup_date' => request()->pickup_date, 'return_date' => request()->return_date]) }}">
+          <button id="reservation-btn" class="btn">MÁS INFORMACIÓN</button>
         </a>
       </div>
     </div>
@@ -87,59 +87,61 @@
         <h3>Princess V65</h3>
         <p>Navegue en el exclusivo Princess V65, un lujoso barco abierto de día diseñado para el confort y la relajación. Con capacidad para 10 invitados, este yate ofrece 3 baños completos y camarotes. 
           Un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
-        <a href="{{ route('princess') }}">
-          <button id="reservation-btn" class="btn">VER DISPONIBILIDAD</button>
+        <a href="{{ route('princess', ['pickup_date' => request()->pickup_date, 'return_date' => request()->return_date]) }}">
+          <button id="reservation-btn" class="btn">MÁS INFORMACIÓN</button>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Formulario de Reserva -->
-  <div class="container">
-    <h1>Reserva de Barco</h1>
-    @if(session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-    @endif
-    <form action="{{ route('welcome') }}" method="GET" id="reservation-form">
-    @csrf
-    <div class="mb-3">
-        <label for="port_id" class="form-label">Puerto:</label>
-        <select id="port_id" name="port_id" class="form-control" required>
-            <option value="">Seleccione un puerto</option>
-            @foreach($ports as $port)
-                <option value="{{ $port->id }}">{{ $port->name }}</option>
-            @endforeach
-        </select>
-    </div>
+<!-- Formulario de reserva en forma de card centrado -->
+<div class="container">
+    <div class="card mx-auto" style="width: 50%; margin-top: 30px;">
+        <div class="card-body">
+            <form id="reservation-form" action="{{ route('welcome') }}" method="GET">
+                @csrf
+                <!-- Selección del puerto -->
+                <div class="mb-3">
+                    <label for="port_id" class="form-label">Puerto:</label>
+                    <select id="port_id" name="port_id" class="form-control" required>
+                        <option value="">Seleccione un puerto</option>
+                        @foreach($ports as $port)
+                            <option value="{{ $port->id }}" {{ old('port_id') == $port->id ? 'selected' : '' }}>{{ $port->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-    <div class="mb-3">
-        <label for="boat_id" class="form-label">Selecciona un Barco:</label>
-        <select id="boat_id" name="boat_id" class="form-control" required>
-            <option value="">Seleccione un barco</option>
-            <option value="3">Sunseeker Portofino 53</option>
-            <option value="4">Princess V65</option>
-        </select>
-    </div>
+                <!-- Selección de barco -->
+                <div class="mb-3">
+                    <label for="boat_id" class="form-label">Selecciona un Barco:</label>
+                    <select id="boat_id" name="boat_id" class="form-control" required>
+                        <option value="">Seleccione un barco</option>
+                        <option value="3">Sunseeker Portofino 53</option>
+                        <option value="4">Princess V65</option>
+                    </select>
+                </div>
 
-    <!-- Fechas de recogida y entrega -->
-    <div class="mb-3 row">
-        <div class="col">
-            <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
-            <input type="text" id="pickup_date" name="pickup_date" class="form-control" readonly required>
+                <!-- Fechas de recogida y entrega -->
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
+                        <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" readonly required>
+                    </div>
+                    <div class="col">
+                        <label for="return_date" class="form-label">Fecha de Entrega:</label>
+                        <input type="text" id="return_date" name="return_date" class="form-control date-picker" readonly required>
+                    </div>
+                </div>
+
+                <!-- Calendario de disponibilidad -->
+                <div id="availability-calendar" class="calendar-wrapper" style="display: none; min-height: 300px; border: 1px solid #ccc;"></div>
+
+                <button type="submit" class="btn-form">Reservar</button>
+            </form>
         </div>
-        <div class="col">
-            <label for="return_date" class="form-label">Fecha de Entrega:</label>
-            <input type="text" id="return_date" name="return_date" class="form-control" readonly required>
-        </div>
     </div>
+</div>
 
-    <div id="availability-calendar" style="display: none; min-height: 300px; border: 1px solid #ccc; margin-top: 20px;"></div>
-
-    <button type="submit" class="btn btn-primary">Reservar</button>
-    </form>
-  </div>
 
   <!-- Mapa -->
   <section class="map-form">
@@ -198,137 +200,184 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const calendarEl = document.getElementById('availability-calendar');
-      const portId = document.getElementById('port_id');
-      const boatId = document.getElementById('boat_id');
-      const startDate = document.getElementById('pickup_date');
-      const endDate = document.getElementById('return_date');
-      const availableBoatsDiv = document.getElementById('available-boats');
+  document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('availability-calendar');
+    const portSelect = document.getElementById('port_id');
+    const pickupInput = document.getElementById('pickup_date');
+    const returnInput = document.getElementById('return_date');
+    
+    // Inicializa las fechas de selección
+    let selectedStartDate = pickupInput.value;
+    let selectedEndDate = returnInput.value;
+    
+    // ID del barco desde el formulario
+    const boatId = document.getElementById('boat_id').value;
+    
+    // Inicializa FullCalendar para mostrar la disponibilidad
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        themeSystem: 'bootstrap',
+        locale: 'es',
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay',
+        },
+        events: async function (fetchInfo, successCallback, failureCallback) {
+            try {
+                const portId = portSelect.value;
+                if (!portId) {
+                    successCallback([]);
+                    return;
+                }
 
-      let selectedStartDate = startDate.value;
-      let selectedEndDate = endDate.value;
+                const response = await axios.get(`/reservations/calendar/${boatId}/${portId}`, {
+                    params: {
+                        startDate: fetchInfo.startStr,
+                        endDate: fetchInfo.endStr,
+                    },
+                });
 
-      // Initialize FullCalendar for displaying availability
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-          themeSystem: 'bootstrap',
-          locale: 'es',
-          initialView: 'dayGridMonth',
-          headerToolbar: {
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay'
-          },
-          events: async function (fetchInfo, successCallback, failureCallback) {
-              try {
-                  const response = await axios.get(`/reservations/calendar/${boatId.value || ''}/${portId.value || ''}/${selectedStartDate || ''}/${selectedEndDate || ''}`);
-                  const reservations = response.data;
+                const reservations = response.data;
 
-                  const events = reservations.map(reservation => ({
-                      title: reservation.title || reservation.boat_name || 'Disponible',
-                      start: reservation.start,
-                      end: reservation.end,
-                      color: reservation.color || 'red',
-                      price: reservation.price || '',
-                  }));
+                const events = reservations.map(reservation => ({
+                    title: reservation.available ? 'Disponible' : 'Reservado',
+                    start: reservation.start,
+                    end: reservation.end,
+                    color: reservation.available ? 'green' : 'red',
+                    extendedProps: { available: reservation.available },
+                }));
 
-                  successCallback(events);
-              } catch (error) {
-                  console.error('Error al cargar las reservas:', error);
-                  failureCallback(error);
-              }
-          },
-          dateClick: function(info) {
-              // Logic for selecting pickup and return dates
-              if (!selectedStartDate || (selectedStartDate && selectedEndDate)) {
-                  selectedStartDate = info.dateStr;
-                  startDate.value = selectedStartDate;
-              } else {
-                  selectedEndDate = info.dateStr;
-                  endDate.value = selectedEndDate;
-              }
+                successCallback(events);
+            } catch (error) {
+                console.error('Error al cargar las reservas:', error);
+                failureCallback(error);
+            }
+        },
+        dateClick: function (info) {
+            const clickedDate = info.dateStr;
 
-              highlightSelectedDates();
-          }
-      });
+            // Si el usuario hace clic en la fecha inicial seleccionada, reiniciar la selección
+            if (clickedDate === selectedStartDate) {
+                resetSelection();
+                return;
+            }
 
-      // Show calendar when start date is clicked
-      startDate.addEventListener('click', function() {
-          calendarEl.style.display = 'block';
-          calendar.render();
-      });
+            // Comprobar si el día está reservado
+            const isReserved = calendar.getEvents().some(event =>
+                !event.extendedProps.available &&
+                clickedDate >= event.startStr &&
+                clickedDate < event.endStr
+            );
 
-      // Show calendar when end date is clicked
-      endDate.addEventListener('click', function() {
-          calendarEl.style.display = 'block';
-          calendar.render();
-      });
+            if (isReserved) {
+                alert('Este día está reservado. Por favor selecciona otra fecha.');
+                return;
+            }
 
-      // Close calendar when clicking outside
-      document.addEventListener('click', function(event) {
-          if (!calendarEl.contains(event.target) && !event.target.matches('#pickup_date, #return_date')) {
-              calendarEl.style.display = 'none';
-          }
-      });
+            // Seleccionar fechas
+            if (!selectedStartDate) {
+                selectedStartDate = clickedDate;
+                pickupInput.value = selectedStartDate;
+            } else if (!selectedEndDate) {
+                if (clickedDate <= selectedStartDate) {
+                    alert('La fecha de entrega debe ser posterior a la fecha de recogida.');
+                    return;
+                }
 
-      function highlightSelectedDates() {
-          // Highlight selected dates
-          calendar.getEvents().forEach(function(event) {
-              event.setProp('backgroundColor', '');
-              event.setProp('borderColor', '');
-          });
+                selectedEndDate = clickedDate;
+                returnInput.value = selectedEndDate;
+            } else {
+                selectedStartDate = clickedDate;
+                selectedEndDate = null;
+                pickupInput.value = selectedStartDate;
+                returnInput.value = '';
+            }
 
-          if (selectedStartDate) {
-              calendar.getEvents().forEach(function(event) {
-                  if (event.startStr === selectedStartDate) {
-                      event.setProp('backgroundColor', '#9b59b6');
-                      event.setProp('borderColor', '#9b59b6');
-                  }
-              });
-          }
+            highlightSelectedDates();
+        },
+    });
 
-          if (selectedEndDate) {
-              calendar.getEvents().forEach(function(event) {
-                  if (event.startStr === selectedEndDate) {
-                      event.setProp('backgroundColor', '#9b59b6');
-                      event.setProp('borderColor', '#9b59b6');
-                  }
-              });
-          }
-      }
+    // Mostrar calendario cuando se elige una fecha
+    pickupInput.addEventListener('click', function () {
+        calendarEl.style.display = 'block';
+        calendar.render();
+    });
 
-      // Fetch available boats based on selected dates and port
-      async function fetchAvailableBoats() {
-          try {
-              const response = await axios.get(`/available-boats?port_id=${portId.value}&start_date=${selectedStartDate}&end_date=${selectedEndDate}`);
-              const availableBoats = response.data;
+    returnInput.addEventListener('click', function () {
+        calendarEl.style.display = 'block';
+        calendar.render();
+    });
 
-              availableBoatsDiv.innerHTML = '';
-              if (availableBoats.length > 0) {
-                  availableBoats.forEach(boat => {
-                      const boatDiv = document.createElement('div');
-                      boatDiv.classList.add('boat-info');
-                      boatDiv.innerHTML = `
-                          <h3>${boat.name}</h3>
-                          <p>Precio: ${boat.price} EUR por día</p>
-                          <button class="btn btn-primary" data-boat-id="${boat.id}">Reservar</button>
-                      `;
-                      availableBoatsDiv.appendChild(boatDiv);
-                  });
-              } else {
-                  availableBoatsDiv.innerHTML = '<p>No hay barcos disponibles para esas fechas.</p>';
-              }
-          } catch (error) {
-              console.error('Error al obtener los barcos disponibles:', error);
-          }
-      }
+    // Cerrar calendario cuando se hace clic fuera
+    document.addEventListener('click', function (event) {
+        if (!calendarEl.contains(event.target) && !event.target.matches('#pickup_date, #return_date')) {
+            calendarEl.style.display = 'none';
+        }
+    });
 
-      // Call fetchAvailableBoats on form submission
-      document.getElementById('reservation-form').addEventListener('submit', function(event) {
-          event.preventDefault();
-          fetchAvailableBoats();
-      });
-  });
+    // Resaltar las fechas seleccionadas
+    function highlightSelectedDates() {
+        calendar.getEvents().forEach(function (event) {
+            event.setProp('backgroundColor', '');
+            event.setProp('borderColor', '');
+        });
+
+        if (selectedStartDate) {
+            calendar.getEvents().forEach(function (event) {
+                if (event.startStr === selectedStartDate) {
+                    event.setProp('backgroundColor', '#9b59b6');
+                    event.setProp('borderColor', '#9b59b6');
+                }
+            });
+        }
+
+        if (selectedEndDate) {
+            calendar.getEvents().forEach(function (event) {
+                if (event.startStr === selectedEndDate) {
+                    event.setProp('backgroundColor', '#9b59b6');
+                    event.setProp('borderColor', '#9b59b6');
+                }
+            });
+        }
+    }
+
+    // Resetear la selección de fechas
+    function resetSelection() {
+        selectedStartDate = null;
+        selectedEndDate = null;
+        pickupInput.value = '';
+        returnInput.value = '';
+        highlightSelectedDates();
+    }
+
+    // Recargar eventos cuando se seleccione un puerto
+    portSelect.addEventListener('change', function () {
+        selectedStartDate = null;
+        selectedEndDate = null;
+        pickupInput.value = '';
+        returnInput.value = '';
+        highlightSelectedDates();
+        calendar.refetchEvents();  // Recargar eventos según el puerto seleccionado
+    });
+
+    // Estilos para días seleccionados
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .fc-day.fc-day-past {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .fc-day[data-date] {
+            transition: background-color 0.2s ease;
+        }
+        .fc-day-today {
+            background-color: transparent !important; /* Quitar el fondo del día actual */
+            color: inherit !important; /* Restaurar el color de texto */
+        }
+    `;
+    document.head.appendChild(style);
+
+    calendar.render();
+});
 </script>
-
-@endsection

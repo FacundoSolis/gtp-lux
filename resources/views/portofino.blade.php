@@ -1,28 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/portofino.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+
+<!-- Menú fijo -->
+<header class="topbar">
+    <div class="topbar__logo">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
+    </div>
+
+    <div class="topbar__settingsDropdowns">
+        <div class="settingsDropdown js-language-dropdown" aria-label="Choose language">
+            <div class="dropdown" tabindex="0">
+                <span class="value" aria-label="Current language value">
+                    <span>Español</span>
+                </span>
+                <ul>
+                    <li><a href="#" class="language">Français</a></li>
+                    <li><a href="#" class="language">English</a></li>
+                    <li><span class="selected">Español</span></li>
+                    <li><a href="#" class="language">Italiano</a></li>
+                    <li><a href="#" class="language">Deutsch</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
     <h2>Sunseeker Portofino 53</h2>
+</section>   
 
-    <div class="slider-valkyrya">
-        <div class="slides-valkyrya">
-            <img src="{{ asset('img/val1.jpg') }}" alt="Imagen 1">
-            <img src="{{ asset('img/val2.jpg') }}" alt="Imagen 2">
-            <img src="{{ asset('img/val3.jpg') }}" alt="Imagen 3">
-            <img src="{{ asset('img/val4.jpg') }}" alt="Imagen 4">
-            <img src="{{ asset('img/val5.jpg') }}" alt="Imagen 5">
-            <img src="{{ asset('img/val6.jpg') }}" alt="Imagen 6">
-            <img src="{{ asset('img/val7.jpg') }}" alt="Imagen 7">
-            <img src="{{ asset('img/val8.jpg') }}" alt="Imagen 8">
-            <img src="{{ asset('img/val9.jpg') }}" alt="Imagen 9">
-        </div>
-        <span class="prev" onclick="moveSlide(-1)">&#10094;</span>
-        <span class="next" onclick="moveSlide(1)">&#10095;</span>
+<section class="productCover">
+  <div class="productCover__imagesContainer">
+    <div class="productCover__sideImgs">
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val2.jpg);" data-image-index="1"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val3.jpg);" data-image-index="2"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val4.jpg);" data-image-index="3"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val5.jpg);" data-image-index="4"></div>
     </div>
+  </div>
+
+  <div class="productCover__ctaContainer">
+    <button class="productCover__cta" id="loadMoreButton">Ver más fotos</button>
+  </div>
 </section>
 
 <!-- Características del barco -->
@@ -102,6 +126,7 @@
         </div>
     </div>
 </section>
+
 <!-- Formulario de reserva -->
 <div class="container">
     <h1>Reserva del Barco Sunseeker Portofino 53</h1>
@@ -113,9 +138,9 @@
     @endif
 
     <!-- Único formulario de reserva -->
-    <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => $boatId]) }}" method="POST">
+    <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => 3]) }}" method="POST"> <!-- ID cambiado a 3 -->
         @csrf
-        <input type="hidden" name="boat_id" value="{{ $boatId }}">
+        <input type="hidden" name="boat_id" value="3"> <!-- ID de Princess V65 -->
 
         <!-- Selección del puerto -->
         <div class="mb-3">
@@ -167,6 +192,7 @@
         <button type="submit" class="btn btn-primary mt-3">Reservar</button>
     </form>
 </div>
+
 
 <!-- Footer -->
 <footer>
@@ -435,6 +461,7 @@
         calendar.render();
     });
 </script>
+
 
 
 

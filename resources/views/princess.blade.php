@@ -6,7 +6,7 @@
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
-    <h2>Sunseeker Portofino 53</h2>
+    <h2>Princess</h2>
 
     <div class="slider-valkyrya">
         <div class="slides-valkyrya">
@@ -105,7 +105,7 @@
 
 <!-- Formulario de reserva -->
 <div class="container">
-    <h1>Reserva del Barco Sunseeker Portofino 53</h1>
+    <h1>Reserva del Barco Princess</h1>
 
     @if(session('success'))
         <div class="alert alert-success">

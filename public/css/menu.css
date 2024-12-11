@@ -1,0 +1,103 @@
+/* Estilos del menú fijo */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0E1724;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    z-index: 1000;
+    margin-top: 0;
+    height: 80px;
+}
+
+.topbar__logo img {
+    max-height: 120px; /* Aumenta el tamaño del logo sin exceder el límite del topbar */
+    height: auto; /* Asegura que la altura del logo se ajuste automáticamente */
+}
+
+.topbar__settingsDropdowns {
+    display: flex;
+    align-items: center;
+}
+
+.settingsDropdown {
+    position: relative;
+    margin-left: 20px;
+}
+
+.dropdown {
+    display: inline-block;
+    cursor: pointer;
+    background-color: #444;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 25px; /* Borde circular */
+    transition: background-color 0.3s ease;
+}
+
+.dropdown:hover {
+    background-color: #555; /* Color al pasar el ratón */
+}
+
+.value {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Estilos del menú desplegable */
+ul {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #444;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 150px;
+    border-radius: 10px;
+    z-index: 999;
+}
+
+li {
+    padding: 10px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+}
+
+li:hover {
+    background-color: #555;
+}
+
+.selected {
+    font-weight: bold;
+    color: #f1c40f;
+}
+
+/* Mostrar el dropdown cuando se hace hover */
+.settingsDropdown:hover ul {
+    display: block;
+}
+
+/* Ajustar contenido debajo del menú */
+body {
+    margin-top: 70px; /* Espacio para el menú fijo */
+}
+
+/* Opciones de idioma en el dropdown */
+.language {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.language:hover {
+    background-color: #666; /* Color de fondo al pasar el ratón */
+}
