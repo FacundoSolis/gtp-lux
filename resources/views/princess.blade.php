@@ -1,29 +1,97 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/portofino.css') }}">
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/princess.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+
+<!-- Menú fijo -->
+<header class="topbar">
+    <div class="topbar__logo">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
+    </div>
+
+    <div class="topbar__settingsDropdowns">
+        <div class="settingsDropdown js-language-dropdown" aria-label="Choose language">
+            <div class="dropdown" tabindex="0">
+                <span class="value" aria-label="Current language value">
+                    <span>Español</span>
+                </span>
+                <ul>
+                    <li><a href="#" class="language">Français</a></li>
+                    <li><a href="#" class="language">English</a></li>
+                    <li><span class="selected">Español</span></li>
+                    <li><a href="#" class="language">Italiano</a></li>
+                    <li><a href="#" class="language">Deutsch</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
     <h2>Princess</h2>
+</section>   
 
-    <div class="slider-valkyrya">
-        <div class="slides-valkyrya">
-            <img src="{{ asset('img/val1.jpg') }}" alt="Imagen 1">
-            <img src="{{ asset('img/val2.jpg') }}" alt="Imagen 2">
-            <img src="{{ asset('img/val3.jpg') }}" alt="Imagen 3">
-            <img src="{{ asset('img/val4.jpg') }}" alt="Imagen 4">
-            <img src="{{ asset('img/val5.jpg') }}" alt="Imagen 5">
-            <img src="{{ asset('img/val6.jpg') }}" alt="Imagen 6">
-            <img src="{{ asset('img/val7.jpg') }}" alt="Imagen 7">
-            <img src="{{ asset('img/val8.jpg') }}" alt="Imagen 8">
-            <img src="{{ asset('img/val9.jpg') }}" alt="Imagen 9">
-        </div>
-        <span class="prev" onclick="moveSlide(-1)">&#10094;</span>
-        <span class="next" onclick="moveSlide(1)">&#10095;</span>
+<section class="productCover">
+  <div class="productCover__imagesContainer">
+  <div class="productCover__sideImgs" id="imageContainer">
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val1.jpg);" data-image-index="1"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val2.jpg);" data-image-index="2"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val3.jpg);" data-image-index="3"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val4.jpg);" data-image-index="4"></div>
     </div>
+  </div>
+
+  <div class="productCover__ctaContainer">
+    <button class="productCover__cta" id="loadMoreButton">Ver más fotos</button>
+  </div>
 </section>
+
+<!-- Modal para mostrar más fotos -->
+<div class="modal" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Galería de imágenes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-images-container">
+                    <!-- Las imágenes se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="description-boat">
+    <h3>Descripción del Barco</h3>
+    <p>Alquiler de Yates en Denia</p>
+    <p>Navegue en el exclusivo Princess V65, un lujoso barco abierto de día diseñado para el confort y la relajación. 
+        Con capacidad para 10 invitados, este yate ofrece 3 baños completos y camarotes. 
+        Un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.
+        El patrón es obligatorio, lo que garantiza un día seguro en el mar</p>
+
+     <!-- Botón para abrir el modal -->
+     <button id="loadMoreDescription2Button" class="btn-ver-más">Ver más</button>
+</section>
+
+<!-- Modal de descripción -->
+<div class="modal fade" id="descriptionModal2" tabindex="-1" aria-labelledby="descriptionModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="descriptionModalLabel2">Descripción del Barco</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body modal-description-container">
+        <!-- Aquí se cargará la descripción dinámicamente -->
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Características del barco -->
 <main class="layout">
@@ -62,21 +130,37 @@
     </section>
 
     <!-- Especificaciones -->
-    <section class="right-boxes">
-        <h3>Especificaciones</h3>
+<section class="right-boxes">
+    <h3>Especificaciones</h3>
         <div class="row">
-            <div class="box">Ícono 1</div>
-            <div class="box">Ícono 2</div>
-            <div class="box">Ícono 3</div>
+            <div class="box">
+                <i class="fa-solid fa-users"></i> Tripulación
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-bed"></i> Ropa de cama
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-ship"></i> Piloto automatico
+            </div>
         </div>
         <div class="row">
-            <div class="box">Ícono 4</div>
-            <div class="box">Ícono 5</div>
-            <div class="box">Ícono 6</div>
+            <div class="box">
+                <i class="fa-solid fa-wind"></i> Aire acondicionado
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-car-battery"></i> Generador
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-car-battery"></i> Generador
+            </div>
         </div>
         <div class="row large">
-            <div class="box">Ícono 7</div>
-            <div class="box">Ícono 8</div>
+            <div class="box">
+                <i class="fa-solid fa-anchor"></i> Patrón
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-music"></i> Altavoces externos
+            </div>
         </div>
     </section>
 </main>

@@ -1,14 +1,13 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';  // Importa el plugin de React
 
 export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/js/app.jsx', 
-                'resources/css/nadine.css',
-                'resources/css/valkyrya.css',
-                'resources/css/style.css',
+                'resources/js/app.jsx',  // Solo procesamos el archivo JSX con Vite
+                // No agregamos los CSS aquí, ya que están en public/css
             ],
             refresh: true,
         }),

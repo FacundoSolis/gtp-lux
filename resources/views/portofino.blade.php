@@ -36,11 +36,11 @@
 
 <section class="productCover">
   <div class="productCover__imagesContainer">
-    <div class="productCover__sideImgs">
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val2.jpg);" data-image-index="1"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val3.jpg);" data-image-index="2"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val4.jpg);" data-image-index="3"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val5.jpg);" data-image-index="4"></div>
+  <div class="productCover__sideImgs" id="imageContainer">
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val1.jpg);" data-image-index="1"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val2.jpg);" data-image-index="2"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val3.jpg);" data-image-index="3"></div>
+      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val4.jpg);" data-image-index="4"></div>
     </div>
   </div>
 
@@ -48,6 +48,48 @@
     <button class="productCover__cta" id="loadMoreButton">Ver más fotos</button>
   </div>
 </section>
+
+<!-- Modal para mostrar más fotos -->
+<div class="modal" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Galería de imágenes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-images-container">
+                    <!-- Las imágenes se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="description-boat">
+    <h3>Descripción del Barco</h3>
+    <p>Alquiler de Yates en Denia</p>
+    <p>Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
+        Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
+
+    <!-- Botón para abrir el modal -->
+    <button id="loadMoreDescriptionButton" class="btn-ver-más">Ver más</button>
+</section>
+
+<!-- Modal de descripción -->
+<div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="descriptionModalLabel">Descripción del Barco</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body modal-description-container">
+        <!-- Aquí se cargará la descripción dinámicamente -->
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Características del barco -->
 <main class="layout">
@@ -86,21 +128,37 @@
     </section>
 
     <!-- Especificaciones -->
-    <section class="right-boxes">
-        <h3>Especificaciones</h3>
+<section class="right-boxes">
+    <h3>Especificaciones</h3>
         <div class="row">
-            <div class="box">Ícono 1</div>
-            <div class="box">Ícono 2</div>
-            <div class="box">Ícono 3</div>
+            <div class="box">
+                <i class="fa-solid fa-users"></i> Tripulación
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-bed"></i> Ropa de cama
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-ship"></i> Piloto automatico
+            </div>
         </div>
         <div class="row">
-            <div class="box">Ícono 4</div>
-            <div class="box">Ícono 5</div>
-            <div class="box">Ícono 6</div>
+            <div class="box">
+                <i class="fa-solid fa-wind"></i> Aire acondicionado
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-car-battery"></i> Generador
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-car-battery"></i> Generador
+            </div>
         </div>
         <div class="row large">
-            <div class="box">Ícono 7</div>
-            <div class="box">Ícono 8</div>
+            <div class="box">
+                <i class="fa-solid fa-anchor"></i> Patrón
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-music"></i> Altavoces externos
+            </div>
         </div>
     </section>
 </main>
@@ -193,7 +251,6 @@
     </form>
 </div>
 
-
 <!-- Footer -->
 <footer>
     <div class="footer-container">
@@ -209,7 +266,6 @@
         <div class="footer-right"></div>
     </div>
 </footer>
-
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
