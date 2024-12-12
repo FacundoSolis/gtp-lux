@@ -1,205 +1,216 @@
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('content')
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('node_modules/normalize.css/normalize.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
 
-  <style>
+<style>
     html {
       scroll-behavior: smooth;
     }
-  </style>
+</style>
 
   <!-- Banner Section -->
-  <section class="banner">
-    <video class="banner-video" autoplay muted loop>
-      <source src="{{ asset('img/video-banner.mp4') }}" type="video/mp4">
-    </video>
-    <div class="overlay"></div>
-    <div class="banner-content">
-      <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
-      <h1>Alquiler de Barco en Denia</h1>
-      <h2>GTP LUX | Sun & Mediterranean Sea</h2>
-      <a href="#slider" class="btn">Reservar</a>
-    </div>
-  </section>
-
-  <!-- Texto de bienvenida -->
-  <section class="text-home">
-    <div class="container">
-      <!-- Columna de texto -->
-      <div class="text-column">
-        <h2>¡Bienvenido a GTP LUX!</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum quis autem saepe rem ab incidunt maxime provident modi fuga doloribus, ducimus ut id ipsa, eum tempora! Perspiciatis dolor velit veniam?
-        </p>
-      </div>
-
-      <!-- Columna de imagen -->
-      <div class="image-column">
-        <img src="{{ asset('img/yates.png') }}" alt="Yate elegante" class="oval-image">
-      </div>
-    </div>
-  </section>
-
-  <!-- Slider -->
-  <section id="slider" class="slider-container">
-    <!-- Título principal -->
-    <h2 class="slider-title">Te ofrecemos una experiencia inolvidable</h2>
-
-    <!-- Primera sección: Imagen derecha, texto izquierda -->
-    <div class="info-row">
-      <div class="slider-with-arrows">
-        <button class="prev">&lt;</button>
-        <div class="slider">
-          <div class="slides">
-            <img src="{{ asset('img/yates.png') }}" alt="Imagen 1">
-            <img src="{{ asset('img/yates2.png') }}" alt="Imagen 2">
-          </div>
-        </div>
-        <button class="next">&gt;</button>
-      </div>
-      <div class="info-text">
-        <h3>Lancha Sunseeker Portofino 53 800cv</h3>
-        <p>Alquiler de Yates en Denia
-        Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
-        Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
-        <a href="{{ route('sunseeker', ['pickup_date' => request()->pickup_date, 'return_date' => request()->return_date]) }}">
-          <button id="reservation-btn" class="btn">MÁS INFORMACIÓN</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- Segunda sección: Imagen izquierda, texto derecha -->
-    <div class="info-row reverse">
-      <div class="slider-with-arrows">
-        <button class="prev">&lt;</button>
-        <div class="slider">
-          <div class="slides">
-            <img src="{{ asset('img/yates3.png') }}" alt="Imagen 3">
-            <img src="{{ asset('img/yates4.png') }}" alt="Imagen 4">
-          </div>
-        </div>
-        <button class="next">&gt;</button>
-      </div>
-      <div class="info-text">
-        <h3>Princess V65</h3>
-        <p>Navegue en el exclusivo Princess V65, un lujoso barco abierto de día diseñado para el confort y la relajación. Con capacidad para 10 invitados, este yate ofrece 3 baños completos y camarotes. 
-          Un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
-        <a href="{{ route('princess', ['pickup_date' => request()->pickup_date, 'return_date' => request()->return_date]) }}">
-          <button id="reservation-btn" class="btn">MÁS INFORMACIÓN</button>
-        </a>
-      </div>
-    </div>
-  </section>
+<section class="banner">
+  <video class="banner-video" autoplay muted loop>
+    <source src="{{ asset('img/video-banner.mp4') }}" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="banner-content">
+    <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
+    <h1>Alquiler de Barco en Denia</h1>
+    <h2>GTP LUX | Sun & Mediterranean Sea</h2>
+    <a href="#slider" class="btn">Reservar</a>
+  </div>
+</section>
 
 <!-- Formulario de reserva en forma de card centrado -->
-<div class="container">
-    <div class="card mx-auto" style="width: 50%; margin-top: 30px;">
-        <div class="card-body">
-            <form id="reservation-form" action="{{ route('welcome') }}" method="GET">
-                @csrf
-                <!-- Selección del puerto -->
-                <div class="mb-3">
-                    <label for="port_id" class="form-label">Puerto:</label>
-                    <select id="port_id" name="port_id" class="form-control" required>
-                        <option value="">Seleccione un puerto</option>
-                        @foreach($ports as $port)
-                            <option value="{{ $port->id }}" {{ old('port_id') == $port->id ? 'selected' : '' }}>{{ $port->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <!-- Selección de barco -->
-                <div class="mb-3">
-                    <label for="boat_id" class="form-label">Selecciona un Barco:</label>
-                    <select id="boat_id" name="boat_id" class="form-control" required>
-                        <option value="">Seleccione un barco</option>
-                        <option value="3">Sunseeker Portofino 53</option>
-                        <option value="4">Princess V65</option>
-                    </select>
-                </div>
-
-                <!-- Fechas de recogida y entrega -->
-                <div class="mb-3 row">
-                    <div class="col">
-                        <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
-                        <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" readonly required>
+<div class="reservation-form-wrapper">
+    <div class="container">
+        <div class="card mx-auto" style="width: 50%;">
+            <div class="card-body">
+                <form id="reservation-form" action="http://127.0.0.1:8000" method="GET">
+                    <input type="hidden" name="_token" value="ocG5Jzfeyje4G7zL7KcHWNOrKmk4w5o12oGkVr0m" autocomplete="off">                
+                    <div class="mb-3">
+                        <label for="port_id" class="form-label">Puerto:</label>
+                        <select id="port_id" name="port_id" class="form-control" required="">
+                            <option value="">Seleccione un puerto</option>
+                            <option value="1">Marina De Denia</option>
+                        </select>
                     </div>
-                    <div class="col">
-                        <label for="return_date" class="form-label">Fecha de Entrega:</label>
-                        <input type="text" id="return_date" name="return_date" class="form-control date-picker" readonly required>
+                    <div class="mb-3">
+                        <label for="boat_id" class="form-label">Selecciona un Barco:</label>
+                        <select id="boat_id" name="boat_id" class="form-control" required="">
+                            <option value="">Seleccione un barco</option>
+                            <option value="3">Sunseeker Portofino 53</option>
+                            <option value="4">Princess V65</option>
+                        </select>
                     </div>
-                </div>
-
-                <!-- Calendario de disponibilidad -->
-                <div id="availability-calendar" class="calendar-wrapper" style="display: none; min-height: 300px; border: 1px solid #ccc;"></div>
-
-                <button type="submit" class="btn-form">Reservar</button>
-            </form>
+                    <div class="mb-3 row">
+                        <div class="col">
+                            <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
+                            <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" readonly="" required="">
+                        </div>
+                        <div class="col">
+                            <label for="return_date" class="form-label">Fecha de Entrega:</label>
+                            <input type="text" id="return_date" name="return_date" class="form-control date-picker" readonly="" required="">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-form">Reservar</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-
-  <!-- Mapa -->
-  <section class="map-form">
-    <div class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=..." width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<section class="luxury-section">
+  <h2 class="luxury-title">Nuestros Servicios</h2>
+  <div class="luxury-iconsContainer">
+    <!-- Columna 1 -->
+    <div class="luxury-iconCard">
+      <div class="luxury-icon" style="background-image: url('https://kitpro.site/sailey/wp-content/uploads/sites/153/2023/03/icon-1.png');"></div>
+      <h3>Luxury Yachts &amp; Boats</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <a href="#" class="luxury-button">Learn More</a>
     </div>
-    <div class="form-container">
+    <!-- Columna 2 -->
+    <div class="luxury-iconCard">
+      <div class="luxury-icon" style="background-image: url('https://kitpro.site/sailey/wp-content/uploads/sites/153/2023/03/icon-2.png');"></div>
+      <h3>Charter Guide</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <a href="#" class="luxury-button">Learn More</a>
+    </div>
+    <!-- Columna 3 -->
+    <div class="luxury-iconCard">
+      <div class="luxury-icon" style="background-image: url('https://kitpro.site/sailey/wp-content/uploads/sites/153/2023/03/icon-3.png');"></div>
+      <h3>Party &amp; Events</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <a href="#" class="luxury-button">Learn More</a>
+    </div>
+    <!-- Columna 4 -->
+    <div class="luxury-iconCard">
+      <div class="luxury-icon" style="background-image: url('https://kitpro.site/sailey/wp-content/uploads/sites/153/2023/03/icon-4.png');"></div>
+      <h3>Private Trips</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <a href="#" class="luxury-button">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- Slider -->
+<section id="slider" class="slider-container">
+    <!-- Título principal -->
+  <h2 class="slider-title">Te ofrecemos una experiencia inolvidable</h2>
+  <!-- Primera sección: Imagen derecha, texto izquierda -->
+  <div class="info-row">
+    <div class="slider-with-arrows">
+      <button class="prev">&lt;</button>
+      <div class="slider">
+        <div class="slides">
+          <img src="{{ asset('img/yates.png') }}" alt="Imagen 1">
+          <img src="{{ asset('img/yates2.png') }}" alt="Imagen 2">
+      </div>
+    </div>
+      <button class="next">&gt;</button>
+  </div>
+  <div class="info-text">
+    <h3>Lancha Sunseeker Portofino 53 800cv</h3>
+    <p>Alquiler de Yates en Denia
+    Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
+    Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
+    <a href="{{ route('sunseeker', ['pickup_date' => request()->pickup_date, 'return_date' => request()->return_date]) }}">
+    <button id="reservation-btn" class="btn">MÁS INFORMACIÓN</button>
+    </a>
+  </div>
+</div>
+
+<!-- Segunda sección: Imagen izquierda, texto derecha -->
+<div class="info-row reverse">
+  <div class="slider-with-arrows">
+    <button class="prev">&lt;</button>
+    <div class="slider">
+      <div class="slides">
+        <img src="{{ asset('img/yates3.png') }}" alt="Imagen 3">
+        <img src="{{ asset('img/yates4.png') }}" alt="Imagen 4">
+      </div>
+      </div>
+     <button class="next">&gt;</button>
+  </div>
+  <div class="info-text">
+    <h3>Princess V65</h3>
+    <p>Navegue en el exclusivo Princess V65, un lujoso barco abierto de día diseñado para el confort y la relajación. Con capacidad para 10 invitados, este yate ofrece 3 baños completos y camarotes. 
+      Un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
+    <a href="{{ route('princess', ['pickup_date' => request()->pickup_date, 'return_date' => request()->return_date]) }}">
+      <button id="reservation-btn" class="btn">MÁS INFORMACIÓN</button>
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- Mapa -->
+<section class="map-form">
+  <div class="map-container">
+    <h3 class="map-title">Nuestra Ubicación</h3>
+    <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+<section>
+  <div class="form-container">
+    <div class="form-card">
       <h3>¿Tienes alguna duda?</h3>
       <form>
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre">
+        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre">
 
         <label for="apellido">Apellido</label>
-        <input type="text" id="apellido" name="apellido">
+        <input type="text" id="apellido" name="apellido" placeholder="Escribe tu apellido">
 
         <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono">
+        <input type="tel" id="telefono" name="telefono" placeholder="Escribe tu teléfono">
 
         <label for="correo">Correo</label>
-        <input type="email" id="correo" name="correo">
+        <input type="email" id="correo" name="correo" placeholder="Escribe tu correo">
 
         <label for="motivo">Asunto</label>
-        <textarea id="motivo" name="motivo"></textarea>
+        <textarea id="motivo" name="motivo" placeholder="Escribe tu consulta"></textarea>
 
         <button class="form-button">Enviar</button>
       </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-left">
-        <a href="{{ url('/') }}">
-          <img src="{{ asset('img/logo.png') }}" alt="Logo" class="footer-logo">
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href="{{ url('/') }}">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="footer-logo">
+      </a>
+      <div class="social-icons">
+        <a href="https://instagram.com" target="_blank">
+          <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
         </a>
-        <div class="social-icons">
-          <a href="https://instagram.com" target="_blank">
-            <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
-          </a>
-          <a href="https://facebook.com" target="_blank">
-            <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
-          </a>
-        </div>
-        <p class="contact-email">contacto@empresa.com</p>
-        <p class="location">Marina Naviera Balear, Av. de Gabriel Roca, 07013 Palma, Balearic Islands</p>
+        <a href="https://facebook.com" target="_blank">
+          <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
+        </a>
       </div>
+      <p class="contact-email">contacto@empresa.com</p>
+      <p class="location">Marina Naviera Balear, Av. de Gabriel Roca, 07013 Palma, Balearic Islands</p>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}"></script>
-  <script src="{{ asset('js/menu-burger.js') }}"></script>
 
-  <!-- Aquí comienza el nuevo script -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
-  <script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/menu-burger.js') }}"></script>
+
+<!-- Aquí comienza el nuevo script -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     const calendarEl = document.getElementById('availability-calendar');
     const portSelect = document.getElementById('port_id');
@@ -381,3 +392,4 @@
     calendar.render();
 });
 </script>
+

@@ -1,5 +1,5 @@
 <!-- resources/views/reservations/payment.blade.php -->
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('content')
 <div class="container">

@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.public')
 
-@section('content')
+@push('styles')
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/portofino.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+@endpush
 
 <!-- Menú fijo -->
 <header class="topbar">
@@ -266,6 +267,8 @@
         <div class="footer-right"></div>
     </div>
 </footer>
+
+@push('scripts')
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
@@ -517,6 +520,7 @@
         calendar.render();
     });
 </script>
+@endpush
 
 
 

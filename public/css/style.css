@@ -5,6 +5,12 @@ body {
   --color: #eee;
   color: var(--color);
   background: none;
+  padding: 0;
+}
+
+html {
+  margin:0;
+  padding:0;
 }
 
 a {
@@ -14,13 +20,8 @@ a {
 }
 
 header {
-  width: 100%;
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
   padding: 0;
-  text-align: left;
+  margin: 0;
 }
 
 section.banner {
@@ -31,9 +32,9 @@ section.banner {
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  color: white;
-  margin-top: 0;
-  padding-top: 20px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .banner-video {
@@ -43,7 +44,6 @@ section.banner {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
 }
 
 .overlay {
@@ -58,31 +58,37 @@ section.banner {
 
 .banner-content {
   position: relative;
-  z-index: 1;
+  z-index: 0;
+  margin-top: 30px;
+  padding-top: 0;
+
 }
 
 section.banner .logo {
-  width: 20vw;
+  width: 15vw;
   height: auto;
-  margin-bottom: 0px;
+  margin-bottom: 10px; /* Reduce el margen inferior de la imagen */
+  margin-top: 50px;
 }
 
 section.banner h1 {
   font-size: 3rem;
   color: white;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-  margin-top: -30px;
+  margin-bottom: 10px; /* Reduce el margen inferior */
+  margin-top: 0;
 }
 
 section.banner h2 {
   font-size: 30px;
   color: white;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem; /* Reduce el margen inferior */
+  margin-top: 0;
 }
 
 section.banner a {
-  margin-top: 20px;
+  margin-top: 15px; /* Reduce el margen superior */
   padding: 10px 20px;
   background-color: #f1c40f;
   color: #fff;
@@ -94,7 +100,6 @@ section.banner a {
 }
 
 section.banner .btn {
-  margin-top: 20px;
   padding: 1rem 2rem;
   background: linear-gradient(45deg, #d4af37, #f5c032);
   color: black;
@@ -109,7 +114,6 @@ section.banner .btn {
   display: inline-flex; 
   justify-content: center; 
   align-items: center;   
-
 }
 
 section.banner .btn:hover {
@@ -124,75 +128,222 @@ iframe {
   object-fit: cover;
 }
 
-.text-home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 0;
-  background-color: #f9f9f9;
+/* Contenedor del formulario incrustado */
+.reservation-form-wrapper {
+  position: absolute;
+  top: 60vh; /* Ajusta según el tamaño del banner */
+  left: 50%;
+  transform: translate(-50%, -20%); /* Para centrar y hacerlo sobresalir */
+  z-index: 5; /* Por encima del banner */
+  width: 40%;
+  background: transparent;
+  padding: 30px;
+  box-shadow: 0 0 30px 10px rgba(245, 192, 50, 0.6); /* Luz de fondo */
+  border-radius: 20px;
+  transition: box-shadow 0.3s ease; /* Transición para un efecto más suave */
 }
 
-.text-home .container {
+.reservation-form-wrapper:hover {
+  box-shadow: 0 0 50px 15px rgba(245, 192, 50, 0.8); /* Intensifica la luz al pasar el cursor */
+}
+
+/* Estilo de la tarjeta del formulario */
+.reservation-form-wrapper .card {
+  background: white;
+  box-shadow: none; /* Sin sombras */
+  border-radius: 20px; /* Mantiene bordes redondeados */
+  width: 100%; /* El formulario ocupa todo el ancho de la caja */
   display: flex;
-  max-width: 1200px;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos del formulario */
+}
+
+.reservation-form-wrapper .card-body {
+  width: 170%; /* Formulario más ancho dentro de la caja */
+  padding: 20px;
+  background: white; /* Fondo blanco solo para el contenido del formulario */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustes para el botón de reserva */
+.reservation-form-wrapper .btn-form {
+  display: block;
   width: 100%;
+  background: linear-gradient(45deg, #f5c032, #d4af37);
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.reservation-form-wrapper .btn-form:hover {
+  background: linear-gradient(45deg, #d4af37, #f5c032);
+  color: white;
+  transform: scale(1.05); /* Efecto de ampliación */
+}
+
+#availability-calendar {
+  max-width: 500px;
   margin: 0 auto;
+  display: none;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fc-daygrid-body {
+  font-size: 14px;  /* Reduce el tamaño de las fechas */
+}
+
+.fc-daygrid-day-frame {
+  height: 40px !important;  /* Ajusta la altura de las celdas */
+  width: 40px !important;  /* Ajusta el ancho de las celdas */
+}
+
+.fc-daygrid-day-number {
+  font-size: 10px;  /* Ajusta el tamaño de los números de días */
+  padding: 2px 5px;
+}
+
+.fc-toolbar-title {
+  font-size: 5px;
+}
+
+.btn-form {
+  background-color: #007bff;
+}
+
+.element.style {
+  min-height: 200px;
+}
+
+/* Estilos generales */
+.luxury-section {
+  text-align: center;
+  margin: auto;
+  padding-bottom: 50px;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.8), /* Empieza oscuro */
+      rgba(50, 50, 50, 0.6),
+      rgba(255, 255, 255, 0.1)); /* Termina translúcido */
+  background-color: black; /* Fallback para navegadores sin soporte */
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  padding-top: 350px;
+}
+
+.luxury-section::before {
+  content: '';
+  position: absolute;
+  top: -100px; /* Ajusta según sea necesario */
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent, #f0f0f0); /* Cambia colores según diseño */
+  z-index: -1;
+}
+
+.luxury-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: white;
+}
+
+/* Contenedor de las tarjetas */
+.luxury-iconsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
-.text-column {
-  flex: 1;
-  color: #000;
-  padding: 50px;
-  text-align: left;
-}
-
-.text-column h2 {
-  font-size: 3rem;
-  color: black;
-  margin-bottom: 15px;
-}
-
-.text-column p {
-  font-size: 20px;
-  line-height: 1.6;
-  color: black;
-}
-
-.image-column {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+/* Estilos de las tarjetas */
+.luxury-iconCard {
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.image-column .oval-image {
-  width: 30vw;
-  height: 20vw;
+.luxury-iconCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo de los íconos */
+.luxury-icon {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #d4af37;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos del texto */
+.luxury-iconCard h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.luxury-iconCard p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+/* Botón */
+.luxury-button {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+.luxury-button:hover {
+  background-color: #0056b3;
+}
+
+/* Contendor Slider */
 .slider-container {
   width: 100%;
   text-align: center;
   box-sizing: border-box;
-  background-color: #000;
   padding: 50px 20px;
   max-width: 100%;
   margin: 0;
-  background: #0D0D0D;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url('/img/fondo-mar.jpg'); /* Imagen de fondo */
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   color: white;
   box-sizing: border-box;
 }
-
 .slider-title {
-  font-size: 40px;
-  font-weight: bold;
-  font-style: italic;
+  font-size: 3rem;
   color: white;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -201,7 +352,7 @@ iframe {
   margin-left: 0;
   margin-right: 0;
 }
-
+/* Linea titulo slider */
 .slider-title::after {
   content: "";
   position: absolute;
@@ -213,7 +364,7 @@ iframe {
   background: linear-gradient(to right, transparent, white, transparent);
   transition: height 0.3s ease-in-out;
 }
-
+/* 1º slider */
 .info-row {
   display: flex;
   justify-content: space-between;
@@ -226,10 +377,11 @@ iframe {
   margin-bottom: 50px;
 }
 
+/* slider2*/
 .info-row.reverse {
   flex-direction: row-reverse;
 }
-
+/* Imagen2 slider*/
 .slider-with-arrows {
   display: flex;
   align-items: center;
@@ -238,53 +390,73 @@ iframe {
   width: 43%;
   margin-left: 0;
   margin-right: 0;
+  box-shadow: 0 0 30px 10px rgba(245, 192, 50, 0.6); /* Luz de fondo */
+  border-radius: 20px; /* Borde redondeado para el efecto */
+  transition: box-shadow 0.3s ease; /* Transición para un efecto más suave */
 }
 
+.slider-with-arrows:hover {
+  box-shadow: 0 0 50px 15px rgba(245, 192, 50, 0.8); /* Intensifica la luz al pasar el cursor */
+}
+
+/* slider*/
 .slider {
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* Oculta las tarjetas que están fuera del slider visible */
   width: 100%;
-  overflow: hidden;
-  position: relative;
 }
-
 .slides {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  width: 100%; /* Asegura que las imágenes se ajusten correctamente */
 }
 
+/* slider img*/
 .slides img {
-  width: 100%;
+  width: 100%; /* Ajusta el tamaño de las imágenes dentro del slider */
   height: auto;
   display: block;
   object-fit: cover;
   margin: 0 auto;
+  border-radius: 15px; /* Bordes redondeados para la tarjeta */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra alrededor de la tarjeta */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para un efecto visual suave */
+}
+.slides img:hover {
+  transform: scale(1.05); /* Eleva la tarjeta al pasar el cursor */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Aumenta la sombra para mayor contraste */
 }
 
+/* Botones slider*/
 button.prev,
 button.next {
-  background: none;
+  background-color: rgba(0, 0, 0, 0.1); /* Fondo semi-transparente */
   border: none;
   font-size: 24px;
   cursor: pointer;
-  padding: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
   color: white;
-  transition: color 0.3s ease;
-  position: absolute;
-  top: 50%;
+  position: absolute; /* Botones dentro del slider */
+  top: 50%; /* Centrados verticalmente */
   transform: translateY(-50%);
   z-index: 10;
+  transition: background-color 0.3s ease;
 }
 
 button.prev {
-  left: -10px;
+  left: 10px; /* Posición a la izquierda */
 }
 
 button.next {
-  right: -10px;
+  right: 10px; /* Posición a la derecha */
 }
 
 button.prev:hover,
 button.next:hover {
-  color: #000;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
 }
 
 nav {
@@ -308,7 +480,7 @@ nav a {
   color: var(--color);
   font-size: 16px;
 }
-
+/* texto slider*/
 .info-text {
   flex: 1;
   padding: 20px;
@@ -317,7 +489,7 @@ nav a {
 }
 
 .info-text h3 {
-  font-size: 22px;
+  font-size: 2rem;
   margin-bottom: 10px;
   color: white;
 }
@@ -326,7 +498,7 @@ nav a {
   font-size: 16px;
   color: white;
 }
-
+/* botons slider*/
 .btn {
   margin-top: 20px auto;
   margin-bottom: 20px;
@@ -371,20 +543,6 @@ nav a {
   left: -10%;
 }
 
-#available-boats {
-  margin-top: 20px;
-}
-
-.container h1{
-  color: black;
-  margin: 20px 20px;
-}
-
-.container form {
-    min-height: 300px;
-    margin-top: 20px;
-  }
-
 .btn-primary {
   color: #fff;
   width: 20%;
@@ -408,140 +566,121 @@ nav a {
   content: none;
 }
 
-#availability-calendar {
-  max-width: 500px;
-  margin: 0 auto;
-  display: none;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.fc-daygrid-body {
-  font-size: 14px;  /* Reduce el tamaño de las fechas */
-}
-
-.fc-daygrid-day-frame {
-  height: 40px !important;  /* Ajusta la altura de las celdas */
-  width: 40px !important;  /* Ajusta el ancho de las celdas */
-}
-
-.fc-daygrid-day-number {
-  font-size: 10px;  /* Ajusta el tamaño de los números de días */
-  padding: 2px 5px;
-}
-
-.fc-toolbar-title {
-  font-size: 5px;
-}
-
-.btn-form {
-  background-color: #007bff;
-}
-
-.element.style {
-  min-height: 200px;
-}
-
 .map-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
+  background: white; /* Fondo blanco */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
+/* Mapa */
 .map-container {
-  width: 70%;
-  height: 300px;
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+  width: 50%;
+  text-align: center;
+}
+
+.map-title {
+  font-size: 1.8rem;
+  color: #333; /* Color oscuro */
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
 }
 
 iframe {
   width: 100%;
-  height: 100%;
+  height: 300px;
   border: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra en el mapa */
 }
 
+/* Estilo para la sección del formulario */
 .form-container {
-  width: 45%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('/img/land-img.jpg'); /* Ajusta la ruta según tu estructura */
+  background-size: cover;
+  background-attachment: fixed; /* Fija el fondo mientras se hace scroll */
+  background-position: center;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  padding: 50px;
+  color: white;
+}
+.form-card {
+  width: 80%; /* Ajusta el ancho según necesidad */
+  max-width: 500px;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
   gap: 15px;
 }
 
-h3 {
-  font-size: 24px;
+.form-card h3 {
+  font-size: 1.8rem;
+  color: #333;
   margin-bottom: 20px;
-  color: #000;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 8px;
+  text-align: center;
+  font-weight: bold;
 }
 
 label {
   font-weight: bold;
-  color: black;
+  color: #666;
 }
 
 input, textarea {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: #f5c032;
+  outline: none;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
 }
 
 .form-button {
-  margin-top: 20px auto;
-  margin-bottom: 20px;
-  padding: 15px 25px;
+  margin-top: 20px;
+  padding: 15px;
   background: linear-gradient(45deg, #d4af37, #f5c032);
-  color: black;
-  font-size: 15px;
+  color: white;
+  font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 10px;
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
+  border: none;
   transition: all 0.3s ease;
-  display: block;
-  max-width: 250px;
-}
-
-.form-button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  height: 300%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.5s ease;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 
 .form-button:hover {
   background: linear-gradient(45deg, #f5c032, #d4af37);
-  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6);
-  color: #000;
-}
-
-.form-button:hover::before {
-  width: 120%;
-  height: 120%;
-  top: -10%;
-  left: -10%;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
 }
 
 footer {

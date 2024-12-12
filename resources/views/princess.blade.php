@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -53,10 +53,11 @@
             <input type="date" id="return_date" name="return_date" class="form-control" value="{{ $reservation->return_date }}" required>
         </div>
 
-        <button type="submit" class="btn btn-success">Actualizar Reserva</button>
-
-        <!-- Botón para volver al listado de reservas -->
-        <a href="{{ route('admin.reservations.index') }}" class="btn btn-secondary mt-3">Volver al Listado</a>
+        <!-- Contenedor para los botones -->
+        <div class="button-group">
+            <button type="submit" class="btn btn-success">Actualizar Reserva</button>
+            <a href="{{ route('admin.reservations.index') }}" class="btn btn-secondary">Volver al Listado</a>
+        </div>
     </form>
 </div>
 @endsection
