@@ -18,9 +18,6 @@ export default defineConfig({
     esbuild: {
         jsxFactory: 'React.createElement',
         jsxFragment: 'React.Fragment',
-        loader: {
-            '.js': 'jsx',    // Asegura que .js se trata como JSX
-            '.jsx': 'jsx',   // Agrega soporte explícito para .jsx
-        },
+        loader: 'jsx',  // Define el loader como 'jsx' en lugar de un objeto
     },
 });
