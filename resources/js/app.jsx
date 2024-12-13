@@ -1,7 +1,12 @@
 // resources/js/componentes/app.jsx
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import '../css/style.css';  // Asegúrate de que tu archivo CSS esté en la carpeta correcta
+import '../css/style.css';  // Ruta correcta desde resources/js/app.jsx a resources/css/style.css
+import '../css/admin.css';
+import '../css/available-boats.css';
+import '../css/menu.css';
+import '../css/portofino.css';
+import '../css/princess.css';
 
 // Componente React
 function App() {

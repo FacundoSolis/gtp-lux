@@ -1,0 +1,203 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  color: #333;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Contenedor para el calendario y las tarjetas */
+.main-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px; /* Mayor separación entre el calendario y las tarjetas */
+}
+
+.sidebar {
+  min-width: 400px; /* Reducir el tamaño del sidebar */
+  max-width: 220px; /* Limitar el ancho máximo */
+  min-height: 200px; /* Reducir la altura */
+  background-color: #fff;
+  border-radius: 8px; /* Bordes más suaves */
+  padding: 15px; /* Reducir el padding para hacerlo más compacto */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  margin-top: 60px; /* Separación desde el menú fijo */
+  overflow-y: auto; /* Permitir desplazamiento si el contenido es grande */
+}
+
+/* Calendario */
+#availability-calendar {
+  width: 100%;
+  height: 500px; /* Reducir la altura del calendario */
+  margin-top: 15px; /* Ajustar el margen superior */
+}
+
+/* Información seleccionada */
+.selected-info {
+  margin-top: 10px;
+  font-size: 13px; /* Reducir el tamaño de la fuente */
+  color: #555;
+}
+
+.selected-info p {
+  margin: 4px 0; /* Reducir los márgenes */
+}
+
+/* Tarjetas de barcos */
+.boat-cards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 80px;
+}
+
+.boat-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* Necesario para el mensaje de "Reservado" */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.boat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.boat-card__image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.boat-card__details {
+  padding: 15px;
+  text-align: center;
+}
+
+.boat-card__name {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.boat-card__description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Fondo sombreado y mensaje de "Reservado" */
+.reserved-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.reserved {
+  opacity: 0.5; /* Hace que los barcos reservados se vean más opacos */
+}
+
+.available {
+  opacity: 1;
+}
+
+/* Botón en las tarjetas */
+.btn-form {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #007BFF;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-form:hover {
+  background-color: #0056b3;
+}
+
+.btn-form.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Estilo del menú fijo */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0E1724;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  z-index: 1000;
+}
+
+.topbar__logo img {
+  max-height: 60px;
+  width: auto;
+}
+
+.topbar__settingsDropdowns .dropdown {
+  background-color: #444;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px 15px;
+  border-radius: 25px;
+}
+
+.topbar__settingsDropdowns ul {
+  background-color: #444;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  border-radius: 5px;
+  display: none;
+}
+
+.settingsDropdown:hover ul {
+  display: block;
+}
+
+.settingsDropdown ul li {
+  padding: 10px;
+  color: #fff;
+}
+
+.settingsDropdown ul li:hover {
+  background-color: #555;
+}
