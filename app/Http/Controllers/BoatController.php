@@ -53,4 +53,21 @@ class BoatController extends Controller
         'endDate' => $endDate, // Pasar la fecha de fin
     ]);
 }
+public function showBoatPage($boat_id)
+{
+    $boat = Boat::findOrFail($boat_id);
+    // Obtener todos los puertos
+    $ports = Port::all();
+
+    
+    // Aquí puedes decidir qué vista renderizar, dependiendo del ID del barco.
+    if ($boat->id == 3) {
+        return view('portofino', compact('boat', 'ports'));  // Vista para el Sunseeker
+    } elseif ($boat->id == 4) {
+        return view('princess', compact('boat', 'ports'));   // Vista para el Princess
+    }
+
+    // Si el barco no es Sunseeker ni Princess, redirigir a la vista predeterminada.
+    return view('portofino', compact('boat', 'ports', 'boat_id'));
+}
 }

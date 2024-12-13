@@ -30,39 +30,37 @@
     <div class="container">
         <div class="card mx-auto" style="width: 50%;">
             <div class="card-body">
-                <form id="reservation-form" action="http://127.0.0.1:8000" method="GET">
-                    <input type="hidden" name="_token" value="ocG5Jzfeyje4G7zL7KcHWNOrKmk4w5o12oGkVr0m" autocomplete="off">                
+                <!-- El formulario ahora se dirige a la ruta 'available.boats' -->
+                <form action="{{ route('available.boats') }}" method="GET">
+                    @csrf
                     <div class="mb-3">
                         <label for="port_id" class="form-label">Puerto:</label>
-                        <select id="port_id" name="port_id" class="form-control" required="">
+                        <select id="port_id" name="port_id" class="form-control" required>
                             <option value="">Seleccione un puerto</option>
                             <option value="1">Marina De Denia</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="boat_id" class="form-label">Selecciona un Barco:</label>
-                        <select id="boat_id" name="boat_id" class="form-control" required="">
-                            <option value="">Seleccione un barco</option>
-                            <option value="3">Sunseeker Portofino 53</option>
-                            <option value="4">Princess V65</option>
-                        </select>
-                    </div>
+                    
                     <div class="mb-3 row">
                         <div class="col">
                             <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
-                            <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" readonly="" required="">
+                            <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" readonly required>
                         </div>
                         <div class="col">
                             <label for="return_date" class="form-label">Fecha de Entrega:</label>
-                            <input type="text" id="return_date" name="return_date" class="form-control date-picker" readonly="" required="">
+                            <input type="text" id="return_date" name="return_date" class="form-control date-picker" readonly required>
                         </div>
                     </div>
-                    <button type="submit" class="btn-form">Reservar</button>
+
+                    <!-- Contenedor para el calendario -->
+                    <div id="availability-calendar" style="width: 100%; height: 300px; display: none;"></div>
+                    <button type="submit" class="btn-form">Buscar barco</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 
 <section class="luxury-section">
   <h2 class="luxury-title">Nuestros Servicios</h2>
@@ -203,24 +201,29 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/menu-burger.js') }}"></script>
 
+<!-- Aquí van los estilos y scripts necesarios para el calendario -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
 <!-- Aquí comienza el nuevo script -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const calendarEl = document.getElementById('availability-calendar');
     const portSelect = document.getElementById('port_id');
     const pickupInput = document.getElementById('pickup_date');
     const returnInput = document.getElementById('return_date');
-    
-    // Inicializa las fechas de selección
-    let selectedStartDate = pickupInput.value;
-    let selectedEndDate = returnInput.value;
-    
-    // ID del barco desde el formulario
-    const boatId = document.getElementById('boat_id').value;
-    
-    // Inicializa FullCalendar para mostrar la disponibilidad
+
+    // Obtener las fechas seleccionadas, si existen
+    const selectedStartDate = '{{ request()->pickup_date }}'; // Fecha de recogida
+    const selectedEndDate = '{{ request()->return_date }}'; // Fecha de entrega
+
+    // Establecer las fechas en los campos de fecha si ya están en la URL
+    if (selectedStartDate) pickupInput.value = selectedStartDate;
+    if (selectedEndDate) returnInput.value = selectedEndDate;
+
+    // Inicializa FullCalendar
     const calendar = new FullCalendar.Calendar(calendarEl, {
         themeSystem: 'bootstrap',
         locale: 'es',
@@ -228,17 +231,17 @@
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay',
+            right: "",
         },
         events: async function (fetchInfo, successCallback, failureCallback) {
             try {
                 const portId = portSelect.value;
-                if (!portId) {
+                if (!portId || !selectedStartDate || !selectedEndDate) {
                     successCallback([]);
                     return;
                 }
 
-                const response = await axios.get(`/reservations/calendar/${boatId}/${portId}`, {
+                const response = await axios.get(`/reservations/calendar/${portId}`, {
                     params: {
                         startDate: fetchInfo.startStr,
                         endDate: fetchInfo.endStr,
@@ -246,7 +249,6 @@
                 });
 
                 const reservations = response.data;
-
                 const events = reservations.map(reservation => ({
                     title: reservation.available ? 'Disponible' : 'Reservado',
                     start: reservation.start,
@@ -264,128 +266,56 @@
         dateClick: function (info) {
             const clickedDate = info.dateStr;
 
-            // Si el usuario hace clic en la fecha inicial seleccionada, reiniciar la selección
-            if (clickedDate === selectedStartDate) {
-                resetSelection();
-                return;
+            // Si no se ha seleccionado fecha de recogida, selecciona la fecha de recogida
+            if (!pickupInput.value) {
+                pickupInput.value = clickedDate;
+                // Establece la fecha mínima para la fecha de entrega
+                const pickupDate = new Date(clickedDate);
+                returnInput.setAttribute('min', pickupDate.toISOString().split('T')[0]);
             }
-
-            // Comprobar si el día está reservado
-            const isReserved = calendar.getEvents().some(event =>
-                !event.extendedProps.available &&
-                clickedDate >= event.startStr &&
-                clickedDate < event.endStr
-            );
-
-            if (isReserved) {
-                alert('Este día está reservado. Por favor selecciona otra fecha.');
-                return;
+            // Si ya se ha seleccionado la fecha de recogida, selecciona la fecha de entrega
+            else if (!returnInput.value) {
+                returnInput.value = clickedDate;
             }
-
-            // Seleccionar fechas
-            if (!selectedStartDate) {
-                selectedStartDate = clickedDate;
-                pickupInput.value = selectedStartDate;
-            } else if (!selectedEndDate) {
-                if (clickedDate <= selectedStartDate) {
-                    alert('La fecha de entrega debe ser posterior a la fecha de recogida.');
-                    return;
-                }
-
-                selectedEndDate = clickedDate;
-                returnInput.value = selectedEndDate;
-            } else {
-                selectedStartDate = clickedDate;
-                selectedEndDate = null;
-                pickupInput.value = selectedStartDate;
-                returnInput.value = '';
+            // Si ya se han seleccionado ambas fechas, reiniciar la selección
+            else {
+                pickupInput.value = clickedDate;
+                returnInput.value = ''; // Limpiar la fecha de entrega
+                returnInput.removeAttribute('min'); // Remover la restricción mínima
             }
-
-            highlightSelectedDates();
         },
     });
 
-    // Mostrar calendario cuando se elige una fecha
+    // Mostrar el calendario cuando se hace clic en los campos de fecha
     pickupInput.addEventListener('click', function () {
-        calendarEl.style.display = 'block';
-        calendar.render();
+        calendarEl.style.display = 'block';  // Muestra el calendario
+        calendar.render();  // Renderiza el calendario
     });
 
     returnInput.addEventListener('click', function () {
-        calendarEl.style.display = 'block';
-        calendar.render();
+        calendarEl.style.display = 'block';  // Muestra el calendario
+        calendar.render();  // Renderiza el calendario
     });
 
-    // Cerrar calendario cuando se hace clic fuera
+    // Validación del formulario antes de enviarlo
+    form.addEventListener('submit', function (e) {
+        // Restablecer mensaje de error
+        errorMessage.textContent = '';
+
+        // Verificar si el puerto, las fechas de recogida y entrega están vacíos
+        if (!portSelect.value || !pickupInput.value || !returnInput.value) {
+            e.preventDefault(); // Evitar el envío del formulario
+            errorMessage.textContent = '¡Por favor, selecciona un puerto y ambas fechas (recogida y entrega)!'; // Mostrar mensaje de error
+        }
+    });
+
+    // Cerrar el calendario si se hace clic fuera de él
     document.addEventListener('click', function (event) {
         if (!calendarEl.contains(event.target) && !event.target.matches('#pickup_date, #return_date')) {
-            calendarEl.style.display = 'none';
+            calendarEl.style.display = 'none';  // Oculta el calendario
         }
     });
-
-    // Resaltar las fechas seleccionadas
-    function highlightSelectedDates() {
-        calendar.getEvents().forEach(function (event) {
-            event.setProp('backgroundColor', '');
-            event.setProp('borderColor', '');
-        });
-
-        if (selectedStartDate) {
-            calendar.getEvents().forEach(function (event) {
-                if (event.startStr === selectedStartDate) {
-                    event.setProp('backgroundColor', '#9b59b6');
-                    event.setProp('borderColor', '#9b59b6');
-                }
-            });
-        }
-
-        if (selectedEndDate) {
-            calendar.getEvents().forEach(function (event) {
-                if (event.startStr === selectedEndDate) {
-                    event.setProp('backgroundColor', '#9b59b6');
-                    event.setProp('borderColor', '#9b59b6');
-                }
-            });
-        }
-    }
-
-    // Resetear la selección de fechas
-    function resetSelection() {
-        selectedStartDate = null;
-        selectedEndDate = null;
-        pickupInput.value = '';
-        returnInput.value = '';
-        highlightSelectedDates();
-    }
-
-    // Recargar eventos cuando se seleccione un puerto
-    portSelect.addEventListener('change', function () {
-        selectedStartDate = null;
-        selectedEndDate = null;
-        pickupInput.value = '';
-        returnInput.value = '';
-        highlightSelectedDates();
-        calendar.refetchEvents();  // Recargar eventos según el puerto seleccionado
-    });
-
-    // Estilos para días seleccionados
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .fc-day.fc-day-past {
-            pointer-events: none;
-            opacity: 0.5;
-        }
-        .fc-day[data-date] {
-            transition: background-color 0.2s ease;
-        }
-        .fc-day-today {
-            background-color: transparent !important; /* Quitar el fondo del día actual */
-            color: inherit !important; /* Restaurar el color de texto */
-        }
-    `;
-    document.head.appendChild(style);
 
     calendar.render();
 });
 </script>
-

@@ -6,7 +6,6 @@
     <title>@yield('title', 'GtpLux')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-
     <!-- Metaetiquetas para SEO -->
     <meta name="description" content="@yield('meta_description', 'Descripción predeterminada de GtpLux')">
     <meta name="keywords" content="@yield('meta_keywords', 'barco, alquiler, yate, Denia')">
@@ -18,6 +17,7 @@
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
     @stack('styles')
 </head>
 <body>
@@ -29,6 +29,8 @@
     <script src="{{ asset('js/loadMoreDescription2.js') }}"></script>
     <script src="{{ asset('js/loadMoreImages.js') }}"></script>
     <script src="{{ asset('js/slider.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> <!-- jQuery UI -->
 
     @stack('scripts')
 </body>

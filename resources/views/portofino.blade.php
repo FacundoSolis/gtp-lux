@@ -280,7 +280,7 @@
         const returnInput = document.getElementById('return_date');
         const priceSummary = document.getElementById('price-summary');
         const totalPriceElement = document.getElementById('total-price');
-        const boatId = @json($boatId); // ID del barco actual
+        const boatId = 3; // ID del barco actualizado
 
         // Función para calcular el precio
         function calculatePrice(boatId, startDate, endDate) {

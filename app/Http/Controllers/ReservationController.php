@@ -250,4 +250,31 @@ class ReservationController extends Controller
 
         return response()->json($reservations);
     }
+
+    // ReservationController.php
+
+    public function showAvailableBoats(Request $request)
+{
+    // Obtener todos los barcos, independientemente de si están reservados o no
+    $boats = Boat::all();
+    $portId = $request->port_id;
+    $pickupDate = $request->pickup_date;
+    $returnDate = $request->return_date;
+
+    // Pasar los datos a la vista
+    return view('available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'));
+}
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'port_id' => 'required|exists:ports,id', // Asegura que el puerto sea obligatorio y válido
+            'pickup_date' => 'required|date|after_or_equal:today', // La fecha de recogida es obligatoria y debe ser una fecha válida
+            'return_date' => 'required|date|after_or_equal:pickup_date', // La fecha de entrega es obligatoria y debe ser posterior a la de recogida
+        ]);
+
+        // Procesar la reserva si la validación pasa
+        // ...
+    }
+
 }

@@ -10,6 +10,12 @@ Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcom
 
 Route::get('/sunseeker', [BoatController::class, 'showSunseekerPortofino'])->name('sunseeker');
 
+// Rutas disponibilidad barcos
+Route::get('/available-boats', [ReservationController::class, 'showAvailableBoats'])->name('available.boats');
+
+// Ruta para la página de un barco específico
+Route::get('/boat/{boat_id}', [BoatController::class, 'showBoatPage'])->name('boat.page');
+
 // Rutas para las páginas específicas de los barcos
 Route::get('/portofino', [BoatController::class, 'showSunseekerPortofino'])->name('portofino');
 Route::get('/princess', [BoatController::class, 'showPrincessV65'])->name('princess');
