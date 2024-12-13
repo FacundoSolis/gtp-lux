@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('boats', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); // Nombre del barco
-            $table->foreignId('port_id')->constrained('ports')->onDelete('cascade'); // Relación con Puertos
-            $table->integer('capacity'); // Capacidad de personas
-            $table->timestamps();
-        });
+        // Verificar si la tabla 'boats' ya existe antes de crearla
+        if (!Schema::hasTable('boats')) {
+            Schema::create('boats', function (Blueprint $table) {
+                $table->id();
+                $table->string('name')->comment('Nombre del barco'); // Nombre del barco
+                $table->foreignId('port_id')->constrained('ports')->onDelete('cascade')->comment('Relación con puertos'); // Relación con Puertos
+                $table->integer('capacity')->comment('Capacidad de personas'); // Capacidad de personas
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -29,6 +32,7 @@ return new class extends Migration
      */
     public function down()
     {
+        // Eliminar la tabla si existe
         Schema::dropIfExists('boats');
     }
 };
