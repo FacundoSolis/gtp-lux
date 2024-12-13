@@ -18,10 +18,17 @@ return new class extends Migration
             Schema::create('boats', function (Blueprint $table) {
                 $table->id();
                 $table->string('name')->comment('Nombre del barco'); // Nombre del barco
-                $table->foreignId('port_id')->constrained('ports')->onDelete('cascade')->comment('Relación con puertos'); // Relación con Puertos
+                $table->unsignedBigInteger('port_id')->comment('Relación con puertos'); // Relación con Puertos
                 $table->integer('capacity')->comment('Capacidad de personas'); // Capacidad de personas
                 $table->timestamps();
             });
+
+            // Agregar la clave foránea después de verificar si la tabla 'ports' existe
+            if (Schema::hasTable('ports')) {
+                Schema::table('boats', function (Blueprint $table) {
+                    $table->foreign('port_id')->references('id')->on('ports')->onDelete('cascade');
+                });
+            }
         }
     }
 
