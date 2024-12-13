@@ -69,31 +69,27 @@
   <div class="luxury-iconsContainer">
     <!-- Columna 1 -->
     <div class="luxury-iconCard">
-      <div class="luxury-icon" style="background-image: url('https://kitpro.site/sailey/wp-content/uploads/sites/153/2023/03/icon-1.png');"></div>
+      <div class="luxury-icon" style="background-image: url('img/icon-diamonds.svg');"></div>
       <h3>Luxury Yachts &amp; Boats</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <a href="#" class="luxury-button">Learn More</a>
     </div>
     <!-- Columna 2 -->
     <div class="luxury-iconCard">
-      <div class="luxury-icon" style="background-image: url('https://kitpro.site/sailey/wp-content/uploads/sites/153/2023/03/icon-2.png');"></div>
-      <h3>Charter Guide</h3>
+    <div class="luxury-icon" style="background-image: url('img/icono-boat.svg');"></div>
+    <h3>Charter Guide</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <a href="#" class="luxury-button">Learn More</a>
     </div>
     <!-- Columna 3 -->
     <div class="luxury-iconCard">
-      <div class="luxury-icon" style="background-image: url('https://kitpro.site/sailey/wp-content/uploads/sites/153/2023/03/icon-3.png');"></div>
-      <h3>Party &amp; Events</h3>
+    <div class="luxury-icon" style="background-image: url('img/icon.copa.svg');"></div>
+    <h3>Party &amp; Events</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <a href="#" class="luxury-button">Learn More</a>
     </div>
     <!-- Columna 4 -->
     <div class="luxury-iconCard">
-      <div class="luxury-icon" style="background-image: url('https://kitpro.site/sailey/wp-content/uploads/sites/153/2023/03/icon-4.png');"></div>
-      <h3>Private Trips</h3>
+    <div class="luxury-icon" style="background-image: url('img/icono-timon.svg');"></div>
+    <h3>Private Trips</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <a href="#" class="luxury-button">Learn More</a>
     </div>
   </div>
 </section>

@@ -267,7 +267,7 @@ iframe {
 /* Estilos de las tarjetas */
 .luxury-iconCard {
   width: 300px;
-  height: 400px;
+  height: 350px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -286,13 +286,14 @@ iframe {
 
 /* Estilo de los íconos */
 .luxury-icon {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   background-size: 80%; /* Ajusta la imagen dentro del contenedor */
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
   margin-bottom: 20px;
+  margin-top: 50px;
   box-shadow: 0 4px 10px rgba(245, 192, 50, 0.6); /* Luz de fondo */
   transition: box-shadow 0.3s ease; /* Transición suave */
   background-color: #fff; /* Fondo blanco para un mejor contraste */
@@ -313,20 +314,6 @@ iframe {
   font-size: 1rem;
   color: #666;
   margin-bottom: 20px;
-}
-/* Botón */
-.luxury-button {
-  background-color: #007BFF;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-.luxury-button:hover {
-  background-color: #0056b3;
 }
 
 /* Contendor Slider */
@@ -575,17 +562,16 @@ nav a {
 
 /* Mapa */
 .map-container {
-    position: relative;
-    width: 50%;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
-    border: 2px solid white; /* Bordes blancos visibles */
-    border-radius: 10px; /* Bordes redondeados */
-    padding: 10px; /* Espaciado interno para las líneas */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Sombra para destacar */
-    overflow: hidden; /* Asegura que el contenido quede dentro del contenedor */
-  }
-
+  position: relative;
+  width: 50%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
+  border: 2px solid white; /* Bordes blancos visibles */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px; /* Espaciado interno para las líneas */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Sombra para destacar */
+  overflow: hidden; /* Asegura que el contenido quede dentro del contenedor */
+}
 .map-container iframe {
   width: 100%;
   height: 300px;
@@ -614,9 +600,12 @@ nav a {
   align-items: center;
   gap: 20px;
   margin-top: 20px;
-  background: #0B0A0A; /* Fondo base oscuro */
-  background-image: url('/img/lineas.jpg'); /* Ruta de la imagen */
-  background-size: contain; /* Mantén las proporciones originales de la imagen */
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.9), /* Oscurecimiento adicional */
+      rgba(0, 0, 0, 0.7)
+    ),
+    url('/img/lineas.jpg'); /* Ruta de la imagen */
+  background-size: cover; /* Mantén las proporciones originales de la imagen */
   background-repeat: no-repeat; /* Evita repetir la imagen */
   background-position: center; /* Centra la imagen de fondo */
   padding: 50px;
