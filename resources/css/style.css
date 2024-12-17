@@ -99,6 +99,29 @@ section.banner a {
   outline: none; 
 }
 
+section.banner .btn {
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, #d4af37, #f5c032);
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: inline-flex; 
+  justify-content: center; 
+  align-items: center;   
+}
+
+section.banner .btn:hover {
+  background: linear-gradient(45deg, #f5c032, #d4af37);
+  box-shadow: 0 0 20px 8px rgba(255, 215, 0, 0.6);
+  color: white;
+}
+
 iframe {
   width: 100%;
   height: 100%;
@@ -297,7 +320,7 @@ iframe {
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.8)
     ),
-    url('../img/fondo-mar.jpg'); /* Imagen de fondo */
+    url('/img/fondo-mar.jpg'); /* Imagen de fondo */
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -572,7 +595,7 @@ nav a {
       rgba(0, 0, 0, 0.9), /* Oscurecimiento adicional */
       rgba(0, 0, 0, 0.7)
     ),
-    url('../img/lineas.jpg'); /* Ruta de la imagen */
+    url('/img/lineas.jpg'); /* Ruta de la imagen */
   background-size: cover; /* Mantén las proporciones originales de la imagen */
   background-repeat: no-repeat; /* Evita repetir la imagen */
   background-position: center; /* Centra la imagen de fondo */
@@ -601,7 +624,7 @@ nav a {
       rgba(0, 0, 0, 0.8),
       rgba(0, 0, 0, 0.5)
     ),
-    url('../img/land-img.jpg'); /* Ajusta la ruta según tu estructura */
+    url('/img/land-img.jpg'); /* Ajusta la ruta según tu estructura */
   background-size: cover;
   background-attachment: fixed; /* Fija el fondo mientras se hace scroll */
   background-position: center;

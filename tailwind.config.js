@@ -1,6 +1,5 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-/** @type {import('tailwindcss').Config} */
 export default {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
@@ -9,6 +8,7 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
         './resources/**/*.jsx', // Para React
+        './resources/css/**/*.css',
     ],
     theme: {
         extend: {

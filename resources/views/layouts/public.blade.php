@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
 
-    <!-- Estilos específicos -->
-    @stack('styles') <!-- Importante para incluir los estilos de las vistas -->
+    <!-- Estilos específicos de las vistas -->
+    @stack('styles')
 </head>
 <body>
     <div class="page-container">
@@ -29,12 +30,6 @@
         <main class="content">
             @yield('content')
         </main>
-
-        <!-- Footer siempre al final -->
-        <footer class="footer">
-            <!-- Contenido del footer -->
-            <p>&copy; 2024 GtpLux. Todos los derechos reservados.</p>
-        </footer>
     </div>
 
     <!-- Scripts globales -->
@@ -46,6 +41,6 @@
     @yield('scripts')
 
     <!-- Incluir React solo si es necesario -->
-    @vite('resources/js/componentes/app.jsx')
+    @vite('resources/js/componentes/app.jsx') <!-- React con Vite -->
 </body>
 </html>

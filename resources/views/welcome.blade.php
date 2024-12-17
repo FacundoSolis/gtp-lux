@@ -1,10 +1,10 @@
 @extends('layouts.public')
 
-@section('styles')
-    @vite('resources/css/style.css')
-    <link rel="stylesheet" href="{{ asset('node_modules/normalize.css/normalize.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
-@endsection
+@push('styles')
+  @vite('resources/css/style.css')
+  @vite('resources/css/menu.css')
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+@endpush
 
   <!-- Banner Section -->
 @section('content')
@@ -169,9 +169,10 @@
     </div>
   </div>
 </section>
-@endsection
 
-<!-- Footer -->
+
+
+<!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-left">
@@ -191,6 +192,8 @@
     </div>
   </div>
 </footer>
+@endsection
+
 
 
 <!-- Scripts -->

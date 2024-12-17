@@ -1,10 +1,10 @@
 @extends('layouts.public')
 
 @push('styles')
-@vite('resources/css/menu.css')
-@vite('resources/css/portofino.css')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
-@push('styles')
+    @vite('resources/css/menu.css')
+    @vite('resources/css/portofino.css') <!-- Solo carga el CSS relevante para esta página -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/main.min.css" rel="stylesheet" />
+    @endpush
 
 @section('content')
 <!-- Menú fijo -->
@@ -31,28 +31,29 @@
     </div>
 </header>
 
-<!-- Slider de imágenes y características del barco -->
+<!-- Contenido Principal -->
 <section class="container-valkyrya">
     <h2>Sunseeker Portofino 53</h2>
-</section>   
+</section>  
 
+
+<!-- Contenido Principal -->
 <section class="productCover">
-  <div class="productCover__imagesContainer">
-  <div class="productCover__sideImgs" id="imageContainer">
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val1.jpg);" data-image-index="1"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val2.jpg);" data-image-index="2"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val3.jpg);" data-image-index="3"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val4.jpg);" data-image-index="4"></div>
+    <div class="productCover__imagesContainer">
+        <div class="productCover__sideImgs" id="imageContainer">
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val1.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val2.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val3.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val4.jpg') }}');"></div>
+        </div>
     </div>
-  </div>
-
-  <div class="productCover__ctaContainer">
-    <button class="productCover__cta" id="loadMoreButton">Ver más fotos</button>
-  </div>
+    <div class="productCover__ctaContainer">
+        <button class="productCover__cta" id="loadMoreButton">Ver más fotos</button>
+    </div>
 </section>
 
 <!-- Modal para mostrar más fotos -->
-<div class="modal" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -60,8 +61,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="modal-images-container">
-                    <!-- Las imágenes se cargarán dinámicamente aquí -->
+                <div class="modal-images-container" id="modalImagesContainer">
+                    <!-- Las imágenes adicionales se cargarán aquí -->
                 </div>
             </div>
         </div>
@@ -73,7 +74,6 @@
     <p>Alquiler de Yates en Denia</p>
     <p>Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
     Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
-
     <!-- Botón para abrir el modal -->
     <button id="loadMoreDescriptionButton" class="btn-ver-más">Ver más</button>
 </section>
@@ -95,6 +95,7 @@
 
 <!-- Características del barco -->
 <main class="layout">
+    <!-- Características del Barco -->
     <section class="characteristics">
         <h3>Características del Barco</h3>
         <div class="info-list">
@@ -126,12 +127,12 @@
                 <span><strong>Equipamiento:</strong></span>
                 <span>Solarium, toldo retráctil, música, nevera</span>
             </div>
-        </div>
-    </section>
+        </div> <!-- Cierre de info-list -->
+    </section> <!-- Cierre de section.characteristics -->
 
     <!-- Especificaciones -->
-<section class="right-boxes">
-    <h3>Especificaciones</h3>
+    <section class="right-boxes">
+        <h3>Especificaciones</h3>
         <div class="row">
             <div class="box">
                 <i class="fa-solid fa-users"></i> Tripulación
@@ -140,7 +141,7 @@
                 <i class="fa-solid fa-bed"></i> Ropa de cama
             </div>
             <div class="box">
-                <i class="fa-solid fa-ship"></i> Piloto automatico
+                <i class="fa-solid fa-ship"></i> Piloto automático
             </div>
         </div>
         <div class="row">
@@ -162,8 +163,9 @@
                 <i class="fa-solid fa-music"></i> Altavoces externos
             </div>
         </div>
-    </section>
-</main>
+    </section> <!-- Cierre de section.right-boxes -->
+</main> <!-- Cierre correcto del main -->
+
 
 <!-- Detalles de precios -->
 <section class="pricing-details-columns">
@@ -190,12 +192,11 @@
 <!-- Formulario de reserva -->
 <div class="container">
     <h1>Reserva del Barco Sunseeker Portofino 53</h1>
-
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
-@endif
+    @endif
 
     <!-- Único formulario de reserva -->
     <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => 3]) }}" method="POST"> <!-- ID cambiado a 3 -->
@@ -252,31 +253,46 @@
         <button type="submit" class="btn btn-primary mt-3">Reservar</button>
     </form>
 </div>
-@endsection
+
 
 <!-- Footer -->
-<footer>
-    <div class="footer-container">
-        <div class="footer-left">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="footer-logo">
-            <div class="social-icons">
-                <a href="https://instagram.com" target="_blank"><img src="{{ asset('img/instagram.png') }}" alt="Instagram"></a>
-                <a href="https://facebook.com" target="_blank"><img src="{{ asset('img/facebook.png') }}" alt="Facebook"></a>
-            </div>
-            <p class="contact-email">contacto@empresa.com</p>
-            <p class="location">Marina Naviera Balear, Av. de Gabriel Roca, 07013 Palma, Balearic Islands</p>
-        </div>
-        <div class="footer-right"></div>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href="{{ url('/') }}">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="footer-logo">
+      </a>
+      <div class="social-icons">
+        <a href="https://instagram.com" target="_blank">
+          <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
+        </a>
+        <a href="https://facebook.com" target="_blank">
+          <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
+        </a>
+      </div>
+      <p class="contact-email">contacto@empresa.com</p>
+      <p class="location">Marina Naviera Balear, Av. de Gabriel Roca, 07013 Palma, Balearic Islands</p>
     </div>
+  </div>
 </footer>
 
-@section('scripts')
-    <!-- Incluye el script de Vite -->
-    @vite('resources/js/loadMoreDescription.js')
-    @vite('resources/js/componentes/app.jsx')
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 @endsection
+
+@section('scripts')
+    <script>
+            window.additionalImages = [
+                "{{ asset('img/val5.jpg') }}",
+                "{{ asset('img/val6.jpg') }}",
+                "{{ asset('img/val7.jpg') }}",
+                "{{ asset('img/val8.jpg') }}"
+    ];
+    </script>
+    @vite('resources/js/loadMoreImages.js')
+    @vite('resources/js/loadMoreDescription.js') <!-- Archivo externo -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
+@endsection
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');
@@ -525,7 +541,6 @@
         calendar.render();
     });
 </script>
-@endpush
 
 
 

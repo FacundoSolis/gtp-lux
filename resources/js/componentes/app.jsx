@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client'; // Asegúrate de usar react-dom/client
-import '../../css/style.css';  // Corrige la ruta según la estructura del proyecto
+
+
 
 const App = () => {
     const [images, setImages] = useState([
