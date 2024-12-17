@@ -1,10 +1,12 @@
 @extends('layouts.public')
 
-@section('content')
-<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
-<link rel="stylesheet" href="{{ asset('css/princess.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+@push('styles')
+    @vite('resources/css/menu.css')
+    @vite('resources/css/princess.css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+@endpush
 
+@section('content')
 <!-- Menú fijo -->
 <header class="topbar">
     <div class="topbar__logo">
@@ -35,22 +37,21 @@
 </section>   
 
 <section class="productCover">
-  <div class="productCover__imagesContainer">
-  <div class="productCover__sideImgs" id="imageContainer">
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val1.jpg);" data-image-index="1"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val2.jpg);" data-image-index="2"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val3.jpg);" data-image-index="3"></div>
-      <div class="productCover__img--small js-openGallery" style="background-image: url(http://127.0.0.1:8000/img/val4.jpg);" data-image-index="4"></div>
+    <div class="productCover__imagesContainer">
+        <div class="productCover__sideImgs" id="imageContainer">
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/princess1.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/princess2.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/princess3.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/princess4.jpg') }}');"></div>
+        </div>
     </div>
-  </div>
-
-  <div class="productCover__ctaContainer">
-    <button class="productCover__cta" id="loadMoreButton">Ver más fotos</button>
-  </div>
+    <div class="productCover__ctaContainer">
+        <button class="productCover__cta" id="loadMoreButton">Ver más fotos</button>
+    </div>
 </section>
 
-<!-- Modal para mostrar más fotos -->
-<div class="modal" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+<!-- Modal específico -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -58,13 +59,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="modal-images-container">
-                    <!-- Las imágenes se cargarán dinámicamente aquí -->
+                <div class="modal-images-container" id="modalImagesContainer">
+                    <!-- Las imágenes adicionales se cargarán aquí -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <section class="description-boat">
     <h3>Descripción del Barco</h3>
@@ -269,9 +271,14 @@
     </div>
 </footer>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+@section('scripts')
+    <!-- Incluye el script de Vite -->
+    @vite('resources/js/loadMoreDescription2.js')
+    @vite('resources/js/loadMoreImages2.js') <!-- Script exclusivo para Princess -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+@endsection
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');
@@ -524,4 +531,3 @@
         calendar.render();
     });
 </script>
-@endsection

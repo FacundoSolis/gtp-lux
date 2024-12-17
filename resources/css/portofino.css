@@ -110,7 +110,6 @@ header {
   max-width: 100%; /* Asegura que el párrafo ocupe el 100% del ancho de su contenedor */
   margin: 0 auto;  /* Centra el párrafo dentro de su contenedor */
 }
-
 .modal-description-container {
   background-color: #f9f9f9;  /* Fondo de color claro */
   color: #000; /* Asegura que el texto sea visible */
@@ -118,7 +117,7 @@ header {
   border-radius: 5px;
 }
 
-#loadMoreDescriptionButton {
+#loadMoreDescription2Button {
   border: none;          /* Elimina el borde */
   outline: none;         /* Elimina el borde del enfoque */
   background: none;      /* Elimina el fondo del botón */
@@ -131,7 +130,7 @@ header {
   margin-top: 10px;
 }
 
-#loadMoreDescriptionButton:hover {
+#loadMoreDescription2Button:hover {
   text-decoration: underline; /* Subraya el texto cuando se pasa por encima */
 }
 

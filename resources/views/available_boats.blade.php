@@ -1,9 +1,9 @@
 @extends('layouts.public')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/available-boats.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+@vite('resources/css/menu.css')
+@vite('resources/css/available-boats.css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
 @endpush
 
 @section('content')

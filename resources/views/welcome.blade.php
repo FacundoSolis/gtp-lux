@@ -1,17 +1,13 @@
 @extends('layouts.public')
 
-@section('content')
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('node_modules/normalize.css/normalize.css') }}">
+@push('styles')
+  @vite('resources/css/style.css')
+  @vite('resources/css/menu.css')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
-
-<style>
-    html {
-      scroll-behavior: smooth;
-    }
-</style>
+@endpush
 
   <!-- Banner Section -->
+@section('content')
 <section class="banner">
   <video class="banner-video" autoplay muted loop>
     <source src="{{ asset('img/video-banner.mp4') }}" type="video/mp4">
@@ -21,7 +17,6 @@
     <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
     <h1>Alquiler de Barco en Denia</h1>
     <h2>GTP LUX | Sun & Mediterranean Sea</h2>
-    <a href="#slider" class="btn">Reservar</a>
   </div>
 </section>
 
@@ -175,7 +170,9 @@
   </div>
 </section>
 
-<!-- Footer -->
+
+
+<!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-left">
@@ -195,127 +192,127 @@
     </div>
   </div>
 </footer>
+@endsection
+
 
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/menu-burger.js') }}"></script>
+@section('scripts')
+  <script src="{{ asset('js/welcome.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/menu-burger.js') }}"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('availability-calendar');
+      const portSelect = document.getElementById('port_id');
+      const pickupInput = document.getElementById('pickup_date');
+      const returnInput = document.getElementById('return_date');
 
-<!-- Aquí van los estilos y scripts necesarios para el calendario -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+      // Obtener las fechas seleccionadas, si existen
+      const selectedStartDate = '{{ request()->pickup_date }}'; // Fecha de recogida
+      const selectedEndDate = '{{ request()->return_date }}'; // Fecha de entrega
 
-<!-- Aquí comienza el nuevo script -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      // Establecer las fechas en los campos de fecha si ya están en la URL
+      if (selectedStartDate) pickupInput.value = selectedStartDate;
+      if (selectedEndDate) returnInput.value = selectedEndDate;
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const calendarEl = document.getElementById('availability-calendar');
-    const portSelect = document.getElementById('port_id');
-    const pickupInput = document.getElementById('pickup_date');
-    const returnInput = document.getElementById('return_date');
+      // Inicializa FullCalendar
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+          themeSystem: 'bootstrap',
+          locale: 'es',
+          initialView: 'dayGridMonth',
+          headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: "",
+          },
+          events: async function (fetchInfo, successCallback, failureCallback) {
+              try {
+                  const portId = portSelect.value;
+                  if (!portId || !selectedStartDate || !selectedEndDate) {
+                      successCallback([]);
+                      return;
+                  }
 
-    // Obtener las fechas seleccionadas, si existen
-    const selectedStartDate = '{{ request()->pickup_date }}'; // Fecha de recogida
-    const selectedEndDate = '{{ request()->return_date }}'; // Fecha de entrega
+                  const response = await axios.get(`/reservations/calendar/${portId}`, {
+                      params: {
+                          startDate: fetchInfo.startStr,
+                          endDate: fetchInfo.endStr,
+                      },
+                  });
 
-    // Establecer las fechas en los campos de fecha si ya están en la URL
-    if (selectedStartDate) pickupInput.value = selectedStartDate;
-    if (selectedEndDate) returnInput.value = selectedEndDate;
+                  const reservations = response.data;
+                  const events = reservations.map(reservation => ({
+                      title: reservation.available ? 'Disponible' : 'Reservado',
+                      start: reservation.start,
+                      end: reservation.end,
+                      color: reservation.available ? 'green' : 'red',
+                      extendedProps: { available: reservation.available },
+                  }));
 
-    // Inicializa FullCalendar
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-        themeSystem: 'bootstrap',
-        locale: 'es',
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: "",
-        },
-        events: async function (fetchInfo, successCallback, failureCallback) {
-            try {
-                const portId = portSelect.value;
-                if (!portId || !selectedStartDate || !selectedEndDate) {
-                    successCallback([]);
-                    return;
-                }
+                  successCallback(events);
+              } catch (error) {
+                  console.error('Error al cargar las reservas:', error);
+                  failureCallback(error);
+              }
+          },
+          dateClick: function (info) {
+              const clickedDate = info.dateStr;
 
-                const response = await axios.get(`/reservations/calendar/${portId}`, {
-                    params: {
-                        startDate: fetchInfo.startStr,
-                        endDate: fetchInfo.endStr,
-                    },
-                });
+              // Si no se ha seleccionado fecha de recogida, selecciona la fecha de recogida
+              if (!pickupInput.value) {
+                  pickupInput.value = clickedDate;
+                  // Establece la fecha mínima para la fecha de entrega
+                  const pickupDate = new Date(clickedDate);
+                  returnInput.setAttribute('min', pickupDate.toISOString().split('T')[0]);
+              }
+              // Si ya se ha seleccionado la fecha de recogida, selecciona la fecha de entrega
+              else if (!returnInput.value) {
+                  returnInput.value = clickedDate;
+              }
+              // Si ya se han seleccionado ambas fechas, reiniciar la selección
+              else {
+                  pickupInput.value = clickedDate;
+                  returnInput.value = ''; // Limpiar la fecha de entrega
+                  returnInput.removeAttribute('min'); // Remover la restricción mínima
+              }
+          },
+      });
 
-                const reservations = response.data;
-                const events = reservations.map(reservation => ({
-                    title: reservation.available ? 'Disponible' : 'Reservado',
-                    start: reservation.start,
-                    end: reservation.end,
-                    color: reservation.available ? 'green' : 'red',
-                    extendedProps: { available: reservation.available },
-                }));
+      // Mostrar el calendario cuando se hace clic en los campos de fecha
+      pickupInput.addEventListener('click', function () {
+          calendarEl.style.display = 'block';  // Muestra el calendario
+          calendar.render();  // Renderiza el calendario
+      });
 
-                successCallback(events);
-            } catch (error) {
-                console.error('Error al cargar las reservas:', error);
-                failureCallback(error);
-            }
-        },
-        dateClick: function (info) {
-            const clickedDate = info.dateStr;
+      returnInput.addEventListener('click', function () {
+          calendarEl.style.display = 'block';  // Muestra el calendario
+          calendar.render();  // Renderiza el calendario
+      });
 
-            // Si no se ha seleccionado fecha de recogida, selecciona la fecha de recogida
-            if (!pickupInput.value) {
-                pickupInput.value = clickedDate;
-                // Establece la fecha mínima para la fecha de entrega
-                const pickupDate = new Date(clickedDate);
-                returnInput.setAttribute('min', pickupDate.toISOString().split('T')[0]);
-            }
-            // Si ya se ha seleccionado la fecha de recogida, selecciona la fecha de entrega
-            else if (!returnInput.value) {
-                returnInput.value = clickedDate;
-            }
-            // Si ya se han seleccionado ambas fechas, reiniciar la selección
-            else {
-                pickupInput.value = clickedDate;
-                returnInput.value = ''; // Limpiar la fecha de entrega
-                returnInput.removeAttribute('min'); // Remover la restricción mínima
-            }
-        },
-    });
+      // Validación del formulario antes de enviarlo
+      form.addEventListener('submit', function (e) {
+          // Restablecer mensaje de error
+          errorMessage.textContent = '';
 
-    // Mostrar el calendario cuando se hace clic en los campos de fecha
-    pickupInput.addEventListener('click', function () {
-        calendarEl.style.display = 'block';  // Muestra el calendario
-        calendar.render();  // Renderiza el calendario
-    });
+          // Verificar si el puerto, las fechas de recogida y entrega están vacíos
+          if (!portSelect.value || !pickupInput.value || !returnInput.value) {
+              e.preventDefault(); // Evitar el envío del formulario
+              errorMessage.textContent = '¡Por favor, selecciona un puerto y ambas fechas (recogida y entrega)!'; // Mostrar mensaje de error
+          }
+      });
 
-    returnInput.addEventListener('click', function () {
-        calendarEl.style.display = 'block';  // Muestra el calendario
-        calendar.render();  // Renderiza el calendario
-    });
+      // Cerrar el calendario si se hace clic fuera de él
+      document.addEventListener('click', function (event) {
+          if (!calendarEl.contains(event.target) && !event.target.matches('#pickup_date, #return_date')) {
+              calendarEl.style.display = 'none';  // Oculta el calendario
+          }
+      });
 
-    // Validación del formulario antes de enviarlo
-    form.addEventListener('submit', function (e) {
-        // Restablecer mensaje de error
-        errorMessage.textContent = '';
-
-        // Verificar si el puerto, las fechas de recogida y entrega están vacíos
-        if (!portSelect.value || !pickupInput.value || !returnInput.value) {
-            e.preventDefault(); // Evitar el envío del formulario
-            errorMessage.textContent = '¡Por favor, selecciona un puerto y ambas fechas (recogida y entrega)!'; // Mostrar mensaje de error
-        }
-    });
-
-    // Cerrar el calendario si se hace clic fuera de él
-    document.addEventListener('click', function (event) {
-        if (!calendarEl.contains(event.target) && !event.target.matches('#pickup_date, #return_date')) {
-            calendarEl.style.display = 'none';  // Oculta el calendario
-        }
-    });
-
-    calendar.render();
-});
+      calendar.render();
+  });
 </script>
+@endsection
