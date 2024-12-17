@@ -5,6 +5,7 @@ use App\Http\Controllers\BoatController;
 use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 
+
 // Ruta de inicio
 Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
 
@@ -61,4 +62,5 @@ Route::prefix('admin')->group(function() {
     
     // Eliminar múltiples reservas
     Route::post('/reservations/destroyMultiple', [AdminReservationController::class, 'destroyMultiple'])->name('admin.reservations.destroyMultiple');
+    
 });

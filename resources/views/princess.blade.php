@@ -1,9 +1,10 @@
 @extends('layouts.public')
 
-@section('content')
-<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
-<link rel="stylesheet" href="{{ asset('css/princess.css') }}">
+@push('styles')
+@vite('resources/css/menu.css')
+@vite('resources/css/princess.css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+@push('styles')
 
 <!-- Menú fijo -->
 <header class="topbar">
@@ -269,9 +270,15 @@
     </div>
 </footer>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+@section('scripts')
+    <!-- Incluye el script de Vite -->
+    @vite('resources/js/loadMoreDescription2.js')
+
+    <!-- Otros scripts externos, si los necesitas -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+@endsection
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');

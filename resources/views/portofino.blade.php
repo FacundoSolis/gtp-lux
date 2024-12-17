@@ -1,11 +1,12 @@
 @extends('layouts.public')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
-<link rel="stylesheet" href="{{ asset('css/portofino.css') }}">
+@vite('resources/css/menu.css')
+@vite('resources/css/portofino.css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
-@endpush
+@push('styles')
 
+@section('content')
 <!-- Menú fijo -->
 <header class="topbar">
     <div class="topbar__logo">
@@ -194,7 +195,7 @@
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
-    @endif
+@endif
 
     <!-- Único formulario de reserva -->
     <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => 3]) }}" method="POST"> <!-- ID cambiado a 3 -->
@@ -251,6 +252,7 @@
         <button type="submit" class="btn btn-primary mt-3">Reservar</button>
     </form>
 </div>
+@endsection
 
 <!-- Footer -->
 <footer>
@@ -268,10 +270,13 @@
     </div>
 </footer>
 
-@push('scripts')
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+@section('scripts')
+    <!-- Incluye el script de Vite -->
+    @vite('resources/js/loadMoreDescription.js')
+    @vite('resources/js/componentes/app.jsx')
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+@endsection
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('availability-calendar');
