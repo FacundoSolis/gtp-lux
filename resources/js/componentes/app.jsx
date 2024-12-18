@@ -5,17 +5,17 @@ import ReactDOM from 'react-dom/client'; // Asegúrate de usar react-dom/client
 
 const App = () => {
     const [images, setImages] = useState([
-        'http://127.0.0.1:8000/img/val2.jpg',
-        'http://127.0.0.1:8000/img/val3.jpg',
-        'http://127.0.0.1:8000/img/val4.jpg',
-        'http://127.0.0.1:8000/img/val5.jpg',
+        `${baseUrl}/img/val2.jpg`,
+        `${baseUrl}/img/val3.jpg`,
+        `${baseUrl}/img/val4.jpg`,
+        `${baseUrl}/img/val5.jpg`,
     ]);
 
     const [moreImages, setMoreImages] = useState([
-        'http://127.0.0.1:8000/img/val6.jpg',
-        'http://127.0.0.1:8000/img/val7.jpg',
-        'http://127.0.0.1:8000/img/val8.jpg',
-        'http://127.0.0.1:8000/img/val9.jpg',
+        `${baseUrl}/img/val6.jpg`,
+        `${baseUrl}/img/val7.jpg`,
+        `${baseUrl}/img/val8.jpg`,
+        `${baseUrl}/img/val9.jpg`,
     ]);
 
     const loadMoreImages = () => {
