@@ -23,17 +23,17 @@ class Boat extends Model
 
     // En el modelo Boat.php
     public function isReserved($pickupDate, $returnDate)
-    {
-        return $this->reservations()
-            ->where(function ($query) use ($pickupDate, $returnDate) {
-                $query->whereBetween('pickup_date', [$pickupDate, $returnDate])
-                    ->orWhereBetween('return_date', [$pickupDate, $returnDate])
-                    ->orWhere(function ($query) use ($pickupDate, $returnDate) {
-                        $query->where('pickup_date', '<=', $pickupDate)
-                                ->where('return_date', '>=', $returnDate);
-                    });
-            })
-            ->exists();
-    }
+{
+    return $this->reservations()
+        ->where(function ($query) use ($pickupDate, $returnDate) {
+            $query->whereBetween('pickup_date', [$pickupDate, $returnDate])
+                ->orWhereBetween('return_date', [$pickupDate, $returnDate])
+                ->orWhere(function ($query) use ($pickupDate, $returnDate) {
+                    $query->where('pickup_date', '<=', $pickupDate)
+                          ->where('return_date', '>=', $returnDate);
+                });
+        })
+        ->exists();
+}
 
 }

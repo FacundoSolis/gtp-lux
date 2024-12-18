@@ -401,25 +401,35 @@ background-repeat: no-repeat; /* Evita repeticiones */
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  flex-wrap: wrap;
   margin-bottom: 50px;
 }
 
 /* slider2*/
 .info-row.reverse {
-  flex-direction: row-reverse;
+  display: flex; /* Usar flexbox para el alineamiento */
+  flex-direction: row-reverse; /* Imagen a la derecha, texto a la izquierda */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  margin-top: 50px;
+  margin-left: 0;
+  gap: 30px; /* Espaciado entre la imagen y el texto */
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* Imagen2 slider*/
 .slider-with-arrows {
+  width: 43%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 43%;
   margin-left: 0;
   margin-right: 0;
-  box-shadow: 0 0 30px 10px rgba(245, 192, 50, 0.6); /* Luz de fondo */
-  border-radius: 20px; /* Borde redondeado para el efecto */
-  transition: box-shadow 0.3s ease; /* Transición para un efecto más suave */
+  box-shadow: 0 0 30px 10px rgba(245, 192, 50, 0.6);
+  border-radius: 20px;
+  transition: box-shadow 0.3s ease;
 }
 
 .slider-with-arrows:hover {
@@ -443,7 +453,6 @@ background-repeat: no-repeat; /* Evita repeticiones */
 .slides img {
   width: 100%; /* Ajusta el tamaño de las imágenes dentro del slider */
   height: auto;
-  display: block;
   object-fit: cover;
   margin: 0 auto;
   border-radius: 15px; /* Bordes redondeados para la tarjeta */
@@ -454,6 +463,8 @@ background-repeat: no-repeat; /* Evita repeticiones */
   transform: scale(1.05); /* Eleva la tarjeta al pasar el cursor */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Aumenta la sombra para mayor contraste */
 }
+
+
 
 /* Botones slider*/
 button.prev,
@@ -806,9 +817,8 @@ section.banner h2 {
   box-shadow: 0 2px 5px rgba(245, 192, 50, 0.5);
 }
 
-
 .slider-container {
-  padding: 15px 10px;
+  padding: 10px 5px;
 }
 .slider-title {
   font-size: 1.5rem;
@@ -817,10 +827,10 @@ section.banner h2 {
   margin-bottom: 15px;
 }
 .slider-title::after {
-  content: "";
   position: absolute;
   bottom: -30px;
-  left: 50%;
+  align-items: center;
+  justify-content: center;
   transform: translateX(-50%);
   width: 40%;
   height: 1px;
@@ -828,10 +838,9 @@ section.banner h2 {
   transition: height 0.3s ease-in-out;
 }
 .info-row {
-  display: block;
-  justify-items: center;
-  align-items: center;
-  margin-top: 50px;
+  flex-direction: column;  /* Cambia a columna en lugar de fila */
+  width: 100%;
+  margin-top: 30px;
 }
 .slider-with-arrows {
   width: 80%;
