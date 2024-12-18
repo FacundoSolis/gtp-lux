@@ -199,7 +199,7 @@
     @endif
 
     <!-- Único formulario de reserva -->
-    <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => 3]) }}" method="POST"> <!-- ID cambiado a 3 -->
+    <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => 3]) }}" method="POST"> <!-- ID cambiado a 4 -->
         @csrf
         <input type="hidden" name="boat_id" value="3"> <!-- ID de Princess V65 -->
 

@@ -6,6 +6,7 @@ body {
   color: var(--color);
   background: none;
   padding: 0;
+  margin-top: 0 !important;
 }
 
 html {
@@ -58,7 +59,7 @@ section.banner {
 
 .banner-content {
   position: relative;
-  z-index: 0;
+  z-index: 2;
   margin-top: 30px;
   padding-top: 0;
 
@@ -131,36 +132,32 @@ iframe {
 /* Contenedor del formulario incrustado */
 .reservation-form-wrapper {
   position: absolute;
-  top: 60vh; /* Ajusta según el tamaño del banner */
+  top: 45vh; /* Ajusta según el tamaño del banner */
   left: 50%;
   transform: translate(-50%, -20%); /* Para centrar y hacerlo sobresalir */
   z-index: 5; /* Por encima del banner */
   width: 40%;
   background: transparent;
-  padding: 30px;
-  box-shadow: 0 0 30px 10px rgba(245, 192, 50, 0.6); /* Luz de fondo */
-  border-radius: 20px;
-  transition: box-shadow 0.3s ease; /* Transición para un efecto más suave */
-}
-
-.reservation-form-wrapper:hover {
-  box-shadow: 0 0 50px 15px rgba(245, 192, 50, 0.8); /* Intensifica la luz al pasar el cursor */
+  padding: 20px;
+  padding-left: 20px;
 }
 
 /* Estilo de la tarjeta del formulario */
 .reservation-form-wrapper .card {
   background: white;
   box-shadow: none; /* Sin sombras */
-  border-radius: 20px; /* Mantiene bordes redondeados */
-  width: 100%; /* El formulario ocupa todo el ancho de la caja */
+  border-radius: 10px; /* Mantiene bordes redondeados */
+  width: 50%; /* El formulario ocupa todo el ancho de la caja */
   display: flex;
+  padding: 0;
   flex-direction: column;
   align-items: center; /* Centra los elementos del formulario */
 }
 
+
 .reservation-form-wrapper .card-body {
-  width: 170%; /* Formulario más ancho dentro de la caja */
-  padding: 20px;
+  width: 140%; /* Formulario más ancho dentro de la caja */
+  padding: 10px;
   background: white; /* Fondo blanco solo para el contenido del formulario */
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -168,15 +165,19 @@ iframe {
 
 /* Ajustes para el botón de reserva */
 .reservation-form-wrapper .btn-form {
-  display: block;
-  width: 100%;
+  display: block; /* Bloque para ocupar todo el ancho disponible */
+  margin: 10px auto; /* Centrado horizontal automático */
+  width: 50%; /* Ancho del botón */
+  height: auto; /* Ajusta la altura al contenido */
+  text-align: center; /* Alinea el texto dentro del botón */
   background: linear-gradient(45deg, #f5c032, #d4af37);
   color: black;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 10px;
-  padding: 10px;
+  margin-bottom: 0;
+  padding: 5px;
   border: none;
   transition: background 0.3s ease, transform 0.3s ease;
 }
@@ -188,46 +189,85 @@ iframe {
 }
 
 #availability-calendar {
-  width: 100%;
-  max-width: 100%; /* Evita que el calendario se expanda más de lo necesario */
-  height: 300px; /* Ajusta la altura como desees */
-  overflow: hidden; /* Si es necesario, agrega esta propiedad para evitar desbordes */
-  display: none;
+  width: 100%; /* Ajusta el ancho */
+  max-width: 350px; /* Limita el ancho */
+  height: 255px; /* Altura del calendario */
+  border: 1px solid #dcdcdc;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra compacta */
+  background: white; /* Fondo blanco */
+  margin: 10px auto; /* Centra el calendario */
+  overflow: hidden; /* Elimina el scroll en el contenedor externo */
 }
-.form-control {
-  width: 100%;
+#availability-calendar .fc-scroller {
+  max-height: 240px; /* Limita la altura interna para permitir el scroll */
+  overflow-y: auto; /* Activa el scroll solo en este nivel */
+}
+
+/* Ajuste del scroll para mejor experiencia */
+#availability-calendar::-webkit-scrollbar {
+  width: 8px;
+}
+.mb-3 {
+  margin-bottom: 0.2rem !important;
+}
+.reservation-form-wrapper .form-control {
+  width: 100%; /* Mantiene el ancho completo */
+  height: 30px; /* Reduce la altura */
+  font-size: 0.9rem; /* Ajusta el tamaño de fuente */
+  padding: 5px 10px; /* Reduce el padding interno */
+  border-radius: 5px; /* Bordes ligeramente redondeados */
+}
+
+/* Etiquetas del formulario */
+.reservation-form-wrapper .form-label {
+  margin-bottom: 5px; /* Reduce espacio inferior */
+  font-size: 0.85rem; /* Reduce el tamaño de fuente */
+}
+
+/* Ajuste general para filas */
+.mb-3.row {
+  margin-bottom: 10px; /* Espaciado menor entre filas */
 }
 .fc {
-  font-size: 14px; /* Controla el tamaño de fuente */
+  font-size: 12px; /* Controla el tamaño de fuente */
 }
-
 .fc-header-toolbar {
-  font-size: 16px; /* Ajusta el tamaño de la barra de herramientas */
+  font-size: 13px; /* Ajusta el tamaño de la barra de herramientas */
 }
 .fc-day {
-  min-width: 40px; /* Controla el tamaño mínimo de las celdas */
-  max-width: 40px; /* Limita el ancho máximo */
+  min-width: 20px; /* Controla el tamaño mínimo de las celdas */
+  max-width: 20px; /* Limita el ancho máximo */
 }
-
+.fc .fc-button {
+font-size: 1em;
+line-height: 1;
+}
 .date-picker {
   width: 100%;
   height: 40px;
 }
+.fc .fc-toolbar-title {
+    font-size: 1.2rem;
+    margin: 0px;
+}
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 1rem;
+}
+
+
 /* Estilos generales */
 .luxury-section {
+  position: relative;
+  z-index: 1;
   text-align: center;
   margin: auto;
-  padding-bottom: 50px;
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.8), /* Empieza oscuro */
-      rgba(50, 50, 50, 0.6),
-      rgba(255, 255, 255, 0.1)); /* Termina translúcido */
+  padding-bottom: 150px;
   background-color: black; /* Fallback para navegadores sin soporte */
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  padding-top: 350px;
+  padding-top: 150px;
 }
 
 .luxury-section::before {
@@ -237,7 +277,7 @@ iframe {
   left: 0;
   width: 100%;
   height: 150px;
-  background: linear-gradient(to bottom, transparent, #f0f0f0); /* Cambia colores según diseño */
+  background: linear-gradient(to bottom, transparent); /* Cambia colores según diseño */
   z-index: -1;
 }
 
@@ -245,6 +285,7 @@ iframe {
   font-size: 2rem;
   margin-bottom: 30px;
   color: white;
+  z-index: 1;
 }
 
 /* Contenedor de las tarjetas */
@@ -316,17 +357,18 @@ iframe {
   max-width: 100%;
   margin: 0;
   background: linear-gradient(
-      rgba(0, 0, 0, 0.8),
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.8)
-    ),
-    url('/img/fondo-mar.jpg'); /* Imagen de fondo */
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  color: white;
-  box-sizing: border-box;
+    to bottom,
+    rgba(0, 0, 0, 0.8), /* Oscurece en la parte superior */
+    rgba(50, 50, 50, 0.6), /* Gradiente intermedio */
+    rgba(255, 255, 255, 0.1) /* Ligero en la parte inferior */
+  ),
+  url('/public/img/fondo-mar.jpg'); /* Ruta a la imagen de fondo */
+background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+background-attachment: fixed; /* Fondo fijo al hacer scroll */
+background-position: center; /* Centra la imagen */
+background-repeat: no-repeat; /* Evita repeticiones */
 }
+
 .slider-title {
   font-size: 3rem;
   color: white;
@@ -528,29 +570,6 @@ nav a {
   left: -10%;
 }
 
-.btn-primary {
-  color: #fff;
-  width: 20%;
-  background-color: #007bff;
-  border-color: #007bff;
-  text-align: center;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: none;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
-  color: white;
-}
-
-.btn-primary::before {
-  content: none;
-}
-
 /* Mapa */
 .map-container {
   position: relative;
@@ -592,13 +611,16 @@ nav a {
   gap: 20px;
   margin-top: 20px;
   background: linear-gradient(
-      rgba(0, 0, 0, 0.9), /* Oscurecimiento adicional */
-      rgba(0, 0, 0, 0.7)
+      to bottom,
+      rgba(0, 0, 0, 0.8), /* Oscurece en la parte superior */
+      rgba(50, 50, 50, 0.6), /* Gradiente intermedio */
+      rgba(255, 255, 255, 0.1) /* Ligero en la parte inferior */
     ),
-    url('/img/lineas.jpg'); /* Ruta de la imagen */
-  background-size: cover; /* Mantén las proporciones originales de la imagen */
-  background-repeat: no-repeat; /* Evita repetir la imagen */
-  background-position: center; /* Centra la imagen de fondo */
+    url('/public/img/lineas-mapa.jpg'); /* Ruta a la imagen de fondo */
+  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+  background-attachment: fixed; /* Fondo fijo al hacer scroll */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita repeticiones */
   padding: 50px;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
@@ -624,7 +646,7 @@ nav a {
       rgba(0, 0, 0, 0.8),
       rgba(0, 0, 0, 0.5)
     ),
-    url('/img/land-img.jpg'); /* Ajusta la ruta según tu estructura */
+    url('/public/img/fondo-form.jpg'); /* Ruta a la imagen de fondo */
   background-size: cover;
   background-attachment: fixed; /* Fija el fondo mientras se hace scroll */
   background-position: center;
@@ -697,11 +719,6 @@ textarea {
 }
 
 footer {
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.8), /* Empieza oscuro */
-      rgba(50, 50, 50, 0.6),
-      rgba(255, 255, 255, 0.1)); /* Termina translúcido */
   background-color: black; /* Fallback para navegadores sin soporte */
   background-size: cover;
   padding: 20px 0;
@@ -749,120 +766,202 @@ footer {
   color: white;
 }
 
+/*RESPONSIVE*/
+
 @media (max-width: 768px) {
-  .banner-content h1 {
-    font-size: 2rem;
-  }
+section.banner h1{
+  font-size: 2rem;
+}
+section.banner .logo {
+  width: 20vh;
+  margin-top: 40px;
+}
+section.banner h2 {
+  font-size: 1.5rem;
+}
+.reservation-form-wrapper {
+  position: absolute;
+  top: 40vh;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  z-index: 5;
+  width: 150%;
+  background: transparent;
+  padding: 20px;
+  padding-left: 20px;
+}
+.luxury-title {
+  font-size: 1.5rem;
+}
+.luxury-iconCard {
+  width: 240px;
+  height: 250px;
+}
 
-  .banner-content h2 {
-    font-size: 3rem;
-  }
+.luxury-icon {
+  width: 70px;
+  height: 70px;
+  background-size: 40%;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(245, 192, 50, 0.5);
+}
 
-  .text-home .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 20px;
-  }
 
-  .text-column h2 {
-    text-align: center;
-    font-size: 2rem;
-  }
+.slider-container {
+  padding: 15px 10px;
+}
+.slider-title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+.slider-title::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, white, transparent);
+  transition: height 0.3s ease-in-out;
+}
+.info-row {
+  display: block;
+  justify-items: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.slider-with-arrows {
+  width: 80%;
+}
+.slides img {
+  width: 100%;
+  height: auto;
+}
+.info-text {
+  text-align: center;
+  max-width: 90%;
+  margin-bottom: 15px;
+}
+.info-text a{
+  margin-top: 10px;
+  display: inline-block;
+}
+.info-text h3 {
+  font-size: 1.8rem;
+  margin-top: 5px;
+}
+.info-text p {
+  margin-top: 15px;
+}
+.info-text button {
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+#reservation-btn {
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  max-width: 150px;
+  border-radius: 5px;
+  margin: 15px auto;
+  text-align: center;
+  background-color: linear-gradient (45deg, #d4af37, #f5c032);
+}
 
-  .text-column p {
-    text-align: center;
-    font-size: 1.2rem;
-    line-height: 1.5;
-  }
+.map-container {
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+}
+.map-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(50, 50, 50, 0.6), rgba(255, 255, 255, 0.1)), url(http://[::1]:5173/public/img/lineas-mapa.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  position: relative;
+  border-radius: 0;
+}
 
-  .image-column {
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+  gap: 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(http://[::1]:5173/public/img/fondo-form.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  border-radius: 1px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  color: white;
+}
+.form-card {
+  width: 100%;
+  max-width: 350px;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+.form-container form {
     width: 100%;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .image-column .oval-image {
-    width: 70%;
     height: auto;
-  }
+}
+.form-button {
+  font-size: 1rem;
+  padding: 12px 20px;
+}
+textarea {
+  height: 70px;
+}
 
-  .slider-container {
-    padding: 40px 20px;
-  }
-
-  .slider-title {
-    font-size: 1.8rem;
-    text-align: center;
-    margin: 0 auto;
-    margin-bottom: 20px;
-  }
-
-  .slider-title::after {
-    content: "";
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40%;
-    height: 2px;
-    background: linear-gradient(to right, transparent, white, transparent);
-    transition: height 0.3s ease-in-out;
-  }
-
-  .info-row {
-    display: block;
-    padding: 15px 0;
-  }
-
-  .slider-with-arrows {
-    width: 100%;
-  }
-
-  .slides img {
-    width: 100%;
-    height: auto;
-  }
-
-  .info-text {
-    text-align: center;
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .info-text h3 {
-    font-size: 2rem;
-  }
-
-  .info-text button {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
-
-  #reservation-btn {
-    font-size: 0.8rem;
-    padding: 8px 12px;
-    max-width: 150px;
-    border-radius: 5px;
-    margin: 10px auto;
-    text-align: center;
-    background-color: linear-gradient (45deg, #d4af37, #f5c032);
-  }
-
-  .map-container {
-    width: 100%;
-    height: 250px;
-    margin-top: 20px;
-  }
-
-  .form-container form {
-    width: 100%;
-  }
-
-  .form-button {
-    font-size: 1rem;
-    padding: 12px 20px;
-  }
-
+.footer-container {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección para que los elementos se apilen verticalmente */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  max-width: 1200px;
+  margin: 0 auto; /* Centra el contenedor en la página */
+  padding: 20px; /* Agrega espacio alrededor del contenido */
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+.footer-left {
+  text-align: center; /* Centra el contenido dentro de esta sección */
+}
+.footer-logo {
+  max-width: 150px; /* Ajusta el tamaño del logo */
+  margin-bottom: 15px; /* Agrega espacio debajo del logo */
+}
+.social-icons {
+  display: flex;
+  justify-content: center; /* Centra los íconos horizontalmente */
+  gap: 10px; /* Espaciado entre los íconos */
+  margin: 15px 0; /* Espaciado superior e inferior */
+}
+.social-icons img {
+  width: 30px; /* Tamaño de los íconos */
+  height: 30px;
+}
+.contact-email,
+.location {
+  margin: 5px 0; /* Espaciado entre las líneas de texto */
+}
 }
