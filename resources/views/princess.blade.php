@@ -270,6 +270,8 @@
         <div class="footer-right"></div>
     </div>
 </footer>
+@endsection
+
 
 @section('scripts')
     <script>
