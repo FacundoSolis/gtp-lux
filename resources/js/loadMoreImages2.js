@@ -1,40 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const additionalImagesPrincess = [
-        "{{ asset('img/princess1.jpg') }}",
-        "{{ asset('img/princess2.jpg') }}",
-        "{{ asset('img/princess3.jpg') }}",
-        "{{ asset('img/princess4.jpg') }}"
-    ];
-
-    const loadMoreButton = document.getElementById('loadMoreButton'); // Botón específico
-    const modalContainer = document.getElementById('modalImagesContainer'); // Contenedor modal específico
-    const imageModalElement = document.getElementById('imageModal'); // Modal específico
+    const additionalImages = window.additionalImages; // Obtener imágenes globales
+    const loadMoreButton = document.getElementById('loadMoreButton');
+    const modalContainer = document.querySelector('.modal-images-container');
+    const imageModalElement = document.getElementById('imageModal');
     const imageModal = new bootstrap.Modal(imageModalElement);
 
     // Función para cargar más imágenes en el modal
     const loadMoreImages = () => {
-        modalContainer.innerHTML = ''; // Limpia el contenedor
+        // Limpiamos las imágenes previas del modal
+        modalContainer.innerHTML = '';
 
-        // Inserta las imágenes adicionales específicas
-        additionalImagesPrincess.forEach((imageUrl) => {
+        // Añadimos las nuevas imágenes al modal
+        additionalImages.forEach((imageUrl) => {
             const imgDiv = document.createElement('div');
             imgDiv.classList.add('productCover__img--small');
             imgDiv.style.backgroundImage = `url(${imageUrl})`;
             modalContainer.appendChild(imgDiv);
         });
 
-        // Muestra el modal
+        // Mostrar el modal
         imageModal.show();
 
-        // Oculta el botón
+        // Ocultar el botón después de cargar las imágenes
         loadMoreButton.style.display = 'none';
     };
 
-    // Evento para el botón "Ver más fotos"
+    // Evento click para el botón
     loadMoreButton.addEventListener('click', loadMoreImages);
 
-    // Evento para restablecer el botón cuando se cierra el modal
-    imageModalElement.addEventListener('hidden.bs.modal', () => {
+    // Evento para mostrar el botón nuevamente cuando se cierre el modal
+    imageModalElement.addEventListener('hidden.bs.modal', function () {
         loadMoreButton.style.display = 'block';
     });
 });

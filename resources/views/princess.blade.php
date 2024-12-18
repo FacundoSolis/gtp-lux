@@ -272,7 +272,14 @@
 </footer>
 
 @section('scripts')
-    <!-- Incluye el script de Vite -->
+    <script>
+            window.additionalImages = [
+                "{{ asset('img/val5.jpg') }}",
+                "{{ asset('img/val6.jpg') }}",
+                "{{ asset('img/val7.jpg') }}",
+                "{{ asset('img/val8.jpg') }}"
+    ];
+    </script>
     @vite('resources/js/loadMoreDescription2.js')
     @vite('resources/js/loadMoreImages2.js') <!-- Script exclusivo para Princess -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
