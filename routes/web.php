@@ -18,7 +18,6 @@ Route::get('/available-boats', [ReservationController::class, 'showAvailableBoat
 Route::get('/boat/{boat_id}', [BoatController::class, 'showBoatPage'])->name('boat.page');
 
 // Rutas para las páginas específicas de los barcos
-Route::get('/portofino', [BoatController::class, 'showSunseekerPortofino'])->name('portofino');
 Route::get('/princess', [BoatController::class, 'showPrincessV65'])->name('princess');
 
 // Ruta dinámica para reservar cualquier barco
