@@ -39,10 +39,10 @@
 <section class="productCover">
     <div class="productCover__imagesContainer">
         <div class="productCover__sideImgs" id="imageContainer">
-            <div class="productCover__img--small" style="background-image: url('{{ asset('img/princess1.jpg') }}');"></div>
-            <div class="productCover__img--small" style="background-image: url('{{ asset('img/princess2.jpg') }}');"></div>
-            <div class="productCover__img--small" style="background-image: url('{{ asset('img/princess3.jpg') }}');"></div>
-            <div class="productCover__img--small" style="background-image: url('{{ asset('img/princess4.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val1.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val2.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val3.jpg') }}');"></div>
+            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val4.jpg') }}');"></div>
         </div>
     </div>
     <div class="productCover__ctaContainer">
