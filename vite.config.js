@@ -12,14 +12,15 @@ export default defineConfig({
                 'resources/css/menu.css',
                 'resources/css/princess.css',
                 'resources/css/portofino.css',
-                'resources/css/style.css', // Si tienes más estilos, agrégalos aquí
-                'resources/css/available-boats.css', // Si tienes más estilos, agrégalos aquí
+                'resources/css/style.css', 
+                'resources/css/available-boats.css',
 
 
                 // Scripts
                 'resources/js/componentes/app.jsx',
                 'resources/js/slider.js',
                 'resources/js/loadMoreImages.js',
+                'resources/js/loadMoreImages2.js',
                 'resources/js/loadMoreDescription.js',
                 'resources/js/loadMoreDescription2.js',
             ],
