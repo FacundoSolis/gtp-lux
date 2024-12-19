@@ -43,68 +43,42 @@ header {
 }
 
 
-.nav-menu {
-  display: flex;
-}
-
-.nav-menu ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-menu ul li {
-  margin: 0 20px;
-}
-
-.nav-menu ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.nav-menu ul li a:hover {
-  color: #d4af37;
-}
-
-.hamburger-menu {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 20px;
-  cursor: pointer;
-  margin-left: 20px;
-}
-
-.hamburger-menu span {
-  display: block;
-  height: 3px;
-  background-color: white;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
+/* TITULO */
 .container-valkyrya h2 {
   font-size: 2rem;
   padding-top: 120px;
   padding-left: 145px;
   color: black;
 }
-
+/* PARRAFOS */
 .description-boat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   font-size: 1rem;
   padding-left: 145px;
+  text-align: left;
   width: 50%;  /* Limita el ancho de la sección al 50% */
   background-color: #ffffff; /* Fondo blanco */
   color: #000000; /* Color de texto negro */
+  max-width: 800px;
+  box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
 }
 
 .description-boat p {
   max-width: 100%; /* Asegura que el párrafo ocupe el 100% del ancho de su contenedor */
   margin: 0 auto;  /* Centra el párrafo dentro de su contenedor */
+  width: 100%;
+}
+.description-boat button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  background-color: white;
+  color: #007BFF;
+  padding-left:0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .modal-description-container {
@@ -156,7 +130,7 @@ header {
   outline: none;         /* Elimina el borde del enfoque */
   background: none;      /* Elimina el fondo del botón */
   color: #007BFF;        /* Color de texto azul */
-  font-size: 16px;       /* Tamaño de la fuente */
+  font-size: 18px;       /* Tamaño de la fuente */
   font-weight: bold;     /* Hacer el texto en negrita (opcional) */
   cursor: pointer;      /* Cambia el cursor al pasar por encima */
   padding: 0;            /* Elimina el padding (espaciado interno) */
@@ -168,21 +142,22 @@ header {
   text-decoration: underline; /* Subraya el texto cuando se pasa por encima */
 }
 
-/* Imágenes del barco */
+/* SLIDER IMAGENES */
 .productCover__imagesContainer {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-top: 50px;
+  display: flex;
+  justify-content: center; /* Centra las imágenes horizontalmente */
+  align-items: center; /* Centra las imágenes verticalmente */
+  margin-top: 50px;
+  flex-wrap: wrap; /* Permite que las imágenes se ajusten y se alineen en filas si es necesario */
 }
 
 .productCover__sideImgs {
 display: flex;
 justify-content: center;
+flex-wrap: wrap; /* Permite que las imágenes se ajusten a la pantalla */
 gap: 15px;
 margin-top: 10px;
 }
-
 .productCover__img--small {
 width: 400px;
 height: 400px;
@@ -223,14 +198,14 @@ transition: background-color 0.3s ease;
 background-color: #0056b3;
 }
 
-/* Caracteristicas y caja de iconos */
+/* CAJA caracteristicas */
 .layout {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
 }
-
+/* Caracteristicas barco*/
 .characteristics {
   background-color: #0E1724;
   border: 1px solid #2D353F;
@@ -270,6 +245,7 @@ background-color: #0056b3;
   font-size: 1rem;
 }
 
+/* Especificaciones barco*/
 .right-boxes {
 display: flex;
 flex-direction: column;
@@ -277,24 +253,20 @@ margin-right: 145px;
 gap: 20px;
 width: 35%;
 }
-
 .right-boxes h3 {
 margin-bottom: 20px;
 margin-top: 20px;
 font-size: 1.5rem;
 color: black;
 }
-
 .row {
 display: flex;
 gap: 10px;
-justify-content: flex-start;  /* Asegura que los elementos en la fila estén alineados a la izquierda */
+justify-content: flex-start; 
 }
-
 .row.large .box {
 width: calc(50% - 5px);
 }
-
 .box {
 flex: 1;
 height: 100px;
@@ -302,7 +274,7 @@ background-color: #2D353F;
 border: 1px solid #FFFFFF;
 border-radius: 8px;
 display: flex;
-flex-direction: column;  /* Coloca los íconos y el texto en columna */
+flex-direction: column; 
 justify-content: center;
 align-items: center;
 color: #FFFFFF;
@@ -311,10 +283,9 @@ text-align: center;
 padding: 10px;
 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
-
 .box i {
-font-size: 2rem; /* Ajusta el tamaño de los íconos */
-margin-bottom: 5px; /* Espacio entre el ícono y el texto */
+font-size: 2rem; 
+margin-bottom: 5px; 
 }
 
 .pricing-details-columns {
@@ -325,7 +296,7 @@ margin-bottom: 5px; /* Espacio entre el ícono y el texto */
   max-width: 1200px;
   padding: 0 20px;
 }
-
+/* Inlcuido en el precio*/
 .characteristics2, .characteristics3 {
   background-color: #F4F4F4;
   margin-top: 30px;
@@ -334,13 +305,11 @@ margin-bottom: 5px; /* Espacio entre el ícono y el texto */
   width: 40%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
-
 .characteristics2 h3, .characteristics3 h3 {
   margin-bottom: 20px;
   font-size: 1.2rem;
   color: black;
 }
-
 .info-list2, .info-list3 {
   display: flex;
   flex-direction: column;
@@ -474,55 +443,32 @@ text-align: center;
 background-color: #f9f9f9;
 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 #price-summary {
 display: block !important;
 visibility: visible !important;
 opacity: 1 !important;
 }
-
 .price-card h5 {
 font-size: 18px;
 color: #343A40;
 margin-bottom: 10px;
 }
-
 .price-card p {
 font-size: 16px;
 color: #007BFF;
-}
-
-.form-row {
-  display: flex;
-  gap: 20px;
-}
-
-.form-row .col {
-  flex: 1;
-}
-
-.form-row .col input {
-  text-align: center;
-}
-
-.container h1 {
-  color: black;
 }
 
 /* Cambiar color de las etiquetas del formulario */
 .form-label {
   color: black; /* Color de las etiquetas */
 }
-
-/* Cambiar el color de los placeholders dentro de los campos del formulario */
 .form-control::placeholder {
   color: black; /* Color del texto del placeholder */
 }
-
 .btn-primary {
   margin-bottom: 20px;
 }
-
+/*Footer*/
 footer {
   position: relative;
   bottom: 0;
@@ -532,7 +478,6 @@ footer {
   text-align: left;
   padding: 20px 0;
 }
-
 .footer-container {
   display: flex;
   justify-content: space-between;
@@ -540,38 +485,31 @@ footer {
   margin: 0 auto;
   padding: 0 20px;
 }
-
 .footer-left {
   width: 50%;
 }
-
 .footer-logo {
   max-width: 100px;
 }
-
 .social-icons {
   margin-top: 10px;
 }
-
 .social-icons a {
   margin-right: 15px;
 }
-
 .social-icons img {
   width: 30px;
   height: 30px;
 }
-
 .contact-email, .location {
   margin-top: 10px;
 }
-
 .footer-right {
   width: 50%;
 }
 
 
-/* MOVIL */
+/* RESPONSIVE ---------------------------------------------------------- */
 
 @media (max-width: 768px) {
 .header-valkyrya {
@@ -594,202 +532,258 @@ footer {
   margin-top: 20px;
 }
 .nav-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    text-align: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: center;
 }
 .nav-menu ul li {
-    margin: 10px 0px;
+  margin: 10px 0px;
 }
 #nav-menu ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2rem;
-    padding: 10px 0;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 0;
+  transition: color 0.3s ease;
 }
 #nav-menu ul li a:hover {
-    color: #d4af37;
+  color: #d4af37;
 }
 .nav-menu.active {
-    display: flex;
+  display: flex;
 }
 .hamburger-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    position: relative;
-    margin-left: 40px;
-    margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 .hamburger-menu span {
-    display: block;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+  display: block;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 .hamburger-menu.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .hamburger-menu.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger-menu.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-  .banner-content h1 {
-    font-size: 1.5rem;
-  }
-  .banner-content h2 {
-    font-size: 1.2rem;
-  }
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-menu.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+.banner-content h1 {
+  font-size: 1.5rem;
+}
+.banner-content h2 {
+  font-size: 1.2rem;
+}
 
+.text-home .container {
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
 
-  .text-home .container {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
+.text-column h2 {
+  text-align: center;
+  font-size: 1.8rem;
+}
 
-  .text-column h2 {
-    text-align: center;
-    font-size: 1.8rem;
-  }
+.text-column p {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+}
 
-  .text-column p {
-    text-align: center;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
+/* texto descripcion del barco */
+.description-boat {
+  max-width: 100%; /* En móviles, el contenedor ocupa el 100% del ancho */
+  padding-left: 20px; /* Mantiene el padding lateral en móviles */
+  padding-right: 20px; /* Mantiene el padding lateral en móviles */
+  align-items: center; /* Centra el contenido horizontalmente en móviles */
+  text-align: center; /* Centra el texto en móviles */
+  width: 100%;
+}
+.description-boat p {
+  font-size: 1.1rem; /* Ajusta el tamaño del texto para que no ocupe demasiado espacio vertical */
+  max-width: 200%; /* Asegura que el párrafo ocupe todo el ancho disponible */
+  width: 100%; /* Hace que el párrafo ocupe el 100% del ancho disponible */
+  margin-left: auto; /* Centra el párrafo horizontalmente */
+  margin-right: auto; /* Centra el párrafo horizontalmente */
+  line-height: 1.5; /* Mejora la legibilidad */
+}
+.description-boat h3 {
+  font-size: 1.5rem; /* Ajusta el tamaño del título en móviles */
+  margin-bottom: 10px; /* Añade algo de espacio debajo del título */
+  margin-top: 20px;
+  margin-left: auto; /* Centra el párrafo horizontalmente */
+  margin-right: auto; /* Centra el párrafo horizontalmente */
+}
+.description-boat button {
+  margin-left: auto; /* Centra el párrafo horizontalmente */
+  margin-right: auto; /* Centra el párrafo horizontalmente */
 
-  .description-boat {
-    display: flex; /* Usa Flexbox para organizar los elementos */
-    flex-direction: column; /* Organiza los elementos verticalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
-    align-items: center; /* Centra los elementos horizontalmente */
-    text-align: center; /* Centra el texto dentro de los elementos */
-    padding: 20px; /* Añade un poco de espacio alrededor de la sección */
-    margin: 0 auto; /* Centra la sección dentro de su contenedor */
-    max-width: 800px; /* Limita el ancho máximo del contenido */
-  }
+}
 
-  .description-boat h3 {
-    font-size: 1.8rem; /* Ajusta el tamaño del título si es necesario */
-    margin-bottom: 10px; /* Añade un poco de espacio debajo del título */
-  }
-  .description-boat h4 {
-    font-size: 0; /* Ajusta el tamaño del título si es necesario */
-    margin-bottom: 10px; /* Añade un poco de espacio debajo del título */
-  }
+/* CAJAS */
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.characteristics {
+  width: 90%;  /* Ocupa el 90% del ancho en móviles */
+  margin-left: 0;  /* Elimina el margen izquierdo */
+  margin-top: 20px;  /* Reduce el margen superior */
+}
 
-  .description-boat p {
-    font-size: 1rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    max-width: 100%; /* Ajusta el ancho máximo del párrafo */
-    width: 100%; /* Asegura que ocupe todo el ancho posible dentro de su contenedor */
-    text-align: center; /* Alinea el texto a la izquierda */
-  }
+.characteristics h3 {
+  font-size: 1.2rem;  /* Reduce el tamaño del título en móviles */
+}
 
-  .description-boat button {
-    font-size: 1rem; /* Ajusta el tamaño del botón */
-    padding: 10px 20px; /* Añade algo de espacio dentro del botón */
-    background-color: #007BFF; /* Color de fondo del botón */
-    color: white; /* Color del texto */
-    border: none; /* Elimina el borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de mano para indicar que es clickeable */
-    transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
-  }
-  
+/* Para la lista de características */
+.info-list {
+  display: block;  /* Hace que los elementos se apilen verticalmente */
+}
 
 .info-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 10px;
-  }
-
-.info-text {
-    text-align: center;
-    max-width: 100%;
-    margin-bottom: 10px;
+  display: block;  /* Cambia la disposición a bloque */
+  padding: 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;  /* Añade margen entre las filas */
 }
 
-  .info-text h3 {
-    font-size: 1.4rem;
-  }
-
-  .info-text button {
-    font-size: 0.8rem;
-    padding: 8px 12px;
-  }
-
-
-  .info-row span {
-    font-size: 0.9rem;
-  }
-
-  .right-boxes {
-    width: 100%;
-    gap: 10px;
-  }
-
-  .row.large .box {
-    width: 100%;
-  }
-
-  .box {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-
-  .form-container {
-    flex-direction: column;
-    gap: 20px;
-    padding: 10px;
-  }
-
-  .form {
-    width: 100%;
-    padding: 15px;
-  }
-
-  .form label {
-    font-size: 0.9rem;
-  }
-
-  .form input[type="submit"] {
-    padding: 8px 10px;
-  }
-
-  .reservation {
-    padding: 20px;
-  }
-
-  .reservation h3 {
-    font-size: 1rem;
-  }
-
-  footer {
-    text-align: center;
-  }
-
-  .footer-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .social-icons img {
-    width: 25px;
-    height: 25px;
-  }
+/* Especificaciones del Barco */
+.right-boxes {
+  width: 90%;  /* Ocupa el 90% del ancho en móviles */
+  margin-right: 0;  /* Elimina el margen derecho */
+  display: flex;  /* Utilizamos flexbox para alinear los elementos */
+  flex-direction: column;  /* Asegura que las filas se apilen verticalmente */
+  align-items: center;  /* Centra los elementos en el eje horizontal */
+  gap: 20px;  /* Espaciado entre las filas */
+  margin: 0 auto;  /* Centra el contenedor */
 }
+
+.right-boxes h3 {
+  font-size: 1.2rem;  /* Reduce el tamaño del título en móviles */
+  text-align: center;
+  font-weight:bold ;
+}
+
+/* Para las filas en móviles */
+.row {
+  display: flex;
+  justify-content: center;  /* Centra las cajas dentro de cada fila */
+  gap: 15px;  /* Espaciado entre las cajas */
+  width: 100%;  /* Ocupa todo el ancho disponible */
+  flex-wrap: wrap;  /* Permite que las cajas se ajusten en caso de ser necesario */
+}
+
+/* Cajas dentro de la sección "Especificaciones" */
+.box {
+  width: 100%;  /* Hace que las cajas ocupen todo el ancho */
+  height: auto;  /* Ajusta la altura automáticamente */
+  margin-bottom: 15px;  /* Espacio entre las cajas */
+}
+
+.box i {
+  font-size: 1.5rem;  /* Ajusta el tamaño de los íconos */
+}
+
+.pricing-details-columns {
+  flex-direction: column;  /* Apilamos las columnas en móviles */
+  gap: 40px;
+}
+
+/* Para hacer que las secciones se apilen correctamente */
+.characteristics2 {
+  order: 1;  /* Primero muestra la sección 'Incluido en el Precio' */
+}
+
+.characteristics3 {
+  order: 2;  /* Luego muestra la sección 'No Incluido en el Precio' */
+}
+
+.characteristics2, .characteristics3 {
+  width: 100%;  /* Hacemos que ocupen todo el ancho en dispositivos móviles */
+  margin: 0 auto;  /* Centrado horizontal */
+}
+
+.container h1 {
+  color: black;  /* Cambia el color del h1 a negro dentro de .container */
+}
+
+/* form */
+.form-container {
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+
+.form {
+  width: 100%;
+  padding: 15px;
+}
+
+.form label {
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  display: block;        /* Hace que el botón sea un bloque */
+  margin-left: auto;     /* Centra el botón hacia la izquierda */
+  margin-right: auto;    /* Centra el botón hacia la derecha */
+}
+
+
+.reservation {
+  padding: 20px;
+}
+
+.reservation h3 {
+  font-size: 1rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección para que los elementos se apilen verticalmente */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  max-width: 1200px;
+  margin: 0 auto; /* Centra el contenedor en la página */
+  padding: 20px; /* Agrega espacio alrededor del contenido */
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+.footer-left {
+  text-align: center; /* Centra el contenido dentro de esta sección */
+}
+.footer-logo {
+  max-width: 150px; /* Ajusta el tamaño del logo */
+  margin-bottom: 15px; /* Agrega espacio debajo del logo */
+}
+.social-icons {
+  display: flex;
+  justify-content: center; /* Centra los íconos horizontalmente */
+  gap: 10px; /* Espaciado entre los íconos */
+  margin: 15px 0; /* Espaciado superior e inferior */
+}
+.social-icons img {
+  width: 30px; /* Tamaño de los íconos */
+  height: 30px;
+}
+.contact-email,
+.location {
+  margin: 5px 0; /* Espaciado entre las líneas de texto */
+}
+}
+

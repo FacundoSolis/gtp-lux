@@ -828,7 +828,7 @@ section.banner h2 {
 }
 .slider-title::after {
   position: absolute;
-  bottom: -30px;
+  bottom: -15px;
   align-items: center;
   justify-content: center;
   transform: translateX(-50%);
@@ -869,6 +869,11 @@ section.banner h2 {
   font-size: 1rem;
   padding: 10px 20px;
 }
+
+button.prev, button.next {
+  font-size: 15px;
+}
+
 #reservation-btn {
   font-size: 0.8rem;
   padding: 8px 12px;
