@@ -136,10 +136,9 @@ iframe {
   left: 50%;
   transform: translate(-50%, -20%); /* Para centrar y hacerlo sobresalir */
   z-index: 5; /* Por encima del banner */
-  width: 40%;
+  width: 50%;
   background: transparent;
-  padding: 20px;
-  padding-left: 20px;
+  padding: 0;
 }
 
 /* Estilo de la tarjeta del formulario */
@@ -147,17 +146,16 @@ iframe {
   background: white;
   box-shadow: none; /* Sin sombras */
   border-radius: 10px; /* Mantiene bordes redondeados */
-  width: 50%; /* El formulario ocupa todo el ancho de la caja */
+  width: 100%; /* El formulario ocupa todo el ancho de la caja */
   display: flex;
   padding: 0;
   flex-direction: column;
   align-items: center; /* Centra los elementos del formulario */
 }
 
-
 .reservation-form-wrapper .card-body {
-  width: 140%; /* Formulario más ancho dentro de la caja */
-  padding: 10px;
+  width: 100%; /* Formulario más ancho dentro de la caja */
+  padding: 20px;
   background: white; /* Fondo blanco solo para el contenido del formulario */
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -190,7 +188,7 @@ iframe {
 
 #availability-calendar {
   width: 100%; /* Ajusta el ancho */
-  max-width: 350px; /* Limita el ancho */
+  max-width: 380px; /* Limita el ancho */
   height: 255px; /* Altura del calendario */
   border: 1px solid #dcdcdc;
   border-radius: 10px; /* Bordes redondeados */
@@ -427,21 +425,16 @@ background-repeat: no-repeat; /* Evita repeticiones */
   position: relative;
   margin-left: 0;
   margin-right: 0;
-  box-shadow: 0 0 30px 10px rgba(245, 192, 50, 0.6);
   border-radius: 20px;
   transition: box-shadow 0.3s ease;
 }
-
-.slider-with-arrows:hover {
-  box-shadow: 0 0 50px 15px rgba(245, 192, 50, 0.8); /* Intensifica la luz al pasar el cursor */
-}
-
 /* slider*/
 .slider {
   display: flex;
   align-items: center;
   overflow: hidden; /* Oculta las tarjetas que están fuera del slider visible */
   width: 100%;
+  border-radius: 15px;
 }
 .slides {
   display: flex;
@@ -456,15 +449,12 @@ background-repeat: no-repeat; /* Evita repeticiones */
   object-fit: cover;
   margin: 0 auto;
   border-radius: 15px; /* Bordes redondeados para la tarjeta */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra alrededor de la tarjeta */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para un efecto visual suave */
 }
 .slides img:hover {
   transform: scale(1.05); /* Eleva la tarjeta al pasar el cursor */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Aumenta la sombra para mayor contraste */
 }
-
-
 
 /* Botones slider*/
 button.prev,
@@ -482,15 +472,12 @@ button.next {
   z-index: 10;
   transition: background-color 0.3s ease;
 }
-
 button.prev {
   left: 10px; /* Posición a la izquierda */
 }
-
 button.next {
   right: 10px; /* Posición a la derecha */
 }
-
 button.prev:hover,
 button.next:hover {
   background-color: rgba(255, 255, 255, 0.8);

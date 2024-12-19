@@ -167,10 +167,10 @@ box-shadow: 0 4px 1rem -4px #000;
 
 /* Estilo del CTA */
 .productCover__ctaContainer {
-margin-top: 30px;
-display: flex;
-justify-content: center;
-padding-right: 0;
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 145px;
 }
 .productCover__cta {
 background-color: #007BFF;
@@ -537,7 +537,10 @@ footer {
 .hamburger-menu.active span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
-
+.productCover__img--small {
+  width: 350px; 
+  height: 350px; 
+}
 .container-valkyrya h2 {
   font-size: 2rem;
   padding-top: 120px;

@@ -141,7 +141,16 @@
 <section class="map-form">
   <div class="map-container">
     <h3 class="map-title">Nuestra Ubicación</h3>
-    <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- Aquí está el iframe con el mapa de Google -->
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5445.977921593649!2d0.1118068481771686!3d38.84382343783137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e0!4m0!4m0!5e0!3m2!1ses!2ses!4v1734613497037!5m2!1ses!2ses"
+      width="600" 
+      height="450" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </div>
 </section>
 <section>
@@ -188,7 +197,7 @@
         </a>
       </div>
       <p class="contact-email">contacto@empresa.com</p>
-      <p class="location">Marina Naviera Balear, Av. de Gabriel Roca, 07013 Palma, Balearic Islands</p>
+      <p class="location">Puerto de Dénia, Edificio Capitanía, Dársena de Babor, s/n, 03700 Dénia, Alicante</p>
     </div>
   </div>
 </footer>

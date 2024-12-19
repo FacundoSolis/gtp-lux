@@ -4,7 +4,7 @@
     @vite('resources/css/menu.css')
     @vite('resources/css/portofino.css') <!-- Solo carga el CSS relevante para esta página -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
-@endpushnpm
+@endpush
 
 @section('content')
 <!-- Menú fijo -->
@@ -270,7 +270,7 @@
         </a>
       </div>
       <p class="contact-email">contacto@empresa.com</p>
-      <p class="location">Marina Naviera Balear, Av. de Gabriel Roca, 07013 Palma, Balearic Islands</p>
+      <p class="location">Puerto de Dénia, Edificio Capitanía, Dársena de Babor, s/n, 03700 Dénia, Alicante</p>
     </div>
   </div>
 </footer>

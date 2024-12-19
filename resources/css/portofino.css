@@ -537,7 +537,10 @@ footer {
 .hamburger-menu.active span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
-
+.productCover__img--small {
+  width: 350px; 
+  height: 350px; 
+}
 .container-valkyrya h2 {
   font-size: 2rem;
   padding-top: 120px;

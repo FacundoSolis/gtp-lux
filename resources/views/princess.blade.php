@@ -265,7 +265,7 @@
                 <a href="https://facebook.com" target="_blank"><img src="{{ asset('img/facebook.png') }}" alt="Facebook"></a>
             </div>
             <p class="contact-email">contacto@empresa.com</p>
-            <p class="location">Marina Naviera Balear, Av. de Gabriel Roca, 07013 Palma, Balearic Islands</p>
+            <p class="location">Puerto de Dénia, Edificio Capitanía, Dársena de Babor, s/n, 03700 Dénia, Alicante</p>
         </div>
         <div class="footer-right"></div>
     </div>
