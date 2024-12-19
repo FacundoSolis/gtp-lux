@@ -38,4 +38,9 @@ export default defineConfig({
             overlay: false, // Desactiva el overlay de errores
         },
     },
+    build: {
+        outDir: 'public/build', // Configura la salida de los archivos en el directorio correcto
+        manifest: true, // Crea el archivo manifest.json para Laravel Vite
+        assetsDir: 'assets', // Mantiene los activos organizados en una carpeta 'assets'
+    },
 });
