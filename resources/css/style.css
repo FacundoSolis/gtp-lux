@@ -613,7 +613,7 @@ nav a {
     rgba(0, 0, 0, 0.9), /* Fondo negro más oscuro */
     rgba(0, 0, 0, 0.8) /* Fondo negro sin grises */
   ),
-    url('https://gtplux.nvia.com/assets/lineas-mapa-D7qAHGS9.jpg'); /* Ruta actualizada */
+    url('/public/img/lineas-mapa.jpg'); /* Ruta a la imagen de fondo */
   background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
   background-attachment: fixed; /* Fondo fijo al hacer scroll */
   background-position: center; /* Centra la imagen */
@@ -897,6 +897,11 @@ button.prev, button.next {
 }
 textarea {
   height: 70px;
+}
+
+.map-form {
+  background-attachment: scroll; /* Elimina el fixed para dispositivos móviles */
+  padding: 30px; /* Ajusta el padding si es necesario */
 }
 
 .footer-container {
