@@ -4,7 +4,7 @@
     @vite('resources/css/menu.css')
     @vite('resources/css/portofino.css') <!-- Solo carga el CSS relevante para esta página -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
-@endpush
+@endpushnpm
 
 @section('content')
 <!-- Menú fijo -->
