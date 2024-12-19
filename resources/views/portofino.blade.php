@@ -3,8 +3,8 @@
 @push('styles')
     @vite('resources/css/menu.css')
     @vite('resources/css/portofino.css') <!-- Solo carga el CSS relevante para esta página -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/main.min.css" rel="stylesheet" />
-    @endpush
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+@endpush
 
 @section('content')
 <!-- Menú fijo -->

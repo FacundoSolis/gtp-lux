@@ -169,8 +169,8 @@ box-shadow: 0 4px 1rem -4px #000;
 .productCover__ctaContainer {
 margin-top: 30px;
 display: flex;
-justify-content: flex-end;
-padding-right: 145px;
+justify-content: center;
+padding-right: 0;
 }
 .productCover__cta {
 background-color: #007BFF;
@@ -538,6 +538,13 @@ footer {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+.container-valkyrya h2 {
+  font-size: 2rem;
+  padding-top: 120px;
+  padding-left: 0;
+  color: black;
+  text-align: center;
+}
 /* texto descripcion del barco */
 .description-boat {
   max-width: 100%; 
@@ -662,29 +669,27 @@ footer {
   gap: 20px;
   padding: 10px;
 }
-
 .form {
   width: 100%;
   padding: 15px;
 }
-
 .form label {
   font-size: 0.9rem;
 }
-
 .btn-primary {
   display: block;       
   margin-left: auto;     
   margin-right: auto;   
 }
-
-
 .reservation {
   padding: 20px;
 }
-
 .reservation h3 {
   font-size: 1rem;
+}
+.fc-direction-ltr .fc-toolbar>*>:not(:first-child) {
+  margin-left: .75em;
+  margin-top: 5px;
 }
 
 .footer-container {
