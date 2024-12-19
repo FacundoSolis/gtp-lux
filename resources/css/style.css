@@ -572,6 +572,7 @@ nav a {
 .map-container {
   position: relative;
   width: 50%;
+  max-width: 600px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
   border: 2px solid white; /* Bordes blancos visibles */
@@ -607,21 +608,17 @@ nav a {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 20px;
   background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.8), /* Oscurece en la parte superior */
-      rgba(50, 50, 50, 0.6), /* Gradiente intermedio */
-      rgba(255, 255, 255, 0.1) /* Ligero en la parte inferior */
-    ),
+    to bottom,
+    rgba(0, 0, 0, 0.9), /* Fondo negro más oscuro */
+    rgba(0, 0, 0, 0.8) /* Fondo negro sin grises */
+  ),
     url('/public/img/lineas-mapa.jpg'); /* Ruta a la imagen de fondo */
   background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
   background-attachment: fixed; /* Fondo fijo al hacer scroll */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita repeticiones */
   padding: 50px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
   position: relative; /* Necesario para los elementos hijos */
 }
 
