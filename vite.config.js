@@ -3,7 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react'; // Importa el plugin de React
 
 export default defineConfig({
-    base: '/build/', 
+    base: '/', 
     plugins: [
         react(), // Solo una vez
         laravel({

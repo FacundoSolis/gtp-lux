@@ -857,7 +857,6 @@ button.prev, button.next {
 }
 .map-form {
   background-attachment: scroll; /* Cambia el valor para móviles */
-  background-image: url('/public/img/lineas-mapa.jpg'); /* Ruta a la imagen de fondo */
 }
 
 #reservation-btn {
