@@ -3,6 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react'; // Importa el plugin de React
 
 export default defineConfig({
+    base: '/build/', 
     plugins: [
         react(), // Solo una vez
         laravel({
@@ -37,10 +38,5 @@ export default defineConfig({
         hmr: {
             overlay: false, // Desactiva el overlay de errores
         },
-    },
-    build: {
-        outDir: 'public/build', // Configura la salida de los archivos en el directorio correcto
-        manifest: true, // Crea el archivo manifest.json para Laravel Vite
-        assetsDir: 'assets', // Mantiene los activos organizados en una carpeta 'assets'
     },
 });
