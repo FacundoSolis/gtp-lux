@@ -597,11 +597,6 @@ nav a {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  background-color: black; /* Fallback para navegadores sin soporte */
-  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
-  background-attachment: fixed; /* Fondo fijo al hacer scroll */
-  background-position: center; /* Centra la imagen */
-  background-repeat: no-repeat; /* Evita repeticiones */
   padding: 50px;
 }
 
@@ -620,14 +615,6 @@ nav a {
   align-items: center;
   gap: 40px;
   margin-top: 0;
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.8),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url('/public/img/fondo-form.jpg'); /* Ruta a la imagen de fondo */
-  background-size: cover;
-  background-attachment: fixed; /* Fija el fondo mientras se hace scroll */
-  background-position: center;
   padding: 50px;
   color: white;
 }

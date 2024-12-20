@@ -8,7 +8,31 @@
   <!-- CSS embebido para rutas dinámicas -->
   <style>
     .slider-container {
-      background: url('{{ asset('img/fondo-mar.jpg') }}');
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.5)
+        ),url('{{ asset('img/fondo-mar.jpg') }}');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .form-container {
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.5)
+        ),
+        url('{{ asset('img/fondo-form.jpg') }}'); /* Ruta actualizada con asset() */
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    .map-form {
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.5)
+        ),
+        url('{{ asset('img/lineas-mapa.jpg') }}');
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
