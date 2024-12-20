@@ -178,8 +178,6 @@ async function updateAvailableBoats() {
         boatsContainer.innerHTML = '<p>Error al cargar los barcos disponibles.</p>';
     }
 }
-
-
     updateAvailableBoats();
     highlightSelectedDates();
 });

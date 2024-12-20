@@ -354,17 +354,6 @@ line-height: 1;
   padding: 50px 20px;
   max-width: 100%;
   margin: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.8), /* Oscurece en la parte superior */
-    rgba(50, 50, 50, 0.6), /* Gradiente intermedio */
-    rgba(255, 255, 255, 0.1) /* Ligero en la parte inferior */
-  ),
-  url('/public/img/fondo-mar.jpg'); /* Ruta a la imagen de fondo */
-background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
-background-attachment: fixed; /* Fondo fijo al hacer scroll */
-background-position: center; /* Centra la imagen */
-background-repeat: no-repeat; /* Evita repeticiones */
 }
 
 .slider-title {

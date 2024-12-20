@@ -4,6 +4,17 @@
   @vite('resources/css/style.css')
   @vite('resources/css/menu.css')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+  
+  <!-- CSS embebido para rutas dinámicas -->
+  <style>
+    .slider-container {
+      background: url('{{ asset('img/fondo-mar.jpg') }}');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  </style>
 @endpush
 
   <!-- Banner Section -->
