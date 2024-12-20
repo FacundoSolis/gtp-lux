@@ -7,6 +7,8 @@ use App\Models\Boat;
 use App\Models\Reservation;
 use App\Models\Season;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class ReservationController extends Controller
 {
@@ -255,26 +257,34 @@ class ReservationController extends Controller
 
     public function showAvailableBoats(Request $request)
 {
-    $portId = $request->port_id;
-    $pickupDate = $request->pickup_date;
-    $returnDate = $request->return_date;
+    $portId = $request->input('port_id');
+    $pickupDate = $request->input('pickup_date');
+    $returnDate = $request->input('return_date');
 
-    // Validar si faltan parámetros, pero no redirigir (esto no afecta funcionalidad existente)
-    if (!$portId || !$pickupDate || !$returnDate) {
-        // Si no hay fechas, pasa valores predeterminados o vacíos para no afectar la lógica existente
-        $pickupDate = $pickupDate ?? now()->format('Y-m-d');
-        $returnDate = $returnDate ?? now()->addDay()->format('Y-m-d');
+    if (!$pickupDate || !$returnDate) {
+        return redirect()->back()->withErrors(['message' => 'Por favor selecciona ambas fechas.']);
     }
 
-    // Mantén la lógica actual para obtener todos los barcos
-    $boats = Boat::all();
+    // Obtener todos los barcos del puerto seleccionado
+    $boats = Boat::where('port_id', $portId)
+        ->with(['reservations' => function ($query) use ($pickupDate, $returnDate) {
+            $query->where(function ($q) use ($pickupDate, $returnDate) {
+                $q->whereBetween('pickup_date', [$pickupDate, $returnDate])
+                  ->orWhereBetween('return_date', [$pickupDate, $returnDate])
+                  ->orWhereRaw('? BETWEEN pickup_date AND return_date', [$pickupDate])
+                  ->orWhereRaw('? BETWEEN pickup_date AND return_date', [$returnDate]);
+            });
+        }])
+        ->get();
 
-    // Si es una solicitud AJAX, renderiza la vista parcial de barcos
-    if ($request->ajax()) {
-        return view('partials.available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'))->render();
-    }
+    // Identificar barcos reservados
+    $boats = $boats->map(function ($boat) use ($pickupDate, $returnDate) {
+        $boat->is_reserved = $boat->reservations->isNotEmpty(); // Indica si está reservado
+        $boat->pickup_date = $pickupDate;
+        $boat->return_date = $returnDate;
+        return $boat;
+    });
 
-    // Devuelve la vista completa con los datos de fechas y puerto incluidos
     return view('available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'));
 }
 

@@ -41,15 +41,6 @@ h2 {
   overflow-y: auto; /* Permitir desplazamiento si el contenido es grande */
 }
 
-/* Calendario */
-#availability-calendar {
-  display: block !important;
-  width: 100% !important;
-  height: 500px !important;
-  border: 1px solid #ccc;
-  pointer-events: auto; /* Permite la interacción con el calendario */
-  z-index: 1; /* Asegura que el calendario esté visible */
-}
 
 /* Información seleccionada */
 .selected-info {
@@ -206,16 +197,6 @@ h2 {
 .settingsDropdown ul li:hover {
   background-color: #555;
 }
-
-.fc-day {
-  pointer-events: auto; /* Asegura que los días sean interactivos */
-  cursor: pointer; /* Indica visualmente que los días son seleccionables */
-}
-.fc {
-  all: unset;
-}
-
-
 
 @media (max-width: 768px) {
   .main-layout {

@@ -3,8 +3,8 @@
 @push('styles')
 @vite('resources/css/menu.css')
 @vite('resources/css/available-boats.css')
-@vite('resources/js/calendar.js')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 @endpush
 
 @section('content')
@@ -38,20 +38,28 @@
     <h2>Barcos Disponibles</h2>
 
     <div class="main-layout">
-        <!-- Barra lateral del calendario -->
+        <!-- Barra lateral con fechas -->
         <div class="sidebar">
-            <div id="availability-calendar" style="width: 100%; height: 400px;"></div>
-            <!-- Información seleccionada dentro de un formulario -->
-            <form class="selected-info">
+            <form action="{{ route('available.boats') }}" method="GET">
+                @csrf
                 <div class="form-group">
                     <label for="port_id"><strong>Puerto:</strong></label>
-                    <input type="text" id="port_id" value="{{ $portId ? 'Marina De Denia' : '' }}" class="form-control" readonly>
+                    <select id="port_id" name="port_id" class="form-control" required>
+                        <option value="1" {{ $portId == 1 ? 'selected' : '' }}>Marina De Denia</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="dates"><strong>Fechas seleccionadas:</strong></label>
-                    <input type="text" id="dates" value="{{ $pickupDate && $returnDate ? $pickupDate . ' - ' . $returnDate : '' }}" class="form-control" readonly>
+                    <label for="pickup_date"><strong>Fecha de Recogida:</strong></label>
+                    <input type="text" id="pickup_date" name="pickup_date" value="{{ old('pickup_date', $pickupDate) }}" class="form-control date-picker" readonly required>
                 </div>
+
+                <div class="form-group">
+                    <label for="return_date"><strong>Fecha de Entrega:</strong></label>
+                    <input type="text" id="return_date" name="return_date" value="{{ old('return_date', $returnDate) }}" class="form-control date-picker" readonly required>
+                </div>
+
+                <button type="submit" class="btn-form">Actualizar búsqueda</button>
             </form>
         </div>
 
@@ -69,119 +77,90 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const calendarEl = document.getElementById('availability-calendar');
-    const portId = '{{ request()->port_id }}';
-    const boatsContainer = document.querySelector('.boat-cards');
-    const initialDate = pickupDate || new Date().toISOString().split('T')[0]; // Usar la fecha pasada o la actual
+$(document).ready(function () {
+    const pickupDateInput = $("#pickup_date");
+    const returnDateInput = $("#return_date");
 
-    // Fechas iniciales pasadas desde la URL o inputs
-    const pickupDate = '{{ request()->pickup_date }}';
-    const returnDate = '{{ request()->return_date }}';
+    // Estado para reiniciar fechas
+    let lastPickupDate = null;
 
-    const pickupInput = document.getElementById('pickup_date') || {};
-    const returnInput = document.getElementById('return_date') || {};
+    // Inicializar Datepicker para Fecha de Recogida
+    pickupDateInput.datepicker({
+        dateFormat: "yy-mm-dd",
+        minDate: 0, // No permitir fechas pasadas
+        onSelect: function (selectedDate) {
+            const selected = new Date(selectedDate);
 
-    if (pickupDate) pickupInput.value = pickupDate;
-    if (returnDate) returnInput.value = returnDate;
-
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-        themeSystem: 'bootstrap',
-        locale: 'es',
-        initialView: 'dayGridMonth',
-        initialDate: initialDate, // Configurar fecha inicial correctamente
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: '',
-        },
-        selectable: true,
-        dateClick: function (info) {
-            handleDateSelection(info.dateStr);
-        },
-        events: async function (fetchInfo, successCallback, failureCallback) {
-            try {
-                const response = await axios.get(`/reservations/calendar/${portId}`, {
-                    params: {
-                        startDate: fetchInfo.startStr,
-                        endDate: fetchInfo.endStr,
-                    },
-                });
-
-                const reservations = response.data;
-
-                const events = reservations.map(reservation => ({
-                    title: reservation.available ? 'Disponible' : 'Reservado',
-                    start: reservation.start,
-                    end: reservation.end,
-                    color: reservation.available ? 'green' : 'red',
-                }));
-                successCallback(events);
-            } catch (error) {
-                console.error('Error al cargar eventos:', error);
-                failureCallback(error);
-            }
-        },
-    });
-
-    calendar.render();
-
-    function handleDateSelection(dateStr) {
-        if (!pickupInput.value) {
-            pickupInput.value = dateStr;
-        } else if (!returnInput.value) {
-            if (new Date(dateStr) <= new Date(pickupInput.value)) {
-                alert('La fecha de entrega debe ser posterior a la fecha de recogida.');
+            // Reiniciar si se selecciona la misma fecha
+            if (lastPickupDate && lastPickupDate === selectedDate) {
+                pickupDateInput.val(""); // Limpiar campo
+                returnDateInput.val(""); // Limpiar devolución
+                returnDateInput.datepicker("option", "minDate", null); // Restablecer restricciones
+                lastPickupDate = null; // Resetear último valor
                 return;
             }
-            returnInput.value = dateStr;
-            updateAvailableBoats();
-        } else {
-            pickupInput.value = dateStr;
-            returnInput.value = '';
-        }
-        highlightSelectedDates();
-    }
 
-    function handleDateSelection(dateStr) {
-    if (!pickupInput.value) {
-        pickupInput.value = dateStr;
-    } else if (!returnInput.value) {
-        if (new Date(dateStr) <= new Date(pickupInput.value)) {
-            alert('La fecha de entrega debe ser posterior a la fecha de recogida.');
-            return;
-        }
-        returnInput.value = dateStr;
-        updateAvailableBoats();
-    } else {
-        pickupInput.value = dateStr;
-        returnInput.value = '';
-    }
-    highlightSelectedDates();
-}
+            // Guardar última fecha seleccionada
+            lastPickupDate = selectedDate;
 
-async function updateAvailableBoats() {
-    try {
-        boatsContainer.innerHTML = '<p>Cargando barcos disponibles...</p>';
-        const response = await axios.get('/available-boats', {
-            params: {
-                port_id: portId,
-                pickup_date: pickupInput.value,
-                return_date: returnInput.value,
-            },
-        });
-        boatsContainer.innerHTML = response.data;
-    } catch (error) {
-        console.error('Error al cargar barcos disponibles:', error);
-        boatsContainer.innerHTML = '<p>Error al cargar los barcos disponibles.</p>';
-    }
-}
-    updateAvailableBoats();
-    highlightSelectedDates();
+            // Establecer la fecha mínima para la devolución
+            returnDateInput.datepicker("option", "minDate", selected);
+            returnDateInput.datepicker("setDate", null); // Limpiar fecha anterior
+
+            // Abrir automáticamente el selector de devolución
+            setTimeout(() => {
+                returnDateInput.datepicker("show");
+            }, 200); // Retardo para evitar cierres inesperados
+        }
+    });
+
+    // Inicializar Datepicker para Fecha de Entrega
+    returnDateInput.datepicker({
+        dateFormat: "yy-mm-dd",
+        minDate: pickupDateInput.val() ? new Date(pickupDateInput.val()) : 0, // Sincronizar con la fecha de recogida
+        beforeShow: function () {
+            const minDate = returnDateInput.datepicker("option", "minDate");
+            if (minDate) {
+                $(this).datepicker("option", "defaultDate", minDate);
+            }
+        },
+        onSelect: function (selectedDate) {
+            // Cerrar automáticamente tras seleccionar una fecha
+            setTimeout(() => {
+                returnDateInput.datepicker("hide");
+            }, 200);
+        }
+    });
+
+    // Evitar que el calendario se cierre al cambiar de mes
+    $(".ui-datepicker").on("click", function (event) {
+        event.stopPropagation();
+    });
+
+    // Cerrar los Datepickers si se hace clic fuera
+    $(document).on("click", function (event) {
+        if (!$(event.target).closest(".ui-datepicker, #pickup_date, #return_date").length) {
+            pickupDateInput.datepicker("hide");
+            returnDateInput.datepicker("hide");
+        }
+    });
+
+    // Validación del formulario antes de enviar
+    $("form").on("submit", function (e) {
+        const pickupDate = pickupDateInput.val();
+        const returnDate = returnDateInput.val();
+
+        if (!pickupDate || !returnDate) {
+            e.preventDefault(); // Prevenir el envío
+            alert("Por favor selecciona ambas fechas.");
+        }
+    });
 });
-
-
 </script>
 @endsection
+
+
+
