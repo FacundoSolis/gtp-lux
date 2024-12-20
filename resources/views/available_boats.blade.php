@@ -3,6 +3,7 @@
 @push('styles')
 @vite('resources/css/menu.css')
 @vite('resources/css/available-boats.css')
+@vite('resources/js/calendar.js')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
 @endpush
 
@@ -39,8 +40,7 @@
     <div class="main-layout">
         <!-- Barra lateral del calendario -->
         <div class="sidebar">
-            <div id="availability-calendar" style="width: 100%; height: 400px;"></div> <!-- Aseguramos que el calendario tiene suficiente altura -->
-
+            <div id="availability-calendar" style="width: 100%; height: 400px;"></div>
             <!-- Información seleccionada dentro de un formulario -->
             <form class="selected-info">
                 <div class="form-group">
@@ -57,70 +57,52 @@
 
         <!-- Tarjetas de barcos -->
         <div class="boat-cards">
-            @foreach ($boats as $boat)
-                <div class="boat-card {{ $boat->isReserved($pickupDate, $returnDate) ? 'reserved' : 'available' }}">
-                    <!-- Asignar la imagen de cada barco -->
-                    @if ($boat->name == 'Sunseeker Portofino')
-                        <img src="{{ asset('img/yates.png') }}" alt="Sunseeker Portofino" class="boat-card__image">
-                    @elseif ($boat->name == 'Princess V65')
-                        <img src="{{ asset('img/yates2.png') }}" alt="Princess V65" class="boat-card__image">
-                    @endif
-
-                    <div class="boat-card__details">
-                        <h3 class="boat-card__name">{{ $boat->name }}</h3>
-                        <p class="boat-card__description">{{ $boat->description }}</p>
-
-                        <!-- Superposición de "Reservado" -->
-                        @if ($boat->isReserved($pickupDate, $returnDate))
-                            <div class="reserved-overlay">
-                                <span>Reservado</span>
-                            </div>
-                        @endif
-
-                        <!-- Botón "Seleccionar" que se desactiva si el barco está reservado -->
-                        <a href="{{ route('boat.page', ['boat_id' => $boat->id, 'port_id' => $portId, 'pickup_date' => $pickupDate, 'return_date' => $returnDate]) }}" 
-                           class="btn-form {{ $boat->isReserved($pickupDate, $returnDate) ? 'disabled' : '' }}">
-                            Seleccionar {{ $boat->name }}
-                        </a>
-                    </div>
-                </div>
-            @endforeach
+            @include('partials.available_boats', [
+                'boats' => $boats,
+                'portId' => $portId,
+                'pickupDate' => $pickupDate,
+                'returnDate' => $returnDate,
+            ])
         </div>
     </div>
 </main>
-
 @endsection
 
-@push('scripts')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+@section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.js"></script>
-
 <script>
+document.addEventListener('DOMContentLoaded', function () {
     const calendarEl = document.getElementById('availability-calendar');
-    const portSelect = document.getElementById('port_id');
-    const pickupInput = document.getElementById('pickup_date');
-    const returnInput = document.getElementById('return_date');
+    const portId = '{{ request()->port_id }}';
+    const boatsContainer = document.querySelector('.boat-cards');
+    const initialDate = pickupDate || new Date().toISOString().split('T')[0]; // Usar la fecha pasada o la actual
+
+    // Fechas iniciales pasadas desde la URL o inputs
+    const pickupDate = '{{ request()->pickup_date }}';
+    const returnDate = '{{ request()->return_date }}';
+
+    const pickupInput = document.getElementById('pickup_date') || {};
+    const returnInput = document.getElementById('return_date') || {};
+
+    if (pickupDate) pickupInput.value = pickupDate;
+    if (returnDate) returnInput.value = returnDate;
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
         themeSystem: 'bootstrap',
         locale: 'es',
         initialView: 'dayGridMonth',
+        initialDate: initialDate, // Configurar fecha inicial correctamente
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: '',
         },
+        selectable: true,
+        dateClick: function (info) {
+            handleDateSelection(info.dateStr);
+        },
         events: async function (fetchInfo, successCallback, failureCallback) {
             try {
-                const portId = portSelect.value;
-                const selectedStartDate = pickupInput.value;
-                const selectedEndDate = returnInput.value;
-
-                if (!portId || !selectedStartDate || !selectedEndDate) {
-                    successCallback([]);
-                    return;
-                }
-
                 const response = await axios.get(`/reservations/calendar/${portId}`, {
                     params: {
                         startDate: fetchInfo.startStr,
@@ -129,48 +111,79 @@
                 });
 
                 const reservations = response.data;
+
                 const events = reservations.map(reservation => ({
                     title: reservation.available ? 'Disponible' : 'Reservado',
                     start: reservation.start,
                     end: reservation.end,
                     color: reservation.available ? 'green' : 'red',
-                    extendedProps: { available: reservation.available },
                 }));
-
                 successCallback(events);
             } catch (error) {
-                console.error('Error al cargar las reservas:', error);
+                console.error('Error al cargar eventos:', error);
                 failureCallback(error);
             }
         },
-        dateClick: function (info) {
-            const clickedDate = info.dateStr;
-
-            if (!pickupInput.value) {
-                pickupInput.value = clickedDate;
-                const pickupDate = new Date(clickedDate);
-                returnInput.setAttribute('min', pickupDate.toISOString().split('T')[0]);
-            } else if (!returnInput.value) {
-                returnInput.value = clickedDate;
-            } else {
-                pickupInput.value = clickedDate;
-                returnInput.value = '';
-                returnInput.removeAttribute('min');
-            }
-        },
-    });
-
-    pickupInput.addEventListener('click', function () {
-        calendarEl.style.display = 'block';
-        calendar.render();
-    });
-
-    returnInput.addEventListener('click', function () {
-        calendarEl.style.display = 'block';
-        calendar.render();
     });
 
     calendar.render();
 
+    function handleDateSelection(dateStr) {
+        if (!pickupInput.value) {
+            pickupInput.value = dateStr;
+        } else if (!returnInput.value) {
+            if (new Date(dateStr) <= new Date(pickupInput.value)) {
+                alert('La fecha de entrega debe ser posterior a la fecha de recogida.');
+                return;
+            }
+            returnInput.value = dateStr;
+            updateAvailableBoats();
+        } else {
+            pickupInput.value = dateStr;
+            returnInput.value = '';
+        }
+        highlightSelectedDates();
+    }
+
+    function handleDateSelection(dateStr) {
+    if (!pickupInput.value) {
+        pickupInput.value = dateStr;
+    } else if (!returnInput.value) {
+        if (new Date(dateStr) <= new Date(pickupInput.value)) {
+            alert('La fecha de entrega debe ser posterior a la fecha de recogida.');
+            return;
+        }
+        returnInput.value = dateStr;
+        updateAvailableBoats();
+    } else {
+        pickupInput.value = dateStr;
+        returnInput.value = '';
+    }
+    highlightSelectedDates();
+}
+
+async function updateAvailableBoats() {
+    try {
+        boatsContainer.innerHTML = '<p>Cargando barcos disponibles...</p>';
+        const response = await axios.get('/available-boats', {
+            params: {
+                port_id: portId,
+                pickup_date: pickupInput.value,
+                return_date: returnInput.value,
+            },
+        });
+        boatsContainer.innerHTML = response.data;
+    } catch (error) {
+        console.error('Error al cargar barcos disponibles:', error);
+        boatsContainer.innerHTML = '<p>Error al cargar los barcos disponibles.</p>';
+    }
+}
+
+
+    updateAvailableBoats();
+    highlightSelectedDates();
+});
+
+
 </script>
-@endpush
+@endsection

@@ -608,12 +608,7 @@ nav a {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.9), /* Fondo negro más oscuro */
-    rgba(0, 0, 0, 0.8) /* Fondo negro sin grises */
-  ),
-    url('/public/img/lineas-mapa.jpg'); /* Ruta a la imagen de fondo */
+  background-color: black; /* Fallback para navegadores sin soporte */
   background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
   background-attachment: fixed; /* Fondo fijo al hacer scroll */
   background-position: center; /* Centra la imagen */
@@ -635,7 +630,7 @@ nav a {
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  margin-top: 20px;
+  margin-top: 0;
   background: linear-gradient(
       rgba(0, 0, 0, 0.8),
       rgba(0, 0, 0, 0.5)
@@ -644,8 +639,6 @@ nav a {
   background-size: cover;
   background-attachment: fixed; /* Fija el fondo mientras se hace scroll */
   background-position: center;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   padding: 50px;
   color: white;
 }

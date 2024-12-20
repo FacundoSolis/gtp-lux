@@ -24,6 +24,7 @@ export default defineConfig({
                 'resources/js/loadMoreImages2.js',
                 'resources/js/loadMoreDescription.js',
                 'resources/js/loadMoreDescription2.js',
+                'resources/js/calendar.js',
             ],
             refresh: true,
         }),

@@ -255,13 +255,26 @@ class ReservationController extends Controller
 
     public function showAvailableBoats(Request $request)
 {
-    // Obtener todos los barcos, independientemente de si están reservados o no
-    $boats = Boat::all();
     $portId = $request->port_id;
     $pickupDate = $request->pickup_date;
     $returnDate = $request->return_date;
 
-    // Pasar los datos a la vista
+    // Validar si faltan parámetros, pero no redirigir (esto no afecta funcionalidad existente)
+    if (!$portId || !$pickupDate || !$returnDate) {
+        // Si no hay fechas, pasa valores predeterminados o vacíos para no afectar la lógica existente
+        $pickupDate = $pickupDate ?? now()->format('Y-m-d');
+        $returnDate = $returnDate ?? now()->addDay()->format('Y-m-d');
+    }
+
+    // Mantén la lógica actual para obtener todos los barcos
+    $boats = Boat::all();
+
+    // Si es una solicitud AJAX, renderiza la vista parcial de barcos
+    if ($request->ajax()) {
+        return view('partials.available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'))->render();
+    }
+
+    // Devuelve la vista completa con los datos de fechas y puerto incluidos
     return view('available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'));
 }
 
@@ -276,5 +289,26 @@ class ReservationController extends Controller
         // Procesar la reserva si la validación pasa
         // ...
     }
+
+    public function getAvailableBoats(Request $request)
+{
+    $portId = $request->query('port_id');
+    $pickupDate = $request->query('pickup_date');
+    $returnDate = $request->query('return_date');
+
+    $boats = Boat::where('port_id', $portId)
+        ->whereDoesntHave('reservations', function ($query) use ($pickupDate, $returnDate) {
+            $query->whereBetween('pickup_date', [$pickupDate, $returnDate])
+                  ->orWhereBetween('return_date', [$pickupDate, $returnDate]);
+        })->get();
+
+    // Si es una llamada AJAX, devuelve la vista parcial
+    if ($request->ajax()) {
+        return view('partials.available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'))->render();
+    }
+
+    // Si no, carga la vista completa
+    return view('available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'));
+}
 
 }
