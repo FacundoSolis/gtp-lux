@@ -13,7 +13,7 @@ Route::get('/sunseeker', [BoatController::class, 'showSunseekerPortofino'])->nam
 
 // Rutas disponibilidad barcos
 Route::get('/available-boats', [ReservationController::class, 'showAvailableBoats'])->name('available.boats');
-Route::get('/reservations/calendar/{portId}', [ReservationController::class, 'calendar'])->name('reservations.calendar');
+Route::get('/reservations/calendar/{portId}', [ReservationController::class, 'calendar'])->name('reservations.calendar.store');
 
 // Ruta para la página de un barco específico
 Route::get('/boat/{boat_id}', [BoatController::class, 'showBoatPage'])->name('boat.page');
