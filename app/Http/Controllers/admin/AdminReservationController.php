@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Port;
 use App\Models\Boat;
 use App\Models\Reservation;
@@ -9,6 +10,10 @@ use Illuminate\Http\Request;
 
 class AdminReservationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); // Requiere autenticación
+    }
     // Listar todas las reservas con opción de ordenarlas y filtrar por criterios
     public function index(Request $request)
     {
@@ -28,7 +33,7 @@ class AdminReservationController extends Controller
     public function create()
     {
         $ports = Port::all(); // Obtener todos los puertos
-        $boats = \App\Models\Boat::all(); // Cargar todos los barcos
+        $boats = Boat::all(); // Cargar todos los barcos
 
         return view('admin.reservations.create', compact('ports', 'boats'));
     }

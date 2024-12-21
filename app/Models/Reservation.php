@@ -11,13 +11,15 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'boat_id',
-        'port_id',
-        'pickup_date',
-        'return_date',
         'name',
         'email',
         'phone',
+        'port_id',
+        'boat_id',
+        'pickup_date',
+        'return_date',
+        'num_persons',
+        'total_price',
     ];
 
     public function boat()

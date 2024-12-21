@@ -10,10 +10,5 @@ class Port extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'location'];
-
-    public function boats()
-    {
-        return $this->hasMany(Boat::class);
-    }
 }
 

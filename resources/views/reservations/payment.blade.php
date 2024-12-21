@@ -10,8 +10,9 @@
     <p><strong>Fechas:</strong> {{ $reservation->pickup_date }} - {{ $reservation->return_date }}</p>
     <p><strong>Precio Total:</strong> ${{ $reservation->total_price }}</p>
     
-    <form action="{{ route('confirmation', ['reservation' => $reservation->id]) }}" method="GET">
-        <button type="submit" class="btn btn-success">Confirmar Pago</button>
+    <form action="{{ route('processPayment', ['reservationId' => $reservation->id]) }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-primary">Ir a Stripe</button>
     </form>
 </div>
 @endsection

@@ -18,6 +18,7 @@
                 <li class="list-group-item"><strong>Nombre:</strong> {{ $reservation->name }}</li>
                 <li class="list-group-item"><strong>Correo Electrónico:</strong> {{ $reservation->email }}</li>
                 <li class="list-group-item"><strong>Teléfono:</strong> {{ $reservation->phone }}</li>
+                <li class="list-group-item"><strong>Precio Total:</strong> {{ $reservation->total_price }} €</li>
             </ul>
         </div>
     </div>

@@ -75,7 +75,6 @@ class ReservationController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
-            'num_persons' => $validated['num_persons'] ?? null,
             'total_price' => $this->calculateTotalPrice($boatId, $validated['pickup_date'], $validated['return_date']),
         ]);
 

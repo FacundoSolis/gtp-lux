@@ -35,5 +35,9 @@ class Boat extends Model
         })
         ->exists();
 }
+    public function seasons()
+    {
+        return $this->hasMany(Season::class);
+}
 
 }

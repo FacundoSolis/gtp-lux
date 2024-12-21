@@ -12,10 +12,23 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
+<div class="admin-header d-flex justify-content-between align-items-center p-3">
+    <h3>Panel de Administración</h3>
+    <div>
+        @auth
+            <span>Bienvenido, {{ auth()->user()->name }}</span>
+            <a href="{{ route('logout') }}" 
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                class="btn btn-sm btn-danger">Cerrar Sesión</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        @endauth
+    </div>
+</div>
     <!-- Sidebar -->
     <div class="admin-wrapper">
         <div class="admin-sidebar">
-            <h3>Panel de Administración</h3>
             <ul>
                 <li><a href="{{ route('admin.reservations.index') }}">Listado de Reservas</a></li>
                 <li><a href="{{ route('admin.payments.index') }}">Pagos</a></li>
