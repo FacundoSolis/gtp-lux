@@ -1,0 +1,68 @@
+{
+  "resources/css/admin.css": {
+    "file": "assets/admin-LiLNod6g.css",
+    "src": "resources/css/admin.css",
+    "isEntry": true
+  },
+  "resources/css/available-boats.css": {
+    "file": "assets/available-boats-BHpwNzq6.css",
+    "src": "resources/css/available-boats.css",
+    "isEntry": true
+  },
+  "resources/css/menu.css": {
+    "file": "assets/menu-iuFSw2zx.css",
+    "src": "resources/css/menu.css",
+    "isEntry": true
+  },
+  "resources/css/portofino.css": {
+    "file": "assets/princess-DCIvS_Zk.css",
+    "src": "resources/css/princess.css",
+    "isEntry": true
+  },
+  "resources/css/princess.css": {
+    "file": "assets/princess-DCIvS_Zk.css",
+    "src": "resources/css/princess.css",
+    "isEntry": true
+  },
+  "resources/css/style.css": {
+    "file": "assets/style-Csy62-jz.css",
+    "src": "resources/css/style.css",
+    "isEntry": true
+  },
+  "resources/js/componentes/app.jsx": {
+    "file": "assets/app-D7KIcAU_.js",
+    "name": "app",
+    "src": "resources/js/componentes/app.jsx",
+    "isEntry": true
+  },
+  "resources/js/loadMoreDescription.js": {
+    "file": "assets/loadMoreDescription-UnQYDaJ2.js",
+    "name": "loadMoreDescription",
+    "src": "resources/js/loadMoreDescription.js",
+    "isEntry": true
+  },
+  "resources/js/loadMoreDescription2.js": {
+    "file": "assets/loadMoreDescription2-Cqf7v_zW.js",
+    "name": "loadMoreDescription2",
+    "src": "resources/js/loadMoreDescription2.js",
+    "isEntry": true
+  },
+  "resources/js/loadMoreImages.js": {
+    "file": "assets/loadMoreImages-AzCURZjo.js",
+    "name": "loadMoreImages",
+    "src": "resources/js/loadMoreImages.js",
+    "isEntry": true
+  },
+  "resources/js/loadMoreImages2.js": {
+    "file": "assets/loadMoreImages2-AzCURZjo.js",
+    "name": "loadMoreImages2",
+    "src": "resources/js/loadMoreImages2.js",
+    "isEntry": true
+  },
+  "resources/js/slider.js": {
+    "file": "assets/slider-DKNDmEBG.js",
+    "name": "slider",
+    "src": "resources/js/slider.js",
+    "isEntry": true
+  }
+}
