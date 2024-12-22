@@ -9,6 +9,10 @@ use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\StripeController;
+
+
 
 Route::middleware(['web'])->group(function () {
     // Rutas de inicio
@@ -41,8 +45,16 @@ Route::middleware(['web'])->group(function () {
     // Rutas de pago
     Route::get('/payment/{reservation}', [PaymentController::class, 'payment'])->name('payment');
     Route::post('/process-payment/{reservationId}', [PaymentController::class, 'processPayment'])->name('processPayment');
+    // Rutas para Stripe
+    Route::get('/stripe/create/{reservation}', [StripeController::class, 'createPayment'])->name('stripe.create');
+    Route::post('/stripe/process/{reservation}', [StripeController::class, 'processPayment'])->name('stripe.process');
+    Route::get('/stripe/cancel/{reservation}', [StripeController::class, 'cancelPayment'])->name('stripe.cancel');
 
-    // Rutas de confirmación
+    // Rutas para PayPal
+    Route::get('/paypal/create', [PayPalController::class, 'createPayment'])->name('paypal.create');
+    Route::get('/paypal/success', [PayPalController::class, 'success'])->name('paypal.success');
+    Route::get('/paypal/cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
+    Route::get('/paypal/test-payment', [PayPalController::class, 'createTestPayment'])->name('paypal.test-payment');
     Route::get('/confirmation/{reservation}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
     // Rutas de autenticación (manuales)
