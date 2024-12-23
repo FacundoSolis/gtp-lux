@@ -132,7 +132,7 @@ iframe {
 /* Contenedor del formulario incrustado */
 .reservation-form-wrapper {
   position: absolute;
-  top: 45vh; /* Ajusta según el tamaño del banner */
+  top: 48vh; /* Ajusta según el tamaño del banner */
   left: 50%;
   transform: translate(-50%, -20%); /* Para centrar y hacerlo sobresalir */
   z-index: 5; /* Por encima del banner */
@@ -165,7 +165,7 @@ iframe {
 .reservation-form-wrapper .btn-form {
   display: block; /* Bloque para ocupar todo el ancho disponible */
   margin: 10px auto; /* Centrado horizontal automático */
-  width: 50%; /* Ancho del botón */
+  width: 45%; /* Ancho del botón */
   height: auto; /* Ajusta la altura al contenido */
   text-align: center; /* Alinea el texto dentro del botón */
   background: linear-gradient(45deg, #f5c032, #d4af37);
@@ -188,7 +188,7 @@ iframe {
 
 #availability-calendar {
   width: 100%; /* Ajusta el ancho */
-  max-width: 380px; /* Limita el ancho */
+  max-width: 420px; /* Limita el ancho */
   height: 255px; /* Altura del calendario */
   border: 1px solid #dcdcdc;
   border-radius: 10px; /* Bordes redondeados */

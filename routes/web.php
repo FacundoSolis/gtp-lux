@@ -86,6 +86,8 @@ Route::middleware(['web'])->group(function () {
         Route::get('/reservations/create', [AdminReservationController::class, 'create'])->name('admin.reservations.create');
         // Gestión de pagos
         Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index');
+        Route::resource('ports', \App\Http\Controllers\PortController::class)->except(['show']);
+        Route::resource('boats', \App\Http\Controllers\BoatController::class)->except(['show']);
     });
 
     // Redirección tras inicio de sesión

@@ -13,7 +13,7 @@ class BoatController extends Controller
     {
         // Retorna una lista de todos los barcos con información del puerto asociado
         $boats = Boat::with('port')->get();
-        return view('boats.index', compact('boats'));
+        return view('admin.boats.index', compact('boats'));
     }
 
     public function getByPort($portId)
@@ -70,4 +70,47 @@ public function showBoatPage($boat_id)
     // Si el barco no es Sunseeker ni Princess, redirigir a la vista predeterminada.
     return view('portofino', compact('boat', 'ports', 'boat_id'));
 }
+    public function create()
+    {
+        $ports = Port::all();
+        return view('admin.boats.create', compact('ports'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'port_id' => 'required|exists:ports,id',
+        ]);
+
+        Boat::create($validated);
+
+        return redirect()->route('admin.boats.index')->with('success', 'Barco creado con éxito.');
+    }
+
+    public function edit(Boat $boat)
+    {
+        $ports = Port::all();
+        return view('admin.boats.edit', compact('boat', 'ports'));
+    }
+
+    public function update(Request $request, Boat $boat)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'port_id' => 'required|exists:ports,id',
+        ]);
+
+        $boat->update($validated);
+
+    return redirect()->route('boats.index')->with('success', 'Barco actualizado con éxito.');
+}
+
+    public function destroy(Boat $boat)
+    {
+        $boat->delete();
+
+    return redirect()->route('boats.index')->with('success', 'Barco eliminado con éxito.');
+}
+
 }

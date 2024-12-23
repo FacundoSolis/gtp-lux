@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\Payment;
 use App\Models\User;
+use App\Models\Boat;
+use App\Models\Port;
 
 class HomeController extends Controller
 {
@@ -20,6 +22,8 @@ class HomeController extends Controller
             'totalReservations' => Reservation::count(),
             'totalPayments' => Payment::sum('amount'),
             'totalUsers' => User::count(),
+            'totalBoats' => Boat::count(),
+            'totalPorts' => Port::count(), 
         ]);
     }
 }

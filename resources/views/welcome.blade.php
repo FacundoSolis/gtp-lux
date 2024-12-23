@@ -58,7 +58,7 @@
 <!-- Formulario de reserva en forma de card centrado -->
 <div class="reservation-form-wrapper">
     <div class="container">
-        <div class="card mx-auto" style="width: 50%;">
+        <div class="card mx-auto" style="width: 70%;">
             <div class="card-body">
                 <!-- El formulario ahora se dirige a la ruta 'available.boats' -->
                 <form action="{{ route('available.boats') }}" method="GET">
