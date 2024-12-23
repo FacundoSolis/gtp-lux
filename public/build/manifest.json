@@ -30,10 +30,13 @@
     "isEntry": true
   },
   "resources/js/componentes/app.jsx": {
-    "file": "assets/app-D7KIcAU_.js",
+    "file": "assets/app-CZGoG8E1.js",
     "name": "app",
     "src": "resources/js/componentes/app.jsx",
-    "isEntry": true
+    "isEntry": true,
+    "css": [
+      "assets/app-B2iGMUkP.css"
+    ]
   },
   "resources/js/loadMoreDescription.js": {
     "file": "assets/loadMoreDescription-UnQYDaJ2.js",

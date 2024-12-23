@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client'; // Asegúrate de usar react-dom/client
-
-
+import '@fullcalendar/common/main.css';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { Calendar } from '@fullcalendar/core';
 
 const App = () => {
     const [images, setImages] = useState([
@@ -18,19 +19,38 @@ const App = () => {
         `${baseUrl}/img/val9.jpg`,
     ]);
 
+    useEffect(() => {
+        // Inicializar el calendario después de que el componente se haya montado
+        const calendarEl = document.getElementById('availability-calendar');
+
+        if (calendarEl) {
+            const calendar = new Calendar(calendarEl, {
+                plugins: [dayGridPlugin],
+                initialView: 'dayGridMonth',
+                locale: 'es',
+                events: [
+                    { title: 'Reservado', start: '2024-12-24', end: '2024-12-25', color: 'red' },
+                    { title: 'Disponible', start: '2024-12-26', end: '2024-12-27', color: 'green' },
+                ],
+            });
+            calendar.render();
+        }
+    }, []); // Este efecto solo se ejecuta una vez, cuando el componente se monta
+
     const loadMoreImages = () => {
         setImages((prevImages) => [...prevImages, ...moreImages]);
-        setMoreImages([]);  // Eliminar las imágenes adicionales después de cargarlas
+        setMoreImages([]); // Eliminar las imágenes adicionales después de cargarlas
     };
 
     return (
         <div className="container">
             <h2>Sunseeker Portofino 53</h2>
 
+            {/* Galería de imágenes */}
             <div className="productCover__imagesContainer">
                 <div className="productCover__sideImgs">
                     {images.map((imgUrl, index) => (
-                        <div 
+                        <div
                             key={index}
                             className="productCover__img--small js-openGallery"
                             style={{ backgroundImage: `url(${imgUrl})` }}
@@ -46,6 +66,9 @@ const App = () => {
                     </button>
                 </div>
             )}
+
+            {/* Contenedor para FullCalendar */}
+            <div id="availability-calendar" className="availability-calendar"></div>
         </div>
     );
 };

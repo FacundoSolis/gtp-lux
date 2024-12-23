@@ -16,7 +16,6 @@ export default defineConfig({
                 'resources/css/style.css', 
                 'resources/css/available-boats.css',
 
-
                 // Scripts
                 'resources/js/componentes/app.jsx',
                 'resources/js/slider.js',
