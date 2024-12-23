@@ -21,8 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Suponiendo que tienes un array $payments -->
-                    @foreach ($payments as $payment)
+                    @forelse ($payments as $payment)
                         <tr>
                             <td>{{ $payment->id }}</td>
                             <td>{{ $payment->reservation->name ?? 'N/A' }}</td>
@@ -30,10 +29,16 @@
                             <td>{{ $payment->method }}</td>
                             <td>{{ $payment->created_at->format('d/m/Y') }}</td>
                             <td>
-                                <a href="#" class="btn btn-info btn-sm" title="Detalles"><i class="fas fa-info-circle"></i></a>
+                                <a href="#" class="btn btn-info btn-sm" title="Detalles">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">No hay pagos registrados.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
