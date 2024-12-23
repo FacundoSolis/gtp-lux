@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\PriceController;
+
 
 
 
@@ -41,6 +43,7 @@ Route::middleware(['web'])->group(function () {
     Route::post('/reservation/step2', [ReservationController::class, 'saveStep2']);
     Route::get('/reservation/step3', [ReservationController::class, 'showStep3'])->name('step3');
     Route::post('/reservation/details', [ReservationController::class, 'saveDetails'])->name('reservation.details');
+    Route::get('/calculate-price', [PriceController::class, 'calculatePrice'])->name('calculate.price');
 
     // Rutas de pago
     Route::get('/payment/{reservation}', [PaymentController::class, 'payment'])->name('payment');
@@ -88,6 +91,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index');
         Route::resource('ports', \App\Http\Controllers\PortController::class)->except(['show']);
         Route::resource('boats', \App\Http\Controllers\BoatController::class)->except(['show']);
+
     });
 
     // Redirección tras inicio de sesión

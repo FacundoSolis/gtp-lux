@@ -81,11 +81,15 @@ public function showBoatPage($boat_id)
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'port_id' => 'required|exists:ports,id',
+            'capacity' => 'nullable|integer|min:1',
+            'price_modifier' => 'nullable|numeric|min:0',
         ]);
+            // Proveer un valor predeterminado para 'boat_id'
+        $validated['boat_id'] = Boat::max('boat_id') + 1;
 
         Boat::create($validated);
 
-        return redirect()->route('admin.boats.index')->with('success', 'Barco creado con éxito.');
+        return redirect()->route('boats.index')->with('success', 'Barco creado con éxito.');
     }
 
     public function edit(Boat $boat)

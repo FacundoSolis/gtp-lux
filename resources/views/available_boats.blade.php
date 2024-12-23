@@ -73,6 +73,10 @@
             ])
         </div>
     </div>
+    <div id="price-summary" style="display: none; margin-top: 20px;">
+        <h3>Total:</h3>
+        <p><strong id="total-price">0€</strong></p>
+    </div>
 </main>
 @endsection
 
@@ -83,6 +87,8 @@
 $(document).ready(function () {
     const pickupDateInput = $("#pickup_date");
     const returnDateInput = $("#return_date");
+    const priceSummary = $("#price-summary");
+    const totalPriceElement = $("#total-price");
 
     // Estado para reiniciar fechas
     let lastPickupDate = null;
@@ -111,9 +117,11 @@ $(document).ready(function () {
             returnDateInput.datepicker("setDate", null); // Limpiar fecha anterior
 
             // Abrir automáticamente el selector de devolución
-            setTimeout(() => {
+            setTimeout(function () {
                 returnDateInput.datepicker("show");
             }, 200); // Retardo para evitar cierres inesperados
+
+            calculatePrice(); // Llamar al cálculo del precio
         }
     });
 
@@ -127,11 +135,12 @@ $(document).ready(function () {
                 $(this).datepicker("option", "defaultDate", minDate);
             }
         },
-        onSelect: function (selectedDate) {
-            // Cerrar automáticamente tras seleccionar una fecha
-            setTimeout(() => {
+        onSelect: function () {
+            setTimeout(function () {
                 returnDateInput.datepicker("hide");
             }, 200);
+
+            calculatePrice(); // Llamar al cálculo del precio
         }
     });
 
@@ -158,9 +167,35 @@ $(document).ready(function () {
             alert("Por favor selecciona ambas fechas.");
         }
     });
+
+    // Función para calcular el precio dinámico
+    function calculatePrice() {
+        const pickupDate = pickupDateInput.val();
+        const returnDate = returnDateInput.val();
+        const boatId = $('[name="boat_id"]').val();
+
+        if (pickupDate && returnDate && boatId) {
+            axios.get('/calculate-price', {
+                params: {
+                    boat_id: boatId,
+                    start_date: pickupDate,
+                    end_date: returnDate,
+                },
+            })
+            .then(function (response) {
+                const totalPrice = response.data.total_price || 0;
+                totalPriceElement.text(totalPrice + "€");
+                priceSummary.show();
+            })
+            .catch(function (error) {
+                console.error("Error al calcular el precio:", error);
+            });
+        }
+    }
 });
 </script>
 @endsection
+
 
 
 

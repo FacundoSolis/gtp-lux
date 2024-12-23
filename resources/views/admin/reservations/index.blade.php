@@ -50,6 +50,13 @@
         </div>
     </div>
 
+    <!-- Botón Nueva Reserva -->
+    <div class="mb-4">
+        <a href="{{ route('admin.reservations.create') }}" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i> Nueva Reserva
+        </a>
+    </div>
+
     <!-- Tabla de reservas -->
     <form action="{{ route('admin.reservations.destroyMultiple') }}" method="POST">
         @csrf

@@ -55,11 +55,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.reservations.create') }}" class="nav-link">
-                        <i class="fas fa-plus-circle me-2"></i> Nueva Reserva
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{ route('boats.index') }}" class="nav-link {{ request()->routeIs('boats.index') ? 'active' : '' }}">
                         <i class="fas fa-ship me-2"></i> Gestionar Barcos
                     </a>
