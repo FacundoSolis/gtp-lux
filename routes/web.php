@@ -66,11 +66,7 @@ Route::middleware(['web'])->group(function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('register', [RegisterController::class, 'register']);
-    Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-    Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-    Route::get('password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
-    Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
-
+    
     // Grupo de rutas protegidas para administración
     Route::middleware(['auth'])->prefix('admin')->group(function () {
         // Gestión de reservas
@@ -92,6 +88,19 @@ Route::middleware(['web'])->group(function () {
         Route::resource('ports', \App\Http\Controllers\PortController::class)->except(['show']);
         Route::resource('boats', \App\Http\Controllers\BoatController::class)->except(['show']);
 
+    });
+    Route::middleware('guest')->group(function () {
+        // Rutas de autenticación
+        Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('login', [LoginController::class, 'login']);
+        Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+        Route::post('register', [RegisterController::class, 'register']);
+    
+        // Rutas de restablecimiento de contraseña
+        Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+        Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+        Route::get('password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+        Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
     });
 
     // Redirección tras inicio de sesión
