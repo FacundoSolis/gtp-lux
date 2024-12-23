@@ -59,3 +59,14 @@
 .btn:hover {
     transform: scale(1.05);
 }
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#monthlyStatsChart {
+    max-width: 100%; /* Asegura que el gráfico se ajuste al tamaño del contenedor */
+    height: 400px; /* Ajusta la altura para hacerlo más compacto */
+    margin: 0 auto; /* Centra el gráfico */
+}

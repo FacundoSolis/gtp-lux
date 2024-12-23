@@ -109,30 +109,32 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('monthlyStatsChart').getContext('2d');
-        const chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Enero', 'Febrero', 'Marzo', 'Abril'], // Cambia según datos reales
-                datasets: [{
-                    label: 'Reservas',
-                    data: [12, 19, 3, 5], // Datos reales
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                }, {
-                    label: 'Pagos',
-                    data: [5, 15, 10, 7],
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+    const ctx = document.getElementById('monthlyStatsChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril'], // Cambia según datos reales
+            datasets: [{
+                label: 'Reservas',
+                data: [12, 19, 3, 5], // Datos reales
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            }, {
+                label: 'Pagos',
+                data: [5, 15, 10, 7],
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, // Permite personalizar el tamaño
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
+        }
     });
+});
+
 </script>
 @endsection
