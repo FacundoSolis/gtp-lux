@@ -22,7 +22,7 @@
     @stack('styles')
 </head>
 <body>
-    <div id="app" class="page-container">
+    <div class="page-container">
         <header>
             <!-- Puedes incluir un header aquí si es necesario -->
         </header>
