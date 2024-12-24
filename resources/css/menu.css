@@ -13,11 +13,13 @@
     z-index: 1000;
     height: 80px;
 }
-
 /* Logo */
 .topbar__logo img {
     max-height: 60px;
     height: auto;
+}
+.nav-menu {
+    display: flex; /* Visible en pantallas grandes */
 }
 
 /* Menú de escritorio */
@@ -95,6 +97,8 @@
     width: 30px;
     height: 20px;
     cursor: pointer;
+    z-index: 1001; /* Más alto que el resto */
+
 }
 
 .hamburger-menu span {
@@ -115,7 +119,7 @@
     width: 100%;
     background-color: #0E1724;
     color: white;
-    z-index: 999;
+    z-index: 1000;
     padding: 20px;
 }
 
@@ -140,6 +144,7 @@
     color: white;
 }
 
+
 /* Responsividad */
 @media (max-width: 768px) {
     .nav-menu {
@@ -148,6 +153,36 @@
 
     .hamburger-menu {
         display: flex;
+    }
+    .mobile-menu {
+        display: none; /* Ocultar inicialmente */
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #0E1724;
+        color: white;
+        z-index: 1000;
+        padding: 20px;
+    }
+
+    .mobile-menu.active {
+        display: flex; /* Mostrar el menú móvil cuando se activa */
+    }
+
+    .mobile-menu ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .mobile-menu ul li {
+        margin: 10px 0;
+    }
+
+    .mobile-menu ul li a {
+        color: white;
+        text-decoration: none;
     }
     .dropdown ul li a,
     .dropdown ul li span {

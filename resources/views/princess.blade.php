@@ -4,34 +4,68 @@
     @vite('resources/css/menu.css')
     @vite('resources/css/princess.css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @endpush
 
 @section('content')
 <!-- Menú fijo -->
 <header class="topbar">
-    <div class="topbar__logo">
+<div class="topbar__logo">
+        <!-- Enlace que lleva a la página principal -->
         <a href="{{ route('welcome') }}">
             <img src="{{ asset('img/logo.png') }}" alt="Logo">
         </a>
     </div>
+    <!-- Menú de escritorio -->
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li class="settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">Español</span>
+                    <ul>
+                        <li><a href="#" class="language">Français</a></li>
+                        <li><a href="#" class="language">English</a></li>
+                        <li><span class="selected">Español</span></li>
+                        <li><a href="#" class="language">Italiano</a></li>
+                        <li><a href="#" class="language">Deutsch</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
 
-    <div class="topbar__settingsDropdowns">
-        <div class="settingsDropdown js-language-dropdown" aria-label="Choose language">
-            <div class="dropdown" tabindex="0">
-                <span class="value" aria-label="Current language value">
-                    <span>Español</span>
-                </span>
-                <ul>
-                    <li><a href="#" class="language">Français</a></li>
-                    <li><a href="#" class="language">English</a></li>
-                    <li><span class="selected">Español</span></li>
-                    <li><a href="#" class="language">Italiano</a></li>
-                    <li><a href="#" class="language">Deutsch</a></li>
-                </ul>
-            </div>
-        </div>
+    <!-- Menú hamburguesa -->
+    <div class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li class="settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">Español</span>
+                    <ul>
+                        <li><a href="#" class="language">Français</a></li>
+                        <li><a href="#" class="language">English</a></li>
+                        <li><span class="selected">Español</span></li>
+                        <li><a href="#" class="language">Italiano</a></li>
+                        <li><a href="#" class="language">Deutsch</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </div>
 </header>
+
 
 <!-- Slider de imágenes y características del barco -->
 <section class="container-valkyrya">
@@ -299,7 +333,14 @@
         const priceSummary = document.getElementById('price-summary');
         const totalPriceElement = document.getElementById('total-price');
         const boatId = 4; // ID del barco actualizado
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
+        if (hamburgerMenu && mobileMenu) {
+            hamburgerMenu.addEventListener('click', function () {
+                mobileMenu.classList.toggle('active');
+            });
+        }
         // Función para calcular el precio
         function calculatePrice(boatId, startDate, endDate) {
             if (!startDate || !endDate) return;
@@ -321,7 +362,6 @@
                     alert('No se pudo calcular el precio. Intenta nuevamente.');
                 });
         }
-
         // Muestra el precio en la tarjeta
         function showPriceSummary(totalPrice) {
             const priceCard = document.getElementById('price-summary');
@@ -331,12 +371,11 @@
 
             priceCard.style.display = 'block';  // Muestra la tarjeta de precios
         }
-
         // Llama a esta función después de que se seleccionen ambas fechas
         pickupInput.addEventListener('change', () => {
-            // Verificar si ambas fechas están seleccionadas
+        // Verificar si ambas fechas están seleccionadas
             if (pickupInput.value && returnInput.value) {
-                // Convertir las fechas a formato YYYY-MM-DD
+        // Convertir las fechas a formato YYYY-MM-DD
                 const startDate = new Date(pickupInput.value).toISOString().split('T')[0];
                 const endDate = new Date(returnInput.value).toISOString().split('T')[0];
 
@@ -346,9 +385,8 @@
 
                 // Llamar a la función para calcular el precio
                 calculatePrice(boatId, startDate, endDate);
-            }
-        });
-
+    }
+});
         returnInput.addEventListener('change', () => {
             // Verificar si ambas fechas están seleccionadas
             if (pickupInput.value && returnInput.value) {
@@ -359,7 +397,7 @@
                 // Llamar a la función para calcular el precio
                 calculatePrice(boatId, startDate, endDate);
             }
-        });
+});
 
         let selectedPickupDate = null;
         let selectedReturnDate = null;
@@ -436,11 +474,11 @@
                     }
 
                     // Verificar si el rango contiene días reservados
-                    const isRangeReserved = checkRangeOverlap(selectedPickupDate, clickedDate);
-                    if (isRangeReserved) {
-                        alert('El rango seleccionado incluye días ya reservados. Por favor selecciona otro rango.');
-                        return;
-                    }
+                const isRangeReserved = checkRangeOverlap(selectedPickupDate, clickedDate);
+                if (isRangeReserved) {
+                    alert('El rango seleccionado incluye días ya reservados. Por favor selecciona otro rango.');
+                    return;
+                }
 
                     selectedReturnDate = clickedDate;
                     returnInput.value = selectedReturnDate;
@@ -457,11 +495,10 @@
 
         function highlightSelectedDates() {
 
-            // Limpia estilos previos aplicados solo a las celdas seleccionadas
+                // Limpia estilos previos aplicados solo a las celdas seleccionadas
             document.querySelectorAll('.fc-day[data-date]').forEach(dayCell => {
                 dayCell.style.backgroundColor = ''; // Restablecer color
             });
-
             // Limpiar eventos visuales previos
             calendar.getEvents().forEach(event => {
                 event.setProp('backgroundColor', event.extendedProps.available ? 'green' : 'red');
@@ -494,7 +531,7 @@
                     const eventStart = new Date(event.startStr);
                     const eventEnd = new Date(event.endStr);
 
-                    // Verificar si algún día del rango seleccionado se solapa con un rango reservado
+                // Verificar si algún día del rango seleccionado se solapa con un rango reservado
                     return (
                         (start >= eventStart && start < eventEnd) || // Inicio dentro de un rango reservado
                         (end > eventStart && end <= eventEnd) || // Fin dentro de un rango reservado
@@ -502,7 +539,7 @@
                     );
                 }
                 return false;
-            });
+             });
         }
 
         function resetSelection() {

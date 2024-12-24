@@ -4,32 +4,65 @@
     @vite('resources/css/menu.css')
     @vite('resources/css/portofino.css') <!-- Solo carga el CSS relevante para esta página -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @endpush
 
 @section('content')
 <!-- Menú fijo -->
 <header class="topbar">
-    <div class="topbar__logo">
+<div class="topbar__logo">
+        <!-- Enlace que lleva a la página principal -->
         <a href="{{ route('welcome') }}">
             <img src="{{ asset('img/logo.png') }}" alt="Logo">
         </a>
     </div>
+    <!-- Menú de escritorio -->
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li class="settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">Español</span>
+                    <ul>
+                        <li><a href="#" class="language">Français</a></li>
+                        <li><a href="#" class="language">English</a></li>
+                        <li><span class="selected">Español</span></li>
+                        <li><a href="#" class="language">Italiano</a></li>
+                        <li><a href="#" class="language">Deutsch</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
 
-    <div class="topbar__settingsDropdowns">
-        <div class="settingsDropdown js-language-dropdown" aria-label="Choose language">
-            <div class="dropdown" tabindex="0">
-                <span class="value" aria-label="Current language value">
-                    <span>Español</span>
-                </span>
-                <ul>
-                    <li><a href="#" class="language">Français</a></li>
-                    <li><a href="#" class="language">English</a></li>
-                    <li><span class="selected">Español</span></li>
-                    <li><a href="#" class="language">Italiano</a></li>
-                    <li><a href="#" class="language">Deutsch</a></li>
-                </ul>
-            </div>
-        </div>
+    <!-- Menú hamburguesa -->
+    <div class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li class="settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">Español</span>
+                    <ul>
+                        <li><a href="#" class="language">Français</a></li>
+                        <li><a href="#" class="language">English</a></li>
+                        <li><span class="selected">Español</span></li>
+                        <li><a href="#" class="language">Italiano</a></li>
+                        <li><a href="#" class="language">Deutsch</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </div>
 </header>
 
@@ -303,7 +336,14 @@
         const priceSummary = document.getElementById('price-summary');
         const totalPriceElement = document.getElementById('total-price');
         const boatId = 3; // ID del barco actualizado
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
+        if (hamburgerMenu && mobileMenu) {
+            hamburgerMenu.addEventListener('click', function () {
+                mobileMenu.classList.toggle('active');
+            });
+        }
         // Función para calcular el precio
         function calculatePrice(boatId, startDate, endDate) {
             if (!startDate || !endDate) return;
@@ -542,6 +582,7 @@
         calendar.render();
     });
 </script>
+
 
 
 
