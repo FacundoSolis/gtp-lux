@@ -116,5 +116,20 @@ public function showBoatPage($boat_id)
 
     return redirect()->route('boats.index')->with('success', 'Barco eliminado con éxito.');
 }
+public function getDailyPrice(Request $request, $boatId)
+{
+    
+    $boat = Boat::findOrFail($boatId);
 
+    $startDate = $request->input('start_date');
+    $endDate = $request->input('end_date');
+
+    if (!$startDate || !$endDate) {
+        return response()->json(['error' => 'Fechas inválidas'], 400);
+    }
+
+    $totalPrice = $boat->calculateDailyPrice($startDate, $endDate);
+
+    return response()->json(['total_price' => $totalPrice]);
+}
 }

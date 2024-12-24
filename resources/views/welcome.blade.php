@@ -2,7 +2,6 @@
 
 @push('styles')
   @vite('resources/css/style.css')
-  @vite('resources/css/menu.css')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
@@ -263,7 +262,6 @@
       
       if (form) {
         form.addEventListener('submit', function (e) {
-            e.preventDefault(); // Evita que el formulario se envíe sin validación
             console.log('Formulario enviado');
           });
 

@@ -4,6 +4,8 @@
 @vite('resources/css/menu.css')
 @vite('resources/css/available-boats.css')
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 
 @endpush
 
@@ -12,7 +14,9 @@
 <!-- Menú fijo -->
 <header class="topbar">
     <div class="topbar__logo">
-        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
+        <a href="{{ route('welcome') }}">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo">
+        </a>
     </div>
 
     <div class="topbar__settingsDropdowns">
@@ -73,10 +77,6 @@
             ])
         </div>
     </div>
-    <div id="price-summary" style="display: none; margin-top: 20px;">
-        <h3>Total:</h3>
-        <p><strong id="total-price">0€</strong></p>
-    </div>
 </main>
 @endsection
 
@@ -87,8 +87,6 @@
 $(document).ready(function () {
     const pickupDateInput = $("#pickup_date");
     const returnDateInput = $("#return_date");
-    const priceSummary = $("#price-summary");
-    const totalPriceElement = $("#total-price");
 
     // Estado para reiniciar fechas
     let lastPickupDate = null;
@@ -121,7 +119,7 @@ $(document).ready(function () {
                 returnDateInput.datepicker("show");
             }, 200); // Retardo para evitar cierres inesperados
 
-            calculatePrice(); // Llamar al cálculo del precio
+            calculatePriceForBoats(); // Llamar a la función de cálculo de precios
         }
     });
 
@@ -140,7 +138,7 @@ $(document).ready(function () {
                 returnDateInput.datepicker("hide");
             }, 200);
 
-            calculatePrice(); // Llamar al cálculo del precio
+            calculatePriceForBoats(); // Llamar a la función de cálculo de precios
         }
     });
 
@@ -169,32 +167,45 @@ $(document).ready(function () {
     });
 
     // Función para calcular el precio dinámico
-    function calculatePrice() {
+    function calculatePriceForBoats() {
         const pickupDate = pickupDateInput.val();
         const returnDate = returnDateInput.val();
-        const boatId = $('[name="boat_id"]').val();
 
-        if (pickupDate && returnDate && boatId) {
-            axios.get('/calculate-price', {
-                params: {
-                    boat_id: boatId,
-                    start_date: pickupDate,
-                    end_date: returnDate,
-                },
-            })
-            .then(function (response) {
-                const totalPrice = response.data.total_price || 0;
-                totalPriceElement.text(totalPrice + "€");
-                priceSummary.show();
-            })
-            .catch(function (error) {
-                console.error("Error al calcular el precio:", error);
+        if (pickupDate && returnDate) {
+            $(".boat-card").each(function () {
+                const boatId = $(this).data("boat-id");
+                const dailyPriceElement = $(`#daily-price-${boatId}`);
+
+                if (boatId) {
+                    axios.get(`/boats/${boatId}/daily-price`, {
+                        params: {
+                            start_date: pickupDate,
+                            end_date: returnDate,
+                        },
+                    })
+                    .then(function (response) {
+                        const totalPrice = response.data.total_price || 0;
+                        dailyPriceElement.text(totalPrice + "€");
+                    })
+                    .catch(function (error) {
+                        console.error(`Error al calcular el precio para el barco ${boatId}:`, error);
+                        dailyPriceElement.text("Error");
+                    });
+                }
             });
         }
     }
+
+    // Llama a la función al cargar la página y al cambiar las fechas
+    calculatePriceForBoats();
+
+    $("#pickup_date, #return_date").on("change", function () {
+        calculatePriceForBoats();
+    });
 });
 </script>
 @endsection
+
 
 
 

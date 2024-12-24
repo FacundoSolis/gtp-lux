@@ -10,7 +10,9 @@
 <!-- Menú fijo -->
 <header class="topbar">
     <div class="topbar__logo">
-        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
+        <a href="{{ route('welcome') }}">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo">
+        </a>
     </div>
 
     <div class="topbar__settingsDropdowns">

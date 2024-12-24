@@ -1,4 +1,4 @@
-/* Estilos del menú fijo */
+/* Menú general */
 .topbar {
     position: fixed;
     top: 0;
@@ -11,93 +11,153 @@
     align-items: center;
     padding: 10px 50px;
     z-index: 1000;
-    margin-top: 0;
     height: 80px;
 }
 
+/* Logo */
 .topbar__logo img {
-    max-height: 120px; /* Aumenta el tamaño del logo sin exceder el límite del topbar */
-    height: auto; /* Asegura que la altura del logo se ajuste automáticamente */
+    max-height: 60px;
+    height: auto;
 }
 
-.topbar__settingsDropdowns {
+/* Menú de escritorio */
+.nav-menu ul {
     display: flex;
-    align-items: center;
-}
-
-.settingsDropdown {
-    position: relative;
-    margin-left: 20px;
-}
-
-.dropdown {
-    display: inline-block;
-    cursor: pointer;
-    background-color: #444;
-    color: #fff;
-    font-size: 16px;
-    padding: 8px 15px;
-    border-radius: 25px; /* Borde circular */
-    transition: background-color 0.3s ease;
-}
-
-.dropdown:hover {
-    background-color: #555; /* Color al pasar el ratón */
-}
-
-.value {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Estilos del menú desplegable */
-ul {
-    display: none;
     list-style: none;
     margin: 0;
     padding: 0;
-    background-color: #444;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 150px;
-    border-radius: 10px;
-    z-index: 999;
 }
 
-li {
-    padding: 10px;
-    font-size: 14px;
+.nav-menu ul li {
+    margin-right: 20px;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
     color: #fff;
-    cursor: pointer;
-}
-
-li:hover {
-    background-color: #555;
-}
-
-.selected {
     font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
     color: #f1c40f;
 }
 
-/* Mostrar el dropdown cuando se hace hover */
-.settingsDropdown:hover ul {
-    display: block;
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-/* Ajustar contenido debajo del menú */
-body {
-    margin-top: 70px; /* Espacio para el menú fijo */
-}
-
-/* Opciones de idioma en el dropdown */
-.language {
+.dropdown .value {
+    cursor: pointer;
+    font-weight: bold;
     color: #fff;
-    text-decoration: none;
+}
+
+.dropdown ul {
+    display: none;
+    position: absolute;
+    background-color: white;
+    color: black;
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+    width: 150px;
+}
+
+.dropdown:hover ul {
     display: block;
 }
 
-.language:hover {
-    background-color: #666; /* Color de fondo al pasar el ratón */
+.dropdown ul li {
+    margin: 5px 0;
+}
+
+.dropdown ul li a,
+.dropdown ul li span {
+    color: black; /* Cambiar el color del texto a negro */
+    text-decoration: none; /* Eliminar subrayado en enlaces */
+    font-weight: normal; /* Estilo de texto normal */
+    display: block; /* Asegura que los elementos ocupen toda la línea */
+    padding: 5px 10px; /* Espaciado interno */
+    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+}
+
+/* Menú hamburguesa */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.hamburger-menu span {
+    display: block;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Menú móvil */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: #0E1724;
+    color: white;
+    z-index: 999;
+    padding: 20px;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-menu ul li {
+    margin: 10px 0;
+}
+
+.mobile-menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+.form-label {
+    color: white;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+    .dropdown ul li a,
+    .dropdown ul li span {
+    color: black; /* Cambiar el color del texto a negro */
+    text-decoration: none; /* Eliminar subrayado en enlaces */
+    font-weight: normal; /* Estilo de texto normal */
+    display: block; /* Asegura que los elementos ocupen toda la línea */
+    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+}
+    .mobile-menu .form-label {
+    color: white; /* Cambiar el color del texto a blanco */
+}
 }

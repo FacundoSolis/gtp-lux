@@ -39,5 +39,28 @@ class Boat extends Model
     {
         return $this->hasMany(Season::class);
 }
+public function calculateDailyPrice($startDate, $endDate)
+{
+    $startDate = \Carbon\Carbon::parse($startDate);
+    $endDate = \Carbon\Carbon::parse($endDate);
+    $totalPrice = 0;
 
+    // Iterar a través del rango de fechas
+    while ($startDate->lte($endDate)) {
+        $season = $this->seasons()
+            ->where('start_date', '<=', $startDate)
+            ->where('end_date', '>=', $startDate)
+            ->first();
+
+        if ($season) {
+            $totalPrice += $season->price_per_day; // Usa el precio diario de la temporada
+        } else {
+            $totalPrice += $this->base_price; // Precio base si no hay temporada
+        }
+
+        $startDate->addDay(); // Avanza al siguiente día
+    }
+
+    return $totalPrice;
+}
 }

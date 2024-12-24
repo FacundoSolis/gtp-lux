@@ -44,6 +44,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/reservation/step3', [ReservationController::class, 'showStep3'])->name('step3');
     Route::post('/reservation/details', [ReservationController::class, 'saveDetails'])->name('reservation.details');
     Route::get('/calculate-price', [PriceController::class, 'calculatePrice'])->name('calculate.price');
+    Route::get('/boats/{boatId}/daily-price', [BoatController::class, 'getDailyPrice']);
 
     // Rutas de pago
     Route::get('/payment/{reservation}', [PaymentController::class, 'payment'])->name('payment');
