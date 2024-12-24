@@ -433,7 +433,7 @@ color: #007BFF;
   color: black; /* Color de las etiquetas */
 }
 .form-control::placeholder {
-  color: black; /* Color del texto del placeholder */
+  color: gray; /* Color del texto del placeholder */
 }
 .btn-primary {
   margin-bottom: 20px;

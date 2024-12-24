@@ -208,7 +208,7 @@
         <div class="mb-3">
             <label for="port_id" class="form-label">Puerto:</label>
             <select id="port_id" name="port_id" class="form-control" required>
-                <option value="">Seleccione un puerto</option>
+                <option value="">Lugar de salida</option>
                 @foreach($ports as $port)
                     <option value="{{ $port->id }}">{{ $port->name }}</option>
                 @endforeach
@@ -219,11 +219,11 @@
         <div class="row">
             <div class="col">
                 <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
-                <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" placeholder="Seleccionar fecha" readonly required>
+                <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" placeholder="DD/MM/AAAA" readonly required>
             </div>
             <div class="col">
                 <label for="return_date" class="form-label">Fecha de Entrega:</label>
-                <input type="text" id="return_date" name="return_date" class="form-control date-picker" placeholder="Seleccionar fecha" readonly required>
+                <input type="text" id="return_date" name="return_date" class="form-control date-picker" placeholder="DD/MM/AAAA" readonly required>
             </div>
         </div>
 
@@ -241,13 +241,13 @@
         <!-- Información del cliente -->
         <div class="mt-4">
             <label for="name" class="form-label">Nombre:</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Ingrese su nombre" required>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Ejemplo: Juan Pérez" required>
 
             <label for="email" class="form-label mt-2">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Ingrese su correo electrónico" required>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Ejemplo: juan.perez@correo.com" required>
 
             <label for="phone" class="form-label mt-2">Teléfono:</label>
-            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ingrese su teléfono" required>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ejemplo: +34 600 000 000"required>
         </div>
 
         <!-- Botón de reserva -->

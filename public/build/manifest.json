@@ -15,8 +15,8 @@
     "isEntry": true
   },
   "resources/css/portofino.css": {
-    "file": "assets/princess-DCIvS_Zk.css",
-    "src": "resources/css/princess.css",
+    "file": "assets/portofino-BjSLANdo.css",
+    "src": "resources/css/portofino.css",
     "isEntry": true
   },
   "resources/css/princess.css": {
@@ -30,7 +30,7 @@
     "isEntry": true
   },
   "resources/js/componentes/app.jsx": {
-    "file": "assets/app-Dli194gr.js",
+    "file": "assets/app-Dj-dHRuT.js",
     "name": "app",
     "src": "resources/js/componentes/app.jsx",
     "isEntry": true

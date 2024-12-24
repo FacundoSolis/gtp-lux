@@ -69,7 +69,7 @@
                     <div class="mb-3">
                         <label for="port_id" class="form-label">Puerto:</label>
                         <select id="port_id" name="port_id" class="form-control" required>
-                            <option value="">Seleccione un puerto</option>
+                            <option value="">Lugar de salida</option>
                             <option value="1">Marina De Denia</option>
                         </select>
                     </div>
@@ -77,11 +77,11 @@
                     <div class="mb-3 row">
                         <div class="col">
                             <label for="pickup_date" class="form-label">Fecha de Recogida:</label>
-                            <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" readonly required>
+                            <input type="text" id="pickup_date" name="pickup_date" class="form-control date-picker" placeholder="DD/MM/AAAA" readonly required>
                         </div>
                         <div class="col">
                             <label for="return_date" class="form-label">Fecha de Entrega:</label>
-                            <input type="text" id="return_date" name="return_date" class="form-control date-picker" readonly required>
+                            <input type="text" id="return_date" name="return_date" class="form-control date-picker" placeholder="DD/MM/AAAA" readonly required>
                         </div>
                     </div>
 
@@ -197,19 +197,19 @@
       <h3>¿Tienes alguna duda?</h3>
       <form>
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre">
+        <input type="text" id="nombre" name="nombre" placeholder="Ejemplo: Juan">
 
         <label for="apellido">Apellido</label>
-        <input type="text" id="apellido" name="apellido" placeholder="Escribe tu apellido">
+        <input type="text" id="apellido" name="apellido" placeholder="Ejemplo: Pérez">
 
         <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" placeholder="Escribe tu teléfono">
+        <input type="tel" id="telefono" name="telefono" placeholder="Ejemplo: +34 600 000 000">
 
         <label for="correo">Correo</label>
-        <input type="email" id="correo" name="correo" placeholder="Escribe tu correo">
+        <input type="email" id="correo" name="correo" placeholder="Ejemplo: juan.perez@correo.com">
 
         <label for="motivo">Asunto</label>
-        <textarea id="motivo" name="motivo" placeholder="Escribe tu consulta"></textarea>
+        <textarea id="motivo" name="motivo" placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
 
         <button class="form-button">Enviar</button>
       </form>
@@ -365,7 +365,7 @@
       });
 
       calendar.render();
-  });
+}});
 
 </script>
 @endsection
