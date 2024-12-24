@@ -132,7 +132,7 @@ iframe {
 /* Contenedor del formulario incrustado */
 .reservation-form-wrapper {
   position: absolute;
-  top: 48vh; /* Ajusta según el tamaño del banner */
+  top: 45vh; /* Ajusta según el tamaño del banner */
   left: 50%;
   transform: translate(-50%, -20%); /* Para centrar y hacerlo sobresalir */
   z-index: 5; /* Por encima del banner */
@@ -155,7 +155,7 @@ iframe {
 
 .reservation-form-wrapper .card-body {
   width: 100%; /* Formulario más ancho dentro de la caja */
-  padding: 20px;
+  padding: 10px;
   background: white; /* Fondo blanco solo para el contenido del formulario */
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);

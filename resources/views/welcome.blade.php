@@ -4,6 +4,9 @@
   @vite('resources/css/style.css')
   @vite('resources/css/menu.css')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
+
   
   <!-- CSS embebido para rutas dinámicas -->
   <style>
@@ -156,7 +159,7 @@
     <div class="slider">
       <div class="slides">
         <img src="{{ asset('img/yates3.png') }}" alt="Imagen 3">
-        <img src="{{ asset('img/yates4.png') }}" alt="Imagen 4">
+        <img src="{{ asset('img/yates3.png') }}" alt="Imagen 4">
       </div>
       </div>
      <button class="next">&gt;</button>
@@ -248,6 +251,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('form'); 
       const calendarEl = document.getElementById('availability-calendar');
       const portSelect = document.getElementById('port_id');
       const pickupInput = document.getElementById('pickup_date');
@@ -256,6 +260,12 @@
       // Obtener las fechas seleccionadas, si existen
       const selectedStartDate = '{{ request()->pickup_date }}'; // Fecha de recogida
       const selectedEndDate = '{{ request()->return_date }}'; // Fecha de entrega
+      
+      if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Evita que el formulario se envíe sin validación
+            console.log('Formulario enviado');
+          });
 
       // Establecer las fechas en los campos de fecha si ya están en la URL
       if (selectedStartDate) pickupInput.value = selectedStartDate;
@@ -356,5 +366,6 @@
 
       calendar.render();
   });
+
 </script>
 @endsection

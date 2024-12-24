@@ -25,18 +25,15 @@
     "isEntry": true
   },
   "resources/css/style.css": {
-    "file": "assets/style-BjgGN_i3.css",
+    "file": "assets/style-nSdOL_oH.css",
     "src": "resources/css/style.css",
     "isEntry": true
   },
   "resources/js/componentes/app.jsx": {
-    "file": "assets/app-CZGoG8E1.js",
+    "file": "assets/app-Dli194gr.js",
     "name": "app",
     "src": "resources/js/componentes/app.jsx",
-    "isEntry": true,
-    "css": [
-      "assets/app-B2iGMUkP.css"
-    ]
+    "isEntry": true
   },
   "resources/js/loadMoreDescription.js": {
     "file": "assets/loadMoreDescription-UnQYDaJ2.js",

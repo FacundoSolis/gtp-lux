@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client'; // Asegúrate de usar react-dom/client
-import '@fullcalendar/common/main.css';
-import dayGridPlugin from '@fullcalendar/daygrid';
+import React, { useEffect} from 'react';
+import ReactDOM from 'react-dom/client';
 import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import 'bootstrap';
+
 
 const App = () => {
+    const baseUrl = window.location.origin; // Define la URL base dinámicamente
     const [images, setImages] = useState([
         `${baseUrl}/img/val2.jpg`,
         `${baseUrl}/img/val3.jpg`,
