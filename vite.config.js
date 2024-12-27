@@ -1,37 +1,47 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import react from '@vitejs/plugin-react'; // Importa el plugin de React
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-    base: '/', 
+    base: '/', // Define el base path si es necesario para producción
     plugins: [
-        react(), // Solo una vez
+        react(),
         laravel({
             input: [
-                // Estilos
+                // Asegúrate de que todos los archivos existen en estas rutas
                 'resources/css/admin.css',
                 'resources/css/menu.css',
                 'resources/css/princess.css',
                 'resources/css/portofino.css',
-                'resources/css/style.css', 
+                'resources/css/style.css',
                 'resources/css/available-boats.css',
-
-                // Scripts
+                'resources/css/opiniones.css',
+                'resources/css/confirmation.css',
+                'resources/css/payment.css',
                 'resources/js/componentes/app.jsx',
                 'resources/js/slider.js',
                 'resources/js/loadMoreImages.js',
                 'resources/js/loadMoreImages2.js',
                 'resources/js/loadMoreDescription.js',
                 'resources/js/loadMoreDescription2.js',
+                'resources/js/syncddate.js',
+                'resources/js/opiniones.js',
+                'resources/js/listapreciosportofino.js',
+
+
             ],
             refresh: true,
         }),
     ],
     resolve: {
+        alias: {
+            // Opcional: define alias solo si es necesario
+            '@': '/resources/js',
+        },
         extensions: ['.js', '.jsx'], // Resolver extensiones .js y .jsx
     },
     esbuild: {
-        loader: 'jsx', // Configura loader como un string para procesar JSX
+        loader: 'jsx', // Configura loader para JSX
     },
     server: {
         hmr: {

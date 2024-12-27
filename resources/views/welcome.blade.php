@@ -1,7 +1,8 @@
-@extends('layouts.public')
+@extends('layouts.public', ['isWelcomePage' => true])
 
 @push('styles')
   @vite('resources/css/style.css')
+  @vite('resources/css/menu.css')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
@@ -67,9 +68,9 @@
                     @csrf
                     <div class="mb-3">
                         <label for="port_id" class="form-label">Puerto:</label>
-                        <select id="port_id" name="port_id" class="form-control" required>
-                            <option value="">Lugar de salida</option>
-                            <option value="1">Marina De Denia</option>
+                        <select id="port_id" name="port_id" class="form-control" required style="display: block !important;">
+                        <option value="">Lugar de salida</option>
+                        <option value="1">Marina De Denia</option>
                         </select>
                     </div>
                     
@@ -145,7 +146,7 @@
     <p>Alquiler de Yates en Denia
     Navegue en el exclusivo Sunseeker Portofino 53, un lujoso barco abierto de día diseñado para el confort y la relajación. 
     Con capacidad para 11 personas, este yate ofrece 2 baños completos, 3 cabinas, un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
-    <a href="{{ route('sunseeker', ['pickup_date' => request()->pickup_date, 'return_date' => request()->return_date]) }}">
+    <a href="{{ route('available.boats.no.dates', ['port_id' => 1, 'from_welcome' => true]) }}">
     <button id="reservation-btn" class="btn">MÁS INFORMACIÓN</button>
     </a>
   </div>
@@ -167,9 +168,9 @@
     <h3>Princess V65</h3>
     <p>Navegue en el exclusivo Princess V65, un lujoso barco abierto de día diseñado para el confort y la relajación. Con capacidad para 10 invitados, este yate ofrece 3 baños completos y camarotes. 
       Un salón de planta abierta y una cocina completa, perfecta para una experiencia inolvidable.</p>
-    <a href="{{ route('princess', ['pickup_date' => request()->pickup_date, 'return_date' => request()->return_date]) }}">
+      <a href="{{ route('available.boats.no.dates', ['port_id' => 1, 'from_welcome' => true]) }}">
       <button id="reservation-btn" class="btn">MÁS INFORMACIÓN</button>
-    </a>
+      </a>
   </div>
 </div>
 </section>

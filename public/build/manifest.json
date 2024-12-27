@@ -5,34 +5,55 @@
     "isEntry": true
   },
   "resources/css/available-boats.css": {
-    "file": "assets/available-boats-BHpwNzq6.css",
+    "file": "assets/available-boats-CW76pceu.css",
     "src": "resources/css/available-boats.css",
     "isEntry": true
   },
+  "resources/css/confirmation.css": {
+    "file": "assets/confirmation-DZ7PxvDb.css",
+    "src": "resources/css/confirmation.css",
+    "isEntry": true
+  },
   "resources/css/menu.css": {
-    "file": "assets/menu-BOevYfx9.css",
+    "file": "assets/menu-B2WH1nE1.css",
     "src": "resources/css/menu.css",
     "isEntry": true
   },
+  "resources/css/opiniones.css": {
+    "file": "assets/opiniones-KYSA6JTR.css",
+    "src": "resources/css/opiniones.css",
+    "isEntry": true
+  },
+  "resources/css/payment.css": {
+    "file": "assets/payment-fxBvzkRG.css",
+    "src": "resources/css/payment.css",
+    "isEntry": true
+  },
   "resources/css/portofino.css": {
-    "file": "assets/princess-D0w49kvd.css",
+    "file": "assets/princess-C05cRt3-.css",
     "src": "resources/css/princess.css",
     "isEntry": true
   },
   "resources/css/princess.css": {
-    "file": "assets/princess-D0w49kvd.css",
+    "file": "assets/princess-C05cRt3-.css",
     "src": "resources/css/princess.css",
     "isEntry": true
   },
   "resources/css/style.css": {
-    "file": "assets/style-nSdOL_oH.css",
+    "file": "assets/style-DRHIUP5g.css",
     "src": "resources/css/style.css",
     "isEntry": true
   },
   "resources/js/componentes/app.jsx": {
-    "file": "assets/app-Dj-dHRuT.js",
+    "file": "assets/app-FYHyaH_o.js",
     "name": "app",
     "src": "resources/js/componentes/app.jsx",
+    "isEntry": true
+  },
+  "resources/js/listapreciosportofino.js": {
+    "file": "assets/listapreciosportofino-D5qolLRQ.js",
+    "name": "listapreciosportofino",
+    "src": "resources/js/listapreciosportofino.js",
     "isEntry": true
   },
   "resources/js/loadMoreDescription.js": {
@@ -59,10 +80,22 @@
     "src": "resources/js/loadMoreImages2.js",
     "isEntry": true
   },
+  "resources/js/opiniones.js": {
+    "file": "assets/opiniones-CLBmJBMC.js",
+    "name": "opiniones",
+    "src": "resources/js/opiniones.js",
+    "isEntry": true
+  },
   "resources/js/slider.js": {
     "file": "assets/slider-DKNDmEBG.js",
     "name": "slider",
     "src": "resources/js/slider.js",
+    "isEntry": true
+  },
+  "resources/js/syncddate.js": {
+    "file": "assets/syncddate-aZGg_Odo.js",
+    "name": "syncddate",
+    "src": "resources/js/syncddate.js",
     "isEntry": true
   }
 }

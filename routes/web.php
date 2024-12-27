@@ -29,6 +29,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/available-boats', [ReservationController::class, 'showAvailableBoats'])->name('available.boats');
     Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort'])->name('boats.byPort');
     Route::get('/reservations/calendar/{boatId}/{portId}', [ReservationController::class, 'calendar'])->name('reservations.calendar');
+    Route::get('/available-boats-no-dates', [ReservationController::class, 'showAvailableBoatsWithoutDates'])->name('available.boats.no.dates');
 
     // Ruta dinámica para reservar cualquier barco
     Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveBoat'])->name('boats.reserve');
@@ -107,4 +108,3 @@ Route::middleware(['web'])->group(function () {
     // Redirección tras inicio de sesión
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
-

@@ -24,7 +24,7 @@
 <body>
     <div class="page-container">
         <header>
-            <!-- Puedes incluir un header aquí si es necesario -->
+            @include('menu', ['isWelcomePage' => $isWelcomePage ?? false])
         </header>
         
         <!-- Contenedor principal -->

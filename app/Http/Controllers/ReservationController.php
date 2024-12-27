@@ -319,5 +319,21 @@ class ReservationController extends Controller
     // Si no, carga la vista completa
     return view('available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'));
 }
+public function showAvailableBoatsWithoutDates(Request $request)
+{
+    $portId = $request->input('port_id');
+    $fromWelcome = $request->input('from_welcome'); // Determinar si proviene desde "Más información"
+
+    // Cargar todos los barcos si viene desde "Más información"
+    $boats = $fromWelcome ? Boat::where('port_id', $portId)->get() : [];
+
+    return view('available_boats', [
+        'boats' => $boats,
+        'portId' => $portId,
+        'pickupDate' => null,
+        'returnDate' => null,
+        'fromWelcome' => $fromWelcome,
+    ]);
+}
 
 }

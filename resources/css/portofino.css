@@ -304,6 +304,26 @@ margin-bottom: 5px;
 }
 
 /* Calendario */
+.container h1{
+  color: black;
+}
+.container h4{
+  color: black;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Espaciado entre columnas */
+  justify-content: left; /* Centra las columnas */
+}
+
+.col-md-6 {
+  flex: 1;
+  max-width: 48%; /* Ocupa el 48% del ancho para dar espacio entre columnas */
+  box-sizing: border-box;
+  margin-top: 50px;
+}
 .calendar-wrapper {
 width: 100%;
 height: 500px;
@@ -388,6 +408,7 @@ font-size: 14px;
 color: #343A40; 
 }
 
+
 .fc-header-toolbar {
 margin-bottom: 10px;
 }
@@ -409,20 +430,56 @@ text-align: center;
 background-color: #f9f9f9;
 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 #price-summary {
 display: block !important;
 visibility: visible !important;
 opacity: 1 !important;
+}
+
+#priceListModal .modal-content {
+  background-color: #f9f9f9; /* Fondo igual que el botón */
+  color: #000;             /* Texto negro */
+  border-radius: 5px;      /* Borde redondeado */
+  padding: 20px;           /* Espaciado interno */
+}
+.modal-price-list-container li {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #000;
 }
 .price-card h5 {
 font-size: 18px;
 color: #343A40;
 margin-bottom: 10px;
 }
+
 .price-card p {
 font-size: 16px;
 color: #007BFF;
 }
+
+/* Sección de Condiciones */
+.conditions-section {
+  margin-top: 20px;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.conditions-section h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.conditions-section p {
+  color: #000;
+  line-height: 1.5;
+}
+
 
 .form-label {
   color: black; /* Color de las etiquetas */
@@ -666,4 +723,3 @@ footer {
   margin: 5px 0; 
 }
 }
-

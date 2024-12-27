@@ -1,8 +1,69 @@
 @extends('layouts.public')
+@push('styles')
+    @vite('resources/css/menu.css')
+    @vite('resources/css/payment.css')
+@endpush
 
 @section('title', 'Método de Pago')
 
 @section('content')
+
+<header class="topbar">
+<div class="topbar__logo">
+        <!-- Enlace que lleva a la página principal -->
+        <a href="{{ route('welcome') }}">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo">
+        </a>
+    </div>
+    <!-- Menú de escritorio -->
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li class="settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">Español</span>
+                    <ul>
+                        <li><a href="#" class="language">Français</a></li>
+                        <li><a href="#" class="language">English</a></li>
+                        <li><span class="selected">Español</span></li>
+                        <li><a href="#" class="language">Italiano</a></li>
+                        <li><a href="#" class="language">Deutsch</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Menú hamburguesa -->
+    <div class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li class="settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">Español</span>
+                    <ul>
+                        <li><a href="#" class="language">Français</a></li>
+                        <li><a href="#" class="language">English</a></li>
+                        <li><span class="selected">Español</span></li>
+                        <li><a href="#" class="language">Italiano</a></li>
+                        <li><a href="#" class="language">Deutsch</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
 <div class="container mt-5">
     <h1 class="text-center mb-4">Pagar Reserva</h1>
     

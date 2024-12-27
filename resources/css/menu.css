@@ -1,4 +1,4 @@
-/* Menú general */
+/* General para la barra superior */
 .topbar {
     position: fixed;
     top: 0;
@@ -10,19 +10,40 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 50px;
-    z-index: 1000;
+    z-index: 1100;
     height: 80px;
 }
-/* Logo */
-.topbar__logo img {
-    max-height: 60px;
-    height: auto;
+.topbar .logo {
+    max-height: 20px; /* Ajusta la altura máxima */
+    max-width: 200px; /* Limita el ancho máximo */
+    width: auto; /* Mantén las proporciones */
+    height: auto; /* Evita distorsión */
+    object-fit: contain; /* Ajusta cómo se renderiza dentro del contenedor */
 }
-.nav-menu {
-    display: flex; /* Visible en pantallas grandes */
+
+.flag-icon {
+    width: 15px;
+    height: auto;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* Estilo para welcome */
+.topbar--transparent {
+    background-color: transparent;
+    box-shadow: none;
+}
+.topbar--transparent .topbar__logo img {
+    width: 20px; /* Tamaño más grande */
 }
 
 /* Menú de escritorio */
+.nav-menu {
+    display: flex;
+    justify-content: flex-end; /* Alinea a la derecha */
+    flex-grow: 1;
+}
+
 .nav-menu ul {
     display: flex;
     list-style: none;
@@ -54,7 +75,11 @@
 .dropdown .value {
     cursor: pointer;
     font-weight: bold;
-    color: #fff;
+    color: white;
+}
+/* Dropdown específico para móvil */
+.mobile-menu .dropdown .value {
+    color: black; /* Texto negro en móvil */
 }
 
 .dropdown ul {
@@ -81,15 +106,15 @@
 
 .dropdown ul li a,
 .dropdown ul li span {
-    color: black; /* Cambiar el color del texto a negro */
-    text-decoration: none; /* Eliminar subrayado en enlaces */
-    font-weight: normal; /* Estilo de texto normal */
-    display: block; /* Asegura que los elementos ocupen toda la línea */
-    padding: 5px 10px; /* Espaciado interno */
-    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+    display: block;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Menú hamburguesa */
+/* Estilo para el menú hamburguesa */
 .hamburger-menu {
     display: none;
     flex-direction: column;
@@ -97,10 +122,11 @@
     width: 30px;
     height: 20px;
     cursor: pointer;
-    z-index: 1001; /* Más alto que el resto */
-
+    z-index: 1002;
+    position: fixed;
+    right: 20px;
+    top: 20px;
 }
-
 .hamburger-menu span {
     display: block;
     height: 3px;
@@ -111,88 +137,95 @@
 
 /* Menú móvil */
 .mobile-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 80px;
-    left: 0;
+    position: fixed;
+    top: 0;
+    right: -100%; 
     width: 100%;
-    background-color: #0E1724;
-    color: white;
-    z-index: 1000;
-    padding: 20px;
+    height: 100%;
+    background-color: white; 
+    color: black; 
+    z-index: 1100; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    padding: 20px; 
+    overflow: hidden; 
+    transition: right 0.3s ease-in-out; 
 }
 
 .mobile-menu.active {
-    display: flex;
+    right: 0;
+}
+.mobile-menu .close-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
 }
 
 .mobile-menu ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    text-align: left;
 }
 
 .mobile-menu ul li {
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .mobile-menu ul li a {
-    color: white;
+    color: black;
     text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    padding: 10px 0; /* Espaciado interno vertical */
+    transition: background-color 0.3s ease, color 0.3s ease;
+
 }
-.form-label {
-    color: white;
+.mobile-menu ul li a:hover {
+    color: #f1c40f;
+}
+/* Efecto para el icono hamburguesa activo */
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
 
 /* Responsividad */
 @media (max-width: 768px) {
-    .nav-menu {
-        display: none;
+    .topbar__logo {
+        display: none; /* Ocultar el logo */
     }
-
+    .nav-menu {
+        display: none; /* Ocultar el menú de navegación */
+    }
     .hamburger-menu {
-        display: flex;
+        display: block; /* Mostrar el icono de hamburguesa */
     }
     .mobile-menu {
-        display: none; /* Ocultar inicialmente */
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
+        display: none;
+        position: fixed;
+        top: 0;
         left: 0;
         width: 100%;
-        background-color: #0E1724;
-        color: white;
+        height: 100%;
+        background-color: #fff;
         z-index: 1000;
-        padding: 20px;
+        overflow-y: auto;
     }
-
     .mobile-menu.active {
-        display: flex; /* Mostrar el menú móvil cuando se activa */
+        display: block;
     }
-
-    .mobile-menu ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .mobile-menu ul li {
-        margin: 10px 0;
-    }
-
-    .mobile-menu ul li a {
-        color: white;
-        text-decoration: none;
-    }
-    .dropdown ul li a,
-    .dropdown ul li span {
-    color: black; /* Cambiar el color del texto a negro */
-    text-decoration: none; /* Eliminar subrayado en enlaces */
-    font-weight: normal; /* Estilo de texto normal */
-    display: block; /* Asegura que los elementos ocupen toda la línea */
-    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
-}
-    .mobile-menu .form-label {
-    color: white; /* Cambiar el color del texto a blanco */
-}
 }

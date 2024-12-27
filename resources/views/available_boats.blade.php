@@ -5,38 +5,9 @@
 @vite('resources/css/available-boats.css')
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
 @endpush
 
 @section('content')
-
-<!-- Menú fijo -->
-<header class="topbar">
-    <div class="topbar__logo">
-        <a href="{{ route('welcome') }}">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo">
-        </a>
-    </div>
-
-    <div class="topbar__settingsDropdowns">
-        <div class="settingsDropdown js-language-dropdown" aria-label="Choose language">
-            <div class="dropdown" tabindex="0">
-                <span class="value" aria-label="Current language value">
-                    <span>Español</span>
-                </span>
-                <ul>
-                    <li><a href="#" class="language">Français</a></li>
-                    <li><a href="#" class="language">English</a></li>
-                    <li><span class="selected">Español</span></li>
-                    <li><a href="#" class="language">Italiano</a></li>
-                    <li><a href="#" class="language">Deutsch</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
-
 <!-- Contenedor principal -->
 <main class="container">
     <h2>Barcos Disponibles</h2>
@@ -44,6 +15,7 @@
     <div class="main-layout">
         <!-- Barra lateral con fechas -->
         <div class="sidebar">
+            <h4>Elige una fecha</h4>
             <form action="{{ route('available.boats') }}" method="GET">
                 @csrf
                 <div class="form-group">
@@ -55,12 +27,12 @@
 
                 <div class="form-group">
                     <label for="pickup_date"><strong>Fecha de Recogida:</strong></label>
-                    <input type="text" id="pickup_date" name="pickup_date" value="{{ old('pickup_date', $pickupDate) }}" class="form-control date-picker" readonly required>
+                    <input type="text" id="pickup_date" name="pickup_date" value="{{ old('pickup_date', $pickupDate) }}" class="form-control date-picker" readonly>
                 </div>
 
                 <div class="form-group">
                     <label for="return_date"><strong>Fecha de Entrega:</strong></label>
-                    <input type="text" id="return_date" name="return_date" value="{{ old('return_date', $returnDate) }}" class="form-control date-picker" readonly required>
+                    <input type="text" id="return_date" name="return_date" value="{{ old('return_date', $returnDate) }}" class="form-control date-picker" readonly>
                 </div>
 
                 <button type="submit" class="btn-form">Actualizar búsqueda</button>

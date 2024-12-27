@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Boat;
 use App\Models\Port;
+use App\Models\Equipment;
 use Illuminate\Http\Request;
 
 
@@ -36,12 +37,14 @@ class BoatController extends Controller
     return view('princess', compact('portId', 'ports', 'boatId', 'startDate', 'endDate'));
 }
 
-
     public function showSunseekerPortofino(Request $request)
 {
     $boat = Boat::where('name', 'Sunseeker Portofino')->firstOrFail();
     $ports = Port::all();
+    // Calcular el precio inicial (opcional)
+    $price = 0; // Precio inicial predeterminado
 
+    
     // Obtener las fechas de inicio y fin del mes actual
     $startDate = now()->startOfMonth(); // Fecha de inicio del mes
     $endDate = now()->endOfMonth(); // Fecha de fin del mes
@@ -49,32 +52,35 @@ class BoatController extends Controller
     return view('portofino', [
         'boatId' => $boat->id, // ID del barco Portofino
         'ports' => $ports,
+        'price' => $price, // Asegurarse de pasar el precio a la vista
         'startDate' => $startDate, // Pasar la fecha de inicio
         'endDate' => $endDate, // Pasar la fecha de fin
     ]);
 }
-public function showBoatPage($boat_id)
+public function showBoatPage($boat_id, Request $request)
 {
-    $boat = Boat::findOrFail($boat_id);
-    // Obtener todos los puertos
-    $ports = Port::all();
+    $boat = Boat::findOrFail($boat_id); // Encuentra el barco por ID o lanza una excepción
+    $ports = Port::all(); // Obtén todos los puertos
 
-    
-    // Aquí puedes decidir qué vista renderizar, dependiendo del ID del barco.
+    // Captura los parámetros de la URL
+    $portId = $request->input('port_id');
+    $pickupDate = $request->input('pickup_date');
+    $returnDate = $request->input('return_date');
+    $price = $request->input('price');
+
+    // Decide qué vista cargar basándose en el ID del barco
     if ($boat->id == 3) {
-        return view('portofino', compact('boat', 'ports'));  // Vista para el Sunseeker
+        // Vista para el Sunseeker Portofino
+        return view('portofino', compact('boat', 'ports', 'portId', 'pickupDate', 'returnDate', 'price'));
     } elseif ($boat->id == 4) {
-        return view('princess', compact('boat', 'ports'));   // Vista para el Princess
+        // Vista para el Princess V65
+        return view('princess', compact('boat', 'ports', 'portId', 'pickupDate', 'returnDate', 'price'));
     }
 
-    // Si el barco no es Sunseeker ni Princess, redirigir a la vista predeterminada.
-    return view('portofino', compact('boat', 'ports', 'boat_id'));
+    // Vista genérica si no es ninguno de los anteriores
+    return view('boat.show', compact('boat', 'ports', 'portId', 'pickupDate', 'returnDate', 'price'));
 }
-    public function create()
-    {
-        $ports = Port::all();
-        return view('admin.boats.create', compact('ports'));
-    }
+
 
     public function store(Request $request)
     {
@@ -87,7 +93,17 @@ public function showBoatPage($boat_id)
             // Proveer un valor predeterminado para 'boat_id'
         $validated['boat_id'] = Boat::max('boat_id') + 1;
 
-        Boat::create($validated);
+        $boat = Boat::create([
+            'name' => $validated['name'],
+            'port_id' => $validated['port_id'],
+            'capacity' => $validated['capacity'],
+            'price_modifier' => $validated['price_modifier'],
+        ]);
+    
+        // Solo manejar equipamientos desde el admin
+        if ($request->has('equipments')) {
+            $boat->equipments()->attach($request->equipments);
+        }
 
         return redirect()->route('boats.index')->with('success', 'Barco creado con éxito.');
     }
@@ -132,4 +148,11 @@ public function getDailyPrice(Request $request, $boatId)
 
     return response()->json(['total_price' => $totalPrice]);
 }
+public function create()
+{
+    $ports = Port::all(); // Obtener los puertos
+    $equipments = Equipment::all(); // Obtener todos los equipamientos
+    return view('admin.boats.create', compact('ports', 'equipments'));
+}
+
 }

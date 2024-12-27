@@ -24,6 +24,10 @@ class Boat extends Model
     // En el modelo Boat.php
     public function isReserved($pickupDate, $returnDate)
 {
+    // Si no hay fechas, devolver falso para evitar errores
+    if (!$pickupDate || !$returnDate) {
+        return false;
+    }
     return $this->reservations()
         ->where(function ($query) use ($pickupDate, $returnDate) {
             $query->whereBetween('pickup_date', [$pickupDate, $returnDate])
@@ -63,4 +67,9 @@ public function calculateDailyPrice($startDate, $endDate)
 
     return $totalPrice;
 }
+public function equipments()
+{
+    return $this->belongsToMany(Equipment::class, 'boat_equipment');
+}
+
 }

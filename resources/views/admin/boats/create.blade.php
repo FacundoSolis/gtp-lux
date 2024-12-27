@@ -64,6 +64,20 @@
                 </div>
                 <button type="button" id="add-season-btn" class="btn btn-secondary mt-3">Agregar Temporada</button>
 
+                <!-- Equipamiento -->
+<h5 class="mt-4">Equipamiento</h5>
+<div class="row">
+    @foreach($equipments as $equipment)
+        <div class="col-md-4"> <!-- Divide en columnas de 3 por fila -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="equipment-{{ $equipment->id }}" name="equipments[]" value="{{ $equipment->id }}">
+                <label class="form-check-label" for="equipment-{{ $equipment->id }}">
+                    {{ $equipment->name }}
+                </label>
+            </div>
+        </div>
+    @endforeach
+</div>
                 <div class="mt-4">
                     <button type="submit" class="btn btn-primary">Guardar Barco</button>
                     <a href="{{ route('boats.index') }}" class="btn btn-secondary">Volver</a>
