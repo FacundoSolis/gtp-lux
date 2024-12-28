@@ -22,15 +22,10 @@
     @stack('styles')
 </head>
 <body>
-    <div class="page-container">
-        <header>
-            @include('menu', ['isWelcomePage' => $isWelcomePage ?? false])
-        </header>
-        
-        <!-- Contenedor principal -->
-        <main class="content">
-            @yield('content')
-        </main>
+    <!-- Contenedor principal -->
+    <main class="content">
+        @yield('content')
+    </main>
     </div>
 
     <!-- Scripts globales -->

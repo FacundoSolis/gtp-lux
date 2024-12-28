@@ -28,13 +28,19 @@ class BoatController extends Controller
 
     public function showPrincessV65(Request $request)
 {
-    $portId = $request->input('port_id', null); // Captura port_id de la solicitud
+    $boat = Boat::where('name', 'Princess V65')->firstOrFail();
     $ports = Port::all(); // Obtén todos los puertos
-    $boatId = 4; // ID fijo del barco Princess
-    $startDate = $request->input('start_date', now()); // Captura start_date o usa la fecha actual
-    $endDate = $request->input('end_date', now()->addDays(7)); // Captura end_date o usa una fecha predeterminada
+    $price = 0; // Precio inicial predeterminado
+    $startDate = now()->startOfMonth(); // Fecha de inicio del mes
+    $endDate = now()->endOfMonth(); // Fecha de fin del mes
 
-    return view('princess', compact('portId', 'ports', 'boatId', 'startDate', 'endDate'));
+    return view('portofino', [
+        'boatId' => $boat->id, // ID del barco Portofino
+        'ports' => $ports,
+        'price' => $price, // Asegurarse de pasar el precio a la vista
+        'startDate' => $startDate, // Pasar la fecha de inicio
+        'endDate' => $endDate, // Pasar la fecha de fin
+    ]);
 }
 
     public function showSunseekerPortofino(Request $request)
@@ -43,8 +49,6 @@ class BoatController extends Controller
     $ports = Port::all();
     // Calcular el precio inicial (opcional)
     $price = 0; // Precio inicial predeterminado
-
-    
     // Obtener las fechas de inicio y fin del mes actual
     $startDate = now()->startOfMonth(); // Fecha de inicio del mes
     $endDate = now()->endOfMonth(); // Fecha de fin del mes

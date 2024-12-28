@@ -1,24 +1,18 @@
 /* General para la barra superior */
-.topbar {
+.topbar--transparent {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
-    background-color: #0E1724;
-    color: #fff;
+    background-color: transparent;
+    color: white;
+    z-index: 1100;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 50px;
-    z-index: 1100;
     height: 80px;
-}
-.topbar .logo {
-    max-height: 50px; /* Ajusta la altura máxima */
-    max-width: 200px; /* Limita el ancho máximo */
-    width: auto; /* Mantén las proporciones */
-    height: auto; /* Evita distorsión */
-    object-fit: contain; /* Ajusta cómo se renderiza dentro del contenedor */
+    box-shadow: none;
+    transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 .flag-icon {
     width: 15px;
@@ -26,15 +20,17 @@
     margin-right: 5px;
     vertical-align: middle;
 }
+
 /* Menú de escritorio */
 .nav-menu {
-    display: flex;
-    justify-content: flex-end; /* Alinea a la derecha */
+    display: flex; /* Menú visible en pantallas grandes */
+    justify-content: flex-end;
     flex-grow: 1;
+    list-style: none;
 }
+
 .nav-menu ul {
     display: flex;
-    list-style: none;
     margin: 0;
     padding: 0;
 }
@@ -59,14 +55,11 @@
     position: relative;
     display: inline-block;
 }
+
 .dropdown .value {
     cursor: pointer;
     font-weight: bold;
     color: white;
-}
-/* Dropdown específico para móvil */
-.mobile-menu .dropdown .value {
-    color: black; /* Texto negro en móvil */
 }
 .dropdown ul {
     display: none;
@@ -84,7 +77,6 @@
 .dropdown:hover ul {
     display: block;
 }
-
 .dropdown ul li {
     margin: 5px 0;
 }
@@ -97,19 +89,26 @@
     padding: 5px 10px;
     transition: background-color 0.3s, color 0.3s;
 }
+
 /* Estilo para el menú hamburguesa */
 .hamburger-menu {
-    display: none;
+    display: none; /* Ocultar en pantallas grandes */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1002;
+    position: fixed;
+    right: 20px;
+    top: 20px;
 }
-
 .hamburger-menu span {
     display: block;
-    width: 100%;
-    height: 3px; /* Grosor de las líneas */
+    height: 3px;
     background-color: white;
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    margin-bottom: 6px;
 }
 
 /* Menú móvil */
@@ -127,12 +126,13 @@
     justify-content: flex-start; 
     align-items: flex-start; 
     padding: 20px; 
-    overflow-y: auto; 
-    transition: right 0.3s ease-in-out;
+    overflow: hidden; 
+    transition: right 0.3s ease-in-out; 
+    visibility: hidden;
 }
-
 .mobile-menu.active {
-    right: 0; /* Mostrar menú en pantalla */
+    right: 0;
+    visibility: visible;
 }
 .mobile-menu .close-menu {
     position: absolute;
@@ -143,7 +143,6 @@
     color: black;
     cursor: pointer;
 }
-
 .mobile-menu ul {
     list-style: none;
     padding: 0;
@@ -153,7 +152,6 @@
 .mobile-menu ul li {
     margin: 20px 0;
 }
-
 .mobile-menu ul li a {
     color: black;
     text-decoration: none;
@@ -161,53 +159,35 @@
     transition: color 0.3s ease;
     padding: 10px 0; /* Espaciado interno vertical */
     transition: background-color 0.3s ease, color 0.3s ease;
-
 }
 .mobile-menu ul li a:hover {
     color: #f1c40f;
 }
-.hamburger-menu span:last-child {
-    margin-bottom: 0; /* Elimina el margen inferior del último span */
-}
+
 /* Efecto para el icono hamburguesa activo */
 .hamburger-menu.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
-
 .hamburger-menu.active span:nth-child(2) {
     opacity: 0;
 }
-
 .hamburger-menu.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
+
 /* Responsividad */
 @media (max-width: 768px) {
-    .topbar__logo {
-        display: flex; /* Mantén el logo visible */
-        justify-content: center; /* Opcional: centra el logo */
-        align-items: center; /* Opcional: alinea verticalmente */
-        max-width: 150px; /* Ajusta el tamaño si es necesario */
-    }
     .nav-menu {
         display: none; /* Ocultar el menú de navegación */
     }
     .hamburger-menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 30px; /* Ajusta para evitar colapso */
-        cursor: pointer;
-        z-index: 1200;
-        position: fixed;
-        right: 20px;
-        top: 20px;
-        gap: 4px; /* Espacio entre las líneas */
-        }
+        display: flex; /* Mostrar el icono de hamburguesa */
+    }
     .mobile-menu {
-        display: none;
+        display: flex;
         position: fixed;
+        visibility: hidden;
+        transition: right 0.3s ease-in-out, visibility 0s 0.3s; /* Controla el retardo */
         top: 0;
         left: 0;
         width: 100%;
@@ -217,10 +197,11 @@
         overflow-y: auto;
     }
     .mobile-menu.active {
-        display: block;
+        visibility: visible;
+        right: 0;
+        transition: right 0.3s ease-in-out;
     }
     body.no-scroll {
         overflow: hidden;
     }
 }
-

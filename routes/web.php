@@ -12,6 +12,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\PriceController;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -19,6 +21,13 @@ use App\Http\Controllers\PriceController;
 Route::middleware(['web'])->group(function () {
     // Rutas de inicio
     Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
+    Route::get('/set-language', function (Illuminate\Http\Request $request) {
+        $lang = $request->query('lang', 'es'); // Por defecto español
+        session(['locale' => $lang]);
+        App::setLocale($lang);
+        return response()->json(['success' => true]);
+    });
+    
 
     // Rutas para las páginas de barcos específicos
     Route::get('/sunseeker', [BoatController::class, 'showSunseekerPortofino'])->name('sunseeker');

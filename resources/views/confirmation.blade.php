@@ -3,6 +3,7 @@
 @section('title', 'Confirmación de Reserva')
 
 @section('content')
+
 <div class="container mt-4">
     <h1 class="text-success">¡Reserva Confirmada!</h1>
     <p>Gracias por tu reserva. Los detalles de tu reserva son los siguientes:</p>

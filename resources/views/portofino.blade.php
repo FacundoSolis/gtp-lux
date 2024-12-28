@@ -1,15 +1,111 @@
-@extends('layouts.public', ['isWelcomePage' => false])
+@extends('layouts.public')
 
 @push('styles')
     @vite('resources/css/menu.css')
     @vite('resources/css/opiniones.css')
-    @vite('resources/css/portofino.css') <!-- Solo carga el CSS relevante para esta página -->
+    @vite('resources/css/portofino.css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @endpush
 
 @section('content')
+
+<header class="topbar">
+    <div class="topbar__logo">
+        <a href="{{ route('welcome') }}">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
+        </a>
+    </div>
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li class="settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">
+                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                    </span>
+                    <ul>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
+                            </a>
+                        </li>
+                        <li>
+                            <span class="selected">
+                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                            </span>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="mobile-menu">
+        <span class="close-menu">✕</span>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li class="settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">
+                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                    </span>
+                    <ul>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
+                            </a>
+                        </li>
+                        <li>
+                            <span class="selected">
+                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                            </span>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
 
 <section class="container-valkyrya">
     <h2>Sunseeker Portofino 53</h2>
@@ -342,6 +438,7 @@
                 "{{ asset('img/val8.jpg') }}"
     ];
     </script>
+    @vite('resources/js/menu.js')
     @vite('resources/js/loadMoreImages.js')
     @vite('resources/js/loadMoreDescription.js')
     @vite('resources/js/listapreciosportofino.js')
