@@ -4,6 +4,11 @@
     "src": "resources/css/admin.css",
     "isEntry": true
   },
+  "resources/css/app.css": {
+    "file": "assets/app-BAuhHOlW.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
   "resources/css/available-boats.css": {
     "file": "assets/available-boats-CW76pceu.css",
     "src": "resources/css/available-boats.css",
@@ -17,6 +22,16 @@
   "resources/css/menu.css": {
     "file": "assets/menu-DY39-Vpb.css",
     "src": "resources/css/menu.css",
+    "isEntry": true
+  },
+  "resources/css/menuhome.css": {
+    "file": "assets/menuhome-P24KYaGn.css",
+    "src": "resources/css/menuhome.css",
+    "isEntry": true
+  },
+  "resources/css/normalize.css": {
+    "file": "assets/normalize-CbA2hl5w.css",
+    "src": "resources/css/normalize.css",
     "isEntry": true
   },
   "resources/css/opiniones.css": {
@@ -56,6 +71,12 @@
     "src": "resources/js/listapreciosportofino.js",
     "isEntry": true
   },
+  "resources/js/listapreciosprincess.js": {
+    "file": "assets/listapreciosprincess-7dpEo3XJ.js",
+    "name": "listapreciosprincess",
+    "src": "resources/js/listapreciosprincess.js",
+    "isEntry": true
+  },
   "resources/js/loadMoreDescription.js": {
     "file": "assets/loadMoreDescription-UnQYDaJ2.js",
     "name": "loadMoreDescription",
@@ -78,6 +99,18 @@
     "file": "assets/loadMoreImages2-AzCURZjo.js",
     "name": "loadMoreImages2",
     "src": "resources/js/loadMoreImages2.js",
+    "isEntry": true
+  },
+  "resources/js/menu.js": {
+    "file": "assets/menu-CWTJndx9.js",
+    "name": "menu",
+    "src": "resources/js/menu.js",
+    "isEntry": true
+  },
+  "resources/js/menuhome.js": {
+    "file": "assets/menuhome-C0QrSCAb.js",
+    "name": "menuhome",
+    "src": "resources/js/menuhome.js",
     "isEntry": true
   },
   "resources/js/opiniones.js": {

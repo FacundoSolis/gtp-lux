@@ -10,6 +10,9 @@ export default defineConfig({
             input: [
                 // Asegúrate de que todos los archivos existen en estas rutas
                 'resources/css/admin.css',
+                'resources/css/app.css',
+                'resources/css/menuhome.css',
+                'resources/css/normalize.css',
                 'resources/css/menu.css',
                 'resources/css/princess.css',
                 'resources/css/portofino.css',
@@ -27,8 +30,10 @@ export default defineConfig({
                 'resources/js/syncddate.js',
                 'resources/js/opiniones.js',
                 'resources/js/listapreciosportofino.js',
-
-
+                'resources/js/listapreciosprincess.js',
+                'resources/js/menuhome.js',
+                'resources/js/menu.js',
+                'resources/js/componentes/app.jsx',
             ],
             refresh: true,
         }),
