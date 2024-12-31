@@ -18,6 +18,21 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
+
+    <!-- CSS y JS de Vite -->
+    @vite([
+    'resources/css/available-boats.css',
+    'resources/css/confirmation.css',
+    'resources/css/menu.css',
+    'resources/css/menuhome.css',
+    'resources/css/normalize.css',
+    'resources/css/opiniones.css',
+    'resources/css/payment.css',
+    'resources/css/portofino.css',
+    'resources/css/princess.css',
+    'resources/css/public.css',
+    'resources/css/style.css',
+])
     <!-- Estilos específicos de las vistas -->
     @stack('styles')
 </head>
