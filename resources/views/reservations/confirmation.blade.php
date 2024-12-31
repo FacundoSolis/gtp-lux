@@ -7,13 +7,11 @@
 
 @section('content')
 <header class="topbar">
-<div class="topbar__logo">
-        <!-- Enlace que lleva a la página principal -->
+    <div class="topbar__logo">
         <a href="{{ route('welcome') }}">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
         </a>
     </div>
-    <!-- Menú de escritorio -->
     <nav class="nav-menu">
         <ul>
             <li><a href="#">Inicio</a></li>
@@ -21,41 +19,82 @@
             <li><a href="#quienes-somos">Quiénes somos</a></li>
             <li class="settingsDropdown">
                 <div class="dropdown">
-                    <span class="value">Español</span>
+                    <span class="value">
+                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                    </span>
                     <ul>
-                        <li><a href="#" class="language">Français</a></li>
-                        <li><a href="#" class="language">English</a></li>
-                        <li><span class="selected">Español</span></li>
-                        <li><a href="#" class="language">Italiano</a></li>
-                        <li><a href="#" class="language">Deutsch</a></li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
+                            </a>
+                        </li>
+                        <li>
+                            <span class="selected">
+                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                            </span>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
         </ul>
     </nav>
-
-    <!-- Menú hamburguesa -->
     <div class="hamburger-menu">
         <span></span>
         <span></span>
         <span></span>
     </div>
-
-    <!-- Menú móvil -->
     <div class="mobile-menu">
+        <span class="close-menu">✕</span>
         <ul>
             <li><a href="#">Inicio</a></li>
             <li><a href="#contacto">Contacto</a></li>
             <li><a href="#quienes-somos">Quiénes somos</a></li>
             <li class="settingsDropdown">
                 <div class="dropdown">
-                    <span class="value">Español</span>
+                    <span class="value">
+                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                    </span>
                     <ul>
-                        <li><a href="#" class="language">Français</a></li>
-                        <li><a href="#" class="language">English</a></li>
-                        <li><span class="selected">Español</span></li>
-                        <li><a href="#" class="language">Italiano</a></li>
-                        <li><a href="#" class="language">Deutsch</a></li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
+                            </a>
+                        </li>
+                        <li>
+                            <span class="selected">
+                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                            </span>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language">
+                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

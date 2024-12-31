@@ -211,7 +211,7 @@ h2 {
   color: white; /* Color de las flechas */
 }
 /* Cambiar color de las flechas de navegación */
-..ui-icon.ui-icon-circle-triangle-w, 
+.ui-icon.ui-icon-circle-triangle-w, 
 .ui-icon.ui-icon-circle-triangle-e {
     color: white !important;
     fill: white !important;

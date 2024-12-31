@@ -147,6 +147,11 @@
 $(document).ready(function () {
     const pickupDateInput = $("#pickup_date");
     const returnDateInput = $("#return_date");
+    const reservationForm = document.getElementById('reservation-form');
+    const hiddenPriceInput = document.getElementById('hidden-price');
+    const totalPriceElement = document.getElementById('total-price');
+
+    
 
     // Estado para reiniciar fechas
     let lastPickupDate = null;
@@ -261,6 +266,10 @@ $(document).ready(function () {
 
     $("#pickup_date, #return_date").on("change", function () {
         calculatePriceForBoats();
+    });
+    reservationForm.addEventListener('submit', function () {
+        const totalPrice = totalPriceElement.textContent.replace('€', '').trim();
+        hiddenPriceInput.value = totalPrice; // Actualiza el campo antes de enviar
     });
 });
 </script>
