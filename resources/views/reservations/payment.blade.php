@@ -128,12 +128,8 @@
                     <form action="{{ route('reservation.details') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="first_name" class="form-label">Nombre</label>
+                            <label for="first_name" class="form-label">Nombre Completo</label>
                             <input type="text" class="form-control" id="first_name" name="first_name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="last_name" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="last_name" name="last_name" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo Electrónico</label>

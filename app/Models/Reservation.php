@@ -12,6 +12,7 @@ class Reservation extends Model
 
     protected $fillable = [
         'name',
+        'last_name', // Añadir este campo
         'email',
         'phone',
         'port_id',
