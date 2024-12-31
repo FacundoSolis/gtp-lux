@@ -3,7 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-    base: '/', // Define el base path si es necesario para producción
+    base: '/build/', // Define el base path si es necesario para producción
     plugins: [
         react(),
         laravel({

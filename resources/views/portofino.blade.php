@@ -493,8 +493,6 @@
                 })
                 .then((response) => {
                     const totalPrice = response.data.total_price;
-                    document.getElementById('hidden-price').value = totalPrice; // Actualiza el campo hidden
-                    document.getElementById('total-price').textContent = `${totalPrice}€`; // Actualiza el resumen
                     showPriceSummary(totalPrice);
                 })
                 .catch((error) => {
@@ -522,7 +520,6 @@
 
         pickupInput.addEventListener('change', handleDateChange);
         returnInput.addEventListener('change', handleDateChange);
-        
 
         // Inicializar el calendario
         const calendar = new FullCalendar.Calendar(calendarEl, {
