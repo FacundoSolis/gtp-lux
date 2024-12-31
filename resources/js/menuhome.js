@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const hamburgerMenu = document.querySelector('.welcome-hamburger-menu');
-    const mobileMenu = document.querySelector('.welcome-mobile-menu');
-    const closeButton = document.querySelector('.welcome-close-menu');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const closeButton = document.querySelector('.close-menu');
     const body = document.body;
 
     // Alternar el estado del menú móvil
