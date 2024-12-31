@@ -6,7 +6,30 @@
     <title>@yield('title', 'GtpLux')</title>
 
     <!-- CSS y JS de Vite -->
-    @vite(['resources/css/style.css','resources/css/admin.css', 'resources/js/loadMoreDescription.js', 'resources/js/loadMoreDescription2.js', 'resources/js/loadMoreImages.js'])
+    @vite(['resources/css/available-boats.css',
+        'resources/css/confirmation.css',
+        'resources/css/menu.css',
+        'resources/css/menuhome.css',
+        'resources/css/normalize.css',
+        'resources/css/opiniones.css',
+        'resources/css/payment.css',
+        'resources/css/portofino.css',
+        'resources/css/princess.css',
+        'resources/css/public.css',
+        'resources/css/style.css',
+        'resources/css/admin.css', 
+        'resources/js/listapreciosportofino.js',
+        'resources/js/listapreciosprincess.js',
+        'resources/js/loadMoreDescription.js',
+        'resources/js/loadMoreDescription2.js',
+        'resources/js/loadMoreImages.js',
+        'resources/js/loadMoreImages2.js',
+        'resources/js/menu.js',
+        'resources/js/menuhome.js',
+        'resources/js/opiniones.js',
+        'resources/js/slider.js',
+        'resources/js/syncddate.js',
+        'resources/js/componentes/app.jsx'])
 
     <!-- CSS de Bootstrap y otros frameworks externos -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">

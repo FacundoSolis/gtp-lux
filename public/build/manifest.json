@@ -45,13 +45,18 @@
     "isEntry": true
   },
   "resources/css/portofino.css": {
-    "file": "assets/princess-SgG5y7B-.css",
-    "src": "resources/css/princess.css",
+    "file": "assets/portofino-SgG5y7B-.css",
+    "src": "resources/css/portofino.css",
     "isEntry": true
   },
   "resources/css/princess.css": {
-    "file": "assets/princess-SgG5y7B-.css",
-    "src": "resources/css/princess.css",
+    "file": "assets/portofino-SgG5y7B-.css",
+    "src": "resources/css/portofino.css",
+    "isEntry": true
+  },
+  "resources/css/public.css": {
+    "file": "assets/public-P34Pc-ue.css",
+    "src": "resources/css/public.css",
     "isEntry": true
   },
   "resources/css/style.css": {
