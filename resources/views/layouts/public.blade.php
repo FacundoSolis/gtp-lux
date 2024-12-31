@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
     <!-- Estilos específicos de las vistas -->
     @stack('styles')
+
+    
 </head>
 <body>
     <!-- Contenedor principal -->

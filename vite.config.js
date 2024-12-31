@@ -14,7 +14,6 @@ export default defineConfig({
                 'resources/css/confirmation.css',
                 'resources/css/menu.css',
                 'resources/css/menuhome.css',
-                'resources/css/normalize.css',
                 'resources/css/opiniones.css',
                 'resources/css/payment.css',
                 'resources/css/portofino.css',
