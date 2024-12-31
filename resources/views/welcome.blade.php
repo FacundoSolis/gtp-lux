@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @push('styles')
-  @vite('resources/css/style.css')
+@vite('resources/css/style.css', ['version' => time()])
   @vite('resources/css/menuhome.css')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
