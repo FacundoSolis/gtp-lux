@@ -89,13 +89,13 @@
             </li>
         </ul>
     </nav>
-    <div class="hamburger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="welcome-hamburger-menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <div class="mobile-menu">
-        <span class="close-menu">✕</span>
+    <div class="welcome-mobile-menu">
+        <span class="welcome-close-menu">✕</span>
         <ul>
             <li><a href="#">Inicio</a></li>
             <li><a href="#contacto">Contacto</a></li>
