@@ -8,7 +8,6 @@ export default defineConfig({
         react(),
         laravel({
             input: [
-                // Asegúrate de que todos los archivos existen en estas rutas
                 'resources/css/admin.css',
                 'resources/css/app.css',
                 'resources/css/available-boats.css',
@@ -22,8 +21,6 @@ export default defineConfig({
                 'resources/css/princess.css',
                 'resources/css/public.css',
                 'resources/css/style.css',
-
-                
                 'resources/js/componentes/app.jsx',
                 'resources/js/slider.js',
                 'resources/js/loadMoreImages.js',
@@ -36,7 +33,6 @@ export default defineConfig({
                 'resources/js/listapreciosprincess.js',
                 'resources/js/menuhome.js',
                 'resources/js/menu.js',
-                'resources/js/componentes/app.jsx',
             ],
             refresh: true,
         }),
