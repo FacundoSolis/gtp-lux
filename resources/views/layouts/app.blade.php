@@ -44,6 +44,19 @@
         </div>
     </div>
 
+    @vite (['resources/js/listapreciosportofino.js',
+    'resources/js/listapreciosprincess.js',
+    'resources/js/loadMoreDescription.js',
+    'resources/js/loadMoreDescription2.js',
+    'resources/js/loadMoreImages.js',
+    'resources/js/loadMoreImages2.js',
+    'resources/js/menu.js',
+    'resources/js/menuhome.js',
+    'resources/js/opiniones.js',
+    'resources/js/slider.js',
+    'resources/js/syncddate.js',
+    'resources/js/componentes/app.jsx',])
+
     <!-- Scripts de Bootstrap y externos -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
