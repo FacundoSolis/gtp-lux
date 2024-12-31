@@ -10,3 +10,18 @@ header.topbar {
     color: #fff;
     padding: 0;
 }
+
+/* Estilos para pantallas mayores a 768px */
+@media (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+  }
+  
+  /* Estilos para pantallas menores a 768px */
+  @media (max-width: 767px) {
+    body {
+      font-size: 14px;
+    }
+  }
+  
