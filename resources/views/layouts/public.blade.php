@@ -37,6 +37,7 @@
  
     <!-- Scripts específicos -->
     @yield('scripts')
+    
 
     <!-- Incluir React solo si es necesario -->
     @vite('resources/js/componentes/app.jsx') <!-- React con Vite -->

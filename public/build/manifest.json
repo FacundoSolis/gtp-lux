@@ -1,27 +1,52 @@
 {
   "resources/css/admin.css": {
-    "file": "assets/admin-LiLNod6g.css",
+    "file": "assets/admin-DirQhRcz.css",
     "src": "resources/css/admin.css",
     "isEntry": true
   },
+  "resources/css/app.css": {
+    "file": "assets/app-BqKdxpUi.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
   "resources/css/available-boats.css": {
-    "file": "assets/available-boats-oEa1UfYZ.css",
+    "file": "assets/available-boats-BIl8H1si.css",
     "src": "resources/css/available-boats.css",
     "isEntry": true
   },
+  "resources/css/confirmation.css": {
+    "file": "assets/confirmation-DZ7PxvDb.css",
+    "src": "resources/css/confirmation.css",
+    "isEntry": true
+  },
   "resources/css/menu.css": {
-    "file": "assets/menu-iuFSw2zx.css",
+    "file": "assets/menu-BnIop0I-.css",
     "src": "resources/css/menu.css",
     "isEntry": true
   },
+  "resources/css/menuhome.css": {
+    "file": "assets/menuhome-Bypozy8l.css",
+    "src": "resources/css/menuhome.css",
+    "isEntry": true
+  },
+  "resources/css/opiniones.css": {
+    "file": "assets/opiniones-KYSA6JTR.css",
+    "src": "resources/css/opiniones.css",
+    "isEntry": true
+  },
+  "resources/css/payment.css": {
+    "file": "assets/payment-BiwxVqCA.css",
+    "src": "resources/css/payment.css",
+    "isEntry": true
+  },
   "resources/css/portofino.css": {
-    "file": "assets/portofino-Cu4rxA4e.css",
+    "file": "assets/portofino-SgG5y7B-.css",
     "src": "resources/css/portofino.css",
     "isEntry": true
   },
   "resources/css/princess.css": {
-    "file": "assets/princess-C6Zqq_uJ.css",
-    "src": "resources/css/princess.css",
+    "file": "assets/portofino-SgG5y7B-.css",
+    "src": "resources/css/portofino.css",
     "isEntry": true
   },
   "resources/css/public.css": {
@@ -30,38 +55,30 @@
     "isEntry": true
   },
   "resources/css/style.css": {
-    "file": "assets/style-Cy4ERk9s.css",
+    "file": "assets/style-DJAABGh8.css",
     "src": "resources/css/style.css",
     "isEntry": true
   },
-  "resources/img/fondo-mar.jpg": {
-    "file": "assets/fondo-mar-DRgBhWKE.jpg",
-    "src": "resources/img/fondo-mar.jpg"
-  },
-  "resources/img/land-img.jpg": {
-    "file": "assets/land-img-Cbzu2Dmy.jpg",
-    "src": "resources/img/land-img.jpg"
-  },
-  "resources/img/lineas.jpg": {
-    "file": "assets/lineas-D7qAHGS9.jpg",
-    "src": "resources/img/lineas.jpg"
-  },
   "resources/js/componentes/app.jsx": {
-    "file": "assets/app-Bwdf_Xaz.js",
+    "file": "assets/app-FYHyaH_o.js",
     "name": "app",
     "src": "resources/js/componentes/app.jsx",
-    "isEntry": true,
-    "css": [
-      "assets/style-Cy4ERk9s.css"
-    ],
-    "assets": [
-      "assets/fondo-mar-DRgBhWKE.jpg",
-      "assets/lineas-D7qAHGS9.jpg",
-      "assets/land-img-Cbzu2Dmy.jpg"
-    ]
+    "isEntry": true
+  },
+  "resources/js/listapreciosportofino.js": {
+    "file": "assets/listapreciosportofino-D5qolLRQ.js",
+    "name": "listapreciosportofino",
+    "src": "resources/js/listapreciosportofino.js",
+    "isEntry": true
+  },
+  "resources/js/listapreciosprincess.js": {
+    "file": "assets/listapreciosprincess-7dpEo3XJ.js",
+    "name": "listapreciosprincess",
+    "src": "resources/js/listapreciosprincess.js",
+    "isEntry": true
   },
   "resources/js/loadMoreDescription.js": {
-    "file": "assets/loadMoreDescription-BuR4_Qyl.js",
+    "file": "assets/loadMoreDescription-UnQYDaJ2.js",
     "name": "loadMoreDescription",
     "src": "resources/js/loadMoreDescription.js",
     "isEntry": true
@@ -73,15 +90,45 @@
     "isEntry": true
   },
   "resources/js/loadMoreImages.js": {
-    "file": "assets/loadMoreImages-wvQCgV0o.js",
+    "file": "assets/loadMoreImages-AzCURZjo.js",
     "name": "loadMoreImages",
     "src": "resources/js/loadMoreImages.js",
+    "isEntry": true
+  },
+  "resources/js/loadMoreImages2.js": {
+    "file": "assets/loadMoreImages2-AzCURZjo.js",
+    "name": "loadMoreImages2",
+    "src": "resources/js/loadMoreImages2.js",
+    "isEntry": true
+  },
+  "resources/js/menu.js": {
+    "file": "assets/menu-CWTJndx9.js",
+    "name": "menu",
+    "src": "resources/js/menu.js",
+    "isEntry": true
+  },
+  "resources/js/menuhome.js": {
+    "file": "assets/menuhome-C0QrSCAb.js",
+    "name": "menuhome",
+    "src": "resources/js/menuhome.js",
+    "isEntry": true
+  },
+  "resources/js/opiniones.js": {
+    "file": "assets/opiniones-CLBmJBMC.js",
+    "name": "opiniones",
+    "src": "resources/js/opiniones.js",
     "isEntry": true
   },
   "resources/js/slider.js": {
     "file": "assets/slider-DKNDmEBG.js",
     "name": "slider",
     "src": "resources/js/slider.js",
+    "isEntry": true
+  },
+  "resources/js/syncddate.js": {
+    "file": "assets/syncddate-CRt5ldaB.js",
+    "name": "syncddate",
+    "src": "resources/js/syncddate.js",
     "isEntry": true
   }
 }
