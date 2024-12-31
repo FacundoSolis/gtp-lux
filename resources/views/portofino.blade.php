@@ -6,6 +6,7 @@
     @vite('resources/css/portofino.css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @endpush
 
@@ -316,7 +317,18 @@
                 <h5>Resumen de precios</h5>
                 <p><strong>Total:</strong> <span id="total-price">{{ $price }}€</span></p>
                 <button id="price-list-button" class="btn btn-info mt-3">Consultar la lista de precios</button>
+                <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => $boat->id]) }}" method="POST">
+                @csrf
+                    <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
+                    <input type="hidden" name="name" value="Reserva sin nombre">
+                    <input type="hidden" name="pickup_date" id="hidden-pickup-date" value="{{ request('pickup_date') }}">
+                    <input type="hidden" name="return_date" id="hidden-return-date" value="{{ request('return_date') }}">
+                    <input type="hidden" name="price" id="hidden-price" value="{{ $price }}">
+
+                    <button type="submit" class="btn btn-primary mt-3">Proceder al Pago</button>
+                </form>
             </section>
+
 
             <!-- Sección de condiciones -->
             <section id="conditions-section" class="conditions-section mt-3">
@@ -459,7 +471,15 @@
         const boatId = 3; // ID del barco actualizado
         const priceListButton = document.getElementById('price-list-button');
         const priceListModal = new bootstrap.Modal(document.getElementById('priceListModal'));
-        
+        document.getElementById('pickup_date').addEventListener('change', updateHiddenFields);
+        document.getElementById('return_date').addEventListener('change', updateHiddenFields);
+
+        function updateHiddenFields() {
+            document.getElementById('hidden-pickup-date').value = document.getElementById('pickup_date').value;
+            document.getElementById('hidden-return-date').value = document.getElementById('return_date').value;
+            document.getElementById('hidden-price').value = document.getElementById('total-price').textContent.replace('€', '').trim();
+        }
+
         let selectedPickupDate = null;
         let selectedReturnDate = null;
 

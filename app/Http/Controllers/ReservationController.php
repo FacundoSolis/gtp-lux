@@ -335,5 +335,44 @@ public function showAvailableBoatsWithoutDates(Request $request)
         'fromWelcome' => $fromWelcome,
     ]);
 }
+public function redirectToPayment($reservationId)
+{
+    $reservation = Reservation::findOrFail($reservationId);
+
+    // Verificar que el precio total esté calculado
+    if ($reservation->total_price <= 0) {
+        return redirect()->route('step3')->withErrors(['error' => 'El precio de la reserva no se ha calculado correctamente.']);
+    }
+
+    // Redirigir al proceso de pago
+    return redirect()->route('payment', ['reservation' => $reservation->id]);
+}
+public function reserveAndRedirectToPayment(Request $request, $boatId)
+{
+    // Validar los datos del formulario
+    $validated = $request->validate([
+        'port_id' => 'required|exists:ports,id',
+        'pickup_date' => 'required|date|after:today',
+        'return_date' => 'required|date|after:pickup_date',
+        'price' => 'required|numeric|min:0',
+    ]);
+
+    // Crear la reserva
+    $reservation = Reservation::create([
+        'boat_id' => $boatId,
+        'port_id' => $validated['port_id'],
+        'pickup_date' => $validated['pickup_date'],
+        'return_date' => $validated['return_date'],
+        'total_price' => $validated['price'],
+        'name' => $request->input('name', 'Reserva sin nombre'),
+        'email' => $request->input('email', 'correo@ejemplo.com'), // Email predeterminado
+        'phone' => $request->input('phone', '000000000'),         // Teléfono predeterminado
+]);
+
+    // Redirigir a la página de pago con el ID de la reserva
+    return redirect()->route('payment', ['reservation' => $reservation->id]);
+}
+
+
 
 }

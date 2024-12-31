@@ -11,15 +11,11 @@ class PaymentController extends Controller
 {
     public function payment($reservationId)
     {
-        $reservation = Reservation::findOrFail($reservationId);
-
-        // Verificar si el precio total está presente
-        if ($reservation->total_price === 0) {
-            return redirect()->route('step3')->withErrors(['price_error' => 'El precio total no está calculado correctamente.']);
-        }
+            $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
 
         return view('reservations.payment', compact('reservation'));
     }
+
 
     public function processPayment(Request $request, $reservationId)
     {
@@ -48,5 +44,14 @@ class PaymentController extends Controller
 
         // Redirigir al usuario a la sesión de pago de Stripe
         return redirect($session->url);
+        }
+        public function confirmation($reservationId)
+    {
+        $reservation = Reservation::findOrFail($reservationId);
+
+        // Actualizar el estado de la reserva a "pagado"
+        $reservation->update(['status' => 'paid']);
+
+        return view('reservations.confirmation', compact('reservation'));
     }
-}
+    }

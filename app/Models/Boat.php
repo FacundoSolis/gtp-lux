@@ -72,4 +72,10 @@ public function equipments()
     return $this->belongsToMany(Equipment::class, 'boat_equipment');
 }
 
+// Modelo Boat
+public function getImageUrlAttribute()
+{
+    return asset('img/boats/' . $this->image); // Si las imágenes están en 'public/img/boats/'
+}
+
 }

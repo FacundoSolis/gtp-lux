@@ -21,4 +21,30 @@ main.content {
 .justify-content-center {
     margin-bottom: -50px;
 }
-        
+
+.bg-primary {
+background-color: black;
+}
+.justify-content-around {
+gap: 10px;
+}
+
+.bg-info {
+    --bs-bg-opacity: 1;
+    background-color: #0D6EFD !important;
+}
+.bg-secondary {
+    --bs-bg-opacity: 1;
+    background-color: #0D6EFD !important;
+}
+.img-fluid{
+    max-width: 50%;
+    text-align: center;
+}
+
+h2{
+    margin-top: 100px;
+    margin-bottom: 0;
+    text-align: center;
+
+}

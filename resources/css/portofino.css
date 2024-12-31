@@ -82,7 +82,8 @@ header {
   background-position: center;
   border-radius: 10px;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   box-shadow: 0 1px 1rem -4px #000;
 }
 
@@ -104,6 +105,7 @@ header {
   background-color: var(--bs-modal-bg);
   border-radius: 8px;
   padding: 20px;
+  margin-top: 70px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 .modal-dialog-centered {
@@ -235,15 +237,18 @@ margin-top: 20px;
 font-size: 1.5rem;
 color: black;
 }
-.row {
+
+.right-boxes .row {
 display: flex;
-gap: 10px;
-justify-content: flex-start; 
+flex-wrap: wrap; /* No permita que las columnas se apilen */
+gap: 20px;
+justify-content: space-between; /* Espacio entre columnas */
 }
-.row.large .box {
+.right-boxes .row.large .box {
 width: calc(50% - 5px);
 }
-.box {
+
+.right-boxes .row .box{
 flex: 1;
 height: 100px;
 background-color: #2D353F;
@@ -259,11 +264,11 @@ text-align: center;
 padding: 10px;
 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
+
 .box i {
 font-size: 2rem; 
 margin-bottom: 5px; 
 }
-
 .pricing-details-columns {
   display: flex;
   justify-content: space-between;
@@ -311,18 +316,10 @@ margin-bottom: 5px;
   color: black;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* Espaciado entre columnas */
-  justify-content: left; /* Centra las columnas */
-}
-
 .col-md-6 {
   flex: 1;
   max-width: 48%; /* Ocupa el 48% del ancho para dar espacio entre columnas */
   box-sizing: border-box;
-  margin-top: 50px;
 }
 .calendar-wrapper {
 width: 100%;
@@ -537,6 +534,10 @@ footer {
   width: 350px; 
   height: 350px; 
 }
+
+.modal-content {
+  margin-top: 50px;
+}
 .container-valkyrya h2 {
   font-size: 2rem;
   padding-top: 120px;
@@ -571,7 +572,6 @@ footer {
 .description-boat button {
   margin-left: auto; 
   margin-right: auto; 
-
 }
 /* CAJAS */
 .layout {
@@ -584,23 +584,19 @@ footer {
   margin-left: 0; 
   margin-top: 20px; 
 }
-
 .characteristics h3 {
   font-size: 1.2rem;  
 }
-
 /* Para la lista de características */
 .info-list {
   display: block;  
 }
-
 .info-row {
   display: block; 
   padding: 10px;
   align-items: flex-start;
   margin-bottom: 10px;  
 }
-
 /* Especificaciones del Barco */
 .right-boxes {
   width: 90%;  
@@ -611,13 +607,11 @@ footer {
   gap: 20px; 
   margin: 0 auto;  
 }
-
 .right-boxes h3 {
   font-size: 1.2rem; 
   text-align: center;
   font-weight:bold ;
 }
-
 /* Para las filas en móviles */
 .row {
   display: flex;
@@ -626,42 +620,47 @@ footer {
   width: 100%;  
   flex-wrap: wrap;  
 }
-
 /* Cajas dentro de la sección "Especificaciones" */
 .box {
   width: 100%;  
   height: auto; 
   margin-bottom: 15px; 
 }
-
 .box i {
   font-size: 1.5rem; 
 }
-
 .pricing-details-columns {
   flex-direction: column; 
   gap: 40px;
 }
-
 /* Para hacer que las secciones se apilen correctamente */
 .characteristics2 {
   order: 1;  
 }
-
 .characteristics3 {
   order: 2;  
 }
-
 .characteristics2, .characteristics3 {
   width: 100%;  
   margin: 0 auto;  
 }
-
-.container h1 {
-  color: black; 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px;
 }
-
-/* form */
+.container h1, 
+.container h4 {
+  text-align: center;
+}
+.mb-3,
+.row {
+  width: 100%;
+  text-align: center;
+  gap: 0;
+}
 .form-container {
   flex-direction: column;
   gap: 20px;
@@ -673,6 +672,23 @@ footer {
 }
 .form label {
   font-size: 0.9rem;
+}
+.calendar-wrapper {
+  max-width: 100%; /* Ancho máximo del calendario en móviles */
+  margin: 20px auto; /* Centra el calendario horizontalmente */
+  padding: 10px; /* Espaciado interno */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 8px; /* Esquinas redondeadas */
+  background-color: #fff; /* Fondo blanco */
+}
+.col-md-6 {
+  max-width: 100%;
+  flex: 0 0 100%;
+}
+.fc-daygrid-day {
+  width: 14.28%; /* Cada día ocupa un 1/7 del ancho */
+  min-width: 0;
 }
 .btn-primary {
   display: block;       
@@ -689,7 +705,6 @@ footer {
   margin-left: .75em;
   margin-top: 5px;
 }
-
 .footer-container {
   display: flex;
   flex-direction: column; 

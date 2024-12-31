@@ -18,7 +18,7 @@ h2 {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 /* Contenedor para el calendario y las tarjetas */
@@ -197,6 +197,34 @@ h2 {
 
 .settingsDropdown ul li:hover {
   background-color: #555;
+}
+/* Cambiar el fondo y color del encabezado del calendario */
+.ui-datepicker .ui-datepicker-header {
+  background-color: #037bff; /* Fondo azul */
+  color: white; /* Letras en blanco */
+  border: none; /* Eliminar bordes, opcional */
+}
+
+/* Cambiar color de las flechas de navegación */
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+  background-color: transparent; /* Fondo transparente */
+  color: white; /* Color de las flechas */
+}
+/* Cambiar color de las flechas de navegación */
+..ui-icon.ui-icon-circle-triangle-w, 
+.ui-icon.ui-icon-circle-triangle-e {
+    color: white !important;
+    fill: white !important;
+}
+
+/* Cambiar el color del mes y año */
+.ui-datepicker-title span {
+  color: white; /* Texto en blanco */
+}
+
+/* Ajustar bordes redondeados del contenedor */
+.ui-datepicker-header.ui-corner-all {
+  border-radius: 8px; /* Bordes redondeados */
 }
 
 

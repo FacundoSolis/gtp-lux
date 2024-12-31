@@ -39,9 +39,11 @@ Route::middleware(['web'])->group(function () {
     Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort'])->name('boats.byPort');
     Route::get('/reservations/calendar/{boatId}/{portId}', [ReservationController::class, 'calendar'])->name('reservations.calendar');
     Route::get('/available-boats-no-dates', [ReservationController::class, 'showAvailableBoatsWithoutDates'])->name('available.boats.no.dates');
+    Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveBoat'])->name('boats.reserve');
 
     // Ruta dinámica para reservar cualquier barco
     Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveBoat'])->name('boats.reserve');
+    Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveAndRedirectToPayment'])->name('boats.reserve');
 
     // Ruta para calcular el precio dinámico
     Route::get('/calculate-price', [ReservationController::class, 'calculateDynamicPrice'])->name('reservations.calculatePrice');
@@ -58,7 +60,7 @@ Route::middleware(['web'])->group(function () {
 
     // Rutas de pago
     Route::get('/payment/{reservation}', [PaymentController::class, 'payment'])->name('payment');
-    Route::post('/process-payment/{reservationId}', [PaymentController::class, 'processPayment'])->name('processPayment');
+    Route::post('/process-payment/{reservation}', [PaymentController::class, 'processPayment'])->name('processPayment');
     // Rutas para Stripe
     Route::get('/stripe/create/{reservation}', [StripeController::class, 'createPayment'])->name('stripe.create');
     Route::post('/stripe/process/{reservation}', [StripeController::class, 'processPayment'])->name('stripe.process');

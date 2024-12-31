@@ -782,6 +782,7 @@ section.banner h2 {
   text-align: center;
   margin: 0 auto;
   margin-bottom: 15px;
+  margin-top: 20px;
 }
 .slider-title::after {
   position: absolute;
@@ -833,7 +834,6 @@ button.prev, button.next {
 .map-form {
   background-attachment: scroll; /* Cambia el valor para móviles */
 }
-
 #reservation-btn {
   font-size: 0.8rem;
   padding: 8px 12px;
@@ -843,13 +843,11 @@ button.prev, button.next {
   text-align: center;
   background-color: linear-gradient (45deg, #d4af37, #f5c032);
 }
-
 .map-container {
   width: 100%;
   height: 100%;
   margin-top: 20px;
 }
-
 .form-card {
   width: 100%;
   max-width: 350px;
@@ -876,9 +874,6 @@ button.prev, button.next {
 textarea {
   height: 70px;
 }
-
-
-
 .footer-container {
   display: flex;
   flex-direction: column; /* Cambia la dirección para que los elementos se apilen verticalmente */

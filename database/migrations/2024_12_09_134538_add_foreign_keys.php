@@ -12,10 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('boats', function (Blueprint $table) {
-            $table->foreignId('boat_id')->constrained('boats')->onDelete('cascade'); // Relación con Barcos
+            if (!Schema::hasColumn('boats', 'boat_id')) {
+                $table->unsignedBigInteger('boat_id')->after('id');
+            }
         });
         Schema::table('date_prices', function (Blueprint $table) {
-            $table->foreignId('boat_id')->constrained('boats')->onDelete('cascade'); // Relación con Barcos
+            if (!Schema::hasColumn('date_prices', 'boat_id')) {
+                $table->unsignedBigInteger('boat_id')->after('id');
+            }
         });
     }
 

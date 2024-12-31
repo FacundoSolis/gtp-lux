@@ -197,12 +197,12 @@
         flex-direction: column;
         justify-content: space-between;
         width: 30px;
-        height: 30px; /* Ajusta para evitar colapso */
+        height: 26px; /* Ajusta para evitar colapso */
         cursor: pointer;
         z-index: 1200;
         position: fixed;
         right: 20px;
-        top: 20px;
+        top: 25px;
         gap: 4px; /* Espacio entre las líneas */
         }
     .mobile-menu {
