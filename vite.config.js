@@ -48,8 +48,7 @@ export default defineConfig({
     },
     server: {
         hmr: {
-            overlay: false, // Combina aquí la configuración de HMR
+            overlay: false, // Desactiva el overlay de errores
         },
-        host: true, // Otra configuración del servidor si es necesaria
     },
 });
