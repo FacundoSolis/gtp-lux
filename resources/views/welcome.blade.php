@@ -1,8 +1,8 @@
 @extends('layouts.public')
 
 @push('styles')
-  @vite('resources/css/style.css')
-  @vite('resources/css/menuhome.css')
+<link rel="stylesheet" href="{{ asset('build/assets/menuhome-Bypozy8l.css') }}">
+<link rel="stylesheet" href="{{ asset('build/assets/style-DJAABGh8.css') }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
@@ -338,8 +338,8 @@
 
 <!-- Scripts -->
 @section('scripts')
-  @vite('resources/js/menuhome.js')
-  @vite('resources/js/slider.js')
+<script src="{{ asset('build/assets/menuhome-C0QrSCAb.js') }}"></script>
+<script src="{{ asset('build/assets/slider-DKNDmEBG.js') }}"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
