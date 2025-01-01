@@ -1,7 +1,7 @@
 @extends('layouts.public')
 @push('styles')
-    @vite('resources/css/menu.css')
-    @vite('resources/css/confirmation.css')
+<link rel="stylesheet" href="{{ asset('build/assets/menu-BnIop0I-.css') }}">
+<link rel="stylesheet" href="{{ asset('build/assets/confirmation-DZ7PxvDb.css') }}">
 @endpush
 @section('title', 'Confirmación de Reserva')
 
@@ -154,4 +154,6 @@
         </a>
     </div>
 </div>
+@section('scripts')
+<script src="{{ asset('build/assets/menu-Cd3QX7BG.js') }}"></script>
 @endsection

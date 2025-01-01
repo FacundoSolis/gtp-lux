@@ -1,7 +1,7 @@
 @extends('layouts.public')
 @push('styles')
-    @vite('resources/css/menu.css')
-    @vite('resources/css/payment.css')
+<link rel="stylesheet" href="{{ asset('build/assets/menu-BnIop0I-.css') }}">
+<link rel="stylesheet" href="{{ asset('build/assets/payment-BiwxVqCA.css') }}">
 @endpush
 
 @section('title', 'Método de Pago')
@@ -243,6 +243,9 @@
     </div>
 </div>
 
+@section('scripts')
+<script src="{{ asset('build/assets/menu-Cd3QX7BG.js') }}"></script>
+@endsection
 <script>
     document.getElementById('payCardButton').addEventListener('click', function () {
         const cardForm = document.getElementById('cardPaymentForm');

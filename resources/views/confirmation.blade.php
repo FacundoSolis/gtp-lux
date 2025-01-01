@@ -1,5 +1,8 @@
 @extends('layouts.public')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('build/assets/confirmation-DZ7PxvDb.css') }}">
+@endpush
 @section('title', 'Confirmación de Reserva')
 
 @section('content')
