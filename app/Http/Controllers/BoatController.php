@@ -102,11 +102,25 @@ public function showBoatPage($boat_id, Request $request)
             'port_id' => $validated['port_id'],
             'capacity' => $validated['capacity'],
             'price_modifier' => $validated['price_modifier'],
+            'description' => $request->description, 
+            'length' => $request->length,
+            'beam' => $request->beam,
+            'crew' => $request->crew,
+            'engine' => $request->engine,
         ]);
     
         // Solo manejar equipamientos desde el admin
         if ($request->has('equipments')) {
             $boat->equipments()->attach($request->equipments);
+        }
+
+        // Guardar los equipos incluidos y no incluidos en el precio
+        if ($request->has('included_in_price')) {
+            $boat->included_in_price = json_encode($request->included_in_price);
+        }
+
+        if ($request->has('not_included_in_price')) {
+            $boat->not_included_in_price = json_encode($request->not_included_in_price);
         }
 
         return redirect()->route('boats.index')->with('success', 'Barco creado con éxito.');
@@ -115,7 +129,8 @@ public function showBoatPage($boat_id, Request $request)
     public function edit(Boat $boat)
     {
         $ports = Port::all();
-        return view('admin.boats.edit', compact('boat', 'ports'));
+        $equipments = Equipment::all(); // Obtener todos los equipamientos
+        return view('admin.boats.edit', compact('boat', 'ports', 'equipments'));
     }
 
     public function update(Request $request, Boat $boat)
@@ -126,6 +141,13 @@ public function showBoatPage($boat_id, Request $request)
         ]);
 
         $boat->update($validated);
+
+        // Guardar las descripciones por idioma
+        $description = json_encode($request->input('description'));
+
+        $boat->update([
+            'description' => $description, // Guardar las descripciones en formato JSON
+        ]);
 
     return redirect()->route('boats.index')->with('success', 'Barco actualizado con éxito.');
 }

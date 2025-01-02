@@ -25,6 +25,67 @@
                     </select>
                 </div>
 
+                <!-- Descripción del Barco -->
+                <div class="mb-3">
+                    <label for="description" class="form-label">Descripción del Barco:</label>
+                    <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+                </div>
+           <!-- Características del Barco -->
+                <div class="mb-3">
+                    <label for="length" class="form-label">Eslora (m):</label>
+                    <input type="number" id="length" name="length" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="beam" class="form-label">Manga (m):</label>
+                    <input type="number" id="beam" name="beam" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="crew" class="form-label">Tripulación:</label>
+                    <input type="number" id="crew" name="crew" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="engine" class="form-label">Motor (CV):</label>
+                    <input type="number" id="engine" name="engine" class="form-control" required>
+                </div>
+
+                <h5 class="mt-4">Equipamiento Incluido</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="insurance" name="included_in_price[]" value="insurance">
+                            <label class="form-check-label" for="insurance">Seguro a todo riesgo</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="drinks" name="included_in_price[]" value="drinks">
+                            <label class="form-check-label" for="drinks">Bebidas</label>
+                        </div>
+                    </div>
+                    <!-- Agrega más opciones similares aquí -->
+                </div>
+
+                <h5 class="mt-4">Equipamiento No Incluido</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="fuel" name="not_included_in_price[]" value="fuel">
+                            <label class="form-check-label" for="fuel">Combustible</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="premium_drinks" name="not_included_in_price[]" value="premium_drinks">
+                            <label class="form-check-label" for="premium_drinks">Bebidas premium</label>
+                        </div>
+                    </div>
+                    <!-- Agrega más opciones similares aquí -->
+                </div>
+
+
                 <!-- Capacidad -->
                 <div class="mb-3">
                     <label for="capacity" class="form-label">Capacidad (opcional):</label>
@@ -45,38 +106,39 @@
                 </div>
 
                 <!-- Temporadas -->
-                <h5 class="mt-4">Temporadas</h5>
-                <div id="seasons-container" class="border p-3 rounded">
-                    <div class="row g-3 mb-2 season-row">
-                        <div class="col-md-3">
-                            <input type="text" name="seasons[0][name]" placeholder="Nombre de la temporada" class="form-control" required>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="date" name="seasons[0][start_date]" class="form-control" required>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="date" name="seasons[0][end_date]" class="form-control" required>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" step="0.01" name="seasons[0][price_per_day]" placeholder="Precio por día" class="form-control" required>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" id="add-season-btn" class="btn btn-secondary mt-3">Agregar Temporada</button>
-
-                <!-- Equipamiento -->
-<h5 class="mt-4">Equipamiento</h5>
-<div class="row">
-    @foreach($equipments as $equipment)
-        <div class="col-md-4"> <!-- Divide en columnas de 3 por fila -->
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="equipment-{{ $equipment->id }}" name="equipments[]" value="{{ $equipment->id }}">
-                <label class="form-check-label" for="equipment-{{ $equipment->id }}">
-                    {{ $equipment->name }}
-                </label>
+<h5 class="mt-4">Temporadas</h5>
+    <div id="seasons-container" class="border p-3 rounded">
+        <div class="row g-3 mb-2 season-row">
+            <div class="col-md-3">
+                <input type="text" name="seasons[0][name]" placeholder="Nombre de la temporada" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="seasons[0][start_date]" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="seasons[0][end_date]" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <input type="number" step="0.01" name="seasons[0][price_per_day]" placeholder="Precio por día" class="form-control" required>
             </div>
         </div>
-    @endforeach
+    </div>
+<button type="button" id="add-season-btn" class="btn btn-secondary mt-3">Agregar Temporada</button>
+
+<div class="check">
+    <h5 class="mt-4">Equipamiento</h5>
+    <div class="row">
+        @foreach($equipments as $equipment)
+            <div class="col-md-4"> <!-- Divide en columnas de 3 por fila -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="equipment-{{ $equipment->id }}" name="equipments[]" value="{{ $equipment->id }}">
+                    <label class="form-check-label" for="equipment-{{ $equipment->id }}">
+                        {{ $equipment->name }}
+                    </label>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>
                 <div class="mt-4">
                     <button type="submit" class="btn btn-primary">Guardar Barco</button>

@@ -336,7 +336,6 @@
                         <button type="submit" class="btn btn-primary mt-3">Proceder al Pago</button>
                     </form>
                 @else
-                    <p>No hay una reserva activa para proceder al pago.</p>
                 @endif
             </section>
 
