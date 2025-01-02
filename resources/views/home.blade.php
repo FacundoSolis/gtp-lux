@@ -76,8 +76,12 @@
             <div class="card">
                 <div class="card-header">Accesos Rápidos</div>
                 <div class="card-body">
-                    <a href="{{ route('admin.reservations.create') }}" class="btn btn-primary btn-sm">Nueva Reserva</a>
-                    <a href="{{ route('admin.payments.index') }}" class="btn btn-secondary btn-sm">Procesar Pago</a>
+                    <div style="margin-bottom: 10px;">
+                        <a href="http://127.0.0.1:8000/admin/reservations/create" class="btn btn-primary btn-sm">Nueva Reserva</a>
+                    </div>
+                    <div>
+                        <a href="http://127.0.0.1:8000/admin/payments" class="btn btn-secondary btn-sm">Procesar Pago</a>
+                    </div>
                 </div>
             </div>
         </div>

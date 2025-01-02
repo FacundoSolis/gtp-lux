@@ -327,6 +327,17 @@
 
                     <button type="submit" class="btn btn-primary mt-3">Proceder al Pago</button>
                 </form>
+
+                <!-- Formulario para redirigir a la página de pago con las fechas seleccionadas -->
+                @if(isset($reservation) && $reservation->id)
+                    <form action="{{ route('payment', ['reservation' => $reservation->id]) }}" method="GET">
+                        <input type="hidden" name="pickup_date" id="hidden-pickup-date" value="{{ request('pickup_date') }}">
+                        <input type="hidden" name="return_date" id="hidden-return-date" value="{{ request('return_date') }}">
+                        <button type="submit" class="btn btn-primary mt-3">Proceder al Pago</button>
+                    </form>
+                @else
+                    <p>No hay una reserva activa para proceder al pago.</p>
+                @endif
             </section>
 
 
@@ -471,17 +482,33 @@
         const boatId = 3; // ID del barco actualizado
         const priceListButton = document.getElementById('price-list-button');
         const priceListModal = new bootstrap.Modal(document.getElementById('priceListModal'));
+        const urlParams = new URLSearchParams(window.location.search);
+        const pickupDate = urlParams.get('pickup_date'); // 
+       // Obtener parámetros de la URL
+        const queryParams = new URLSearchParams(window.location.search);
+        const pickupDateFromUrl = queryParams.get('pickup_date'); // Fecha inicial desde la URL
+        const returnDateFromUrl = queryParams.get('return_date'); // Fecha final desde la URL
+        
+        const initialDate = pickupDateFromUrl;
+        console.log('Initial Date for Calendar:', initialDate);
+
+
+        const selectedPickupDate = queryParams.get('pickup_date') || new Date().toISOString().split('T')[0];
+        const selectedReturnDate = queryParams.get('return_date');
+
+
         document.getElementById('pickup_date').addEventListener('change', updateHiddenFields);
         document.getElementById('return_date').addEventListener('change', updateHiddenFields);
 
         function updateHiddenFields() {
+            document.querySelector('input[name="pickup_date"]').value = document.getElementById('pickup_date').value;
+            document.querySelector('input[name="return_date"]').value = document.getElementById('return_date').value;
             document.getElementById('hidden-pickup-date').value = document.getElementById('pickup_date').value;
             document.getElementById('hidden-return-date').value = document.getElementById('return_date').value;
             document.getElementById('hidden-price').value = document.getElementById('total-price').textContent.replace('€', '').trim();
         }
-
-        let selectedPickupDate = null;
-        let selectedReturnDate = null;
+        document.getElementById('pickup_date').addEventListener('change', updateHiddenFields);
+        document.getElementById('return_date').addEventListener('change', updateHiddenFields);
 
         // Función para calcular el precio
         function calculatePrice(boatId, startDate, endDate) {
@@ -526,11 +553,13 @@
             themeSystem: 'bootstrap',
             locale: 'es',
             initialView: 'dayGridMonth',
+            initialDate: selectedPickupDate, // Usar la fecha seleccionada o el día actual
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay',
             },
+            initialDate: selectedPickupDate,
             events: async function (fetchInfo, successCallback, failureCallback) {
                 try {
                     const portId = portSelect.value;
@@ -563,6 +592,16 @@
         });
 
         calendar.render();
+        console.log('Fecha inicial definida en FullCalendar:', calendar.getDate().toISOString());
+
+
+        // Verificar que la fecha inicial se haya aplicado correctamente
+        calendar.gotoDate(initialDate);
+
+    // Sincronizar campos del formulario con los parámetros de la URL
+    if (pickupInput && pickupDateFromUrl) {
+        pickupInput.value = pickupDateFromUrl;
+    }
 
         // Manejo de selección de fechas
         function handleDateClick(info) {

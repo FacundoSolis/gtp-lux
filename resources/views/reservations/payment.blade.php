@@ -215,7 +215,8 @@
                             <strong>Puerto:</strong> {{ $reservation->port->name }}
                         </li>
                         <li class="list-group-item">
-                            <strong>Fechas:</strong> {{ $reservation->pickup_date }} - {{ $reservation->return_date }}
+                            <strong>Fechas:</strong> 
+                            {{ $pickupDate }} - {{ $returnDate }}
                         </li>
                         <li class="list-group-item">
                             <strong>Precio Total:</strong> €{{ number_format($reservation->total_price, 2) }}

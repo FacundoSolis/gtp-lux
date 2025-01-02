@@ -6,6 +6,8 @@
     color: white;
     min-height: 100vh;
     padding-top: 20px;
+    position: fixed;
+    width: 250px;
 }
 
 .admin-sidebar ul {
@@ -38,8 +40,9 @@
     font-weight: bold;
 }
 
-/* Contenido */
+/* Contenido principal */
 .admin-content {
+    margin-left: 250px;
     background: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -77,4 +80,150 @@
 
 .btn:hover {
     transform: scale(1.05);
+}
+/* General styles for responsive design */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+/* Responsivo */
+
+/* Para pantallas menores a 768px */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        width: 50px;
+        padding-top: 15px;
+    }
+
+    .admin-content {
+        margin-left: 200px;
+        padding: 15px;
+    }
+
+    .admin-sidebar ul .nav-link {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+        gap: 8px;
+    }
+
+    .admin-sidebar ul .nav-link i {
+        font-size: 1rem;
+    }
+}
+
+/* Para pantallas menores a 576px */
+@media (max-width: 576px) {
+    .admin-sidebar {
+        position: static;
+        width: 40%;
+        min-height: auto;
+        padding: 3px;
+    }
+
+    .admin-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .admin-sidebar ul .nav-item {
+        margin: 0.5rem 0;
+        flex: 0 1 48%; /* Dos elementos por fila */
+    }
+
+    .admin-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .admin-sidebar ul .nav-link {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+        gap: 5px;
+    }
+
+    .admin-sidebar ul .nav-link i {
+        font-size: 0.9rem;
+    }
+    .h5, h5 {
+        font-size: 1rem;
+    }
+    /* Adjustments for small screens (max-width: 768px) */
+@media (max-width: 768px) {
+    .admin-content {
+        padding: 10px;
+    }
+  
+    .card-header {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+
+    .form-select {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    /* Table adjustments */
+    .table thead {
+        display: none; 
+    }
+       
+    .table tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        padding: 0.5rem;
+        text-align: left;
+    }
+
+    .table tbody tr td {
+        display: block;
+        text-align: right;
+        font-size: 0.9rem;
+        padding: 0.3rem 0;
+        text-align: left;
+    }
+
+    .table tbody tr td::before {
+        content: attr(data-label); /* Use the "data-label" attribute for the label */
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .table tbody tr td input {
+        margin-top: 0.3rem;
+    }
+
+    /* Buttons */
+    .btn-warning, .btn-danger {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Adjustments for very small screens (max-width: 576px) */
+@media (max-width: 576px) {
+    .table tbody tr td {
+        font-size: 0.8rem;
+    }
+
+
+    .form-select {
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+    }
+}
 }

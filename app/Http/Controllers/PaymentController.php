@@ -9,12 +9,15 @@ use Stripe\Checkout\Session;
 
 class PaymentController extends Controller
 {
-    public function payment($reservationId)
+    public function payment($reservationId, Request $request)
     {
             $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
+            // Obtener fechas de la URL o usar las de la reserva
+            $pickupDate = $request->input('pickup_date', $reservation->pickup_date);
+            $returnDate = $request->input('return_date', $reservation->return_date);
 
-        return view('reservations.payment', compact('reservation'));
-    }
+            return view('reservations.payment', compact('reservation', 'pickupDate', 'returnDate'));
+        }
 
 
     public function processPayment(Request $request, $reservationId)
