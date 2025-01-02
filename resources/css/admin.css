@@ -39,6 +39,24 @@
     background-color: #d4af37;
     font-weight: bold;
 }
+/* Hacer que el header quede fijo en la parte superior */
+.admin-header {
+    position: fixed; /* Fijar en la parte superior */
+    top: 0;          /* Alinearlo al borde superior */
+    left: 0;         /* Alinearlo al borde izquierdo */
+    right: 0;        /* Alinearlo al borde derecho */
+    z-index: 9999;   /* Asegurarse de que quede encima de otros elementos */
+    background-color: #2D353F; /* Color de fondo */
+    color: white;    /* Color de texto */
+    padding: 1rem;   /* Espaciado */
+    width: 100%;     /* Asegura que ocupe todo el ancho */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agregar sombra si es necesario */
+}
+
+/* Ajustar el contenido para que no quede debajo del header */
+.admin-wrapper {
+    margin-top: 70px; /* Deja espacio para el header fijo (ajustar según el alto del header) */
+}
 
 /* Contenido principal */
 .admin-content {

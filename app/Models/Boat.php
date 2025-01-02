@@ -9,8 +9,12 @@ class Boat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'port_id', 'capacity', 'price_modifier', 'boat_id'];
+    protected $fillable = ['name', 'port_id', 'capacity', 'price_modifier', 'boat_id', 'description'];
 
+    // Castear description como un array o JSON
+    protected $casts = [
+        'description' => 'array',  // Esto convertirá el campo description en un array automáticamente
+    ];
     public function port()
     {
         return $this->belongsTo(Port::class);

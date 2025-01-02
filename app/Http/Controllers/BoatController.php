@@ -93,6 +93,11 @@ public function showBoatPage($boat_id, Request $request)
             'port_id' => 'required|exists:ports,id',
             'capacity' => 'nullable|integer|min:1',
             'price_modifier' => 'nullable|numeric|min:0',
+            'description' => 'required|string',
+            'length' => 'nullable|numeric',
+            'beam' => 'nullable|numeric',
+            'crew' => 'nullable|numeric',
+            'engine' => 'nullable|numeric',
         ]);
             // Proveer un valor predeterminado para 'boat_id'
         $validated['boat_id'] = Boat::max('boat_id') + 1;
@@ -107,6 +112,7 @@ public function showBoatPage($boat_id, Request $request)
             'beam' => $request->beam,
             'crew' => $request->crew,
             'engine' => $request->engine,
+            'boat_id' => $validated['boat_id'], // Asigna el valor de boat_id
         ]);
     
         // Solo manejar equipamientos desde el admin
@@ -138,7 +144,17 @@ public function showBoatPage($boat_id, Request $request)
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'port_id' => 'required|exists:ports,id',
+            'description' => 'required|string', // La descripción principal debe ser obligatoria
+            'description.*' => 'nullable|string', // Las descripciones adicionales pueden ser nulas
         ]);
+
+            // Obtener la descripción principal y las adicionales (si las hay)
+        $description = $request->input('description'); // Descripción principal
+        $descriptionData = [
+            'es' => $description, // La descripción en español es la principal
+            'en' => $request->input('description.en', null), // Descripción en inglés (opcional)
+            'fr' => $request->input('description.fr', null), // Descripción en francés (opcional)
+        ];
 
         $boat->update($validated);
 
@@ -146,7 +162,10 @@ public function showBoatPage($boat_id, Request $request)
         $description = json_encode($request->input('description'));
 
         $boat->update([
-            'description' => $description, // Guardar las descripciones en formato JSON
+            'name' => $validated['name'],
+            'port_id' => $validated['port_id'],
+            'description' => $descriptionData, // Guardar las descripciones como un array en formato JSON
+            // Otros campos que puedas tener...
         ]);
 
     return redirect()->route('boats.index')->with('success', 'Barco actualizado con éxito.');

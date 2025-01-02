@@ -20,6 +20,7 @@ return new class extends Migration
                 $table->string('name')->comment('Nombre del barco'); // Nombre del barco
                 $table->unsignedBigInteger('port_id')->comment('Relación con puertos'); // Relación con Puertos
                 $table->integer('capacity')->comment('Capacidad de personas'); // Capacidad de personas
+                $table->json('description')->nullable()->comment('Descripción del barco en diferentes idiomas'); // Descripción en formato JSON
                 $table->timestamps();
             });
 

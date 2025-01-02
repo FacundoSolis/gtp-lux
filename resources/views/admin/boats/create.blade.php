@@ -7,6 +7,17 @@
             <h5 class="mb-0">Agregar Nuevo Barco</h5>
         </div>
         <div class="card-body">
+
+                    <!-- Mostrar errores de validación -->
+                    @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('boats.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Nombre del Barco -->
@@ -29,6 +40,17 @@
                 <div class="mb-3">
                     <label for="description" class="form-label">Descripción del Barco:</label>
                     <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+                </div>
+
+                        <!-- Descripciones en otros idiomas (opcionales) -->
+                <div class="mb-3">
+                    <label for="description_en" class="form-label">Descripción (English):</label>
+                    <textarea id="description_en" name="description[en]" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description_fr" class="form-label">Description (Français):</label>
+                    <textarea id="description_fr" name="description[fr]" class="form-control" rows="3"></textarea>
                 </div>
            <!-- Características del Barco -->
                 <div class="mb-3">
@@ -89,13 +111,13 @@
                 <!-- Capacidad -->
                 <div class="mb-3">
                     <label for="capacity" class="form-label">Capacidad (opcional):</label>
-                    <input type="number" id="capacity" name="capacity" class="form-control" required>
+                    <input type="number" id="capacity" name="capacity" class="form-control">
                 </div>
 
                 <!-- Modificador de Precio -->
                 <div class="mb-3">
                     <label for="price_modifier" class="form-label">Modificador de Precio:</label>
-                    <input type="number" step="0.01" id="price_modifier" name="price_modifier" class="form-control" value="0.00" required>
+                    <input type="number" step="0.01" id="price_modifier" name="price_modifier" class="form-control" value="0.00">
                 </div>
 
                 <!-- Fotos -->
@@ -153,11 +175,14 @@
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const seasonsContainer = document.getElementById('seasons-container');
-        const addSeasonBtn = document.getElementById('add-season-btn');
-        let seasonIndex = 1;
+    const seasonsContainer = document.getElementById('seasons-container');
+    const addSeasonBtn = document.getElementById('add-season-btn');
+    let seasonIndex = 1;
 
+    if (addSeasonBtn) {
+        console.log("Botón de agregar temporada disponible.");
         addSeasonBtn.addEventListener('click', function () {
+            console.log("Botón de agregar temporada presionado.");
             const seasonRow = document.createElement('div');
             seasonRow.className = 'row g-3 mb-2 season-row';
 
@@ -179,6 +204,11 @@
             seasonsContainer.appendChild(seasonRow);
             seasonIndex++;
         });
-    });
+    } else {
+        console.error("No se encuentra el botón para agregar temporada.");
+    }
+});
+
+
 </script>
 @endsection

@@ -42,6 +42,8 @@ Route::middleware(['web'])->group(function () {
     Route::get('/reservations/calendar/{boatId}/{portId}', [ReservationController::class, 'calendar'])->name('reservations.calendar');
     Route::get('/available-boats-no-dates', [ReservationController::class, 'showAvailableBoatsWithoutDates'])->name('available.boats.no.dates');
     Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveBoat'])->name('boats.reserve');
+    // Ruta pública para crear barco
+    Route::post('/boats', [BoatController::class, 'store'])->name('boats.store');
 
     // Ruta dinámica para reservar cualquier barco
     Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveBoat'])->name('boats.reserve');

@@ -13,20 +13,21 @@
             <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $boat->name) }}" required>
         </div>
             <!-- Descripción del Barco por Idiomas -->
-    <div class="mb-3">
-        <label for="description_es" class="form-label">Descripción (Español):</label>
-        <textarea id="description_es" name="description[es]" class="form-control" rows="3" required>{{ old('description.es', json_decode($boat->description)->es ?? '') }}</textarea>
-    </div>
+        <!-- Descripción del Barco -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción del Barco:</label>
+            <textarea id="description" name="description" class="form-control" rows="3" required>{{ old('description', $boat->description) }}</textarea>
+        </div>
 
-    <div class="mb-3">
-        <label for="description_en" class="form-label">Description (English):</label>
-        <textarea id="description_en" name="description[en]" class="form-control" rows="3" required>{{ old('description.en', json_decode($boat->description)->en ?? '') }}</textarea>
-    </div>
+        <div class="mb-3">
+            <label for="description_en" class="form-label">Description (English):</label>
+            <textarea id="description_en" name="description[en]" class="form-control" rows="3">{{ old('description.en', json_decode($boat->description)->en ?? '') }}</textarea>
+        </div>
 
-    <div class="mb-3">
-        <label for="description_fr" class="form-label">Description (Français):</label>
-        <textarea id="description_fr" name="description[fr]" class="form-control" rows="3" required>{{ old('description.fr', json_decode($boat->description)->fr ?? '') }}</textarea>
-    </div>
+        <div class="mb-3">
+            <label for="description_fr" class="form-label">Description (Français):</label>
+            <textarea id="description_fr" name="description[fr]" class="form-control" rows="3">{{ old('description.fr', json_decode($boat->description)->fr ?? '') }}</textarea>
+        </div>
 
         <!-- Puerto -->
         <div class="mb-3">
@@ -38,12 +39,6 @@
                     </option>
                 @endforeach
             </select>
-        </div>
-
-        <!-- Descripción del Barco -->
-        <div class="mb-3">
-            <label for="description" class="form-label">Descripción del Barco:</label>
-            <textarea id="description" name="description" class="form-control" rows="3">{{ old('description', $boat->description) }}</textarea>
         </div>
 
         <!-- Características del Barco -->
