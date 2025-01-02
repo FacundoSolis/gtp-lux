@@ -1,3 +1,5 @@
+/* admin.css */
+
 /* Sidebar */
 .admin-sidebar {
     background: linear-gradient(180deg, #2D353F, #1c1e22);
@@ -5,39 +7,37 @@
     min-height: 100vh;
     padding-top: 20px;
 }
+
 .admin-sidebar ul {
     padding: 0;
     list-style: none;
-
 }
+
 .admin-sidebar ul .nav-item {
     margin: 0.5rem 0;
 }
+
 .admin-sidebar ul .nav-link {
-    color: white !important; /* Forzar texto blanco */
+    color: white !important;
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaciado entre icono y texto */
+    gap: 10px;
     padding: 10px 15px;
     border-radius: 5px;
-    text-decoration: none; /* Quita el subrayado */
-    transition: background 0.3s, transform 0.3s, color 0.3s; /* Animación */
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s, color 0.3s;
 }
 
 .admin-sidebar ul .nav-link i {
-    color: white !important; /* Forzar color blanco para los íconos */
-    font-size: 1.2rem; /* Ajustar tamaño del ícono */
+    font-size: 1.2rem;
 }
 
 .admin-sidebar ul .nav-link:hover,
 .admin-sidebar ul .nav-link.active {
     background-color: #d4af37;
-    color: white;
     font-weight: bold;
 }
-.admin-sidebar ul .nav-link:hover i {
-    color: white !important; /* Cambiar íconos a negro en hover */
-}
+
 /* Contenido */
 .admin-content {
     background: white;
@@ -45,6 +45,7 @@
     border-radius: 8px;
     padding: 20px;
 }
+
 /* Botones */
 .btn-primary {
     background-color: #007bff;
@@ -55,6 +56,8 @@
     background-color: #0056b3;
     border-color: #004085;
 }
+
+/* Tablas */
 .table-hover tbody tr:hover {
     background-color: #f8f9fa;
 }
@@ -75,15 +78,3 @@
 .btn:hover {
     transform: scale(1.05);
 }
-.card-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#monthlyStatsChart {
-    max-width: 100%; /* Asegura que el gráfico se ajuste al tamaño del contenedor */
-    height: 400px; /* Ajusta la altura para hacerlo más compacto */
-    margin: 0 auto; /* Centra el gráfico */
-}
-

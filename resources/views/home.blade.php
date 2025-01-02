@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ asset('/resource/css/admin.css') }}">
 
 @section('content')
 <div class="container">

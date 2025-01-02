@@ -14,6 +14,8 @@ use App\Http\Controllers\StripeController;
 use App\Http\Controllers\PriceController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\HomeController;
+
 
 
 
@@ -117,5 +119,5 @@ Route::middleware(['web'])->group(function () {
     });
 
     // Redirección tras inicio de sesión
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });

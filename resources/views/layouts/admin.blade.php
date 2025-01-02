@@ -9,7 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    @vite('resources/css/admin.css')
+
 </head>
 <body style="background: linear-gradient(120deg, #e0eafc, #cfdef3); min-height: 100vh;">
 
