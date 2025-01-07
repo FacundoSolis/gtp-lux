@@ -2,8 +2,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('build/assets/menu-BnIop0I-.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/portofino-SgG5y7B-.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/opiniones-KYSA6JTR.css') }}">
+    @vite('resources/css/portofino.css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -109,40 +108,41 @@
 </header>
 
 <section class="container-valkyrya">
-    <h2>Sunseeker Portofino 53</h2>
+  <h2>Sunseeker Portofino 53</h2>
 </section>  
-
-<!-- Contenido Principal -->
-<section class="productCover">
-    <div class="productCover__imagesContainer">
-        <div class="productCover__sideImgs" id="imageContainer">
-            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val1.jpg') }}');"></div>
-            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val2.jpg') }}');"></div>
-            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val3.jpg') }}');"></div>
-            <div class="productCover__img--small" style="background-image: url('{{ asset('img/val4.jpg') }}');"></div>
+<section class="slider-container">
+  <div id="boatImagesCarousel" class="carousel slide">
+    <div class="carousel-inner">
+      <!-- Primer slide -->
+      <div class="carousel-item active">
+        <div class="d-flex">
+          <img src="http://127.0.0.1:8000/img/val1.jpg" class="img-thumbnail" alt="Imagen 1">
+          <img src="http://127.0.0.1:8000/img/val2.jpg" class="img-thumbnail" alt="Imagen 2">
+          <img src="http://127.0.0.1:8000/img/val3.jpg" class="img-thumbnail" alt="Imagen 3">
+          <img src="http://127.0.0.1:8000/img/val4.jpg" class="img-thumbnail" alt="Imagen 4">
         </div>
+      </div>
+      <!-- Segundo slide -->
+      <div class="carousel-item">
+        <div class="d-flex">
+          <img src="http://127.0.0.1:8000/img/val5.jpg" class="img-thumbnail" alt="Imagen 5">
+          <img src="http://127.0.0.1:8000/img/val6.jpg" class="img-thumbnail" alt="Imagen 6">
+          <img src="http://127.0.0.1:8000/img/val7.jpg" class="img-thumbnail" alt="Imagen 7">
+          <img src="http://127.0.0.1:8000/img/val8.jpg" class="img-thumbnail" alt="Imagen 8">
+        </div>
+      </div>
     </div>
-    <div class="productCover__ctaContainer">
-        <button class="productCover__cta" id="loadMoreButton">Ver más fotos</button>
-    </div>
+    <!-- Controles del slider -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#boatImagesCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#boatImagesCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
 </section>
-
-<!-- Modal para mostrar más fotos -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">Galería de imágenes</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-images-container" id="modalImagesContainer">
-                    <!-- Las imágenes adicionales se cargarán aquí -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <section class="description-boat">
     <h3>Descripción del Barco</h3>
@@ -362,7 +362,6 @@
     </div>
 </div>
 
-
 <!-- Modal para lista de precios -->
 <div id="priceListModal" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -378,55 +377,105 @@
     </div>
 </div>
 
+<section class="section-title py-5">
+    <div class="container text-center">
+        <h1>Explora la Belleza del Mar Mediterráneo</h1>
+        <p>Descubre nuestras experiencias únicas diseñadas para brindar lujo, confort y aventuras inolvidables.</p>
+    </div>
+</section>
 
-<div class="reviews-conditions-container">
-  <!-- Sección de Opiniones -->
-  <section id="reviews-section" class="reviews-section">
-    <h2 class="reviews-section__title">OPINIONES</h2>
-    
-    <!-- Información del propietario -->
-    <div class="reviews-section__owner">
-      <p><strong>Idioma(s) hablado(s):</strong> Inglés, Español</p>
-      <button class="btn-contact-owner">Contactar con el propietario</button>
-    </div>
-    
-    <!-- Formulario para dejar una opinión -->
-    <div class="reviews-section__form">
-      <h3>Deja tu opinión</h3>
-      <form id="review-form">
-        <textarea id="review-text" placeholder="Escribe tu opinión aquí..." required></textarea>
-        <div class="review-stars">
-          <label>Puntúa:</label>
-          <div class="star-rating">
-            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 estrellas">★</label>
-            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 estrellas">★</label>
-            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 estrellas">★</label>
-            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 estrellas">★</label>
-            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 estrella">★</label>
-          </div>
+<!-- Sección 2: Imagen izquierda, texto derecha -->
+<section class="two-columns py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="{{ asset('img/imagen1.jpg') }}" alt="Imagen 1" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                <h2>Lujo en Cada Detalle</h2>
+                <p>Disfruta de nuestros barcos de lujo equipados con la última tecnología y diseñados para ofrecer una experiencia inigualable en el mar.</p>
+            </div>
         </div>
-        <div class="form-actions">
-          <button type="submit" class="btn-submit-review">Enviar opinión</button>
-          <div class="reviews-section__translate">
-            <label class="switch">
-              <input type="checkbox" id="translate-reviews">
-              <span class="slider"></span>
-            </label>
-            <span>Traducir opiniones</span>
-          </div>
-        </div>
-      </form>
     </div>
-    
-    <!-- Listado de opiniones -->
-    <div class="reviews-section__list">
-      <ul id="reviews-list">
-        <!-- Las opiniones se insertarán dinámicamente aquí -->
-      </ul>
-    </div>
-  </section>
-</div>
+</section>
 
+<!-- Sección 3: Texto izquierda, imagen derecha -->
+<section class="two-columns py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>Servicios Exclusivos</h2>
+                <p>Nuestros servicios incluyen atención personalizada, equipo de seguridad, y opciones de catering para que disfrutes sin preocupaciones.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="{{ asset('img/imagen2.jpg') }}" alt="Imagen 2" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 4: Imagen izquierda, texto derecha -->
+<section class="two-columns py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="{{ asset('img/imagen3.jpg') }}" alt="Imagen 3" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                <h2>Planes Adaptados a Ti</h2>
+                <p>Ofrecemos planes personalizados para escapadas románticas, reuniones familiares o eventos corporativos, asegurando que cada detalle sea perfecto.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 5: Preguntas Frecuentes -->
+<section class="faq-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
+        <div class="accordion" id="faqAccordion">
+            <!-- Pregunta 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        ¿Qué incluye el alquiler del barco?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        El alquiler incluye el uso del barco, equipo de seguridad y, si se solicita, la presencia de un patrón profesional.
+                    </div>
+                </div>
+            </div>
+            <!-- Pregunta 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        ¿Puedo llevar mi propia comida y bebida?
+                    </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Sí, puedes llevar tus propios alimentos y bebidas. También ofrecemos servicios de catering bajo solicitud.
+                    </div>
+                </div>
+            </div>
+            <!-- Pregunta 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        ¿Cuál es la política de cancelación?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Puedes cancelar hasta 48 horas antes del alquiler para un reembolso completo. Las cancelaciones posteriores no serán reembolsadas.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Footer -->
 <footer class="footer">
@@ -461,10 +510,8 @@
     ];
     </script>
 <script src="{{ asset('build/assets/menu-Cd3QX7BG.js') }}"></script>
-<script src="{{ asset('build/assets/loadMoreImages-AzCURZjo.js') }}"></script>
 <script src="{{ asset('build/assets/loadMoreDescription-UnQYDaJ2.js') }}"></script>
 <script src="{{ asset('build/assets/listapreciosportofino-D5qolLRQ.js') }}"></script>
-<script src="{{ asset('build/assets/opiniones-CLBmJBMC.js') }}"></script>
 <script src="{{ asset('build/assets/syncddate-CRt5ldaB.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
@@ -724,6 +771,24 @@
             }
         `;
         document.head.appendChild(style);
+
+        // AGREGADO: Mostrar todas las reservas aunque no haya selección de fechas ni puerto
+        async function fetchAllReservations() {
+            try {
+                const response = await axios.get(`/reservations/all/${boatId}`);
+                const events = response.data.map(reservation => ({
+                    title: reservation.available ? 'Disponible' : 'Reservado',
+                    start: reservation.start,
+                    end: reservation.end,
+                    color: reservation.available ? 'green' : 'red',
+                }));
+                calendar.addEventSource(events);
+            } catch (error) {
+                console.error('Error al cargar todas las reservas:', error);
+            }
+        }
+
+        fetchAllReservations(); // Llamada a la función
     });
 </script>
 

@@ -35,64 +35,79 @@ header {
 .container-valkyrya h2 {
   font-size: 2rem;
   padding-top: 120px;
+  padding-bottom: 40px;
   padding-left: 145px;
   color: black;
 }
-/* PARRAFOS */
 .description-boat {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center; /* Centrar elementos horizontalmente */
+  justify-content: center; /* Centrar elementos verticalmente */
   font-size: 1rem;
-  padding-left: 145px;
-  text-align: left;
+  margin: 0 auto; /* Centrar horizontalmente respecto al contenedor padre */
+  text-align: center; /* Centrar el texto dentro del contenedor */
   width: 50%;  
   background-color: #ffffff; 
   color: #000000; 
   max-width: 800px;
   box-sizing: border-box; 
+  padding: 20px; /* Espaciado interno uniforme */
+  border-radius: 10px; /* Bordes redondeados opcionales */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar */
+  margin-top: 30px;
 }
+
 .description-boat p {
   max-width: 100%; 
-  margin: 0 auto;  
+  margin: 10px 0; /* Espaciado entre párrafo y otros elementos */
   width: 100%;
 }
+
 .description-boat button {
   font-size: 1rem;
   padding: 10px 20px;
   background-color: white;
   color: #007BFF;
-  padding-left:0;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 15px; /* Espaciado superior */
 }
-.modal-description-container {
-  background-color: #f9f9f9;  
-  color: #000; 
-  padding: 20px;
-  border-radius: 5px;
-}
-/* Estilos para las imágenes dentro del modal */
-.modal-images-container .productCover__img--small {
-  width: 100%; 
-  max-width: 100%; 
-  height: 300px; 
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  box-shadow: 0 1px 1rem -4px #000;
+/* Contenedor del slider */
+.slider-container {
+  max-width: 1400px; /* Aumenta ligeramente el ancho del contenedor */
+  margin: 0 auto;
+  overflow: hidden; /* Ocultar contenido que sobresalga */
 }
 
-/* Efecto de hover para las imágenes dentro del modal */
-.modal-images-container .productCover__img--small:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
-  box-shadow: 0 4px 1rem -4px #000;
+/* Ajuste de las imágenes dentro del carrusel */
+.carousel-inner {
+  display: flex;
+  flex-wrap: nowrap; /* Mantener imágenes en una línea */
 }
+
+.carousel-item {
+  display: flex; /* Mostrar imágenes en fila horizontal */
+  justify-content: space-between; /* Espaciarlas de manera uniforme */
+  gap: 10px; /* Espaciado entre imágenes */
+}
+
+.carousel-item img {
+  width: 350px; /* Aumenta el ancho de las imágenes */
+  height: 300px; /* Aumenta la altura de las imágenes */
+  object-fit: cover; /* Ajustar contenido dentro del espacio */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Botones de navegación */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+}
+
 .modal-content {
   position: relative;
   justify-content: center;
@@ -126,38 +141,6 @@ header {
 }
 #loadMoreDescription2Button:hover {
   text-decoration: underline; 
-}
-
-/* SLIDER IMAGENES */
-.productCover__imagesContainer {
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  margin-top: 50px;
-  flex-wrap: wrap; 
-}
-.productCover__sideImgs {
-display: flex;
-justify-content: center;
-flex-wrap: wrap; 
-gap: 15px;
-margin-top: 10px;
-}
-.productCover__img--small {
-width: 400px;
-height: 400px;
-background-size: cover;
-background-position: center;
-border-radius: 10px;
-cursor: pointer;
-transition: all 0.3s ease; 
-box-shadow: 0 1px 1rem -4px #000; 
-}
-/* Efecto de hover */
-.productCover__img--small:hover {
-opacity: 0.8; 
-transform: scale(1.05); 
-box-shadow: 0 4px 1rem -4px #000; 
 }
 
 /* Estilo del CTA */
@@ -274,7 +257,7 @@ margin-bottom: 5px;
   justify-content: space-between;
   gap: 30px;
   margin: 50px auto;
-  max-width: 1200px;
+  max-width: 900px;
   padding: 0 20px;
 }
 /* Inlcuido en el precio*/
@@ -476,7 +459,6 @@ color: #007BFF;
   line-height: 1.5;
 }
 
-
 .form-label {
   color: black; /* Color de las etiquetas */
 }
@@ -525,6 +507,38 @@ footer {
 .footer-right {
   width: 50%;
 }
+
+.section-title {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #f8f9fa;
+  margin-top: 20px;
+}
+
+.two-columns {
+  padding: 50px 0;
+}
+
+.two-columns img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.faq-section {
+  padding: 50px 0;
+}
+
+.faq-section .accordion-button {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.faq-section .accordion-button:hover {
+  background-color: #e9ecef;
+  color: #000;
+}
+
 
 /* RESPONSIVE ---------------------------------------------------------- */
 @media (max-width: 768px) {

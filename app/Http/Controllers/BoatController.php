@@ -31,17 +31,34 @@ class BoatController extends Controller
     $boat = Boat::where('name', 'Princess V65')->firstOrFail();
     $ports = Port::all(); // Obtén todos los puertos
     $price = 0; // Precio inicial predeterminado
-    $startDate = now()->startOfMonth(); // Fecha de inicio del mes
-    $endDate = now()->endOfMonth(); // Fecha de fin del mes
+
+    // Capturar parámetros de la solicitud
+    $portId = $request->input('port_id');
+    $pickupDate = $request->input('pickup_date');
+    $returnDate = $request->input('return_date');
+
+    // Si no hay fechas en la solicitud, usar el inicio y fin del mes actual
+    $startDate = $pickupDate ? $pickupDate : now()->startOfMonth()->toDateString();
+    $endDate = $returnDate ? $returnDate : now()->endOfMonth()->toDateString();
+
+    // Consultar las reservas relacionadas con el barco
+    $reservations = Reservation::where('boat_id', $boat->id)
+        ->where(function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('start_date', [$startDate, $endDate])
+                ->orWhereBetween('end_date', [$startDate, $endDate]);
+        })
+        ->get();
 
     return view('portofino', [
-        'boatId' => $boat->id, // ID del barco Portofino
-        'ports' => $ports,
+        'boatId' => $boat->id, // ID del barco
+        'ports' => $ports, // Puertos disponibles
+        'reservations' => $reservations, // Reservas filtradas
         'price' => $price, // Asegurarse de pasar el precio a la vista
         'startDate' => $startDate, // Pasar la fecha de inicio
         'endDate' => $endDate, // Pasar la fecha de fin
     ]);
 }
+
 
     public function showSunseekerPortofino(Request $request)
 {
@@ -54,7 +71,7 @@ class BoatController extends Controller
     $endDate = now()->endOfMonth(); // Fecha de fin del mes
 
     return view('portofino', [
-        'boatId' => $boat->id, // ID del barco Portofino
+        'boat' => $boat, // Pasamos el barco completo
         'ports' => $ports,
         'price' => $price, // Asegurarse de pasar el precio a la vista
         'startDate' => $startDate, // Pasar la fecha de inicio
