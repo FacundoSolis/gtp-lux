@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminTranslationController;
 use App\Http\Controllers\Admin\CountryLanguageCodeController;
+use App\Http\Controllers\Admin\UserController;
+
 
 
 
@@ -122,7 +124,9 @@ Route::middleware(['web'])->group(function () {
             Route::get('/create', [CountryLanguageCodeController::class, 'create'])->name('admin.codes.create');
             Route::post('/', [CountryLanguageCodeController::class, 'store'])->name('admin.codes.store');
         });
-        
+        Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+        Route::put('/admin/users/{user}/password', [UserController::class, 'updatePassword'])->name('admin.users.updatePassword');
+
 
     });
     Route::middleware('guest')->group(function () {

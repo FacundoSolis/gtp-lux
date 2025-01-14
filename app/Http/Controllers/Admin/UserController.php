@@ -69,5 +69,19 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'Usuario eliminado exitosamente.');
     }
+
+    public function updatePassword(Request $request, $id)
+{
+    $request->validate([
+        'password' => 'required|string|min:8|confirmed',
+    ]);
+
+    $user = User::findOrFail($id);
+    $user->password = Hash::make($request->password);
+    $user->save();
+
+    return redirect()->route('admin.users.edit', $id)->with('success', 'Contraseña actualizada correctamente.');
+}
+
 }
 
