@@ -3,6 +3,7 @@
 return [
     'es' => ['name' => 'Español', 'flag' => '🇪🇸'],
     'en' => ['name' => 'Inglés', 'flag' => '🇬🇧'],
+    'gb' => ['name' => 'Inglés Británico', 'flag' => '🇬🇧'],
     'en_us' => ['name' => 'Inglés Americano', 'flag' => '🇺🇸'],
     'fr' => ['name' => 'Francés', 'flag' => '🇫🇷'],
     'de' => ['name' => 'Alemán', 'flag' => '🇩🇪'],

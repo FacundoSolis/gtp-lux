@@ -18,8 +18,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        Schema::defaultStringLength(191); // Ajusta la longitud de las cadenas de la base de datos
+        view()->composer('*', function ($view) {
+            $view->with('currentLanguage', session('locale', 'es')); // Idioma predeterminado: 'es'
+        });
     }
+
 }

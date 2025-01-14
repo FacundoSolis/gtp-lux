@@ -119,11 +119,15 @@ Route::middleware(['web'])->group(function () {
         Route::post('admin/translations/{id}/update', [AdminTranslationController::class, 'update'])->name('admin.translations.update');
         Route::delete('admin/translations/bulk-delete', [AdminTranslationController::class, 'bulkDelete'])->name('admin.translations.bulkDelete');
         Route::get('/admin/translations/export', [AdminTranslationController::class, 'exportTranslations'])->name('admin.translations.export');
-        Route::prefix('admin/codes')->group(function () {
-            Route::get('/', [CountryLanguageCodeController::class, 'index'])->name('admin.codes.index');
-            Route::get('/create', [CountryLanguageCodeController::class, 'create'])->name('admin.codes.create');
-            Route::post('/', [CountryLanguageCodeController::class, 'store'])->name('admin.codes.store');
+        Route::prefix('admin/codes')->name('admin.codes.')->middleware(['auth'])->group(function () {
+            Route::get('/', [CountryLanguageCodeController::class, 'index'])->name('index'); // Listado
+            Route::get('/create', [CountryLanguageCodeController::class, 'create'])->name('create'); // Formulario de creación
+            Route::post('/', [CountryLanguageCodeController::class, 'store'])->name('store'); // Guardar nuevo código
+            Route::get('/{id}/edit', [CountryLanguageCodeController::class, 'edit'])->name('edit'); // Formulario de edición
+            Route::put('/{id}', [CountryLanguageCodeController::class, 'update'])->name('update'); // Actualizar código
+            Route::delete('/{id}', [CountryLanguageCodeController::class, 'destroy'])->name('destroy'); // Eliminar código
         });
+        
         Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
         Route::put('/admin/users/{user}/password', [UserController::class, 'updatePassword'])->name('admin.users.updatePassword');
 

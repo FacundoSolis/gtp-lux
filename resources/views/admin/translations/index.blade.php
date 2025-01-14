@@ -20,6 +20,12 @@
         <a href="{{ route('admin.translations.export') }}" class="btn btn-success">
             <i class="fas fa-file-export"></i> Exportar Traducciones
         </a>
+        <form action="{{ route('admin.translations.index') }}" method="GET" class="d-flex">
+            <input type="text" name="search" class="form-control me-2" placeholder="Buscar por clave o valor..." value="{{ request('search') }}">
+            <button type="submit" class="btn btn-outline-primary">
+                <i class="fas fa-search"></i> Buscar
+            </button>
+        </form>
         <button id="delete-selected" class="btn btn-danger" onclick="deleteSelected()" disabled>
             <i class="fas fa-trash"></i> Eliminar Seleccionadas
         </button>
@@ -52,12 +58,12 @@
                     <td>{{ $translation->is_multilanguage ? 'Yes' : 'No' }}</td>
                     <td>{{ $translation->default_value }}</td>
                     <td>
-                        @foreach (config('languages') as $code => $language)
-                            @php
-                                $hasTranslation = $translation->languages->firstWhere('language_code', $code);
-                            @endphp
-                            <span class="flag" style="opacity: {{ $hasTranslation ? '1' : '0.3' }}; margin-right: 5px;" 
-                                  title="{{ $language['name'] }}">
+                    @foreach (config('languages') as $code => $language)
+                        @php
+                            $hasTranslation = $translation->languages->firstWhere('language_code', $code);
+                            $isActive = $code === session('locale', 'es'); // Comparar con el idioma actual
+                        @endphp
+                            <span title="{{ $language['name'] }}">
                                 {{ $language['flag'] }}
                             </span>
                         @endforeach

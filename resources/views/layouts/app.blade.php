@@ -10,7 +10,6 @@
     'resources/css/available-boats.css',
     'resources/css/confirmation.css',
     'resources/css/normalize.css',
-    'resources/css/opiniones.css',
     'resources/css/payment.css',
     'resources/css/portofino.css',
     'resources/css/princess.css',
@@ -46,9 +45,6 @@
     'resources/js/listapreciosprincess.js',
     'resources/js/loadMoreDescription.js',
     'resources/js/loadMoreDescription2.js',
-    'resources/js/loadMoreImages.js',
-    'resources/js/loadMoreImages2.js',
-    'resources/js/opiniones.js',
     'resources/js/slider.js',
     'resources/js/syncddate.js',
     'resources/js/componentes/app.jsx',])

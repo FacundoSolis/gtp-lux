@@ -9,12 +9,12 @@
 
         <!-- Selección de País -->
         <div class="mb-3">
-            <label for="country_select" class="form-label">Seleccionar País</label>
-            <select id="country_select" class="form-select">
+            <label for="country_select" class="form-label">Seleccionar País o Agregar Nuevo</label>
+            <select id="country_select" name="country_name" class="form-select">
                 <option value="" disabled selected>Seleccione un país</option>
                 <option value="ES">España</option>
                 <option value="US">Estados Unidos</option>
-                <option value="ES">Reino Unido</option>
+                <option value="GB">Reino Unido</option>
                 <option value="FR">Francia</option>
                 <option value="DE">Alemania</option>
                 <option value="IT">Italia</option>
@@ -22,13 +22,10 @@
                 <option value="RU">Rusia</option>
                 <option value="NL">Países Bajos</option>
                 <option value="UA">Ucrania</option>
+                <option value="other">Agregar Nuevo País</option>
             </select>
-        </div>
 
-        <!-- Campos Automáticos -->
-        <div class="mb-3">
-            <label for="country_name" class="form-label">Nombre del País</label>
-            <input type="text" id="country_name" name="country_name" class="form-control" readonly>
+            <input type="text" id="custom_country" name="custom_country" class="form-control mt-2 d-none" placeholder="Nombre del nuevo país">
         </div>
 
         <div class="mb-3">
@@ -38,25 +35,22 @@
 
         <!-- Selección de Idioma -->
         <div class="mb-3">
-            <label for="language_select" class="form-label">Seleccionar Idioma</label>
-            <select id="language_select" class="form-select">
+            <label for="language_select" class="form-label">Seleccionar Idioma o Agregar Nuevo</label>
+            <select id="language_select" class="form-select" name="language_name">
                 <option value="" disabled selected>Seleccione un idioma</option>
             </select>
-        </div>
 
-        <div class="mb-3">
-            <label for="language_name" class="form-label">Nombre del Idioma</label>
-            <input type="text" id="language_name" name="language_name" class="form-control" readonly>
+            <input type="text" id="custom_language" name="custom_language" class="form-control mt-2 d-none" placeholder="Nombre del nuevo idioma">
         </div>
 
         <div class="mb-3">
             <label for="language_code" class="form-label">Código de Idioma</label>
-            <input type="text" id="language_code" name="language_code" class="form-control" readonly>
+            <input type="text" id="language_code" name="language_code" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label for="flag" class="form-label">Language</label>
-            <input type="text" id="flag" name="flag" class="form-control" readonly>
+            <label for="flag" class="form-label">Bandera</label>
+            <input type="text" id="flag" name="flag" class="form-control" placeholder="Ej: tr para Turquía">
         </div>
 
         <button type="submit" class="btn btn-success">Guardar</button>
@@ -65,22 +59,19 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Datos precargados
         const languages = @json(config('languages'));
 
-        // Elementos del DOM
         const countrySelect = document.getElementById('country_select');
         const languageSelect = document.getElementById('language_select');
-        const countryName = document.getElementById('country_name');
-        const countryCode = document.getElementById('country_code');
-        const languageName = document.getElementById('language_name');
-        const languageCode = document.getElementById('language_code');
-        const flag = document.getElementById('flag');
+        const customCountryInput = document.getElementById('custom_country');
+        const customLanguageInput = document.getElementById('custom_language');
+        const countryCodeInput = document.getElementById('country_code');
+        const languageCodeInput = document.getElementById('language_code');
 
-        // Mapeo de Países a Idiomas
         const countryToLanguageMap = {
             ES: ['es'],
             US: ['en', 'en_us'],
+            GB: ['gb'],
             FR: ['fr'],
             DE: ['de'],
             IT: ['it'],
@@ -90,17 +81,40 @@
             UA: ['uk'],
         };
 
-        // Cambiar País
+        // Cambiar país
         countrySelect.addEventListener('change', () => {
             const selectedCountry = countrySelect.value;
 
-            // Rellenar Nombre y Código del País
-            countryName.value = countrySelect.options[countrySelect.selectedIndex].text;
-            countryCode.value = selectedCountry;
+            if (selectedCountry === 'other') {
+                customCountryInput.classList.remove('d-none');
+                countryCodeInput.readOnly = false;
+                countryCodeInput.value = '';
+            } else {
+                customCountryInput.classList.add('d-none');
+                countryCodeInput.readOnly = true;
+                countryCodeInput.value = selectedCountry;
+                updateLanguages(selectedCountry);
+            }
+        });
 
-            // Actualizar Idiomas Disponibles
+        // Cambiar idioma
+        languageSelect.addEventListener('change', () => {
+            const selectedLang = languageSelect.value;
+
+            if (selectedLang === 'other') {
+                customLanguageInput.classList.remove('d-none');
+                languageCodeInput.readOnly = false;
+                languageCodeInput.value = '';
+            } else {
+                customLanguageInput.classList.add('d-none');
+                languageCodeInput.readOnly = true;
+                languageCodeInput.value = selectedLang;
+            }
+        });
+
+        function updateLanguages(country) {
             languageSelect.innerHTML = '<option value="" disabled selected>Seleccione un idioma</option>';
-            const languagesForCountry = countryToLanguageMap[selectedCountry];
+            const languagesForCountry = countryToLanguageMap[country];
             if (languagesForCountry) {
                 languagesForCountry.forEach(langCode => {
                     const langData = languages[langCode];
@@ -108,23 +122,12 @@
                         const option = document.createElement('option');
                         option.value = langCode;
                         option.textContent = `${langData.name} (${langCode.toUpperCase()})`;
-                        option.dataset.flag = langData.flag;
                         languageSelect.appendChild(option);
                     }
                 });
+                languageSelect.innerHTML += '<option value="other">Agregar Nuevo Idioma</option>';
             }
-        });
-
-        // Cambiar Idioma
-        languageSelect.addEventListener('change', () => {
-            const selectedLang = languageSelect.value;
-            const langData = languages[selectedLang];
-            if (langData) {
-                languageName.value = langData.name;
-                languageCode.value = selectedLang;
-                flag.value = langData.flag;
-            }
-        });
+        }
     });
 </script>
 @endsection
