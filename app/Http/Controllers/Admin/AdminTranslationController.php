@@ -9,11 +9,22 @@ use Illuminate\Http\Request;
 
 class AdminTranslationController extends Controller
 {
-    public function index()
-    {
-        $translations = Translation::with('languages')->get();
-        return view('admin.translations.index', compact('translations'));
-    }
+    public function index(Request $request)
+{
+    $search = $request->input('search');
+    $translations = Translation::with('languages')
+        ->when($search, function ($query) use ($search) {
+            $query->where('key_name', 'like', "%{$search}%")
+                  ->orWhere('default_value', 'like', "%{$search}%")
+                  ->orWhereHas('languages', function ($query) use ($search) {
+                      $query->where('value', 'like', "%{$search}%");
+                  });
+        })
+        ->get();
+
+    return view('admin.translations.index', compact('translations'));
+}
+
 
     public function create()
     {

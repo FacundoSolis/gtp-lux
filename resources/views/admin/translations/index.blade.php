@@ -20,8 +20,8 @@
         <a href="{{ route('admin.translations.export') }}" class="btn btn-success">
             <i class="fas fa-file-export"></i> Exportar Traducciones
         </a>
-        <form action="{{ route('admin.translations.index') }}" method="GET" class="d-flex">
-            <input type="text" name="search" class="form-control me-2" placeholder="Buscar por clave o valor..." value="{{ request('search') }}">
+        <form id="search-form" action="{{ route('admin.translations.index') }}" method="GET" class="d-flex">
+            <input id="search-input" type="text" name="search" class="form-control me-2" placeholder="Buscar por clave o valor..." value="{{ request('search') }}">
             <button type="submit" class="btn btn-outline-primary">
                 <i class="fas fa-search"></i> Buscar
             </button>
@@ -58,12 +58,11 @@
                     <td>{{ $translation->is_multilanguage ? 'Yes' : 'No' }}</td>
                     <td>{{ $translation->default_value }}</td>
                     <td>
-                    @foreach (config('languages') as $code => $language)
-                        @php
-                            $hasTranslation = $translation->languages->firstWhere('language_code', $code);
-                            $isActive = $code === session('locale', 'es'); // Comparar con el idioma actual
-                        @endphp
-                            <span title="{{ $language['name'] }}">
+                        @foreach (config('languages') as $code => $language)
+                            @php
+                                $hasTranslation = $translation->languages->firstWhere('language_code', $code);
+                            @endphp
+                            <span title="{{ $language['name'] }}" style="opacity: {{ $hasTranslation ? 1 : 0.3 }};">
                                 {{ $language['flag'] }}
                             </span>
                         @endforeach
@@ -88,6 +87,14 @@
     const selectAll = document.getElementById('select-all');
     const checkboxes = document.querySelectorAll('.select-checkbox');
     const deleteButton = document.getElementById('delete-selected');
+    const searchInput = document.getElementById('search-input');
+    const searchForm = document.getElementById('search-form');
+
+    searchInput.addEventListener('input', function () {
+        if (this.value.trim() === '') {
+            searchForm.submit();
+        }
+    });
 
     selectAll.addEventListener('change', function () {
         checkboxes.forEach(cb => cb.checked = selectAll.checked);
