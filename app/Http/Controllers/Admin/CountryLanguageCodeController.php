@@ -14,6 +14,15 @@ class CountryLanguageCodeController extends Controller
         return view('admin.codes.index', compact('codes'));
     }
 
+    public function edit($id)
+{
+    // Buscar el código por su ID
+    $code = CountryLanguageCode::findOrFail($id);
+
+    // Retornar la vista de edición con los datos del código
+    return view('admin.codes.edit', compact('code'));
+}
+
     public function create()
     {
         return view('admin.codes.create');

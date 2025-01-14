@@ -64,18 +64,21 @@
             <li class="li_links"><a href="#contacto" class="link">Contacto</a></li>
             <li class="li_links"><a href="#quienes-somos" class="link">Quiénes somos</a></li>
             <li class="li_links settingsDropdown">
-                <div class="dropdown">
-                    <span class="value">
-                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                    </span>
-                    <ul class="dropdown-menu" id="languageDropdown">
-                        <li><a href="#" class="language"><img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français</a></li>
-                        <li><a href="#" class="language"><img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English</a></li>
-                        <li><a href="#" class="language"><img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano</a></li>
-                        <li><a href="#" class="language"><img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch</a></li>
-                    </ul>
-                </div>
-            </li>
+            <div class="dropdown">
+                <span class="value">
+                    <img id="currentLanguageFlag" src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                </span>
+                <ul class="dropdown-menu" id="languageDropdown">
+                    @foreach (config('languages') as $code => $language)
+                        <li>
+                            <a href="#" class="language" data-lang="{{ $code }}">
+                                <span class="flag-icon">{{ $language['flag'] }}</span> {{ $language['name'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </li>
         </ul>
     </nav>
 </header>

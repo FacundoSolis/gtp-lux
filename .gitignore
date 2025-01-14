@@ -1,6 +1,5 @@
 /node_modules
 /vendor
-/public/storage
 /storage/*.key
 /storage/framework/*
 /storage/logs/*

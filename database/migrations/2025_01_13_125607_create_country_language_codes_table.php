@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('country_language_codes', function (Blueprint $table) {
             $table->id();
-            $table->string('country_code', 2)->unique();
-            $table->string('country_name');
-            $table->string('language_code', 5)->unique();
-            $table->string('language_name');
-            $table->string('flag', 10)->nullable();
+            $table->string('country_code', 2)->unique(); // El código de país sigue siendo corto (2 caracteres)
+            $table->text('country_name'); // Cambiar a text para eliminar el límite
+            $table->string('language_code', 5)->unique(); // El código de idioma sigue siendo corto (5 caracteres)
+            $table->text('language_name'); // Cambiar a text para eliminar el límite
+            $table->text('flag')->nullable(); // Cambiar a text para eliminar el límite
             $table->timestamps();
         });
+        
     }
     
-
     /**
      * Reverse the migrations.
      */

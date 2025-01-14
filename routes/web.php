@@ -119,6 +119,7 @@ Route::middleware(['web'])->group(function () {
         Route::post('admin/translations/{id}/update', [AdminTranslationController::class, 'update'])->name('admin.translations.update');
         Route::delete('admin/translations/bulk-delete', [AdminTranslationController::class, 'bulkDelete'])->name('admin.translations.bulkDelete');
         Route::get('/admin/translations/export', [AdminTranslationController::class, 'exportTranslations'])->name('admin.translations.export');
+        Route::post('/admin/translations/check-key', [AdminTranslationController::class, 'checkKey'])->name('admin.translations.checkKey');
         Route::prefix('admin/codes')->name('admin.codes.')->middleware(['auth'])->group(function () {
             Route::get('/', [CountryLanguageCodeController::class, 'index'])->name('index'); // Listado
             Route::get('/create', [CountryLanguageCodeController::class, 'create'])->name('create'); // Formulario de creación
