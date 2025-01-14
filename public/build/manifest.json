@@ -5,7 +5,7 @@
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-DRmvxabG.css",
+    "file": "assets/app-Ds2TE-WV.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -55,7 +55,7 @@
     "isEntry": true
   },
   "resources/js/componentes/app.jsx": {
-    "file": "assets/app-C_nr-9dy.js",
+    "file": "assets/app-G4V6s8mn.js",
     "name": "app",
     "src": "resources/js/componentes/app.jsx",
     "isEntry": true
@@ -82,12 +82,6 @@
     "file": "assets/loadMoreDescription2-Cqf7v_zW.js",
     "name": "loadMoreDescription2",
     "src": "resources/js/loadMoreDescription2.js",
-    "isEntry": true
-  },
-  "resources/js/opiniones.js": {
-    "file": "assets/opiniones-CLBmJBMC.js",
-    "name": "opiniones",
-    "src": "resources/js/opiniones.js",
     "isEntry": true
   },
   "resources/js/slider.js": {

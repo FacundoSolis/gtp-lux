@@ -14,6 +14,7 @@
                 <option value="" disabled selected>Seleccione un país</option>
                 <option value="ES">España</option>
                 <option value="US">Estados Unidos</option>
+                <option value="ES">Reino Unido</option>
                 <option value="FR">Francia</option>
                 <option value="DE">Alemania</option>
                 <option value="IT">Italia</option>

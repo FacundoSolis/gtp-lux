@@ -24,7 +24,6 @@ export default defineConfig({
                 'resources/js/loadMoreDescription.js',
                 'resources/js/loadMoreDescription2.js',
                 'resources/js/syncddate.js',
-                'resources/js/opiniones.js',
                 'resources/js/listapreciosportofino.js',
                 'resources/js/listapreciosprincess.js',
             ],
@@ -33,17 +32,27 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            // Opcional: define alias solo si es necesario
-            '@': '/resources/js',
+            '@': '/resources/js', // Alias para facilitar las rutas
         },
         extensions: ['.js', '.jsx'], // Resolver extensiones .js y .jsx
     },
     esbuild: {
         loader: 'jsx', // Configura loader para JSX
     },
+    build: {
+        rollupOptions: {
+            // Marca los módulos externos para evitar problemas de empaquetado
+            external: [
+                '@fullcalendar/react',
+                '@fullcalendar/core',
+                '@fullcalendar/daygrid',
+                '@fullcalendar/timegrid',
+            ],
+        },
+    },
     server: {
         hmr: {
-            overlay: false, // Desactiva el overlay de errores
+            overlay: false, // Desactiva el overlay de errores (útil en producción)
         },
     },
 });
