@@ -207,18 +207,12 @@
 @include('partials.progress-bar', ['step' => 1])
 
 
-<!-- Formulario de reserva -->
 <div class="container">
-    <h1>Calendario</h1>
-    <h4>Añade las fechas para ver precios y disponibilidad</h4>
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="row">
-        <!-- Formulario de reserva y calendario -->
+    <h1 class="text-center">Calendario</h1>
+    <h4 class="text-center">Añade las fechas para ver precios y disponibilidad</h4>
+    
+    <div class="row justify-content-between align-items-start">
+        <!-- Columna del calendario -->
         <div class="col-md-6">
             <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => 3]) }}" method="POST">
                 @csrf
@@ -254,57 +248,29 @@
             </form>
         </div>
 
-        <!-- Columna derecha con secciones separadas -->
+        <!-- Columna de la tarjeta de precios -->
         <div class="col-md-6">
-            <!-- Tarjeta de precios -->
-            <section id="price-summary" class="price-card mt-3" style="display: {{ $price > 0 ? 'block' : 'none' }}">
+            <section id="price-summary" class="price-card mt-3">
                 <h5>Resumen de precios</h5>
-                <p><strong>Total:</strong> <span id="total-price">{{ $price }}€</span></p>
+                <p><strong>Total:</strong> <span id="total-price">0€</span></p>
                 <button id="price-list-button" class="btn btn-info mt-3">Consultar la lista de precios</button>
-                <form id="reservation-form" action="{{ route('boats.reserve', ['boatId' => $boat->id]) }}" method="POST">
-                @csrf
+                <form id="payment-form" action="{{ route('boats.reserve', ['boatId' => $boat->id]) }}" method="POST">
+                    @csrf
                     <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
                     <input type="hidden" name="name" value="Reserva sin nombre">
                     <input type="hidden" name="pickup_date" id="hidden-pickup-date" value="{{ request('pickup_date') }}">
                     <input type="hidden" name="return_date" id="hidden-return-date" value="{{ request('return_date') }}">
-                    <input type="hidden" name="price" id="hidden-price" value="{{ $price }}">
+                    <input type="hidden" name="price" id="hidden-price" value="0">
 
                     <button type="submit" class="btn btn-primary mt-3">Proceder al Pago</button>
                 </form>
-
-                <!-- Formulario para redirigir a la página de pago con las fechas seleccionadas -->
-                @if(isset($reservation) && $reservation->id)
-                    <form action="{{ route('payment', ['reservation' => $reservation->id]) }}" method="GET">
-                        <input type="hidden" name="pickup_date" id="hidden-pickup-date" value="{{ request('pickup_date') }}">
-                        <input type="hidden" name="return_date" id="hidden-return-date" value="{{ request('return_date') }}">
-                        <button type="submit" class="btn btn-primary mt-3">Proceder al Pago</button>
-                    </form>
-                @else
-                @endif
-            </section>
-
-
-            <!-- Sección de condiciones -->
-            <section id="conditions-section" class="conditions-section mt-3">
-                <h2 class="conditions-section__title">Condiciones</h2>
-                <div class="conditions-section__content">
-                    <p><strong>Check-in y check-out</strong></p>
-                    <p>Hora para el check-in (alquiler de un día): 9:30</p>
-                    <p>Hora para el check-out (alquiler de un día): 16:30</p>
-                    <p>Hora de recogida: 9:30</p>
-                    <p>Hora de entrega: 16:30</p>
-
-                    <p><strong>Normas del barco</strong></p>
-                    <p>Fianza: 1.500 €</p>
-                    <p>Carburante incluido en el precio: No</p>
-
-                    <p><strong>Política de cancelación</strong></p>
-                    <p>Reembolso de hasta el 70% hasta 30 días antes de la llegada, gastos de gestión y del servicio no incluidos.</p>
-                </div>
             </section>
         </div>
     </div>
 </div>
+
+
+
 
 <!-- Modal para lista de precios -->
 <div id="priceListModal" class="modal fade" tabindex="-1" aria-hidden="true">

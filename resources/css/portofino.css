@@ -294,11 +294,11 @@ margin-bottom: 5px;
 /* Calendario */
 .container h1{
   color: black;
+  margin: 20px;
 }
 .container h4{
   color: black;
 }
-
 .col-md-6 {
   flex: 1;
   max-width: 48%; /* Ocupa el 48% del ancho para dar espacio entre columnas */
@@ -316,8 +316,14 @@ padding: 15px;
 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 background-color: #FFFFFF;
 z-index: 999; /* Debe estar por debajo del menú */
-
 }
+
+.col-md-6 {
+  max-width: 45%; /* Asegúrate de que las columnas ocupen menos espacio */
+  flex: 1;
+  box-sizing: border-box;
+}
+
 .calendar-wrapper .fc-toolbar {
 display: flex;
 justify-content: space-between;
