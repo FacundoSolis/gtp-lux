@@ -25,9 +25,9 @@ class ReservationController extends Controller
             $endDate = $request->return_date;
 
             if ($boatId == 3) {
-                return redirect()->route('portofino', compact('portId', 'startDate', 'endDate'));
+                return redirect()->route('sunseeker', compact('portId', 'startDate', 'endDate'))->with('from_welcome', true);
             } elseif ($boatId == 4) {
-                return redirect()->route('princess', compact('portId', 'startDate', 'endDate'));
+                return redirect()->route('princess', compact('portId', 'startDate', 'endDate'))->with('from_welcome', true);
             }
         }
 
@@ -204,7 +204,9 @@ class ReservationController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
             'email' => 'required|email',
+            'email_confirm' => 'required|same:email',
             'phone' => 'required|string|max:15',
         ]);
 
@@ -215,13 +217,20 @@ class ReservationController extends Controller
     }
 
     // Página de pago
-    public function payment($reservationId)
+    public function payment(Request $request, $reservationId = null)
 {
-    $reservation = Reservation::findOrFail($reservationId);
+    if ($reservationId) {
+        // Caso en el que se pasa el ID de la reserva
+        $reservation = Reservation::findOrFail($reservationId);
+    } else {
+        // Caso en el que se usan datos de sesión
+        $reservation = session('reservation');
+        if (!$reservation) return redirect()->route('step1')->with('error', 'Completa el paso anterior.');
+    }
 
-    // Verificar si el precio total está presente
-    if ($reservation->total_price === 0) {
-        dd('El precio total no está calculado correctamente.', $reservation);
+    // Verificar que el precio total esté presente
+    if (!isset($reservation['total_price']) || $reservation['total_price'] === 0) {
+        return redirect()->back()->withErrors(['error' => 'El precio de la reserva no está calculado correctamente.']);
     }
 
     return view('reservations.payment', compact('reservation'));
@@ -372,7 +381,5 @@ public function reserveAndRedirectToPayment(Request $request, $boatId)
     // Redirigir a la página de pago con el ID de la reserva
     return redirect()->route('payment', ['reservation' => $reservation->id]);
 }
-
-
 
 }

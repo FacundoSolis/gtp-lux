@@ -62,21 +62,21 @@ section.banner {
 
 }
 section.banner .logo {
-  width: 15vw;
+  width: 10vw;
   height: auto;
   margin-bottom: 10px; /* Reduce el margen inferior de la imagen */
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 section.banner h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: white;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   margin-bottom: 10px; /* Reduce el margen inferior */
   margin-top: 0;
 }
 section.banner h2 {
-  font-size: 30px;
+  font-size: 1.5rem;
   color: white;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   margin-bottom: 2rem; /* Reduce el margen inferior */
@@ -126,7 +126,7 @@ iframe {
 /* Contenedor del formulario incrustado */
 .reservation-form-wrapper {
   position: absolute;
-  top: 45vh; /* Ajusta según el tamaño del banner */
+  top: 40vh; /* Ajusta según el tamaño del banner */
   left: 50%;
   transform: translate(-50%, -20%); /* Para centrar y hacerlo sobresalir */
   z-index: 5; /* Por encima del banner */
@@ -191,6 +191,8 @@ iframe {
   background: white; /* Fondo blanco */
   margin: 10px auto; /* Centra el calendario */
   overflow: hidden; /* Elimina el scroll en el contenedor externo */
+  z-index: 0;
+  position: relative;
 }
 #availability-calendar .fc-scroller {
   max-height: 240px; /* Limita la altura interna para permitir el scroll */
@@ -261,11 +263,10 @@ line-height: 1;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 /* Estilos generales */
 .luxury-section {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   margin: auto;
   padding-bottom: 150px;
@@ -304,8 +305,9 @@ line-height: 1;
 
 /* Estilos de las tarjetas */
 .luxury-iconCard {
-  width: 300px;
-  height: 350px;
+  width: 80%;
+  max-width: 300px;
+  height: auto;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);

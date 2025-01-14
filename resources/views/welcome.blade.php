@@ -1,9 +1,9 @@
 @extends('layouts.public')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('build/assets/menuhome-Bypozy8l.css') }}">
-<link rel="stylesheet" href="{{ asset('build/assets/style-DJAABGh8.css') }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@vite('resources/css/menuhome.css')
+@vite('resources/css/style.css')
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
@@ -48,96 +48,38 @@
   <!-- Banner Section -->
 @section('content')
 
-<header class="topbar--transparent">
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#quienes-somos">Quiénes somos</a></li>
-            <li class="settingsDropdown">
+<header class="header">
+    <nav class="navbar">
+        <!-- Menú hamburguesa -->
+        <label class="label_hamburguesa" for="menu_hamburguesa">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="list_icon" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+        </label>
+        <input class="menu_hamburguesa" type="checkbox" id="menu_hamburguesa">
+
+        <!-- Enlaces de navegación -->
+        <ul class="ul_links">
+            <li class="li_links"><a href="#" class="link">Inicio</a></li>
+            <li class="li_links"><a href="#contacto" class="link">Contacto</a></li>
+            <li class="li_links"><a href="#quienes-somos" class="link">Quiénes somos</a></li>
+            <li class="li_links settingsDropdown">
                 <div class="dropdown">
                     <span class="value">
                         <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
                     </span>
-                    <ul>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
-                            </a>
-                        </li>
-                        <li>
-                            <span class="selected">
-                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                            </span>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
-                            </a>
-                        </li>
+                    <ul class="dropdown-menu" id="languageDropdown">
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch</a></li>
                     </ul>
                 </div>
             </li>
         </ul>
     </nav>
-    <div class="hamburger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="mobile-menu">
-        <span class="close-menu">✕</span>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#quienes-somos">Quiénes somos</a></li>
-            <li class="settingsDropdown">
-                <div class="dropdown">
-                    <span class="value">
-                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                    </span>
-                    <ul>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
-                            </a>
-                        </li>
-                        <li>
-                            <span class="selected">
-                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                            </span>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
 </header>
+
 
 <section class="banner">
   <video class="banner-video" autoplay muted loop>
@@ -332,11 +274,8 @@
 </footer>
 @endsection
 
-
-
 <!-- Scripts -->
 @section('scripts')
-<script src="{{ asset('build/assets/menuhome-C0QrSCAb.js') }}"></script>
 <script src="{{ asset('build/assets/slider-DKNDmEBG.js') }}"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
@@ -348,6 +287,58 @@
       const portSelect = document.getElementById('port_id');
       const pickupInput = document.getElementById('pickup_date');
       const returnInput = document.getElementById('return_date');
+      const languageDropdown = document.getElementById('languageDropdown');
+      const currentLanguageFlag = document.getElementById('currentLanguageFlag');
+      const currentLanguageText = document.getElementById('currentLanguageText');
+
+    // Evitar que el dropdown se cierre al hacer clic dentro de él
+    languageDropdown.addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
+
+    // Manejar clics en las opciones del dropdown
+    languageDropdown.querySelectorAll('.language').forEach(item => {
+        item.addEventListener('click', function (event) {
+            event.preventDefault(); // Evitar la recarga de la página
+
+            const selectedLang = this.dataset.lang; // Idioma seleccionado
+            const selectedFlag = this.querySelector('img').src; // Ruta de la bandera seleccionada
+            const selectedText = this.textContent.trim(); // Nombre del idioma seleccionado
+
+            // Actualizar la bandera y el texto del idioma actual
+            currentLanguageFlag.src = selectedFlag;
+            currentLanguageText.textContent = selectedText;
+
+            // Cambiar idioma en el backend
+            fetch(`/set-language?lang=${selectedLang}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Cerrar el dropdown después de seleccionar
+                        languageDropdown.style.display = 'none';
+
+                        // Opcional: Recargar la página para actualizar traducciones
+                        location.reload();
+                    }
+                })
+                .catch(error => console.error('Error al cambiar el idioma:', error));
+        });
+    });
+
+    // Cerrar el dropdown si se hace clic fuera de él
+    document.addEventListener('click', function (event) {
+        const dropdownContainer = languageDropdown.closest('.dropdown');
+        if (!dropdownContainer.contains(event.target)) {
+            dropdownContainer.querySelector('.dropdown-menu').style.display = 'none'; // Oculta el dropdown
+        }
+    });
+
+    // Mostrar el dropdown al hacer clic en el contenedor
+    const dropdownContainer = languageDropdown.closest('.dropdown');
+    dropdownContainer.addEventListener('click', function () {
+        const menu = this.querySelector('.dropdown-menu');
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
 
       // Obtener las fechas seleccionadas, si existen
       const selectedStartDate = '{{ request()->pickup_date }}'; // Fecha de recogida

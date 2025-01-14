@@ -15,6 +15,9 @@ use App\Http\Controllers\PriceController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminTranslationController;
+use App\Http\Controllers\Admin\CountryLanguageCodeController;
+
 
 
 
@@ -63,7 +66,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/boats/{boatId}/daily-price', [BoatController::class, 'getDailyPrice']);
 
     // Rutas de pago
-    Route::get('/payment/{reservation}', [PaymentController::class, 'payment'])->name('payment');
+    Route::get('/payment/{reservation?}', [PaymentController::class, 'payment'])->name('payment');
     Route::post('/process-payment/{reservation}', [PaymentController::class, 'processPayment'])->name('processPayment');
     // Rutas para Stripe
     Route::get('/stripe/create/{reservation}', [StripeController::class, 'createPayment'])->name('stripe.create');
@@ -104,6 +107,22 @@ Route::middleware(['web'])->group(function () {
         Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index');
         Route::resource('ports', \App\Http\Controllers\PortController::class)->except(['show']);
         Route::resource('boats', \App\Http\Controllers\BoatController::class)->except(['show']);
+        Route::get('/translations', [AdminTranslationController::class, 'index'])->name('admin.translations.index');
+        Route::get('/translations/create', [AdminTranslationController::class, 'create'])->name('admin.translations.create');
+        Route::post('/translations', [AdminTranslationController::class, 'store'])->name('admin.translations.store');
+        Route::get('/translations/{id}', [AdminTranslationController::class, 'show'])->name('admin.translations.show');
+        Route::get('/translations/{id}/edit', [AdminTranslationController::class, 'edit'])->name('admin.translations.edit');
+        Route::post('/translations/{id}/update', [AdminTranslationController::class, 'update'])->name('admin.translations.update');
+        Route::get('/translations/{id}/destroy', [AdminTranslationController::class, 'destroy'])->name('admin.translations.destroy');
+        Route::post('admin/translations/{id}/update', [AdminTranslationController::class, 'update'])->name('admin.translations.update');
+        Route::delete('admin/translations/bulk-delete', [AdminTranslationController::class, 'bulkDelete'])->name('admin.translations.bulkDelete');
+        Route::get('/admin/translations/export', [AdminTranslationController::class, 'exportTranslations'])->name('admin.translations.export');
+        Route::prefix('admin/codes')->group(function () {
+            Route::get('/', [CountryLanguageCodeController::class, 'index'])->name('admin.codes.index');
+            Route::get('/create', [CountryLanguageCodeController::class, 'create'])->name('admin.codes.create');
+            Route::post('/', [CountryLanguageCodeController::class, 'store'])->name('admin.codes.store');
+        });
+        
 
     });
     Route::middleware('guest')->group(function () {

@@ -78,11 +78,24 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => env('APP_LOCALE', 'es'), // Idioma predeterminado (Español)
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'), // Idioma de respaldo
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'faker_locale' => env('APP_FAKER_LOCALE', 'es_ES'),
+    
+    'supported_locales' => [
+        'es', // Español
+        'en', // Inglés
+        'en_us', // Inglés Americano
+        'fr', // Francés
+        'de', // Alemán
+        'it', // Italiano
+        'pl', // Polaco
+        'ru', // Ruso
+        'nl', // Neerlandés
+        'uk', // Ucraniano
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -41,17 +41,6 @@
                     <label for="description" class="form-label">Descripción del Barco:</label>
                     <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
                 </div>
-
-                        <!-- Descripciones en otros idiomas (opcionales) -->
-                <div class="mb-3">
-                    <label for="description_en" class="form-label">Descripción (English):</label>
-                    <textarea id="description_en" name="description[en]" class="form-control" rows="3"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="description_fr" class="form-label">Description (Français):</label>
-                    <textarea id="description_fr" name="description[fr]" class="form-control" rows="3"></textarea>
-                </div>
            <!-- Características del Barco -->
                 <div class="mb-3">
                     <label for="length" class="form-label">Eslora (m):</label>

@@ -9,8 +9,6 @@
     @vite([
     'resources/css/available-boats.css',
     'resources/css/confirmation.css',
-    'resources/css/menu.css',
-    'resources/css/menuhome.css',
     'resources/css/normalize.css',
     'resources/css/opiniones.css',
     'resources/css/payment.css',
@@ -50,8 +48,6 @@
     'resources/js/loadMoreDescription2.js',
     'resources/js/loadMoreImages.js',
     'resources/js/loadMoreImages2.js',
-    'resources/js/menu.js',
-    'resources/js/menuhome.js',
     'resources/js/opiniones.js',
     'resources/js/slider.js',
     'resources/js/syncddate.js',

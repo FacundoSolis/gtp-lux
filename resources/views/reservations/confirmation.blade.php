@@ -1,7 +1,7 @@
 @extends('layouts.public')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('build/assets/menu-BnIop0I-.css') }}">
-<link rel="stylesheet" href="{{ asset('build/assets/confirmation-DZ7PxvDb.css') }}">
+@vite('resources/css/menu.css')
+@vite('resources/css/confirmation.css')
 @endpush
 @section('title', 'Confirmación de Reserva')
 
@@ -102,6 +102,8 @@
     </div>
 </header>
 
+@include('partials.progress-bar', ['step' => 4])
+
 <div class="container mt-5">
     <!-- Mensaje de Éxito -->
     <div class="text-center">
@@ -135,17 +137,22 @@
                             <strong>Nombre:</strong> {{ $reservation->name }}
                         </li>
                         <li class="list-group-item">
+                            <strong>Apellidos:</strong> {{ $reservation->surname }}
+                        </li>
+                        <li class="list-group-item">
                             <strong>Correo Electrónico:</strong> {{ $reservation->email }}
                         </li>
                         <li class="list-group-item">
                             <strong>Teléfono:</strong> {{ $reservation->phone }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Total a Pagar:</strong> €{{ number_format($reservation->total_price, 2) }}
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Mensaje de Despedida -->
     <div class="text-center mt-5">
         <p class="fs-5">¡Esperamos que disfrutes tu experiencia a bordo del barco!</p>
@@ -154,6 +161,7 @@
         </a>
     </div>
 </div>
+
 @section('scripts')
 <script src="{{ asset('build/assets/menu-Cd3QX7BG.js') }}"></script>
 @endsection

@@ -28,7 +28,7 @@ class AdminReservationController extends Controller
     public function create()
     {
         $ports = Port::all(); // Obtener todos los puertos
-        $boats = \App\Models\Boat::all(); // Cargar todos los barcos
+        $boats = Boat::all(); // Cargar todos los barcos
 
         return view('admin.reservations.create', compact('ports', 'boats'));
     }

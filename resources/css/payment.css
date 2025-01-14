@@ -3,32 +3,53 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: white;
+}
+.step    {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 /* Reduce spacing in the main content */
 main.content {
     padding: 10px;
 }
-
 .mt-5 {
-    margin-top: 80px;
-    padding-top: 80px;
+    margin-top: 0;
 }
-
 .col-mg-6 {
     margin-top: 0;
 }
 .justify-content-center {
-    margin-bottom: -50px;
+    margin-bottom: 0;
+    width: 50%;
+}
+/* Estilo para la sección de Información de la Reserva */
+.reservation-info {
+    padding-right: 15px; /* Espaciado derecho */
 }
 
+/* Estilo para la sección de Métodos de Pago */
+.payment-methods {
+    padding-left: 15px; /* Espaciado izquierdo */
+    width: 35%;
+}
+/* Ajustes generales para tarjetas */
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+}
 .bg-primary {
 background-color: black;
 }
 .justify-content-around {
 gap: 10px;
 }
-
+.justify-content-center {
+    margin-bottom: 0;
+}
 .bg-info {
     --bs-bg-opacity: 1;
     background-color: #0D6EFD !important;
@@ -47,4 +68,21 @@ h2{
     margin-bottom: 0;
     text-align: center;
 
+}
+/* Responsive: Estilo para pantallas pequeñas */
+@media (max-width: 768px) {
+    .reservation-info{
+        padding: 0; /* Eliminar espaciado en pantallas pequeñas */
+    }
+    .row {
+        flex-direction: column; /* Colocar las secciones en columna */
+    }
+    .step    {
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .payment-methods{
+        width: 100%;
+    }
 }

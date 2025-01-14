@@ -6,6 +6,9 @@ use App\Models\Boat;
 use App\Models\Port;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
+use App\Models\Reservation;
+
+
 
 
 class BoatController extends Controller
@@ -29,33 +32,39 @@ class BoatController extends Controller
     public function showPrincessV65(Request $request)
 {
     $boat = Boat::where('name', 'Princess V65')->firstOrFail();
-    $ports = Port::all(); // Obtén todos los puertos
+    $ports = Port::all();
+    $fromWelcome = session('from_welcome', false); // Detectar si viene desde welcome
+
+    // Calcular el precio inicial (opcional)
     $price = 0; // Precio inicial predeterminado
+    // Obtener las fechas de inicio y fin del mes actual
+    $startDate = now()->startOfMonth(); // Fecha de inicio del mes
+    $endDate = now()->endOfMonth(); // Fecha de fin del mes
 
-    // Capturar parámetros de la solicitud
-    $portId = $request->input('port_id');
-    $pickupDate = $request->input('pickup_date');
-    $returnDate = $request->input('return_date');
-
-    // Si no hay fechas en la solicitud, usar el inicio y fin del mes actual
-    $startDate = $pickupDate ? $pickupDate : now()->startOfMonth()->toDateString();
-    $endDate = $returnDate ? $returnDate : now()->endOfMonth()->toDateString();
-
-    // Consultar las reservas relacionadas con el barco
+    // Variables adicionales solo para mostrar reservas y puerto seleccionado
+    $portId = $request->input('port_id', session('port_id'));
+        $pickupDate = $request->input('pickup_date', session('pickup_date'));
+    $returnDate = $request->input('return_date', session('return_date'));
+    
     $reservations = Reservation::where('boat_id', $boat->id)
         ->where(function ($query) use ($startDate, $endDate) {
-            $query->whereBetween('start_date', [$startDate, $endDate])
-                ->orWhereBetween('end_date', [$startDate, $endDate]);
+            $query->whereBetween('pickup_date', [$startDate, $endDate])
+                    ->orWhereBetween('return_date', [$startDate, $endDate]);
         })
         ->get();
 
-    return view('portofino', [
-        'boatId' => $boat->id, // ID del barco
-        'ports' => $ports, // Puertos disponibles
-        'reservations' => $reservations, // Reservas filtradas
+    return view('princess', [
+        'boat' => $boat, // Pasamos el barco completo
+        'ports' => $ports,
         'price' => $price, // Asegurarse de pasar el precio a la vista
         'startDate' => $startDate, // Pasar la fecha de inicio
         'endDate' => $endDate, // Pasar la fecha de fin
+        'fromWelcome' => $fromWelcome,
+        // Variables adicionales para las reservas
+        'portId' => $portId,
+        'pickupDate' => $pickupDate,
+        'returnDate' => $returnDate,
+        'reservations' => $reservations,
     ]);
 }
 
@@ -64,11 +73,34 @@ class BoatController extends Controller
 {
     $boat = Boat::where('name', 'Sunseeker Portofino')->firstOrFail();
     $ports = Port::all();
+    $fromWelcome = session('from_welcome', false); // Detectar si viene desde welcome
+
     // Calcular el precio inicial (opcional)
     $price = 0; // Precio inicial predeterminado
     // Obtener las fechas de inicio y fin del mes actual
     $startDate = now()->startOfMonth(); // Fecha de inicio del mes
     $endDate = now()->endOfMonth(); // Fecha de fin del mes
+
+    // Variables adicionales solo para mostrar reservas y puerto seleccionado
+    $portId = $request->input('port_id', session('port_id'));
+    $pickupDate = $request->input('pickup_date', session('pickup_date'));
+    $returnDate = $request->input('return_date', session('return_date'));
+    
+    // Si no hay fechas, mostrar reservas de todo el mes actual
+    $startDate = $pickupDate ?? now()->startOfMonth()->toDateString();
+    $endDate = $returnDate ?? now()->endOfMonth()->toDateString();
+
+    // Obtener las reservas
+    $reservations = [];
+    if ($portId) {
+        $reservations = Reservation::where('boat_id', $boat->id)
+            ->where('port_id', $portId)
+            ->where(function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('pickup_date', [$startDate, $endDate])
+                    ->orWhereBetween('return_date', [$startDate, $endDate]);
+            })
+            ->get();
+    }
 
     return view('portofino', [
         'boat' => $boat, // Pasamos el barco completo
@@ -76,7 +108,14 @@ class BoatController extends Controller
         'price' => $price, // Asegurarse de pasar el precio a la vista
         'startDate' => $startDate, // Pasar la fecha de inicio
         'endDate' => $endDate, // Pasar la fecha de fin
+        'fromWelcome' => $fromWelcome,
+        // Variables adicionales para las reservas
+        'portId' => $portId,
+        'pickupDate' => $pickupDate,
+        'returnDate' => $returnDate,
+        'reservations' => $reservations,
     ]);
+    
 }
 public function showBoatPage($boat_id, Request $request)
 {

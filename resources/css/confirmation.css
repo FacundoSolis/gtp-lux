@@ -29,6 +29,10 @@ main.content {
     margin: 10px 0;
 }
 
+.step {
+    margin-top: 140px;
+}
+
 /* Card and details adjustments */
 .card {
     margin-bottom: 20px;

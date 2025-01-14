@@ -65,8 +65,18 @@
                         <i class="fas fa-anchor me-2"></i> Gestionar Puertos
                     </a>
                 </li>
-                    </ul>
-                </div>
+                <li class="nav-item">
+                    <a href="{{ route('admin.translations.index') }}" class="nav-link {{ request()->routeIs('admin.translations.index') ? 'active' : '' }}">
+                        <i class="fas fa-language me-2"></i> Traducciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.codes.index') }}" class="nav-link {{ request()->routeIs('admin.codes.*') ? 'active' : '' }}">
+                        <i class="fas fa-code me-2"></i> Códigos de Países e Idiomas
+                    </a>
+                </li>
+            </ul>
+        </div>
         <!-- Contenido Principal -->
         <div class="admin-content flex-grow-1 p-4">
             @yield('content')

@@ -1,246 +1,194 @@
-/* General para la barra superior */
-.topbar--transparent {
+:root {
+    --menu-bg: transparent;
+    --menu-text: white;
+    --menu-hover: #f1c40f;
+    --dropdown-bg: rgba(0, 0, 0, 0.8);
+    --dropdown-text: white;
+    --altura_header: 50px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+}
+
+.header {
+    height: var(--altura_header);
+    background-color: var(--menu-bg);
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: transparent;
-    color: white;
-    z-index: 1100;
+    z-index: 1000;
+    margin-top: 20px;
+}
+
+.navbar {
+    height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content:end;
     align-items: center;
-    padding: 10px 50px;
-    height: 80px;
-    box-shadow: none;
-    transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    padding: 0 2rem;
+}
+
+.menu_hamburguesa {
+    display: none;
+}
+
+.menu_hamburguesa:checked + .ul_links {
+    height: calc(100vh - var(--altura_header));
+}
+
+.label_hamburguesa {
+    cursor: pointer;
+    display: none;
+}
+
+.list_icon {
+    color: var(--menu-text);
 }
 .flag-icon {
-    width: 15px;
-    height: auto;
-    margin-right: 5px;
-    vertical-align: middle;
+    width: 16px; /* Ajusta el ancho de las banderas */
+    height: auto; /* Mantén las proporciones de las banderas */
+    margin-right: 5px; /* Espacio entre la bandera y el texto */
+    vertical-align: middle; /* Alineación vertical */
 }
-
-/* Menú de escritorio */
-.nav-menu {
-    display: flex; /* Menú visible en pantallas grandes */
-    justify-content: flex-end;
-    flex-grow: 1;
-    list-style: none;
+.dropdown-menu li .flag-icon {
+    width: 14px; /* Tamaño más pequeño para las banderas en el menú desplegable */
+    margin-right: 5px; /* Espacio entre la bandera y el texto */
 }
-
-.nav-menu ul {
+.ul_links {
     display: flex;
-    margin: 0;
+    list-style: none;
     padding: 0;
+    margin: 0;
+    background-color: var(--menu-bg);
+    gap: 2rem;
 }
-
-.nav-menu ul li {
-    margin-right: 20px;
-}
-
-.nav-menu ul li a {
+.li_links a {
+    color: var(--menu-text);
     text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-size: 1rem;
+    font-weight: normal; /* Elimina el bold */
+    transition: all 0.3s ease;
 }
-
-.nav-menu ul li a:hover {
-    color: #f1c40f;
+.li_links a:hover {
+    color: var(--menu-hover);
 }
-
 /* Dropdown */
 .dropdown {
     position: relative;
-    display: inline-block;
 }
 
-.dropdown .value {
-    cursor: pointer;
-    font-weight: bold;
-    color: white;
-}
-.dropdown ul {
+.dropdown-menu {
     display: none;
     position: absolute;
-    background-color: white;
-    color: black;
-    list-style: none;
-    margin: 0;
-    padding: 10px;
-    border-radius: 5px;
-    top: 100%;
-    left: 0;
-    width: 150px;
-}
-.dropdown:hover ul {
-    display: block;
-}
-.dropdown ul li {
-    margin: 5px 0;
-}
-.dropdown ul li a,
-.dropdown ul li span {
-    color: black;
-    text-decoration: none;
-    font-weight: normal;
-    display: block;
-    padding: 5px 10px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-/* Estilo para el menú hamburguesa */
-.hamburger-menu {
-    display: none; /* Ocultar en pantallas grandes */
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    z-index: 1002;
-    position: fixed;
-    right: 20px;
-    top: 20px;
-}
-.hamburger-menu span {
-    display: block;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Menú móvil */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%; 
-    width: 100%;
-    height: 100%;
-    background-color: white; 
-    color: black; 
-    z-index: 1100; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    align-items: flex-start; 
-    padding: 20px; 
-    overflow: hidden; 
-    transition: right 0.3s ease-in-out; 
-    visibility: hidden;
-}
-.mobile-menu.active {
+    top: calc(100% + 5px);
     right: 0;
-    visibility: visible;
-}
-.mobile-menu .close-menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-}
-.mobile-menu ul {
+    background-color: var(--dropdown-bg);
+    border-radius: 5px;
     list-style: none;
     padding: 0;
-    margin: 0;
-    text-align: left;
+    z-index: 1001;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
 }
-.mobile-menu ul li {
-    margin: 20px 0;
+
+.dropdown-menu li {
+    padding: 10px 20px;
 }
-.mobile-menu ul li a {
-    color: black;
+
+.dropdown-menu li a {
+    color: var(--dropdown-text);
     text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    padding: 10px 0; /* Espaciado interno vertical */
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.mobile-menu ul li a:hover {
-    color: #f1c40f;
+    font-size: 0.9rem; /* Tamaño más pequeño en el dropdown */
+    font-weight: normal; /* Elimina el bold */
 }
 
-/* Efecto para el icono hamburguesa activo */
-.hamburger-menu.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-.hamburger-menu.active span:nth-child(2) {
-    opacity: 0;
-}
-.hamburger-menu.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
-/* Responsividad */
+/* Estilo para pantallas pequeñas */
 @media (max-width: 768px) {
-    .nav-menu {
-        display:none; /* Ocultar el menú de navegación */
+    .ul_links {
+        display: none; /* Oculto inicialmente */
+        flex-direction: column;
+        background-color: white; /* Fondo transparente */
+        position: fixed; /* Para desplegar en relación con la ventana */
+        top: 70px; /* Justo debajo del header */
+        right: 0; /* Alineado a la derecha */
+        width: 100%; /* Ajusta el ancho para pantallas móviles */
+        max-width: 100%; /* Ancho máximo del menú */
+        padding: 20px 0;
+        border-radius: 10px; /* Bordes redondeados para un diseño moderno */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+        z-index: 1000; /* Asegúrate de que esté encima del contenido */
+        color: black;
+        align-items:center;
     }
-    .hamburger-menu {
+
+    .menu_hamburguesa:checked ~ .ul_links {
+        display: flex;
+    }
+    .dropdown {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 24px;
-        cursor: pointer;
+        align-items: center; /* Centrar el contenido horizontalmente */
+        margin-top:0; /* Espaciado superior */
+        position: relative;
     }
-    .hamburger-menu span {
+    .dropdown-menu {
+        display: none;
+        position: absolute; /* Relativo al contenedor `.dropdown` */
+        top: 100%; /* Coloca el menú justo debajo del contenedor */
+        left: 0; /* Alineado al borde izquierdo del contenedor */
+        background-color: white; /* Fondo blanco */
+        list-style: none; /* Sin viñetas */
+        padding: 10px 0; /* Espaciado interno */
+        margin: 0; /* Sin márgenes */
+        border-radius: 5px; /* Bordes redondeados */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+        z-index: 1000; /* Asegúrate de que esté sobre otros elementos */
+        min-width: 150px; /* Ancho mínimo para el menú */
+    }
+    .dropdown-menu li a {
+        display: flex;
+        align-items: center; /* Centrar el texto y la bandera verticalmente */
+        font-size: 1rem; /* Tamaño de fuente */
+        color: black; /* Color del texto */
+        text-decoration: none; /* Sin subrayado */
+        padding: 5px 10px; /* Espaciado interno */
+        transition: background-color 0.3s, color 0.3s; /* Transiciones */
+    }
+
+    .label_hamburguesa {
         display: block;
-        height: 4px;
-        width: 100%;
-        background-color: #000;
-        border-radius: 2px;
+        color: var(--menu-text);
+        z-index: 1100; /* Asegura que esté por encima del contenido */
+        position: relative; /* Relativo al menú */
     }
-
-    .mobile-menu {
-        display: flex;
-        position: fixed;
-        flex-direction: column;
-        visibility: hidden;
-        transition: right 0.3s ease-in-out, visibility 0s 0.3s; /* Controla el retardo */
-        top: 0;
-        right: -100px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        z-index: 1100;
-        overflow-y: auto;
-        transform: translateX(-100%); /* Ocultar fuera de la pantalla */
-    }
-    .mobile-menu.active {
-        transform: translateX(0); /* Mostrar el menú */
-        right: 0;
-        transition: right 0.3s ease-in-out;
-    }
-    body.no-scroll {
-        overflow: hidden;
-    }
-    .mobile-menu ul {
-        list-style: none;
-        padding: 20px;
-        margin: 0;
-    }
-    .mobile-menu ul li {
-        margin-bottom: 15px;
-    }
-
-    .mobile-menu ul li a {
+    /* Enlaces dentro del menú */
+    .ul_links .li_links a {
+        color: black;
         text-decoration: none;
-        font-size: 18px;
-        color: #000;
-        font-weight: bold;
+        font-size: 1rem;
+        font-weight: normal; /* No en bold */
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+        text-align: left; /* Centrar el texto */
+        width: 100%;
     }
 
-    .close-menu {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 24px;
-        cursor: pointer;
+    .ul_links .li_links a:hover {
+        color: var(--menu-hover); /* Cambia de color al pasar el cursor */
     }
+    /* Mostrar el menú de enlaces en pantallas grandes */
+@media (min-width: 769px) {
+    .ul_links {
+        display: flex; /* Mostrar el menú normalmente */
+        flex-direction: row;
+        gap: 2rem; /* Espaciado entre enlaces */
+    }
+}
 }

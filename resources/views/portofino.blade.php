@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('build/assets/menu-BnIop0I-.css') }}">
+    @vite('resources/css/menu.css')
     @vite('resources/css/portofino.css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -11,100 +11,41 @@
 
 @section('content')
 
-<header class="topbar">
+<header class="header">
     <div class="topbar__logo">
         <a href="{{ route('welcome') }}">
             <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
         </a>
     </div>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#quienes-somos">Quiénes somos</a></li>
-            <li class="settingsDropdown">
+    <nav class="navbar">
+        <!-- Menú hamburguesa -->
+        <label class="label_hamburguesa" for="menu_hamburguesa">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="list_icon" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+        </label>
+        <input class="menu_hamburguesa" type="checkbox" id="menu_hamburguesa">
+
+        <!-- Enlaces de navegación -->
+        <ul class="ul_links">
+            <li class="li_links"><a href="#" class="link">Inicio</a></li>
+            <li class="li_links"><a href="#contacto" class="link">Contacto</a></li>
+            <li class="li_links"><a href="#quienes-somos" class="link">Quiénes somos</a></li>
+            <li class="li_links settingsDropdown">
                 <div class="dropdown">
                     <span class="value">
                         <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
                     </span>
-                    <ul>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
-                            </a>
-                        </li>
-                        <li>
-                            <span class="selected">
-                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                            </span>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
-                            </a>
-                        </li>
+                    <ul class="dropdown-menu" id="languageDropdown">
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch</a></li>
                     </ul>
                 </div>
             </li>
         </ul>
     </nav>
-    <div class="hamburger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="mobile-menu">
-        <span class="close-menu">✕</span>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#quienes-somos">Quiénes somos</a></li>
-            <li class="settingsDropdown">
-                <div class="dropdown">
-                    <span class="value">
-                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                    </span>
-                    <ul>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
-                            </a>
-                        </li>
-                        <li>
-                            <span class="selected">
-                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                            </span>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
 </header>
 
 <section class="container-valkyrya">
@@ -262,6 +203,9 @@
         </div>
     </div>
 </section>
+
+@include('partials.progress-bar', ['step' => 1])
+
 
 <!-- Formulario de reserva -->
 <div class="container">
@@ -479,24 +423,25 @@
 
 <!-- Footer -->
 <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-left">
-      <a href="{{ url('/') }}">
-        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="footer-logo">
-      </a>
-      <div class="social-icons">
+    <div class="footer-container">
+        <div class="footer-left">
+        <a href="{{ url('/') }}">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="footer-logo">
+        </a>
+        <div class="social-icons">
         <a href="https://instagram.com" target="_blank">
-          <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
+            <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
         </a>
         <a href="https://facebook.com" target="_blank">
-          <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
+            <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
         </a>
-      </div>
-      <p class="contact-email">contacto@empresa.com</p>
-      <p class="location">Puerto de Dénia, Edificio Capitanía, Dársena de Babor, s/n, 03700 Dénia, Alicante</p>
+        </div>
+            <p class="contact-email">{{ \App\Helpers\TranslationHelper::get('footer_email') }}</p>
+            <p class="location">{{ \App\Helpers\TranslationHelper::get('footer_address') }}</p>
+        </div>
     </div>
-  </div>
 </footer>
+
 
 @endsection
 
@@ -509,12 +454,13 @@
                 "{{ asset('img/val8.jpg') }}"
     ];
     </script>
-<script src="{{ asset('build/assets/menu-Cd3QX7BG.js') }}"></script>
 <script src="{{ asset('build/assets/loadMoreDescription-UnQYDaJ2.js') }}"></script>
 <script src="{{ asset('build/assets/listapreciosportofino-D5qolLRQ.js') }}"></script>
 <script src="{{ asset('build/assets/syncddate-CRt5ldaB.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales/es.js"></script>
+
 @endsection
 
 <script>
@@ -534,6 +480,48 @@
         const queryParams = new URLSearchParams(window.location.search);
         const pickupDateFromUrl = queryParams.get('pickup_date'); // Fecha inicial desde la URL
         const returnDateFromUrl = queryParams.get('return_date'); // Fecha final desde la URL
+
+        document.addEventListener('DOMContentLoaded', function () {
+    const dropdownToggle = document.getElementById('languageDropdownToggle');
+    const dropdownMenu = document.getElementById('languageDropdown');
+
+    // Abrir o cerrar el menú al hacer clic en el toggle
+    dropdownToggle.addEventListener('click', function (event) {
+        event.stopPropagation(); // Evita cerrar por eventos externos
+        const isVisible = dropdownMenu.style.display === 'block';
+        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+    });
+
+    // Cerrar el menú si se hace clic fuera de él
+    document.addEventListener('click', function () {
+        dropdownMenu.style.display = 'none';
+    });
+
+    // Manejar selección de idioma
+    dropdownMenu.querySelectorAll('.language').forEach(function (item) {
+        item.addEventListener('click', function (event) {
+            event.preventDefault();
+            const selectedLang = this.dataset.lang;
+            const selectedFlag = this.querySelector('img').src;
+            const selectedText = this.textContent.trim();
+
+            // Actualizar idioma en la interfaz
+            document.getElementById('currentLanguageFlag').src = selectedFlag;
+            dropdownToggle.textContent = selectedText;
+
+            // Enviar cambio al backend
+            fetch(`/set-language?lang=${selectedLang}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // Opcional: recargar página
+                    }
+                })
+                .catch(error => console.error('Error al cambiar el idioma:', error));
+        });
+    });
+});
+
         
         const initialDate = pickupDateFromUrl;
         console.log('Initial Date for Calendar:', initialDate);
@@ -603,7 +591,14 @@
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                right: "",
+            },
+            buttonText: {
+                today: 'Hoy',       // Traducción de "Today"
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                list: 'Agenda'
             },
             initialDate: selectedPickupDate,
             events: async function (fetchInfo, successCallback, failureCallback) {
