@@ -34,8 +34,11 @@ class AdminTranslationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'key_name' => 'required|string|max:65535', // Máximo permitido para TEXT
-            'default_value' => 'required|string|max:65535', // Máximo permitido para TEXT
+            'key_name' => 'required|string|max:65535|unique:translations,key_name', // Verifica unicidad
+            'default_value' => 'required|string|max:65535|unique:translations,key_name', // Validar también contra las claves existentes
+        ], [
+            'key_name.unique' => 'La clave ya existe en el sistema. Por favor, elige una diferente.',
+            'default_value.unique' => 'El valor predeterminado ya existe como clave en el sistema.',
         ]);
 
         $translation = Translation::create([

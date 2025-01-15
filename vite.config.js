@@ -18,7 +18,6 @@ export default defineConfig({
                 'resources/css/portofino.css',
                 'resources/css/princess.css',
                 'resources/css/public.css',
-                'resources/css/style.css',
                 'resources/js/componentes/app.jsx',
                 'resources/js/slider.js',
                 'resources/js/loadMoreDescription.js',
@@ -42,12 +41,7 @@ export default defineConfig({
     build: {
         rollupOptions: {
             // Marca los módulos externos para evitar problemas de empaquetado
-            external: [
-                '@fullcalendar/react',
-                '@fullcalendar/core',
-                '@fullcalendar/daygrid',
-                '@fullcalendar/timegrid',
-            ],
+            external: [],
         },
     },
     server: {

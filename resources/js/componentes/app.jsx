@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import FullCalendar from '@fullcalendar/react';
+import FullCalendar from '@fullcalendar/react'
+import '@fullcalendar/core/main.css';
+
 import dayGridPlugin from '@fullcalendar/daygrid';
 import 'bootstrap';
 

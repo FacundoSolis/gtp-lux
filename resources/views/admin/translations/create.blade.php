@@ -12,75 +12,118 @@
     </div>
     @endif
 
-    <!-- Botón para agregar un nuevo idioma -->
+    <!-- Botón para volver al listado -->
     <div class="mb-3 d-flex justify-content-between">
         <a href="{{ route('admin.translations.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Volver al Listado
         </a>
     </div>
 
+    <!-- Formulario -->
     <form action="{{ route('admin.translations.store') }}" method="POST">
         @csrf
+        <!-- Campo Key -->
         <div class="form-group">
             <label for="key_name">Key</label>
-            <input type="text" name="key_name" id="key_name" class="form-control" required>
-            <small id="keyNameMessage" class="form-text text-muted"></small>
-            </div>
+            <input type="text" name="key_name" id="key_name" class="form-control" value="{{ old('key_name') }}" required>
+            <small id="keyNameMessage" class="form-text text-danger" style="display: none;"></small>
+            @error('key_name')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <!-- Checkbox ¿Multilanguage? -->
         <div class="form-group">
             <label for="is_multilanguage">¿Multilanguage?</label>
-            <input type="checkbox" name="is_multilanguage" id="is_multilanguage" value="1">
+            <input type="checkbox" name="is_multilanguage" id="is_multilanguage" value="1" checked>
         </div>
+
+        <!-- Campo Default Value -->
         <div class="form-group">
             <label for="default_value">Default Value</label>
-            <input type="text" name="default_value" id="default_value" class="form-control" required>
+            <input type="text" name="default_value" id="default_value" class="form-control" value="{{ old('default_value') }}" required>
+            <small id="defaultValueMessage" class="form-text text-danger" style="display: none;"></small>
+            @error('default_value')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
-        <div id="languages-container" style="display: none;">
+
+        <!-- Idiomas -->
+        <div id="languages-container">
             <h5>Traducciones por Idioma</h5>
             @foreach (config('languages') as $code => $language)
             <div class="form-group">
-            <label for="language_{{ $code }}">
-                <img src="{{ asset('path_to_flags/' . $code . '.png') }}" 
-                    alt="Bandera de {{ $language['name'] }}" 
-                    title="{{ $language['name'] }}" 
-                    style="width: 20px; height: 15px; margin-right: 5px;">
-                {{ $language['name'] }}
-            </label>
-                <input type="text" name="languages[{{ $code }}]" id="language_{{ $code }}" class="form-control" placeholder="Traducción en {{ $language['name'] }}">
+                <label for="language_{{ $code }}">
+                    <img src="{{ asset('path_to_flags/' . $code . '.png') }}" 
+                         alt="Bandera de {{ $language['name'] }}" 
+                         title="{{ $language['name'] }}" 
+                         style="width: 20px; height: 15px; margin-right: 5px;">
+                    {{ $language['name'] }}
+                </label>
+                <input type="text" name="languages[{{ $code }}]" id="language_{{ $code }}" class="form-control" placeholder="Traducción en {{ $language['name'] }}" value="{{ old('languages.' . $code) }}">
             </div>
             @endforeach
         </div>
+
+        <!-- Botón para enviar -->
         <button type="submit" class="btn btn-success">Guardar</button>
     </form>
 </div>
 
 <script>
-    document.getElementById('key_name').addEventListener('blur', function() {
-        const keyName = this.value;
+    // Validar en tiempo real el campo Key
+    document.getElementById('key_name').addEventListener('input', function () {
+        validateField(this.value.trim(), 'key_name', 'keyNameMessage');
+    });
+
+    // Validar en tiempo real el campo Default Value
+    document.getElementById('default_value').addEventListener('input', function () {
+        validateField(this.value.trim(), 'default_value', 'defaultValueMessage');
+    });
+
+    // Función para validar un campo
+    function validateField(value, fieldName, messageElementId) {
+        const messageElement = document.getElementById(messageElementId);
         const url = "{{ route('admin.translations.checkKey') }}";
 
+        // Si el campo está vacío, limpiar el mensaje
+        if (!value) {
+            messageElement.style.display = 'none';
+            messageElement.textContent = '';
+            return;
+        }
+
+        // Hacer la solicitud AJAX
         fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({ key_name: keyName })
+            body: JSON.stringify({ key_name: value })
         })
         .then(response => response.json())
         .then(data => {
-            const messageElement = document.getElementById('keyNameMessage');
             if (data.exists) {
-                messageElement.textContent = data.message;
-                messageElement.style.color = 'red';
+                // Mostrar mensaje de error si el valor ya existe
+                messageElement.style.display = 'block';
+                messageElement.textContent = `El valor ingresado ya existe en el sistema. Por favor, elige otro.`;
             } else {
-                messageElement.textContent = data.message;
-                messageElement.style.color = 'green';
+                // Ocultar el mensaje si el valor está disponible
+                messageElement.style.display = 'none';
+                messageElement.textContent = '';
             }
         })
         .catch(error => console.error('Error:', error));
+    }
+
+    // Asegurarse de que los idiomas estén visibles si el checkbox está activado
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('languages-container').style.display = document.getElementById('is_multilanguage').checked ? 'block' : 'none';
     });
 
-    document.getElementById('is_multilanguage').addEventListener('change', function() {
+    // Mostrar u ocultar los idiomas según el checkbox
+    document.getElementById('is_multilanguage').addEventListener('change', function () {
         document.getElementById('languages-container').style.display = this.checked ? 'block' : 'none';
     });
 </script>

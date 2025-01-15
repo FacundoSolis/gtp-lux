@@ -1,9 +1,9 @@
 @extends('layouts.public')
 
 @push('styles')
-@vite('resources/css/menuhome.css')
-@vite('resources/css/style.css')
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ asset('css/menuhome.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
