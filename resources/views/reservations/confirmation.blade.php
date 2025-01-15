@@ -1,105 +1,46 @@
 @extends('layouts.public')
 @push('styles')
-@vite('resources/css/menu.css')
-@vite('resources/css/confirmation.css')
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/confirmation.css') }}">
 @endpush
 @section('title', 'Confirmación de Reserva')
 
 @section('content')
-<header class="topbar">
+<header class="header">
     <div class="topbar__logo">
         <a href="{{ route('welcome') }}">
             <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
         </a>
     </div>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#quienes-somos">Quiénes somos</a></li>
-            <li class="settingsDropdown">
+    <nav class="navbar">
+        <!-- Menú hamburguesa -->
+        <label class="label_hamburguesa" for="menu_hamburguesa">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="list_icon" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+        </label>
+        <input class="menu_hamburguesa" type="checkbox" id="menu_hamburguesa">
+
+        <!-- Enlaces de navegación -->
+        <ul class="ul_links">
+            <li class="li_links"><a href="#" class="link">Inicio</a></li>
+            <li class="li_links"><a href="#contacto" class="link">Contacto</a></li>
+            <li class="li_links"><a href="#quienes-somos" class="link">Quiénes somos</a></li>
+            <li class="li_links settingsDropdown">
                 <div class="dropdown">
                     <span class="value">
                         <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
                     </span>
-                    <ul>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
-                            </a>
-                        </li>
-                        <li>
-                            <span class="selected">
-                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                            </span>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
-                            </a>
-                        </li>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano</a></li>
+                        <li><a href="#" class="language"><img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch</a></li>
                     </ul>
                 </div>
             </li>
         </ul>
     </nav>
-    <div class="hamburger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="mobile-menu">
-        <span class="close-menu">✕</span>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#quienes-somos">Quiénes somos</a></li>
-            <li class="settingsDropdown">
-                <div class="dropdown">
-                    <span class="value">
-                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                    </span>
-                    <ul>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English
-                            </a>
-                        </li>
-                        <li>
-                            <span class="selected">
-                                <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
-                            </span>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="language">
-                                <img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
 </header>
 
 @include('partials.progress-bar', ['step' => 4])
@@ -161,7 +102,4 @@
         </a>
     </div>
 </div>
-
-@section('scripts')
-<script src="{{ asset('build/assets/menu-Cd3QX7BG.js') }}"></script>
 @endsection

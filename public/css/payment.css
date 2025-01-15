@@ -13,9 +13,7 @@ body {
 }
 
 /* Reduce spacing in the main content */
-main.content {
-    padding: 10px;
-}
+
 .mt-5 {
     margin-top: 0;
 }

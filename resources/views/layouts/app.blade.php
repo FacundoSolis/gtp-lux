@@ -7,14 +7,8 @@
 
     <!-- CSS y JS de Vite -->
     @vite([
-    'resources/css/available-boats.css',
-    'resources/css/confirmation.css',
     'resources/css/normalize.css',
-    'resources/css/payment.css',
-    'resources/css/portofino.css',
-    'resources/css/princess.css',
     'resources/css/public.css',
-    'resources/css/style.css',
 ])
 
     <!-- CSS de Bootstrap y otros frameworks externos -->
@@ -41,12 +35,7 @@
         </div>
     </div>
 
-    @vite (['resources/js/listapreciosportofino.js',
-    'resources/js/listapreciosprincess.js',
-    'resources/js/loadMoreDescription.js',
-    'resources/js/loadMoreDescription2.js',
-    'resources/js/slider.js',
-    'resources/js/syncddate.js',
+    @vite ([
     'resources/js/componentes/app.jsx',])
 
     <!-- Scripts de Bootstrap y externos -->

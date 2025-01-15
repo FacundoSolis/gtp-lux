@@ -1,8 +1,8 @@
 @extends('layouts.public')
 
 @push('styles')
-    @vite('resources/css/menu.css')
-    @vite('resources/css/portofino.css')
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/portofino.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -420,9 +420,10 @@
                 "{{ asset('img/val8.jpg') }}"
     ];
     </script>
-<script src="{{ asset('build/assets/loadMoreDescription-UnQYDaJ2.js') }}"></script>
-<script src="{{ asset('build/assets/listapreciosportofino-D5qolLRQ.js') }}"></script>
-<script src="{{ asset('build/assets/syncddate-CRt5ldaB.js') }}"></script>
+
+<script src="{{ asset('js/loadMoreDescription.js') }}"></script>
+<script src="{{ asset('js/listapreciosportofino.js') }}"></script>
+<script src="{{ asset('js/syncddate.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales/es.js"></script>

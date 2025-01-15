@@ -1,7 +1,7 @@
 @extends('layouts.public')
 @push('styles')
-@vite('resources/css/menu.css')
-@vite('resources/css/payment.css')
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/payment.css') }}">
 @endpush
 
 @section('title', 'Método de Pago')
@@ -43,7 +43,7 @@
                     <span class="value">
                         <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
                     </span>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" id="languageDropdown">
                         <li><a href="#" class="language"><img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français</a></li>
                         <li><a href="#" class="language"><img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English</a></li>
                         <li><a href="#" class="language"><img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano</a></li>
@@ -110,4 +110,5 @@
         </section>
     </div>
 </div>
+@endsection
 

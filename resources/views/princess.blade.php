@@ -1,9 +1,8 @@
 @extends('layouts.public')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('build/assets/menu-BnIop0I-.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/portofino-SgG5y7B-.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/opiniones-KYSA6JTR.css') }}">
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/princess.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -450,14 +449,12 @@
                 "{{ asset('img/val8.jpg') }}"
     ];
     </script>
-<script src="{{ asset('build/assets/menu-Cd3QX7BG.js') }}"></script>
-<script src="{{ asset('build/assets/loadMoreImages2-AzCURZjo.js') }}"></script>
-<script src="{{ asset('build/assets/loadMoreDescription2-Cqf7v_zW.js') }}"></script>
-<script src="{{ asset('public/build/assets/listapreciosprincess-7dpEo3XJ.js') }}"></script>
-<script src="{{ asset('build/assets/opiniones-CLBmJBMC.js') }}"></script>
-<script src="{{ asset('build/assets/syncddate-CRt5ldaB.js') }}"></script>
+<script src="{{ asset('js/loadMoreDescription2.js') }}"></script>
+<script src="{{ asset('js/listapreciosprincess.js') }}"></script>
+<script src="{{ asset('js/syncddate.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales/es.js"></script>
 @endsection
 
 
