@@ -13,8 +13,8 @@
 @section('content')
 <header class="header">
     <div class="topbar__logo">
-        <a href="http://127.0.0.1:8000">
-            <img src="http://127.0.0.1:8000/img/logo.png" alt="Logo" class="logo">
+        <a href="{{ url('/') }}">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
         </a>
     </div>
     <nav class="navbar">
