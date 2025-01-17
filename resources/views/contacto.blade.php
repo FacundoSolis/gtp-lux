@@ -8,9 +8,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 @endpush
-@section('title', 'Confirmación de Reserva')
-
 @section('content')
+@include('partials.progress-bar', ['step' => 2])
 <header class="header">
     <div class="topbar__logo">
         <a href="http://127.0.0.1:8000">
@@ -54,45 +53,54 @@
         </ul>
     </nav>
 </header>
-
-@include('partials.progress-bar', ['step' => 4])
-
 <div class="container mt-5">
-    <!-- Mensaje de Éxito -->
-    <div class="text-center">
-        <i class="bi bi-check-circle text-success" style="font-size: 4rem;"></i>
-        <h1 class="text-success mt-3">{{ __('reservation_confirmed') }}</h1>
-        <p class="lead mt-3">{{ __('thank_you') }}</p>
-    </div>
-
-    <!-- Detalles de la Reserva -->
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-8">
-            <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-    <h3 class="card-title mb-0">{{ __('reservation_details') }}</h3>
-</div>
-<div class="card-body">
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>{{ __('port') }}:</strong> {{ $reservation->port->name }}</li>
-        <li class="list-group-item"><strong>{{ __('boat') }}:</strong> {{ $reservation->boat->name }}</li>
-        <li class="list-group-item"><strong>{{ __('pickup_date') }}:</strong> {{ $reservation->pickup_date }}</li>
-        <li class="list-group-item"><strong>{{ __('drop_off_date') }}:</strong> {{ $reservation->return_date }}</li>
-        <li class="list-group-item"><strong>{{ __('name') }}:</strong> {{ $reservation->name }}</li>
-        <li class="list-group-item"><strong>{{ __('surname') }}:</strong> {{ $reservation->surname }}</li>
-        <li class="list-group-item"><strong>{{ __('email') }}:</strong> {{ $reservation->email }}</li>
-        <li class="list-group-item"><strong>{{ __('phone') }}:</strong> {{ $reservation->phone }}</li>
-        <li class="list-group-item"><strong>{{ __('total_price') }}:</strong> €{{ number_format($reservation->total_price, 2) }}</li>
-    </ul>
-</div>
-
-    <!-- Mensaje de Despedida -->
-    <div class="text-center mt-5">
-        <p class="fs-5">{{ __('enjoy_experience') }}</p>
-        <a href="{{ route('welcome') }}" class="btn btn-success btn-lg mt-3">
-            <i class="bi bi-house-door-fill me-2"></i> {{ __('home') }}
-        </a>
-    </div>
+    <h3>Datos de Contacto</h3>
+    <form action="{{ route('payment', ['reservation' => $reservation->id]) }}" method="POST">
+    @csrf
+        @csrf
+        <!-- Campos ocultos para enviar los datos seleccionados -->
+        <input type="hidden" name="port_id" value="{{ $reservation['port_id'] }}">
+        <input type="hidden" name="pickup_date" value="{{ $reservation['pickup_date'] }}">
+        <input type="hidden" name="return_date" value="{{ $reservation['return_date'] }}">
+        <input type="hidden" name="boat_id" value="{{ $reservation['boat_id'] }}">
+        <!-- Datos seleccionados del paso anterior -->
+        <div class="mb-3">
+            <label for="port" class="form-label">Puerto Seleccionado</label>
+            <input type="text" class="form-control" value="{{ $reservation['port_name'] }}" readonly>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="pickup_date" class="form-label">Fecha de Recogida</label>
+                <input type="text" class="form-control" value="{{ $reservation['pickup_date'] }}" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="return_date" class="form-label">Fecha de Entrega</label>
+                <input type="text" class="form-control" value="{{ $reservation['return_date'] }}" readonly>
+            </div>
+        </div>
+        <!-- Campos de contacto -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="surname" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="surname" name="surname" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="email_confirm" class="form-label">Confirmar Correo Electrónico</label>
+            <input type="email" class="form-control" id="email_confirm" name="email_confirm" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="phone" name="phone" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Ir al Pago</button>
+    </form>
 </div>
 @endsection
 

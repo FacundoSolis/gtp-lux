@@ -42,15 +42,18 @@ body {
 }
 
 .navbar {
+    position: relative;
     display: flex;
-    flex: 1;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
 }
 
 .label_hamburguesa {
     display: none;
     cursor: pointer;
+    margin-left: auto; /* Empuja el menú hamburguesa a la derecha */
+
 }
 
 .menu_hamburguesa {
@@ -66,12 +69,13 @@ body {
     gap: 2rem;
     justify-content: flex-end; /* Asegura la alineación a la derecha */
     align-items: center;
+    color: white;
 }
 
 .li_links {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Alineación derecha */
+    align-items: center;
 }
 
 .li_links a {
@@ -90,6 +94,17 @@ body {
 .dropdown {
     position: relative;
 }
+.dropdown .value {
+    display: flex;
+    align-items: center;
+    color: black; /* Cambia el color del texto a negro */
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    background-color: white; /* Asegura un fondo blanco para el botón */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
 
 .dropdown-menu {
     position: absolute;
@@ -101,6 +116,7 @@ body {
     padding: 0;
     z-index: 1001;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    color: white;
 }
 
 .dropdown-menu li {
@@ -112,6 +128,7 @@ body {
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: normal;
+    color: black;
 }
 
 .flag-icon {
@@ -138,9 +155,9 @@ body {
         right: 0;
         width: 100%;
         height: calc(100vh - var(--altura_header));
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 20px;
+        justify-content: left;
+        align-items: center;
+        padding: 10px;
         z-index: 999;
     }
 
@@ -162,15 +179,63 @@ body {
         color: var(--menu-hover);
     }
 
+    .dropdown {
+        position: relative; /* Asegura que el menú se posicione relativo al contenedor */
+        width: 100%; /* Haz que el dropdown ocupe todo el ancho */
+    }
+
+    .dropdown .value {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black; /* Cambia el color del texto a negro */
+        cursor: pointer;
+        font-weight: bold;
+        padding: 10px;
+        background-color: white; /* Asegura un fondo blanco para el botón */
+        border-radius: 5px; /* Bordes redondeados opcionales */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+        width: 100%; /* Botón ocupa el mismo ancho que el contenedor */
+        text-align: center;
+    }
+
     .dropdown-menu {
-        background-color: white;
-        color: black;
-        left: auto;
-        right: 10%;
+        position: absolute;
+        top: calc(100% + 5px); /* Posiciona el menú debajo del botón */
+        left: 0; /* Alinea el menú al borde izquierdo */
+        width: calc(100% - 20px); /* Ancho dinámico con márgenes */
+        margin: 0 10px; /* Ajusta márgenes laterales */
+        background-color: white; /* Fondo del menú */
+        border-radius: 5px; /* Bordes redondeados */
+        padding: 0;
+        z-index: 1000; /* Coloca el menú por encima de otros elementos */
+    }
+
+    .dropdown-menu li {
+        padding: 10px 15px;
+        text-align: center;
     }
 
     .dropdown-menu li a {
-        color: black;
+        text-decoration: none;
+        color: black; /* Texto en negro para los enlaces */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px; /* Espaciado entre el icono y el texto */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #f1f1f1; /* Fondo gris claro al pasar el cursor */
+        color: #333; /* Color del texto ligeramente más oscuro */
+    }
+
+    .flag-icon {
+        width: 16px;
+        height: auto;
+        margin-right: 5px;
+        vertical-align: middle;
     }
 }
 
@@ -181,3 +246,4 @@ body {
         gap: 2rem;
     }
 }
+

@@ -35,64 +35,98 @@ header {
 .container-valkyrya h2 {
   font-size: 2rem;
   padding-top: 120px;
+  padding-bottom: 40px;
   padding-left: 145px;
   color: black;
 }
-/* PARRAFOS */
 .description-boat {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center; /* Centrar elementos horizontalmente */
+  justify-content: center; /* Centrar elementos verticalmente */
   font-size: 1rem;
-  padding-left: 145px;
-  text-align: left;
+  margin: 0 auto; /* Centrar horizontalmente respecto al contenedor padre */
+  text-align: center; /* Centrar el texto dentro del contenedor */
   width: 50%;  
   background-color: #ffffff; 
   color: #000000; 
   max-width: 800px;
   box-sizing: border-box; 
+  padding: 20px; /* Espaciado interno uniforme */
+  border-radius: 10px; /* Bordes redondeados opcionales */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar */
+  margin-top: 30px;
 }
+
 .description-boat p {
   max-width: 100%; 
-  margin: 0 auto;  
+  margin: 10px 0; /* Espaciado entre párrafo y otros elementos */
   width: 100%;
 }
+
 .description-boat button {
   font-size: 1rem;
   padding: 10px 20px;
   background-color: white;
   color: #007BFF;
-  padding-left:0;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 15px; /* Espaciado superior */
 }
-.modal-description-container {
-  background-color: #f9f9f9;  
-  color: #000; 
-  padding: 20px;
-  border-radius: 5px;
-}
-/* Estilos para las imágenes dentro del modal */
-.modal-images-container .productCover__img--small {
-  width: 100%; 
-  max-width: 100%; 
-  height: 300px; 
-  background-size: cover;
-  background-position: center;
+/* Contenedor principal del slider */
+.slider-with-arrows {
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+  overflow: hidden;
   border-radius: 10px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  box-shadow: 0 1px 1rem -4px #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Efecto de hover para las imágenes dentro del modal */
-.modal-images-container .productCover__img--small:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
-  box-shadow: 0 4px 1rem -4px #000;
+/* Botones de navegación */
+.slider-with-arrows .prev,
+.slider-with-arrows .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  z-index: 10;
+  font-size: 18px;
+  border-radius: 50%;
 }
+
+.slider-with-arrows .prev {
+  left: 10px;
+}
+
+.slider-with-arrows .next {
+  right: 10px;
+}
+
+/* Contenedor de las slides */
+.slides-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Estilo de las imágenes */
+.slides img {
+  flex-shrink: 0;
+  width: 100%; /* Ancho dinámico para móvil */
+  height: auto;
+  border-radius: 10px;
+}
+
 .modal-content {
   position: relative;
   justify-content: center;
@@ -126,38 +160,6 @@ header {
 }
 #loadMoreDescription2Button:hover {
   text-decoration: underline; 
-}
-
-/* SLIDER IMAGENES */
-.productCover__imagesContainer {
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  margin-top: 50px;
-  flex-wrap: wrap; 
-}
-.productCover__sideImgs {
-display: flex;
-justify-content: center;
-flex-wrap: wrap; 
-gap: 15px;
-margin-top: 10px;
-}
-.productCover__img--small {
-width: 400px;
-height: 400px;
-background-size: cover;
-background-position: center;
-border-radius: 10px;
-cursor: pointer;
-transition: all 0.3s ease; 
-box-shadow: 0 1px 1rem -4px #000; 
-}
-/* Efecto de hover */
-.productCover__img--small:hover {
-opacity: 0.8; 
-transform: scale(1.05); 
-box-shadow: 0 4px 1rem -4px #000; 
 }
 
 /* Estilo del CTA */
@@ -274,7 +276,7 @@ margin-bottom: 5px;
   justify-content: space-between;
   gap: 30px;
   margin: 50px auto;
-  max-width: 1200px;
+  max-width: 900px;
   padding: 0 20px;
 }
 /* Inlcuido en el precio*/
@@ -311,11 +313,11 @@ margin-bottom: 5px;
 /* Calendario */
 .container h1{
   color: black;
+  margin: 20px;
 }
 .container h4{
   color: black;
 }
-
 .col-md-6 {
   flex: 1;
   max-width: 48%; /* Ocupa el 48% del ancho para dar espacio entre columnas */
@@ -333,8 +335,14 @@ padding: 15px;
 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 background-color: #FFFFFF;
 z-index: 999; /* Debe estar por debajo del menú */
-
 }
+
+.col-md-6 {
+  max-width: 45%; /* Asegúrate de que las columnas ocupen menos espacio */
+  flex: 1;
+  box-sizing: border-box;
+}
+
 .calendar-wrapper .fc-toolbar {
 display: flex;
 justify-content: space-between;
@@ -404,8 +412,6 @@ vertical-align: middle;
 font-size: 14px; 
 color: #343A40; 
 }
-
-
 .fc-header-toolbar {
 margin-bottom: 10px;
 }
@@ -477,7 +483,6 @@ color: #007BFF;
   line-height: 1.5;
 }
 
-
 .form-label {
   color: black; /* Color de las etiquetas */
 }
@@ -527,14 +532,50 @@ footer {
   width: 50%;
 }
 
+.section-title {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #f8f9fa;
+  margin-top: 20px;
+}
+
+.two-columns {
+  padding: 50px 0;
+}
+
+.two-columns img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.faq-section {
+  padding: 50px 0;
+}
+
+.faq-section .accordion-button {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.faq-section .accordion-button:hover {
+  background-color: #e9ecef;
+  color: #000;
+}
+/* Responsive para escritorio */
+@media (min-width: 768px) {
+  .slides img {
+      width: calc(25% - 10px); /* Mostrar 4 imágenes en escritorio */
+      margin: 0 5px; /* Espaciado entre imágenes */
+  }
+}
+
 /* RESPONSIVE ---------------------------------------------------------- */
 @media (max-width: 768px) {
-
 .productCover__img--small {
   width: 350px; 
   height: 350px; 
 }
-
 .modal-content {
   margin-top: 50px;
 }

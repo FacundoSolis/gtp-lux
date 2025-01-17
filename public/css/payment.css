@@ -11,9 +11,6 @@ body {
     align-items: center;
     margin-top: 20px;
 }
-
-/* Reduce spacing in the main content */
-
 .mt-5 {
     margin-top: 0;
 }
@@ -23,6 +20,10 @@ body {
 .justify-content-center {
     margin-bottom: 0;
     width: 50%;
+    margin-bottom: 0;
+    display: flex; /* Asegura que los elementos estén centrados */
+    justify-content: center;
+    align-items: center;
 }
 /* Estilo para la sección de Información de la Reserva */
 .reservation-info {
@@ -67,6 +68,47 @@ h2{
     text-align: center;
 
 }
+
+/*Footer*/
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    text-align: left;
+    padding: 20px 0;
+    margin-top: 50px;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .footer-left {
+    width: 50%;
+  }
+  .footer-logo {
+    max-width: 100px;
+  }
+  .social-icons {
+    margin-top: 10px;
+  }
+  .social-icons a {
+    margin-right: 15px;
+  }
+  .social-icons img {
+    width: 30px;
+    height: 30px;
+  }
+  .contact-email, .location {
+    margin-top: 10px;
+  }
+  .footer-right {
+    width: 50%;
+  }
 /* Responsive: Estilo para pantallas pequeñas */
 @media (max-width: 768px) {
     .reservation-info{

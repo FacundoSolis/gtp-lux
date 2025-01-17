@@ -105,10 +105,6 @@ body {
     font-weight: normal; /* Elimina el bold */
 }
 
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
 /* Estilo para pantallas pequeñas */
 @media (max-width: 768px) {
     .ul_links {

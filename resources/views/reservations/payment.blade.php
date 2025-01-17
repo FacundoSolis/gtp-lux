@@ -1,7 +1,12 @@
 @extends('layouts.public')
+@php
+    use Illuminate\Support\Facades\App;
+@endphp
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/payment.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 @endpush
 
 @section('title', 'Método de Pago')
@@ -20,8 +25,8 @@
 
 <header class="header">
     <div class="topbar__logo">
-        <a href="{{ route('welcome') }}">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
+        <a href="http://127.0.0.1:8000">
+            <img src="http://127.0.0.1:8000/img/logo.png" alt="Logo" class="logo">
         </a>
     </div>
     <nav class="navbar">
@@ -35,27 +40,35 @@
 
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">Inicio</a></li>
-            <li class="li_links"><a href="#contacto" class="link">Contacto</a></li>
-            <li class="li_links"><a href="#quienes-somos" class="link">Quiénes somos</a></li>
+            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
+            <li class="li_links"><a href="#contacto" class="link">{{ __('contact') }}</a></li>
+            <li class="li_links"><a href="#quienes-somos" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">
                 <div class="dropdown">
                     <span class="value">
-                        <img src="{{ asset('img/flags/spain.svg') }}" alt="Español" class="flag-icon"> Español
+                        <img id="currentLanguageFlag" src="{{ asset('path_to_flags/' . App::getLocale() . '.png') }}" 
+                             alt="{{ config('languages')[App::getLocale()]['name'] }}" class="flag-icon">
+                        {{ config('languages')[App::getLocale()]['name'] }}
                     </span>
                     <ul class="dropdown-menu" id="languageDropdown">
-                        <li><a href="#" class="language"><img src="{{ asset('img/flags/france.svg') }}" alt="Français" class="flag-icon"> Français</a></li>
-                        <li><a href="#" class="language"><img src="{{ asset('img/flags/usa.svg') }}" alt="English" class="flag-icon"> English</a></li>
-                        <li><a href="#" class="language"><img src="{{ asset('img/flags/italy.svg') }}" alt="Italiano" class="flag-icon"> Italiano</a></li>
-                        <li><a href="#" class="language"><img src="{{ asset('img/flags/germany.svg') }}" alt="Deutsch" class="flag-icon"> Deutsch</a></li>
+                        @foreach (config('languages') as $code => $language)
+                            <li>
+                                <a href="{{ route('set-locale', $code) }}" class="language">
+                                    <img src="{{ asset('path_to_flags/' . $code . '.png') }}" 
+                                         alt="{{ $language['name'] }}" class="flag-icon">
+                                    {{ $language['name'] }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </li>
         </ul>
     </nav>
 </header>
+
 <div>
-    <h2>Información de reserva</h2>
+    <h2>{{ __('reservation_info') }}</h2>
 </div>
 @include('partials.progress-bar', ['step' => 3])
 
@@ -65,18 +78,19 @@
         <section class="reservation-info col-md-6">
             <div class="card shadow-sm mb-4">
                 <div class="card-header bg-info text-white">
-                    <h4>Detalles de la Reserva</h4>
+                    <h4>{{ __('reservation_details') }}</h4>
                 </div>
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Nombre:</strong> {{ $reservation->name }}</li>
-                        <li class="list-group-item"><strong>Correo Electrónico:</strong> {{ $reservation->email }}</li>
-                        <li class="list-group-item"><strong>Teléfono:</strong> {{ $reservation->phone }}</li>
-                        <li class="list-group-item"><strong>Puerto:</strong> {{ $reservation->port->name }}</li>
-                        <li class="list-group-item"><strong>Fecha de Recogida:</strong> {{ $reservation->pickup_date }}</li>
-                        <li class="list-group-item"><strong>Fecha de Entrega:</strong> {{ $reservation->return_date }}</li>
-                        <li class="list-group-item"><strong>Barco:</strong> {{ $reservation->boat->name }}</li>
-                        <li class="list-group-item"><strong>Total a Pagar:</strong> €{{ number_format($reservation->total_price, 2) }}</li>
+                <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>{{ __('name') }}</strong> {{ $reservation->name }}</li>
+                            <li class="list-group-item"><strong>{{ __('email') }}</strong> {{ $reservation->email }}</li>
+                            <li class="list-group-item"><strong>{{ __('phone') }}</strong> {{ $reservation->phone }}</li>
+                            <li class="list-group-item"><strong>{{ __('port') }}</strong> {{ __('marina_de_denia') }}</li>
+                            <li class="list-group-item"><strong>{{ __('pickup_date') }}</strong> {{ $reservation->pickup_date }}</li>
+                            <li class="list-group-item"><strong>{{ __('drop_off_date') }}</strong> {{ $reservation->return_date }}</li>
+                            <li class="list-group-item"><strong>{{ __('boat') }}</strong> {{ $reservation->boat->name }}</li>
+                            <li class="list-group-item"><strong>{{ __('Precio total') }}</strong> €{{ number_format($reservation->total_price, 2) }}</li>
+                        </ul>
                         <li class="list-group-item">
                             <img src="{{ $boatImage }}" alt="Imagen de {{ $reservation->boat->name }}" class="img-fluid rounded">
                         </li>
@@ -89,7 +103,7 @@
         <section class="payment-methods col-md-6">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h4>Elige un Método de Pago</h4>
+                    <h4>{{ __('select_payment_method') }}</h4>
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-column">
@@ -97,12 +111,12 @@
                         <form action="{{ route('stripe.process', ['reservation' => $reservation->id]) }}" method="POST" class="mb-3">
                             @csrf
                             <button type="submit" class="btn btn-dark btn-lg d-flex align-items-center justify-content-center">
-                                <i class="bi bi-stripe me-2"></i> Tarjeta
+                            <i class="bi bi-stripe me-2"></i> {{ __('pay_with_card') }}
                             </button>
                         </form>
                         <!-- Pago con PayPal -->
                         <a href="{{ route('paypal.create', $reservation->id) }}" class="btn btn-warning btn-lg d-flex align-items-center justify-content-center">
-                            <i class="bi bi-paypal me-2"></i> PayPal
+                        <i class="bi bi-paypal me-2"></i> {{ __('pay_with_paypal') }}
                         </a>
                     </div>
                 </div>
@@ -110,5 +124,76 @@
         </section>
     </div>
 </div>
+
+
+<!-- Footer personalizado -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href="{{ url('/') }}">
+        <img src="{{ asset('img/logo.png') }}" alt="{{ __('footer') }}" class="footer-logo">
+      </a>
+      <div class="social-icons">
+        <p>{{ __('social_media') }}</p>
+        <a href="https://instagram.com" target="_blank">
+          <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
+        </a>
+        <a href="https://facebook.com" target="_blank">
+          <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
+        </a>
+      </div>
+      <p class="contact-email">contacto@empresa.com</p>
+      <p class="location">{{ __('location_address') }}</p>
+    </div>
+  </div>
+</footer>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdownContainer = document.querySelector('.dropdown');
+      const dropdownValue = dropdownContainer.querySelector('.value');
+      const languageDropdown = document.getElementById('languageDropdown');
+ 
+    // Abrir o cerrar el menú al hacer clic en el contenedor
+    dropdownValue.addEventListener('click', function (event) {
+        event.stopPropagation(); // Evita el cierre inmediato
+        const isDropdownOpen = languageDropdown.style.display === 'block';
+        languageDropdown.style.display = isDropdownOpen ? 'none' : 'block';
+    });
+
+    // Cerrar el menú al hacer clic fuera del dropdown
+    document.addEventListener('click', function (event) {
+        if (!dropdownContainer.contains(event.target)) {
+            languageDropdown.style.display = 'none';
+        }
+    });
+
+    // Manejar selección de idioma
+    languageDropdown.querySelectorAll('.language').forEach(function (item) {
+    item.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita la navegación del enlace
+
+        const selectedLang = this.getAttribute('href').split('/').pop(); // Extraer idioma del enlace
+        fetch(`/set-locale/${selectedLang}`) // Usa el idioma seleccionado dinámicamente
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Recargar la página para aplicar el cambio
+                } else {
+                    console.error('Error al cambiar el idioma.');
+                }
+            })
+            .catch(error => console.error('Error en la solicitud de cambio de idioma:', error));
+
+        // Cerrar el menú después de seleccionar un idioma
+        languageDropdown.style.display = 'none';
+    });
+});
+    });
+</script>
+@endpush
+
 

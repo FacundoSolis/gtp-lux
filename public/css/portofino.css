@@ -74,38 +74,57 @@ header {
   transition: background-color 0.3s ease;
   margin-top: 15px; /* Espaciado superior */
 }
-/* Contenedor del slider */
-.slider-container {
-  max-width: 1400px; /* Aumenta ligeramente el ancho del contenedor */
-  margin: 0 auto;
-  overflow: hidden; /* Ocultar contenido que sobresalga */
-}
-
-/* Ajuste de las imágenes dentro del carrusel */
-.carousel-inner {
-  display: flex;
-  flex-wrap: nowrap; /* Mantener imágenes en una línea */
-}
-
-.carousel-item {
-  display: flex; /* Mostrar imágenes en fila horizontal */
-  justify-content: space-between; /* Espaciarlas de manera uniforme */
-  gap: 10px; /* Espaciado entre imágenes */
-}
-
-.carousel-item img {
-  width: 350px; /* Aumenta el ancho de las imágenes */
-  height: 300px; /* Aumenta la altura de las imágenes */
-  object-fit: cover; /* Ajustar contenido dentro del espacio */
-  border-radius: 10px; /* Bordes redondeados */
+/* Contenedor principal del slider */
+.slider-with-arrows {
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Botones de navegación */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.5);
+.slider-with-arrows .prev,
+.slider-with-arrows .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  z-index: 10;
+  font-size: 18px;
   border-radius: 50%;
-  padding: 10px;
+}
+
+.slider-with-arrows .prev {
+  left: 10px;
+}
+
+.slider-with-arrows .next {
+  right: 10px;
+}
+
+/* Contenedor de las slides */
+.slides-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Estilo de las imágenes */
+.slides img {
+  flex-shrink: 0;
+  width: 100%; /* Ancho dinámico para móvil */
+  height: auto;
+  border-radius: 10px;
 }
 
 .modal-content {
@@ -543,16 +562,20 @@ footer {
   background-color: #e9ecef;
   color: #000;
 }
-
+/* Responsive para escritorio */
+@media (min-width: 768px) {
+  .slides img {
+      width: calc(25% - 10px); /* Mostrar 4 imágenes en escritorio */
+      margin: 0 5px; /* Espaciado entre imágenes */
+  }
+}
 
 /* RESPONSIVE ---------------------------------------------------------- */
 @media (max-width: 768px) {
-
 .productCover__img--small {
   width: 350px; 
   height: 350px; 
 }
-
 .modal-content {
   margin-top: 50px;
 }

@@ -9,7 +9,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 80px;
   padding: 20px;
 }
 
@@ -225,6 +225,47 @@ h2 {
 /* Ajustar bordes redondeados del contenedor */
 .ui-datepicker-header.ui-corner-all {
   border-radius: 8px; /* Bordes redondeados */
+}
+
+/*Footer*/
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  text-align: left;
+  padding: 20px 0;
+  margin-top: 50px;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.footer-left {
+  width: 50%;
+}
+.footer-logo {
+  max-width: 100px;
+}
+.social-icons {
+  margin-top: 10px;
+}
+.social-icons a {
+  margin-right: 15px;
+}
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}
+.contact-email, .location {
+  margin-top: 10px;
+}
+.footer-right {
+  width: 50%;
 }
 
 

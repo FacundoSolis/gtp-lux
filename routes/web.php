@@ -18,22 +18,28 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminTranslationController;
 use App\Http\Controllers\Admin\CountryLanguageCodeController;
 use App\Http\Controllers\Admin\UserController;
-
-
-
-
-
+use Illuminate\Support\Facades\Log; // Importa la clase Log
 
 
 Route::middleware(['web'])->group(function () {
     // Rutas de inicio
     Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
-    Route::get('/set-language', function (Illuminate\Http\Request $request) {
-        $lang = $request->query('lang', 'es'); // Por defecto español
-        session(['locale' => $lang]);
-        App::setLocale($lang);
-        return response()->json(['success' => true]);
-    });
+    Route::get('/set-locale/{locale}', function ($locale) {
+        $availableLocales = ['es', 'en_us', 'en_gb', 'fr', 'de', 'it', 'pl', 'ru', 'nl', 'uk'];
+    
+        if (in_array($locale, $availableLocales)) {
+            Session::put('locale', $locale);
+            App::setLocale($locale);
+            Log::info('Idioma cambiado a: ' . $locale); // Uso correcto de Log
+        } else {
+            Log::warning('Idioma no válido: ' . $locale); // Manejo de error
+            abort(400, 'Idioma no válido');
+        }
+    
+        return response()->json(['success' => true, 'locale' => $locale]);
+    })->name('set-locale');
+    
+    
     
 
     // Rutas para las páginas de barcos específicos
@@ -52,7 +58,8 @@ Route::middleware(['web'])->group(function () {
 
     // Ruta dinámica para reservar cualquier barco
     Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveBoat'])->name('boats.reserve');
-    Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveAndRedirectToPayment'])->name('boats.reserve');
+    Route::get('/reservations/all/{boatId}', [ReservationController::class, 'getAllReservations']);
+    Route::get('/reservation/contacto', [ReservationController::class, 'showContacto'])->name('contacto');
 
     // Ruta para calcular el precio dinámico
     Route::get('/calculate-price', [ReservationController::class, 'calculateDynamicPrice'])->name('reservations.calculatePrice');

@@ -8,6 +8,11 @@ use App\Models\Reservation;
 use App\Models\Season;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+
+
 
 
 class ReservationController extends Controller
@@ -30,6 +35,14 @@ class ReservationController extends Controller
                 return redirect()->route('princess', compact('portId', 'startDate', 'endDate'))->with('from_welcome', true);
             }
         }
+        $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
 
         return view('welcome', compact('ports', 'boats'));
     }
@@ -184,7 +197,10 @@ class ReservationController extends Controller
             'return_date' => 'required|date|after:pickup_date',
         ]);
 
-        session()->put('reservation', array_merge(session('reservation'), $validated));
+          // Combinar con los datos del paso anterior
+        $reservationData = array_merge(session('reservation', []), $validated);
+        session()->put('reservation', $reservationData);
+        
         return redirect()->route('step3');
     }
 
@@ -199,20 +215,50 @@ class ReservationController extends Controller
         // Pasa el total del precio a la vista de Step 3
         return view('reservations.step3', compact('totalPrice'));
     }
+    public function showContacto(Request $request)
+{
+    // Si no se pasa un port_id, usa el puerto por defecto (1)
+    $portId = $request->input('port_id', 1);
+    $port = Port::find($portId);
+
+    if (!$port) {
+        return redirect()->route('step1')->withErrors(['error' => 'Puerto no encontrado']);
+    }
+
+    $reservation = [
+        'port_id' => $portId,
+        'port_name' => $port->name,
+        'pickup_date' => $request->input('pickup_date'),
+        'return_date' => $request->input('return_date'),
+        'boat_id' => $request->input('boat_id'),
+        'price' => $request->input('price', 0), // Precio predeterminado a 0 si no está presente
+    ];
+
+    $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
+
+    return view('contacto', compact('reservation'));
+}
 
     public function saveDetails(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'email' => 'required|email',
-            'email_confirm' => 'required|same:email',
-            'phone' => 'required|string|max:15',
+            'port_id' => 'required|exists:ports,id',
+            'pickup_date' => 'required|date',
+            'return_date' => 'required|date|after:pickup_date',
+            'boat_id' => 'required|exists:boats,id',
+            'price' => 'required|numeric',
         ]);
-
         $reservationData = array_merge(session('reservation'), $validated);
+        // Crear la reserva en la base de datos
         $reservation = Reservation::create($reservationData);
-
+        // Redirigir a la página de pago
         return redirect()->route('payment', ['reservation' => $reservation->id]);
     }
 
@@ -232,14 +278,62 @@ class ReservationController extends Controller
     if (!isset($reservation['total_price']) || $reservation['total_price'] === 0) {
         return redirect()->back()->withErrors(['error' => 'El precio de la reserva no está calculado correctamente.']);
     }
+    $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
+
 
     return view('reservations.payment', compact('reservation'));
+}
+public function processPayment(Request $request, $reservationId)
+{
+    $reservation = Reservation::findOrFail($reservationId);
+
+    // Asegúrate de que todos los datos requeridos estén completos
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'required|string|max:15',
+    ]);
+
+    // Actualiza los datos de contacto en la reserva
+    $reservation->update([
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'phone' => $validated['phone'],
+    ]);
+    $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
+
+
+    // Redirigir a la página de métodos de pago
+    return redirect()->route('payment', ['reservation' => $reservation->id]);
 }
 
     // Confirmación de reserva
     public function confirmation($reservationId)
     {
         $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
+        $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
+
         return view('reservations.confirmation', compact('reservation'));
     }
 
@@ -292,6 +386,15 @@ class ReservationController extends Controller
         $boat->return_date = $returnDate;
         return $boat;
     });
+    $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
+
 
     return view('available_boats', compact('boats', 'portId', 'pickupDate', 'returnDate'));
 }
@@ -381,5 +484,22 @@ public function reserveAndRedirectToPayment(Request $request, $boatId)
     // Redirigir a la página de pago con el ID de la reserva
     return redirect()->route('payment', ['reservation' => $reservation->id]);
 }
+public function getAllReservations($boatId)
+{
+    $reservations = Reservation::where('boat_id', $boatId)->get();
+
+    // Transformar las reservas al formato esperado por FullCalendar
+    $events = $reservations->map(function ($reservation) {
+        return [
+            'title' => $reservation->available ? 'Disponible' : 'Reservado',
+            'start' => $reservation->pickup_date,
+            'end' => $reservation->return_date,
+            'color' => $reservation->available ? 'green' : 'red',
+        ];
+    });
+
+    return response()->json($events);
+}
+
 
 }

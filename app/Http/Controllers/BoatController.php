@@ -7,6 +7,9 @@ use App\Models\Port;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -52,6 +55,14 @@ class BoatController extends Controller
                     ->orWhereBetween('return_date', [$startDate, $endDate]);
         })
         ->get();
+        $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
 
     return view('princess', [
         'boat' => $boat, // Pasamos el barco completo
@@ -90,6 +101,13 @@ class BoatController extends Controller
     $startDate = $pickupDate ?? now()->startOfMonth()->toDateString();
     $endDate = $returnDate ?? now()->endOfMonth()->toDateString();
 
+    // Si se accede desde "welcome", establecer valores predeterminados
+    if ($fromWelcome) {
+        $portId = 1; // Puerto predeterminado
+        $pickupDate = now()->toDateString(); // Hoy
+        $returnDate = now()->addDay()->toDateString(); // Mañana
+    }
+
     // Obtener las reservas
     $reservations = [];
     if ($portId) {
@@ -101,6 +119,15 @@ class BoatController extends Controller
             })
             ->get();
     }
+    $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
+
 
     return view('portofino', [
         'boat' => $boat, // Pasamos el barco completo
@@ -121,12 +148,14 @@ public function showBoatPage($boat_id, Request $request)
 {
     $boat = Boat::findOrFail($boat_id); // Encuentra el barco por ID o lanza una excepción
     $ports = Port::all(); // Obtén todos los puertos
+    $fromWelcome = session('from_welcome', false); 
+
 
     // Captura los parámetros de la URL
-    $portId = $request->input('port_id');
-    $pickupDate = $request->input('pickup_date');
-    $returnDate = $request->input('return_date');
-    $price = $request->input('price');
+    $portId = $request->input('port_id', 1); // Puerto predeterminado: "1"
+    $pickupDate = $request->input('pickup_date', now()->toDateString()); // Fecha de hoy si no se pasa
+    $returnDate = $request->input('return_date', now()->addDay()->toDateString()); // Día siguiente por defecto
+    $price = $request->input('price', 0); // Precio inicial predeterminado
 
     // Decide qué vista cargar basándose en el ID del barco
     if ($boat->id == 3) {
@@ -140,8 +169,6 @@ public function showBoatPage($boat_id, Request $request)
     // Vista genérica si no es ninguno de los anteriores
     return view('boat.show', compact('boat', 'ports', 'portId', 'pickupDate', 'returnDate', 'price'));
 }
-
-
     public function store(Request $request)
     {
         $validated = $request->validate([
