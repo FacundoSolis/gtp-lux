@@ -65,14 +65,14 @@
   <button class="prev">←</button>
   <div class="slides-container">
     <div class="slides">
-      <img src="http://127.0.0.1:8000/img/val1.jpg" alt="Imagen 1">
-      <img src="http://127.0.0.1:8000/img/val2.jpg" alt="Imagen 2">
-      <img src="http://127.0.0.1:8000/img/val3.jpg" alt="Imagen 3">
-      <img src="http://127.0.0.1:8000/img/val4.jpg" alt="Imagen 4">
-      <img src="http://127.0.0.1:8000/img/val5.jpg" alt="Imagen 5">
-      <img src="http://127.0.0.1:8000/img/val6.jpg" alt="Imagen 6">
-      <img src="http://127.0.0.1:8000/img/val7.jpg" alt="Imagen 7">
-      <img src="http://127.0.0.1:8000/img/val8.jpg" alt="Imagen 8">
+        <img src="{{ asset('img/protofino/Portofino.png') }}" alt="Imagen 1">
+        <img src="{{ asset('img/protofino/portofino.lateral.jpg') }}" alt="Imagen 2">
+        <img src="{{ asset('img/protofino/portofino.lancha.jpeg') }}" alt="Imagen 3">
+        <img src="{{ asset('img/protofino/portofino.copa.jpeg') }}" alt="Imagen 4">
+        <img src="{{ asset('img/protofino/portofino.cama.jpeg') }}" alt="Imagen 5">
+        <img src="{{ asset('img/protofino/Portofino.dentro.png') }}" alt="Imagen 6">
+        <img src="{{ asset('img/protofino/Portofino.solar.jpeg') }}" alt="Imagen 7">
+        <img src="{{ asset('img/protofino/portofino.red.jpg') }}" alt="Imagen 8">
     </div>
   </div>
   <button class="next">→</button>
