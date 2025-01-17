@@ -147,8 +147,8 @@
       <button class="prev">&lt;</button>
       <div class="slider">
         <div class="slides">
-          <img src="{{ asset('img/yates.png') }}" alt="Imagen 1">
-          <img src="{{ asset('img/yates2.png') }}" alt="Imagen 2">
+          <img src="{{ asset('img/protofino/Portofino.png') }}" alt="Imagen 1">
+          <img src="{{ asset('img/protofino/portofino2.jpg') }}" alt="Imagen 2">
       </div>
     </div>
       <button class="next">&gt;</button>
