@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
 
-  
   <!-- CSS embebido para rutas dinámicas -->
   <style>
     .slider-container {
@@ -63,9 +62,9 @@
         </label>
         <input class="menu_hamburguesa" type="checkbox" id="menu_hamburguesa">
       <ul class="ul_links">
-          <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
-          <li class="li_links"><a href="#contacto" class="link">{{ __('contact') }}</a></li>
-          <li class="li_links"><a href="#quienes-somos" class="link">{{ __('about_us') }}</a></li>
+          <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
+          <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
+          <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
           <li class="li_links settingsDropdown">
           <div class="dropdown">
               <span class="value">
@@ -190,14 +189,8 @@
     <h3 class="map-title">{{ __('our_location') }}</h3>
     <!-- Aquí está el iframe con el mapa de Google -->
     <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5445.977921593649!2d0.1118068481771686!3d38.84382343783137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e0!4m0!4m0!5e0!3m2!1ses!2ses!4v1734613497037!5m2!1ses!2ses"
-      width="600" 
-      height="450" 
-      style="border:0;" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6215.198940442461!2d0.12064989999999999!3d38.8416328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129e1adfd387435b%3A0xde918d9340020fd2!2sMarina%20de%20D%C3%A9nia!5e0!3m2!1ses!2ses!4v1737275044808!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</iframe>
   </div>
 </section>
 <section>
@@ -229,10 +222,12 @@
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
-    <div class="footer-left">
+    <!-- Columna 1: Logo y descripción -->
+    <div class="footer-column">
       <a href="{{ url('/') }}">
         <img src="{{ asset('img/logo.png') }}" alt="{{ __('footer') }}" class="footer-logo">
       </a>
+      <p class="footer-description">Somos una empresa líder en alquiler de barcos, ofreciendo experiencias inolvidables en el mar. Descubre nuestra flota y vive aventuras únicas.</p>
       <div class="social-icons">
         <p>{{ __('social_media') }}</p>
         <a href="https://instagram.com" target="_blank">
@@ -242,8 +237,36 @@
           <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
         </a>
       </div>
-      <p class="contact-email">contacto@empresa.com</p>
-      <p class="location">{{ __('location_address') }}</p>
+    </div>
+
+    <!-- Columna 2: Contacto -->
+    <div class="footer-column footer-align footer-offset">
+      <h3>Contact Us</h3>
+      <p>Teléfono: +34 123 456 789</p>
+      <p>Correo: contacto@empresa.com</p>
+      <p>Dirección: Marina de Denia, España</p>
+    </div>
+
+    <!-- Columna 3: Enlaces -->
+    <div class="footer-column footer-align footer-offset">
+      <h3>Enlaces</h3>
+      <ul class="footer-links">
+        <li><a href="{{ url('resources/views/pages/aviso.blade.php') }}">Aviso Legal</a></li>
+        <li><a href="{{ url('resources/views/pages/contacto.blade.php') }}">Contacto</a></li>
+        <li><a href="{{ url('resources/views/pages/nosotros.blade.php') }}">Nosotros</a></li>
+        <li><a href="{{ url('resources/views/pages/politicas.blade.php') }}">Políticas</a></li>
+        <li><a href="{{ url('resources/views/pages/terminos.blade.php') }}">Términos</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 4: Suscripción -->
+    <div class="footer-column footer-align footer-offset">
+      <h3>Subscribe</h3>
+      <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="Tu email" class="subscribe-input">
+        <button type="submit" class="subscribe-button">SUSCRIBE</button>
+      </form>
     </div>
   </div>
 </footer>
@@ -265,6 +288,7 @@
       const dropdownContainer = document.querySelector('.dropdown');
       const dropdownValue = dropdownContainer.querySelector('.value');
       const languageDropdown = document.getElementById('languageDropdown');
+      
 
     // Abrir o cerrar el menú al hacer clic en el contenedor
     dropdownValue.addEventListener('click', function (event) {

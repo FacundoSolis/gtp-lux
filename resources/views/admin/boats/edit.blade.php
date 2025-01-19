@@ -4,9 +4,8 @@
 <div class="container">
     <h1>Editar Barco</h1>
     <form action="{{ route('boats.update', $boat->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
+    @csrf
         @method('PUT')
-
         <!-- Nombre del Barco -->
         <div class="mb-3">
             <label for="name" class="form-label">Nombre:</label>
@@ -16,19 +15,8 @@
         <!-- Descripción del Barco -->
         <div class="mb-3">
             <label for="description" class="form-label">Descripción del Barco:</label>
-            <textarea id="description" name="description" class="form-control" rows="3" required>{{ old('description', $boat->description) }}</textarea>
+            <textarea id="description" name="description" class="form-control" rows="3" required>{{ old('description', is_array($boat->description) ? $boat->description['es'] ?? '' : $boat->description) }}</textarea>
         </div>
-
-        <div class="mb-3">
-            <label for="description_en" class="form-label">Description (English):</label>
-            <textarea id="description_en" name="description[en]" class="form-control" rows="3">{{ old('description.en', json_decode($boat->description)->en ?? '') }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="description_fr" class="form-label">Description (Français):</label>
-            <textarea id="description_fr" name="description[fr]" class="form-control" rows="3">{{ old('description.fr', json_decode($boat->description)->fr ?? '') }}</textarea>
-        </div>
-
         <!-- Puerto -->
         <div class="mb-3">
             <label for="port_id" class="form-label">Puerto:</label>
@@ -61,7 +49,22 @@
             <label for="engine" class="form-label">Motor (CV):</label>
             <input type="number" id="engine" name="engine" class="form-control" value="{{ old('engine', $boat->engine) }}" required>
         </div>
+        <!-- Hora de Recogida -->
+        <div class="mb-3">
+            <label for="pickup_time" class="form-label">Hora de Recogida:</label>
+            <input type="time" id="pickup_time" name="pickup_time" class="form-control" value="{{ old('pickup_time', $boat->pickup_time) }}" required>
+        </div>
+        <!-- Hora de Entrega -->
+        <div class="mb-3">
+            <label for="dropoff_time" class="form-label">Hora de Entrega:</label>
+            <input type="time" id="dropoff_time" name="dropoff_time" class="form-control" value="{{ old('dropoff_time', $boat->dropoff_time) }}" required>
+        </div>
 
+        <!-- Fianza -->
+        <div class="mb-3">
+            <label for="deposit" class="form-label">Fianza (€):</label>
+            <input type="number" step="0.01" id="deposit" name="deposit" class="form-control" value="{{ old('deposit', $boat->deposit) }}" required>
+        </div>
         <!-- Equipamiento Incluido -->
         <h5 class="mt-4">Equipamiento Incluido</h5>
         <div class="row">

@@ -1,75 +1,67 @@
-/* General adjustments for spacing */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: white;
 }
-.step    {
+
+.step {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-}
-.mt-5 {
-    margin-top: 0;
-}
-.col-mg-6 {
-    margin-top: 0;
-}
-.justify-content-center {
-    margin-bottom: 0;
-    width: 50%;
-    margin-bottom: 0;
-    display: flex; /* Asegura que los elementos estén centrados */
-    justify-content: center;
-    align-items: center;
-}
-/* Estilo para la sección de Información de la Reserva */
-.reservation-info {
-    padding-right: 15px; /* Espaciado derecho */
+    margin-top: 100px;
 }
 
-/* Estilo para la sección de Métodos de Pago */
-.payment-methods {
-    padding-left: 15px; /* Espaciado izquierdo */
-    width: 35%;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
-/* Ajustes generales para tarjetas */
+
+.left-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    height: 100%;
+    flex: 0 0 75%;
+}
+
+.right-section {
+    padding: 20px;
+    flex: 0 0 25%;
+}
+
+.reservation-info {
+    padding-right: 15px;
+}
+
+.payment-methods {
+    padding-left: 15px;
+}
+
 .card {
     border-radius: 8px;
     overflow: hidden;
 }
+
 .bg-primary {
-background-color: black;
+    background-color: black;
 }
-.justify-content-around {
-gap: 10px;
-}
-.justify-content-center {
-    margin-bottom: 0;
-}
+
 .bg-info {
     --bs-bg-opacity: 1;
     background-color: #0D6EFD !important;
 }
-.bg-secondary {
-    --bs-bg-opacity: 1;
-    background-color: #0D6EFD !important;
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
 }
-.img-fluid{
-    max-width: 50%;
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-h2{
-    margin-top: 100px;
-    margin-bottom: 0;
-    text-align: center;
-
-}
-
-/*Footer*/
 footer {
     position: relative;
     bottom: 0;
@@ -79,50 +71,65 @@ footer {
     text-align: left;
     padding: 20px 0;
     margin-top: 50px;
-  }
-  .footer-container {
+}
+
+.footer-container {
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-  }
-  .footer-left {
+}
+
+.footer-left {
     width: 50%;
-  }
-  .footer-logo {
+}
+
+.footer-logo {
     max-width: 100px;
-  }
-  .social-icons {
+}
+
+.social-icons {
     margin-top: 10px;
-  }
-  .social-icons a {
+}
+
+.social-icons a {
     margin-right: 15px;
-  }
-  .social-icons img {
+}
+
+.social-icons img {
     width: 30px;
     height: 30px;
-  }
-  .contact-email, .location {
+}
+
+.contact-email,
+.location {
     margin-top: 10px;
-  }
-  .footer-right {
+}
+
+.footer-right {
     width: 50%;
-  }
-/* Responsive: Estilo para pantallas pequeñas */
+}
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+
 @media (max-width: 768px) {
-    .reservation-info{
-        padding: 0; /* Eliminar espaciado en pantallas pequeñas */
+    .left-section, .right-section {
+        flex: 0 0 100%;
+        padding: 10px;
     }
+
     .row {
-        flex-direction: column; /* Colocar las secciones en columna */
+        flex-direction: column;
     }
-    .step    {
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-    }
-    .payment-methods{
+
+    .payment-methods {
         width: 100%;
     }
 }

@@ -1,0 +1,249 @@
+/* General adjustments for spacing */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  width: 100%;
+}
+
+.page-title-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.page-subtitle {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+}
+
+/* Container adjustments */
+.container {
+  padding: 20px;
+}
+
+.container .text-center {
+  margin-bottom: 20px;
+}
+
+.container h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.container p.lead {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.step {
+  margin-top: 140px;
+}
+
+/* Reservation summary */
+.reservation-summary {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.reservation-summary h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #34495e;
+  text-align: center;
+}
+
+.reservation-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reservation-summary ul li {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.reservation-summary {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.card-img-top {
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+}
+
+
+/* Form adjustments */
+form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.bg-white {
+  background-color: #fff;
+}
+.shadow-sm {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+form .form-control {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+form .btn {
+  background-color: #3498db;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form .btn:hover {
+  background-color: #1f618d;
+}
+
+/* Card and details adjustments */
+.card {
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.card-header {
+  padding: 10px 15px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.list-group-item {
+  padding: 10px 15px;
+}
+
+.text-center {
+  margin: 20px 0;
+}
+
+/* Footer adjustments */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  text-align: left;
+  padding: 20px 0;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-left {
+  width: 50%;
+}
+
+.footer-logo {
+  max-width: 100px;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  margin-right: 15px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}
+
+.contact-email, .location {
+  margin-top: 10px;
+}
+
+.footer-right {
+  width: 50%;
+}
+
+/* Buttons and input fields */
+.btn-primary {
+  background-color: #3498db;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #1f618d;
+}
+
+.input-group-text {
+  background-color: #f4f4f4;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.input-group .form-control {
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .reservation-summary {
+      text-align: center;
+  }
+
+  .footer-container {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .footer-left, .footer-right {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+}

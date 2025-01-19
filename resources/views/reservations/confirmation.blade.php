@@ -3,8 +3,8 @@
     use Illuminate\Support\Facades\App;
 @endphp
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/confirmation.css') }}">
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 @endpush
@@ -69,22 +69,27 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-    <h3 class="card-title mb-0">{{ __('reservation_details') }}</h3>
-</div>
-<div class="card-body">
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>{{ __('port') }}:</strong> {{ $reservation->port->name }}</li>
-        <li class="list-group-item"><strong>{{ __('boat') }}:</strong> {{ $reservation->boat->name }}</li>
-        <li class="list-group-item"><strong>{{ __('pickup_date') }}:</strong> {{ $reservation->pickup_date }}</li>
-        <li class="list-group-item"><strong>{{ __('drop_off_date') }}:</strong> {{ $reservation->return_date }}</li>
-        <li class="list-group-item"><strong>{{ __('name') }}:</strong> {{ $reservation->name }}</li>
-        <li class="list-group-item"><strong>{{ __('surname') }}:</strong> {{ $reservation->surname }}</li>
-        <li class="list-group-item"><strong>{{ __('email') }}:</strong> {{ $reservation->email }}</li>
-        <li class="list-group-item"><strong>{{ __('phone') }}:</strong> {{ $reservation->phone }}</li>
-        <li class="list-group-item"><strong>{{ __('total_price') }}:</strong> €{{ number_format($reservation->total_price, 2) }}</li>
-    </ul>
-</div>
+                <!-- Card Header -->
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">{{ __('reservation_details') }}</h3>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>{{ __('port') }}:</strong> {{ $reservation->port->name }}</li>
+                        <li class="list-group-item"><strong>{{ __('boat') }}:</strong> {{ $reservation->boat->name }}</li>
+                        <li class="list-group-item"><strong>{{ __('pickup_date') }}:</strong> {{ $reservation->pickup_date }}</li>
+                        <li class="list-group-item"><strong>{{ __('drop_off_date') }}:</strong> {{ $reservation->return_date }}</li>
+                        <li class="list-group-item"><strong>{{ __('name') }}:</strong> {{ $reservation->name }}</li>
+                        <li class="list-group-item"><strong>{{ __('surname') }}:</strong> {{ $reservation->surname }}</li>
+                        <li class="list-group-item"><strong>{{ __('email') }}:</strong> {{ $reservation->email }}</li>
+                        <li class="list-group-item"><strong>{{ __('phone') }}:</strong> {{ $reservation->phone }}</li>
+                        <li class="list-group-item"><strong>{{ __('total_price') }}:</strong> €{{ number_format($reservation->total_price, 2) }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Mensaje de Despedida -->
     <div class="text-center mt-5">
@@ -94,6 +99,28 @@
         </a>
     </div>
 </div>
+
+<!-- Footer personalizado -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href="{{ url('/') }}">
+        <img src="{{ asset('img/logo.png') }}" alt="{{ __('footer') }}" class="footer-logo">
+      </a>
+      <div class="social-icons">
+        <p>{{ __('social_media') }}</p>
+        <a href="https://instagram.com" target="_blank">
+          <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
+        </a>
+        <a href="https://facebook.com" target="_blank">
+          <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
+        </a>
+      </div>
+      <p class="contact-email">contacto@empresa.com</p>
+      <p class="location">{{ __('location_address') }}</p>
+    </div>
+  </div>
+</footer>
 @endsection
 
 @push('scripts')

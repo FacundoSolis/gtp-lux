@@ -1,7 +1,10 @@
 @foreach ($boats as $boat)
 <div class="boat-card {{ $boat->isReserved($pickupDate, $returnDate) ? 'reserved' : 'available' }}" data-boat-id="{{ $boat->id }}">
-    <img src="{{ $boat->name == 'Sunseeker Portofino' ? asset('img/yates.png') : asset('img/yates2.png') }}" 
-         alt="{{ $boat->name }}" class="boat-card__image">
+    <img src="{{ $boat->name == 'Sunseeker Portofino' 
+                ? asset('img/protofino/Portofino.png') 
+                : asset('img/princess/princes7.jpg') }}" 
+        alt="{{ $boat->name }}" class="boat-card__image">
+
 
     <div class="boat-card__details">
         <h3 class="boat-card__name">{{ $boat->name }}</h3>

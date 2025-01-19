@@ -62,9 +62,10 @@
     <h2>{{ __('available_boats') }}</h2>
 
     <div class="main-layout">
-        <!-- Barra lateral con fechas -->
+        <!-- Barra lateral con fechas -->   
+
         <div class="sidebar">
-            <h4>Elige una fecha</h4>
+            <h4>{{ __('choose_date') }}</h4>
             <form action="{{ route('available.boats') }}" method="GET">
                 @csrf
                 <div class="form-group">

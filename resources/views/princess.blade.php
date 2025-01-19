@@ -78,7 +78,6 @@
 </section>
 
 <section class="description-boat">
-    <h3>{{ __('princess_v65') }}</h3>
     <p>{!! __('princess_v65_section') !!}</p>
         <!-- Botón para abrir el modal -->
      <button id="loadMoreDescription2Button" class="btn-ver-más">{{ __('see_more') }}</button>

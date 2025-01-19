@@ -9,7 +9,7 @@ class Boat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'port_id', 'capacity', 'price_modifier', 'boat_id', 'description'];
+    protected $fillable = ['name', 'port_id', 'capacity', 'price_modifier', 'boat_id', 'description','pickup_time', 'dropoff_time', 'deposit'];
 
     // Castear description como un array o JSON
     protected $casts = [

@@ -79,7 +79,6 @@
 </section>
 
 <section class="description-boat">
-    <h3>{{ __('sunseeker_portofino_53') }}</h3>
     <p>{!! __('sunseeker_portofino_53_section') !!}</p>
     <!-- Botón para abrir el modal -->
     <button id="loadMoreDescriptionButton" class="btn-ver-más">{{ __('see_more') }}</button>
@@ -203,7 +202,7 @@
     <div class="row justify-content-between align-items-start">
         <!-- Columna del calendario -->
         <div class="col-md-6">
-            <form id="reservation-form" action="{{ route('contacto') }}" method="GET">
+            <form id="reservation-form" action="{{ route('form') }}" method="GET">
             @csrf
                 <input type="hidden" name="boat_id" value="3">
 
@@ -243,12 +242,13 @@
                 <h5>Resumen de precios</h5>
                 <p><strong>Total:</strong> <span id="total-price">0€</span></p>
                 <button id="price-list-button" class="btn btn-info mt-3">{{ __('check_price_list') }}</button>
-                <form id="reservation-form" action="{{ route('contacto', ['boatId' => $boat->id]) }}" method="POST">
-                    @csrf
+                    <form action="{{ route('form') }}" method="GET">
+                @csrf
                     <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
                     <input type="hidden" name="name" value="Reserva sin nombre">
                     <input type="hidden" name="pickup_date" id="hidden-pickup-date" value="{{ request('pickup_date') }}">
                     <input type="hidden" name="return_date" id="hidden-return-date" value="{{ request('return_date') }}">
+                    <input type="hidden" name="boat_id" value="{{ request('boat_id') }}">
                     <input type="hidden" name="price" id="hidden-price" value="0">
 
                     <button type="submit" class="btn btn-primary mt-3">{{ __('proceed_to_payment') }}</button>

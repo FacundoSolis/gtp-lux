@@ -1,0 +1,59 @@
+.card {
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.text-center{
+  margin-top: 100px;
+}
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-secondary {
+    color: #6c757d !important;
+}
+/*Footer*/
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  text-align: left;
+  padding: 20px 0;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.footer-left {
+  width: 50%;
+}
+.footer-logo {
+  max-width: 100px;
+}
+.social-icons {
+  margin-top: 10px;
+}
+.social-icons a {
+  margin-right: 15px;
+}
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}
+.contact-email, .location {
+  margin-top: 10px;
+}
+.footer-right {
+  width: 50%;
+}

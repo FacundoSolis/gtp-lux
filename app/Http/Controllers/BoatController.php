@@ -142,8 +142,17 @@ class BoatController extends Controller
         'returnDate' => $returnDate,
         'reservations' => $reservations,
     ]);
+        // Agregar redirección al final
+        if ($request->has('redirect_to_form')) {
+            return redirect()->route('contacto', [
+                'port_id' => $portId,
+                'pickup_date' => $pickupDate,
+                'return_date' => $returnDate,
+                'price' => $price,
+            ]);
     
-}
+        }
+    }
 public function showBoatPage($boat_id, Request $request)
 {
     $boat = Boat::findOrFail($boat_id); // Encuentra el barco por ID o lanza una excepción
@@ -181,6 +190,9 @@ public function showBoatPage($boat_id, Request $request)
             'beam' => 'nullable|numeric',
             'crew' => 'nullable|numeric',
             'engine' => 'nullable|numeric',
+            'pickup_time' => 'required|date_format:H:i',
+            'dropoff_time' => 'required|date_format:H:i',
+            'deposit' => 'required|numeric|min:0',        
         ]);
             // Proveer un valor predeterminado para 'boat_id'
         $validated['boat_id'] = Boat::max('boat_id') + 1;
@@ -195,8 +207,12 @@ public function showBoatPage($boat_id, Request $request)
             'beam' => $request->beam,
             'crew' => $request->crew,
             'engine' => $request->engine,
-            'boat_id' => $validated['boat_id'], // Asigna el valor de boat_id
+            'pickup_time' => $validated['pickup_time'], // Hora de recogida
+            'dropoff_time' => $validated['dropoff_time'], // Hora de entrega
+            'deposit' => $validated['deposit'], // Fianza
         ]);
+            // Asignar el `id` recién generado como `boat_id`
+        $boat->update(['boat_id' => $boat->id]);
     
         // Solo manejar equipamientos desde el admin
         if ($request->has('equipments')) {
@@ -228,15 +244,15 @@ public function showBoatPage($boat_id, Request $request)
             'name' => 'required|string|max:255',
             'port_id' => 'required|exists:ports,id',
             'description' => 'required|string', // La descripción principal debe ser obligatoria
-            'description.*' => 'nullable|string', // Las descripciones adicionales pueden ser nulas
+            'pickup_time' => 'required|date_format:H:i',
+            'dropoff_time' => 'required|date_format:H:i',
+            'deposit' => 'required|numeric|min:0',
         ]);
 
             // Obtener la descripción principal y las adicionales (si las hay)
         $description = $request->input('description'); // Descripción principal
         $descriptionData = [
             'es' => $description, // La descripción en español es la principal
-            'en' => $request->input('description.en', null), // Descripción en inglés (opcional)
-            'fr' => $request->input('description.fr', null), // Descripción en francés (opcional)
         ];
 
         $boat->update($validated);
@@ -248,18 +264,25 @@ public function showBoatPage($boat_id, Request $request)
             'name' => $validated['name'],
             'port_id' => $validated['port_id'],
             'description' => $descriptionData, // Guardar las descripciones como un array en formato JSON
+            'pickup_time' => $validated['pickup_time'], // Hora de recogida
+            'dropoff_time' => $validated['dropoff_time'], // Hora de entrega
+            'deposit' => $validated['deposit'], // Fianza
             // Otros campos que puedas tener...
         ]);
 
     return redirect()->route('boats.index')->with('success', 'Barco actualizado con éxito.');
 }
 
-    public function destroy(Boat $boat)
-    {
-        $boat->delete();
-
-    return redirect()->route('boats.index')->with('success', 'Barco eliminado con éxito.');
+public function destroy(Boat $boat)
+{
+    try {
+        $boat->delete(); // Eliminar barco
+        return redirect()->route('boats.index')->with('success', 'Barco eliminado con éxito.');
+    } catch (\Exception $e) {
+        return redirect()->route('boats.index')->with('error', 'No se pudo eliminar el barco. Verifica si tiene dependencias.');
+    }
 }
+
 public function getDailyPrice(Request $request, $boatId)
 {
     

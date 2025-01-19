@@ -62,6 +62,24 @@
                     <input type="number" id="engine" name="engine" class="form-control" required>
                 </div>
 
+                <!-- Hora de Recogida -->
+                <div class="mb-3">
+                    <label for="pickup_time" class="form-label">Hora de Recogida:</label>
+                    <input type="time" id="pickup_time" name="pickup_time" class="form-control" required>
+                </div>
+
+                <!-- Hora de Entrega -->
+                <div class="mb-3">
+                    <label for="dropoff_time" class="form-label">Hora de Entrega:</label>
+                    <input type="time" id="dropoff_time" name="dropoff_time" class="form-control" required>
+                </div>
+
+                <!-- Fianza -->
+                <div class="mb-3">
+                    <label for="deposit" class="form-label">Fianza (€):</label>
+                    <input type="number" step="0.01" id="deposit" name="deposit" class="form-control" required>
+                </div>
+
                 <h5 class="mt-4">Equipamiento Incluido</h5>
                 <div class="row">
                     <div class="col-md-4">

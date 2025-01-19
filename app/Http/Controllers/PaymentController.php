@@ -9,7 +9,7 @@ use Stripe\Checkout\Session;
 
 class PaymentController extends Controller
 {
-    public function payment($reservationId, Request $request)
+    public function payment(Request $request, $reservationId = null)
     {
             $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
             // Obtener fechas de la URL o usar las de la reserva
@@ -18,11 +18,32 @@ class PaymentController extends Controller
 
             return view('reservations.payment', compact('reservation', 'pickupDate', 'returnDate'));
         }
-
-
-    public function processPayment(Request $request, $reservationId)
-    {
+    public function processPayment(Request $request, $reservationId = null)
+        {
+            \Log::info('ProcessPayment Invocado', [
+            'reservationId' => $reservationId,
+            'request' => $request->all(),
+        ]);
+    
+        if (!$reservationId) {
+            return redirect()->route('form')->with('error', 'Completa el paso anterior.');
+        }
+    
         $reservation = Reservation::findOrFail($reservationId);
+    
+        // Validar los datos del formulario
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:15',
+        ]);
+    
+        $reservation->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'status' => 'processing',
+        ]);
 
         // Configurar Stripe con la clave secreta
         Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -43,11 +64,13 @@ class PaymentController extends Controller
             'mode' => 'payment',
             'success_url' => route('confirmation', ['reservation' => $reservation->id]),
             'cancel_url' => route('payment', ['reservation' => $reservation->id]),
+
         ]);
+        
 
         // Redirigir al usuario a la sesión de pago de Stripe
-        return redirect($session->url);
-        }
+    return view('reservations.payment', compact('reservation'));
+    }
         public function confirmation($reservationId)
     {
         $reservation = Reservation::findOrFail($reservationId);

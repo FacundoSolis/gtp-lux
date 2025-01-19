@@ -46,7 +46,17 @@ Route::middleware(['web'])->group(function () {
     Route::get('/sunseeker', [BoatController::class, 'showSunseekerPortofino'])->name('sunseeker');
     Route::get('/princess', [BoatController::class, 'showPrincessV65'])->name('princess');
     Route::get('/boat/{boat_id}', [BoatController::class, 'showBoatPage'])->name('boat.page');
-
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    
+    Route::get('pages/contacto', function () {
+        return view('pages.contacto');
+    });
+    
+    Route::get('pages/nosotros', function () {
+        return view('pages/nosotros');
+    });
     // Rutas de disponibilidad de barcos
     Route::get('/available-boats', [ReservationController::class, 'showAvailableBoats'])->name('available.boats');
     Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort'])->name('boats.byPort');
@@ -59,24 +69,34 @@ Route::middleware(['web'])->group(function () {
     // Ruta dinámica para reservar cualquier barco
     Route::post('/boats/{boatId}/reserve', [ReservationController::class, 'reserveBoat'])->name('boats.reserve');
     Route::get('/reservations/all/{boatId}', [ReservationController::class, 'getAllReservations']);
-    Route::get('/reservation/contacto', [ReservationController::class, 'showContacto'])->name('contacto');
+    //Route::get('/reservation/contacto', [ReservationController::class, 'showContacto'])->name('contacto');
 
     // Ruta para calcular el precio dinámico
     Route::get('/calculate-price', [ReservationController::class, 'calculateDynamicPrice'])->name('reservations.calculatePrice');
 
     // Rutas para flujo de pasos de reserva
     Route::get('/reservation/step1', [ReservationController::class, 'showStep1'])->name('step1');
-    Route::post('/reservation/step1', [ReservationController::class, 'saveStep1']);
+    Route::post('/reservation/step1', [ReservationController::class, 'saveStep1'])->name('step1.save');
     Route::get('/reservation/step2', [ReservationController::class, 'showStep2'])->name('step2');
     Route::post('/reservation/step2', [ReservationController::class, 'saveStep2']);
-    Route::get('/reservation/step3', [ReservationController::class, 'showStep3'])->name('step3');
-    Route::post('/reservation/details', [ReservationController::class, 'saveDetails'])->name('reservation.details');
+    Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
+    Route::get('/reservation/form', [ReservationController::class, 'showForm'])->name('form');
+    Route::post('/form', [ReservationController::class, 'handleForm'])->name('form.submit');
+    Route::get('/confirmation/{reservation}', [ReservationController::class, 'confirmation'])->name('confirmation');
+    Route::get('/payment/{reservation?}', [ReservationController::class, 'payment'])->name('payment');
+    Route::post('/payment/{reservation}', [PaymentController::class, 'processPayment'])->name('payment.process');
+    Route::get('/reservation/payment/{reservation?}', [PaymentController::class, 'payment'])->name('payment');
+    Route::get('/reservation/confirmation/{reservation}', [PaymentController::class, 'confirmation'])->name('confirmation');
+    Route::post('/reservation/save', [ReservationController::class, 'saveDetails'])->name('reservation.saveDetails');
+    
+
     Route::get('/calculate-price', [PriceController::class, 'calculatePrice'])->name('calculate.price');
     Route::get('/boats/{boatId}/daily-price', [BoatController::class, 'getDailyPrice']);
+    //Route::get('/confirmation/{reservation}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
     // Rutas de pago
-    Route::get('/payment/{reservation?}', [PaymentController::class, 'payment'])->name('payment');
-    Route::post('/process-payment/{reservation}', [PaymentController::class, 'processPayment'])->name('processPayment');
+    //Route::get('/payment/{reservation}', [PaymentController::class, 'payment'])->name('payment');
+    //Route::post('/payment/{reservation}', [ReservationController::class, 'processPayment']);
     // Rutas para Stripe
     Route::get('/stripe/create/{reservation}', [StripeController::class, 'createPayment'])->name('stripe.create');
     Route::post('/stripe/process/{reservation}', [StripeController::class, 'processPayment'])->name('stripe.process');
@@ -87,7 +107,6 @@ Route::middleware(['web'])->group(function () {
     Route::get('/paypal/success', [PayPalController::class, 'success'])->name('paypal.success');
     Route::get('/paypal/cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
     Route::get('/paypal/test-payment', [PayPalController::class, 'createTestPayment'])->name('paypal.test-payment');
-    Route::get('/confirmation/{reservation}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
     // Rutas de autenticación (manuales)
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -115,7 +134,7 @@ Route::middleware(['web'])->group(function () {
         // Gestión de pagos
         Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index');
         Route::resource('ports', \App\Http\Controllers\PortController::class)->except(['show']);
-        Route::resource('boats', \App\Http\Controllers\BoatController::class)->except(['show']);
+        Route::resource('boats', BoatController::class)->except(['show']);
         Route::get('/translations', [AdminTranslationController::class, 'index'])->name('admin.translations.index');
         Route::get('/translations/create', [AdminTranslationController::class, 'create'])->name('admin.translations.create');
         Route::post('/translations', [AdminTranslationController::class, 'store'])->name('admin.translations.store');

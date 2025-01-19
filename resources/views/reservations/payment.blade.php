@@ -17,9 +17,9 @@
     $boatImage = '';
 
     if (strpos($reservation->boat->name, 'Portofino') !== false) {
-        $boatImage = asset('img/boat/portofino.jpg'); // Ruta de la imagen de Portofino
+        $boatImage = asset('img/protofino/Portofino.png'); // Ruta actualizada
     } elseif (strpos($reservation->boat->name, 'Princess') !== false) {
-        $boatImage = asset('img/boat/princess.jpg'); // Ruta de la imagen de Princess
+        $boatImage = asset('img/princess/princess.jpg'); // Ruta actualizada
     }
 @endphp
 
@@ -83,6 +83,7 @@
                 <div class="card-body">
                 <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>{{ __('name') }}</strong> {{ $reservation->name }}</li>
+                            <li class="list-group-item"><strong>{{ __('surname') }}:</strong> {{ $reservation->surname }}</li>
                             <li class="list-group-item"><strong>{{ __('email') }}</strong> {{ $reservation->email }}</li>
                             <li class="list-group-item"><strong>{{ __('phone') }}</strong> {{ $reservation->phone }}</li>
                             <li class="list-group-item"><strong>{{ __('port') }}</strong> {{ __('marina_de_denia') }}</li>
@@ -110,13 +111,14 @@
                         <!-- Pago con Stripe -->
                         <form action="{{ route('stripe.process', ['reservation' => $reservation->id]) }}" method="POST" class="mb-3">
                             @csrf
-                            <button type="submit" class="btn btn-dark btn-lg d-flex align-items-center justify-content-center">
-                            <i class="bi bi-stripe me-2"></i> {{ __('pay_with_card') }}
+                            <button type="submit" class="btn btn-dark btn-lg">
+                                <i class="bi bi-stripe me-2"></i> {{ __('pay_with_card') }}
                             </button>
                         </form>
+                        </form>
                         <!-- Pago con PayPal -->
-                        <a href="{{ route('paypal.create', $reservation->id) }}" class="btn btn-warning btn-lg d-flex align-items-center justify-content-center">
-                        <i class="bi bi-paypal me-2"></i> {{ __('pay_with_paypal') }}
+                        <a href="{{ route('paypal.create', $reservation->id) }}" class="btn btn-warning btn-lg">
+                            <i class="bi bi-paypal me-2"></i> {{ __('pay_with_paypal') }}
                         </a>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 
 
-<form action="{{ route('saveStep1') }}" method="POST">
+<form action="{{ route('step1.save') }}" method="POST">
     @csrf
     <label for="port">Puerto:</label>
     <select id="port" name="port_id" required>

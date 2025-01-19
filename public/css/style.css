@@ -27,7 +27,7 @@ header {
 
 section.banner {
   position: relative;
-  height: 70vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -36,6 +36,9 @@ section.banner {
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+section.banner .logo {
+margin-top: 20px;
 }
 .banner-video {
   position: absolute;
@@ -57,7 +60,7 @@ section.banner {
 .banner-content {
   position: relative;
   z-index: 2;
-  margin-top: 30px;
+  margin-top: 20px;
   padding-top: 0;
 
 }
@@ -591,6 +594,7 @@ textarea {
   box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
 }
 
+/*Footer*/
 footer {
   background-color: black; /* Fallback para navegadores sin soporte */
   background-size: cover;
@@ -599,20 +603,83 @@ footer {
 
 .footer-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2 rem;
 }
+.footer-align {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.footer-column {
+  width: 23%;
+  margin-bottom: 20px;
+}
+.footer-description {
+  margin: 15px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.footer-offset {
+  margin-top: 35px;
+}
 
-.footer-left {
-  width: 50%;
+.footer-left,
+.footer-right {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .footer-logo {
-  max-width: 100px;
+  max-width: 150px;
+  margin-bottom: 15px;
+
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
 }
 
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.subscribe-input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.subscribe-button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.subscribe-button:hover {
+  background-color: #0056b3;
+}
 .social-icons {
   margin-top: 10px;
 }
@@ -629,10 +696,6 @@ footer {
 
 .contact-email, .location {
   margin-top: 10px;
-}
-
-.footer-right {
-  width: 50%;
 }
 
 .footer p{
@@ -654,7 +717,7 @@ section.banner h2 {
 }
 .reservation-form-wrapper {
   position: absolute;
-  top: 40vh;
+  top: 42vh;
   left: 50%;
   transform: translate(-50%, -20%);
   z-index: 5;
@@ -779,34 +842,13 @@ textarea {
   height: 70px;
 }
 .footer-container {
-  display: flex;
-  flex-direction: column; /* Cambia la dirección para que los elementos se apilen verticalmente */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  max-width: 1200px;
-  margin: 0 auto; /* Centra el contenedor en la página */
-  padding: 20px; /* Agrega espacio alrededor del contenido */
-  text-align: center; /* Asegura que el texto esté centrado */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
-.footer-left {
-  text-align: center; /* Centra el contenido dentro de esta sección */
-}
-.footer-logo {
-  max-width: 150px; /* Ajusta el tamaño del logo */
-  margin-bottom: 15px; /* Agrega espacio debajo del logo */
-}
-.social-icons {
-  display: flex;
-  justify-content: center; /* Centra los íconos horizontalmente */
-  gap: 10px; /* Espaciado entre los íconos */
-  margin: 15px 0; /* Espaciado superior e inferior */
-}
-.social-icons img {
-  width: 30px; /* Tamaño de los íconos */
-  height: 30px;
-}
-.contact-email,
-.location {
-  margin: 5px 0; /* Espaciado entre las líneas de texto */
+
+.footer-column {
+  width: 100%;
+  margin-bottom: 20px;
 }
 }

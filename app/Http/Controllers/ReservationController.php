@@ -167,7 +167,7 @@ class ReservationController extends Controller
     public function showStep1()
     {
         $ports = Port::all();
-        return view('reservations.step1', compact('ports'));
+        return view('step1', compact('ports'));
     }
 
     public function saveStep1(Request $request)
@@ -186,7 +186,7 @@ class ReservationController extends Controller
         if (!$reservation) return redirect()->route('step1')->with('error', 'Completa el paso anterior.');
 
         $boats = Boat::where('port_id', $reservation['port_id'])->get();
-        return view('reservations.step2', compact('boats'));
+        return view('step2', compact('boats'));
     }
 
     public function saveStep2(Request $request)
@@ -213,24 +213,30 @@ class ReservationController extends Controller
         $totalPrice = $this->calculateTotalPrice($reservation['boat_id'], $reservation['pickup_date'], $reservation['return_date']);
         
         // Pasa el total del precio a la vista de Step 3
-        return view('reservations.step3', compact('totalPrice'));
+        return view('step3', compact('totalPrice'));
     }
     public function showContacto(Request $request)
 {
     // Si no se pasa un port_id, usa el puerto por defecto (1)
     $portId = $request->input('port_id', 1);
-    $port = Port::find($portId);
+    $pickupDate = $request->input('pickup_date');
+    $returnDate = $request->input('return_date');
+    $boatId = $request->input('boat_id');
+    $price = $request->input('price', 0);
 
-    if (!$port) {
+    if (!$portId || !$pickupDate || !$returnDate || !$boatId) {
         return redirect()->route('step1')->withErrors(['error' => 'Puerto no encontrado']);
     }
+    $port = Port::findOrFail($portId);
+    $boat = Boat::findOrFail($boatId);
 
     $reservation = [
+        'id' => null, // Si aún no se ha creado en la base de datos
         'port_id' => $portId,
         'port_name' => $port->name,
-        'pickup_date' => $request->input('pickup_date'),
-        'return_date' => $request->input('return_date'),
-        'boat_id' => $request->input('boat_id'),
+        'pickup_date' => $pickupDate,
+        'return_date' => $returnDate,
+        'boat_id' => $boatId,
         'price' => $request->input('price', 0), // Precio predeterminado a 0 si no está presente
     ];
 
@@ -243,24 +249,91 @@ class ReservationController extends Controller
 
         App::setLocale($locale);
 
-    return view('contacto', compact('reservation'));
+    return view('form', compact('reservation'));
 }
 
-    public function saveDetails(Request $request)
-    {
-        $validated = $request->validate([
-            'port_id' => 'required|exists:ports,id',
-            'pickup_date' => 'required|date',
-            'return_date' => 'required|date|after:pickup_date',
-            'boat_id' => 'required|exists:boats,id',
-            'price' => 'required|numeric',
-        ]);
-        $reservationData = array_merge(session('reservation'), $validated);
-        // Crear la reserva en la base de datos
-        $reservation = Reservation::create($reservationData);
-        // Redirigir a la página de pago
-        return redirect()->route('payment', ['reservation' => $reservation->id]);
+public function saveDetails(Request $request)
+{
+    // Validar los datos del formulario
+    $validated = $request->validate([
+        'port_id' => 'required|exists:ports,id',
+        'pickup_date' => 'required|date',
+        'return_date' => 'required|date|after:pickup_date',
+        'boat_id' => 'required|exists:boats,id',
+        'price' => 'required|numeric',
+        'name' => 'required|string|max:255',
+        'surname' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'phone' => 'required|string|max:15',
+    ]);
+
+    // Crear la reserva en la base de datos
+    $reservation = Reservation::create([
+        'port_id' => $validated['port_id'],
+        'pickup_date' => $validated['pickup_date'],
+        'return_date' => $validated['return_date'],
+        'boat_id' => $validated['boat_id'],
+        'name' => $validated['name'],
+        'surname' => $validated['surname'],
+        'email' => $validated['email'],
+        'phone' => $validated['phone'],
+        'total_price' => $validated['price'],
+    ]);
+
+    // Redirigir a la página de pago
+    return redirect()->route('payment', ['reservation' => $reservation->id]);
+}
+
+    public function showForm(Request $request)
+{
+    $portId = $request->input('port_id', 1);
+    $pickupDate = $request->input('pickup_date');
+    $returnDate = $request->input('return_date');
+    $boatId = $request->input('boat_id');
+    $price = $request->input('price', 0);
+
+    if (!$portId || !$pickupDate || !$returnDate || !$boatId) {
+        return redirect()->route('step1')->withErrors(['error' => 'Faltan datos necesarios para completar la reserva.']);
     }
+
+    $port = Port::findOrFail($portId);
+    $boat = Boat::findOrFail($boatId);
+
+    $reservation = [
+        'id' => null, // ID vacío si no se ha guardado aún
+        'port_id' => $portId,
+        'port_name' => $port->name,
+        'pickup_date' => $pickupDate,
+        'return_date' => $returnDate,
+        'boat_id' => $boatId,
+        'price' => $price,
+    ];
+
+    return view('form', compact('reservation'));
+}
+
+public function handleForm(Request $request)
+{
+    $validated = $request->validate([
+        'port_id' => 'required|exists:ports,id',
+        'pickup_date' => 'required|date',
+        'return_date' => 'required|date|after:pickup_date',
+        'boat_id' => 'required|exists:boats,id',
+        'name' => 'required|string|max:255',
+        'surname' => 'required|string|max:255',
+        'email' => 'required|email',
+        'email_confirm' => 'required|email|same:email',
+        'phone' => 'required|string|max:15',
+        'price' => 'required|numeric|min:0',
+    ]);
+    $reservation = Reservation::create($validated);
+    // Asegurarte de que se creó correctamente
+    if (!$reservation->id) {
+        return redirect()->back()->withErrors(['error' => 'No se pudo crear la reserva. Inténtalo de nuevo.']);
+    }
+
+    return redirect()->route('payment', ['reservation' => $reservation->id]);
+}
 
     // Página de pago
     public function payment(Request $request, $reservationId = null)
@@ -299,6 +372,7 @@ public function processPayment(Request $request, $reservationId)
         'name' => 'required|string|max:255',
         'email' => 'required|email',
         'phone' => 'required|string|max:15',
+        'status' => 'processing',
     ]);
 
     // Actualiza los datos de contacto en la reserva
@@ -318,7 +392,7 @@ public function processPayment(Request $request, $reservationId)
 
 
     // Redirigir a la página de métodos de pago
-    return redirect()->route('payment', ['reservation' => $reservation->id]);
+    return redirect()->route('confirmation', ['reservation' => $reservation->id]);
 }
 
     // Confirmación de reserva
