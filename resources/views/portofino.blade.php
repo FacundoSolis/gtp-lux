@@ -81,7 +81,7 @@
 <section class="description-boat">
     <p>{!! __('sunseeker_portofino_53_section') !!}</p>
     <!-- Botón para abrir el modal -->
-    <button id="loadMoreDescriptionButton" class="btn-ver-más">{{ __('see_more') }}</button>
+    <button id="loadMoreDescriptionButton" class="btn-ver-más">{{ __('more_info') }}</button>
 </section>
 
 <!-- Modal de descripción -->
