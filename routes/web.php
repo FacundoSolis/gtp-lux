@@ -88,7 +88,8 @@ Route::middleware(['web'])->group(function () {
     Route::get('/reservation/payment/{reservation?}', [PaymentController::class, 'payment'])->name('payment');
     Route::get('/reservation/confirmation/{reservation}', [PaymentController::class, 'confirmation'])->name('confirmation');
     Route::post('/reservation/save', [ReservationController::class, 'saveDetails'])->name('reservation.saveDetails');
-    
+    Route::get('/redirect-dates', [ReservationController::class, 'redirectWithDates'])->name('redirect.dates');
+
 
     Route::get('/calculate-price', [PriceController::class, 'calculatePrice'])->name('calculate.price');
     Route::get('/boats/{boatId}/daily-price', [BoatController::class, 'getDailyPrice']);

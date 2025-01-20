@@ -60,7 +60,7 @@
                          style="width: 20px; height: 15px; margin-right: 5px;">
                     {{ $language['name'] }}
                 </label>
-                <input type="text" name="languages[{{ $code }}]" id="language_{{ $code }}" class="form-control" placeholder="Traducción en {{ $language['name'] }}" value="{{ old('languages.' . $code) }}">
+                <input type="text" name="languages[{{ $code }}]" id="language_{{ $code }}" class="form-control" value="{{ old('languages.' . $code) }}">
             </div>
             @endforeach
         </div>

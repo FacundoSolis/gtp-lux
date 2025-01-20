@@ -242,7 +242,7 @@
                 <h5>Resumen de precios</h5>
                 <p><strong>Total:</strong> <span id="total-price">0€</span></p>
                 <button id="price-list-button" class="btn btn-info mt-3">{{ __('check_price_list') }}</button>
-                    <form action="{{ route('form') }}" method="GET">
+                    <form id="reservation-form" action="{{ route('form') }}" method="GET">
                 @csrf
                     <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
                     <input type="hidden" name="name" value="Reserva sin nombre">
@@ -251,7 +251,7 @@
                     <input type="hidden" name="boat_id" value="{{ request('boat_id') }}">
                     <input type="hidden" name="price" id="hidden-price" value="0">
 
-                    <button type="submit" class="btn btn-primary mt-3">{{ __('proceed_to_payment') }}</button>
+                    <button type="submit" id="proceedToPaymentButton" class="btn btn-primary mt-3">{{ __('proceed_to_payment') }}</button>
                 </form>
             </section>
         </div>
@@ -415,6 +415,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const dropdownContainer = document.querySelector('.dropdown');
       const dropdownValue = dropdownContainer.querySelector('.value');
       const languageDropdown = document.getElementById('languageDropdown');
+      const proceedButton = document.getElementById('proceedToPaymentButton');
+      const reservationForm = document.getElementById('reservation-form');
+      proceedButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Evitar el comportamiento por defecto
+
+        // Validar que las fechas estén completas
+        if (!pickupInput.value || !returnInput.value) {
+            alert('Por favor selecciona las fechas antes de proceder.');
+            return;
+        }
+
+        // Enviar directamente el formulario
+        reservationForm.submit();
+    });
       
         // Verificar qué fechas se están obteniendo
     console.log('Pickup Date from URL:', pickupDateFromUrl);

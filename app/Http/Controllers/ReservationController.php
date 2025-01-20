@@ -25,7 +25,7 @@ class ReservationController extends Controller
 
         if ($request->boat_id) {
             $boatId = $request->boat_id;
-            $portId = $request->port_id;
+            $portId = $request->input('port_id', 1); // Puerto predeterminado
             $startDate = $request->pickup_date;
             $endDate = $request->return_date;
 
@@ -291,6 +291,7 @@ public function saveDetails(Request $request)
     $returnDate = $request->input('return_date');
     $boatId = $request->input('boat_id');
     $price = $request->input('price', 0);
+
 
     if (!$portId || !$pickupDate || !$returnDate || !$boatId) {
         return redirect()->route('step1')->withErrors(['error' => 'Faltan datos necesarios para completar la reserva.']);

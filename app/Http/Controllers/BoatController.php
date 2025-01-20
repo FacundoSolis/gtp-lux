@@ -86,7 +86,6 @@ class BoatController extends Controller
     $ports = Port::all();
     $fromWelcome = session('from_welcome', false); // Detectar si viene desde welcome
 
-    // Calcular el precio inicial (opcional)
     $price = 0; // Precio inicial predeterminado
     // Obtener las fechas de inicio y fin del mes actual
     $startDate = now()->startOfMonth(); // Fecha de inicio del mes
@@ -144,11 +143,12 @@ class BoatController extends Controller
     ]);
         // Agregar redirección al final
         if ($request->has('redirect_to_form')) {
-            return redirect()->route('contacto', [
+            return redirect()->route('form', [
                 'port_id' => $portId,
                 'pickup_date' => $pickupDate,
                 'return_date' => $returnDate,
                 'price' => $price,
+                'boat_id' => $boat->id,
             ]);
     
         }
