@@ -149,10 +149,11 @@
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const seasonsContainer = document.getElementById('seasons-container');
-        const addSeasonBtn = document.getElementById('add-season-btn');
-        let seasonIndex = {{ count($boat->seasons) }};
-        
+    const seasonsContainer = document.getElementById('seasons-container');
+    const addSeasonBtn = document.getElementById('add-season-btn');
+    let seasonIndex = {{ $boat->seasons->count() }}; // Inicializa con el número de temporadas existentes
+
+    if (addSeasonBtn) {
         addSeasonBtn.addEventListener('click', function () {
             const seasonRow = document.createElement('div');
             seasonRow.className = 'row g-3 mb-2 season-row';
@@ -175,6 +176,10 @@
             seasonsContainer.appendChild(seasonRow);
             seasonIndex++;
         });
-    });
+    } else {
+        console.error("El botón 'Agregar Temporada' no se encuentra en la página.");
+    }
+});
+
 </script>
 @endsection

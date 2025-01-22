@@ -23,6 +23,8 @@ a {
 header {
   padding: 0;
   margin: 0;
+  z-index: 9999;  /* Asegúrate de que el menú esté por encima de otros elementos */
+
 }
 
 section.banner {
@@ -700,6 +702,43 @@ footer {
 
 .footer p{
   color: white;
+}
+.text-center {
+  color: black;
+}
+
+.section-title {
+  text-align: center;
+  background-color: #f8f9fa;
+  z-index: 0;
+  position: relative;
+}
+.align-items-center {
+color: black;
+}
+.two-columns {
+  padding: 50px 0;
+}
+
+.two-columns img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.faq-section {
+  padding: 50px 0;
+  color: black;
+}
+
+.faq-section .accordion-button {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.faq-section .accordion-button:hover {
+  background-color: #e9ecef;
+  color: #000;
 }
 
 /*RESPONSIVE*/

@@ -10,6 +10,7 @@ class Season extends Model
     use HasFactory;
 
     protected $fillable = [
+        'boat_id',
         'name',
         'start_date',
         'end_date',

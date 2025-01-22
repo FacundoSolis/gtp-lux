@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 @section('content')
 <div class="container">
@@ -138,21 +139,21 @@
 <h5 class="mt-4">Temporadas</h5>
     <div id="seasons-container" class="border p-3 rounded">
         <div class="row g-3 mb-2 season-row">
-            <div class="col-md-3">
-                <input type="text" name="seasons[0][name]" placeholder="Nombre de la temporada" class="form-control" required>
-            </div>
-            <div class="col-md-3">
-                <input type="date" name="seasons[0][start_date]" class="form-control" required>
-            </div>
-            <div class="col-md-3">
-                <input type="date" name="seasons[0][end_date]" class="form-control" required>
-            </div>
-            <div class="col-md-3">
-                <input type="number" step="0.01" name="seasons[0][price_per_day]" placeholder="Precio por día" class="form-control" required>
-            </div>
+        <div class="col-md-3">
+            <input type="text" name="seasons[0][name]" placeholder="Nombre de la temporada" class="form-control" required>
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="seasons[0][start_date]" class="form-control" required>
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="seasons[0][end_date]" class="form-control" required>
+        </div>
+        <div class="col-md-3">
+            <input type="number" step="0.01" name="seasons[0][price_per_day]" placeholder="Precio por día" class="form-control" required>
         </div>
     </div>
 <button type="button" id="add-season-btn" class="btn btn-secondary mt-3">Agregar Temporada</button>
+
 
 <div class="check">
     <h5 class="mt-4">Equipamiento</h5>
@@ -180,41 +181,39 @@
 @endsection
 
 @section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     const seasonsContainer = document.getElementById('seasons-container');
     const addSeasonBtn = document.getElementById('add-season-btn');
     let seasonIndex = 1;
 
-    if (addSeasonBtn) {
-        console.log("Botón de agregar temporada disponible.");
-        addSeasonBtn.addEventListener('click', function () {
-            console.log("Botón de agregar temporada presionado.");
-            const seasonRow = document.createElement('div');
-            seasonRow.className = 'row g-3 mb-2 season-row';
+    addSeasonBtn.addEventListener('click', function () {
+        console.log("Botón 'Agregar Temporada' presionado");
+        const seasonRow = document.createElement('div');
+        seasonRow.className = 'row g-3 mb-2 season-row';
 
-            seasonRow.innerHTML = `
-                <div class="col-md-3">
-                    <input type="text" name="seasons[${seasonIndex}][name]" placeholder="Nombre de la temporada" class="form-control" required>
-                </div>
-                <div class="col-md-3">
-                    <input type="date" name="seasons[${seasonIndex}][start_date]" class="form-control" required>
-                </div>
-                <div class="col-md-3">
-                    <input type="date" name="seasons[${seasonIndex}][end_date]" class="form-control" required>
-                </div>
-                <div class="col-md-3">
-                    <input type="number" step="0.01" name="seasons[${seasonIndex}][price_per_day]" placeholder="Precio por día" class="form-control" required>
-                </div>
-            `;
+        seasonRow.innerHTML = `
+            <div class="col-md-3">
+                <input type="text" name="seasons[${seasonIndex}][name]" placeholder="Nombre de la temporada" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="seasons[${seasonIndex}][start_date]" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="seasons[${seasonIndex}][end_date]" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <input type="number" step="0.01" name="seasons[${seasonIndex}][price_per_day]" placeholder="Precio por día" class="form-control" required>
+            </div>
+        `;
 
-            seasonsContainer.appendChild(seasonRow);
-            seasonIndex++;
-        });
-    } else {
-        console.error("No se encuentra el botón para agregar temporada.");
-    }
+        seasonsContainer.appendChild(seasonRow);
+        seasonIndex++;
+    });
 });
+
 
 
 </script>

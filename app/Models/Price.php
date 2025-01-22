@@ -16,4 +16,9 @@ class Price extends Model
     {
         return $this->belongsTo(Boat::class);
     }
+// Relación: Un precio pertenece a una temporada
+public function seasons()
+{
+    return $this->belongsToMany(Season::class, 'boat_season_prices', 'price_id', 'season_id');
+}
 }

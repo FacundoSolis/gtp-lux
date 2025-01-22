@@ -10,9 +10,19 @@ class SetLocaleMiddleware
 {
     public function handle($request, Closure $next)
     {
-        // Obtener el idioma desde la sesión o usar el predeterminado
-        $locale = Session::get('locale', config('app.locale'));
+        // Obtén el idioma desde el segmento de la URL (e.g., /fr/)
+        $locale = $request->segment(1);
+
+        // Verifica si el idioma es soportado
+        $supportedLocales = config('app.supported_locales');
+        if (!in_array($locale, $supportedLocales)) {
+            // Si no es válido, usa el idioma predeterminado
+            $locale = config('app.locale');
+        }
+
+        // Establece el idioma en Laravel y en la sesión
         App::setLocale($locale);
+        Session::put('locale', $locale);
 
         return $next($request);
     }

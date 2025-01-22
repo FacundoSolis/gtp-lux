@@ -1,40 +1,39 @@
 document.addEventListener('DOMContentLoaded', function () {
     const priceListButton = document.getElementById('price-list-button');
-    const modalContainer = document.querySelector('.modal-price-list-container');
-    const modalElement = document.getElementById('priceListModal');
+    const priceListModal = new bootstrap.Modal(document.getElementById('priceListModal'));
+    const priceListContent = document.getElementById('price-list-content');
 
-    // Contenido de la lista de precios para el modal
-    const priceListContent = `
-        <h4>Lista de Precios</h4>
-        <ul>
-            <li>01 enero - 31 mayo: <strong>3.400 € / día</strong></li>
-            <li>01 junio - 30 junio: <strong>3.975 € / día</strong></li>
-            <li>01 julio - 31 agosto: <strong>4.725 € / día</strong></li>
-            <li>01 septiembre - 30 septiembre: <strong>3975 € / día</strong></li>
-            <li>01 octubre - 31 diciembre: <strong>4725 € / día</strong></li>
-        </ul>
-    `;
+    priceListButton.addEventListener('click', function () {
+        const boatId = 4; // ID del barco (esto puede ser dinámico según el barco en la página)
 
-    // Función para cargar y mostrar el modal
-    const loadPriceListModal = () => {
-        modalContainer.innerHTML = priceListContent;
+        // Mostrar mensaje de carga
+        priceListContent.innerHTML = '<p>Cargando lista de precios...</p>';
 
-        // Inicializar y mostrar el modal
-        const priceListModal = new bootstrap.Modal(modalElement);
+        // Realizar la petición para obtener los precios
+        fetch(`/get-prices?boat_id=${boatId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.prices.length === 0) {
+                    priceListContent.innerHTML = '<p>No hay precios disponibles para este barco.</p>';
+                } else {
+                    let content = `<h4>Lista de Precios para ${data.boat_name}</h4><ul>`;
+                    data.prices.forEach(price => {
+                        content += `
+                            <li>
+                                <strong>Fechas:</strong> ${price.start_date} - ${price.end_date}<br>
+                                <strong>Precio por día:</strong> ${price.price_per_day} € / día
+                            </li>`;
+                    });
+                    content += '</ul>';
+                    priceListContent.innerHTML = content;
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar la lista de precios:', error);
+                priceListContent.innerHTML = '<p>Error al cargar los precios. Intenta nuevamente.</p>';
+            });
+
+        // Abrir el modal
         priceListModal.show();
-    };
-
-    // Asignar evento al botón para abrir el modal
-    priceListButton.addEventListener('click', loadPriceListModal);
-
-    // Evento para limpiar correctamente al cerrar el modal
-    modalElement.addEventListener('hidden.bs.modal', () => {
-        // Eliminar cualquier fondo residual
-        const backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) backdrop.remove();
-
-        // Asegurar que el scroll de la página funcione
-        document.body.style.overflow = '';
-        document.body.classList.remove('modal-open'); // Quitar clase de Bootstrap que bloquea el scroll
     });
 });

@@ -88,6 +88,7 @@
       </ul>
   </nav>
 </header>
+
 <section class="banner">
   <video class="banner-video" autoplay muted loop>
     <source src="{{ asset('img/video-banner.mp4') }}" type="video/mp4">
@@ -219,6 +220,83 @@
   </div>
 </section>
 
+<section class="section-title py-5">
+    <div class="container text-center">
+        {!! __('h1_title_home') !!}
+        {!! __('h1_p_home') !!}
+    </div>
+</section>
+
+<section class="two-columns py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+            <img src="{{ asset('img/princess/princes7.jpg') }}" alt="Imagen 1" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                {!! __('h2_title_home_1') !!}
+                {!! __('h2_p_home_1') !!}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="two-columns py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                {!! __('h2_title_home_2') !!}
+                {!! __('h2_p_home_2') !!}
+            </div>
+            <div class="col-md-6">
+              <img src="{{ asset('img/protofino/portofino.copa.jpeg') }}" alt="Imagen 2" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="two-columns py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+              <img src="{{ asset('img/protofino/portofino2.jpg') }}" alt="Imagen 3" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                {!! __('h2_title_home_3') !!}
+                {!! __('h2_p_home_3') !!}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="faq-section py-5 bg-light">
+    <div class="container">
+        {!! __('h2_title_home_4') !!}
+        <div class="accordion" id="faqAccordion">
+            @php
+                $faqs = json_decode(__('h2_p_home_4'), true);
+            @endphp
+            @foreach ($faqs as $faq)
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeader{{ $faq['id'] }}">
+                        <!-- El botón de la pregunta, con la clase collapsed por defecto para que inicie cerrado -->
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $faq['id'] }}" aria-expanded="false" aria-controls="collapse{{ $faq['id'] }}">
+                            {{ $faq['question'] }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ $faq['id'] }}" class="accordion-collapse collapse" aria-labelledby="faqHeader{{ $faq['id'] }}" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            {{ $faq['answer'] }}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
@@ -227,7 +305,6 @@
       <a href="{{ url('/') }}">
         <img src="{{ asset('img/logo.png') }}" alt="{{ __('footer') }}" class="footer-logo">
       </a>
-      <p class="footer-description">Somos una empresa líder en alquiler de barcos, ofreciendo experiencias inolvidables en el mar. Descubre nuestra flota y vive aventuras únicas.</p>
       <div class="social-icons">
         <p>{{ __('social_media') }}</p>
         <a href="https://instagram.com" target="_blank">
@@ -241,27 +318,24 @@
 
     <!-- Columna 2: Contacto -->
     <div class="footer-column footer-align footer-offset">
-      <h3>Contact Us</h3>
       <p>Teléfono: +34 123 456 789</p>
       <p>Correo: contacto@empresa.com</p>
       <p>Dirección: Marina de Denia, España</p>
     </div>
 
-    <!-- Columna 3: Enlaces -->
-    <div class="footer-column footer-align footer-offset">
-      <h3>Enlaces</h3>
+  <!-- Columna 3: Enlaces -->
+  <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ url('resources/views/pages/aviso.blade.php') }}">Aviso Legal</a></li>
-        <li><a href="{{ url('resources/views/pages/contacto.blade.php') }}">Contacto</a></li>
-        <li><a href="{{ url('resources/views/pages/nosotros.blade.php') }}">Nosotros</a></li>
-        <li><a href="{{ url('resources/views/pages/politicas.blade.php') }}">Políticas</a></li>
-        <li><a href="{{ url('resources/views/pages/terminos.blade.php') }}">Términos</a></li>
+        <li><a href="{{ route('aviso') }}">Aviso Legal</a></li>
+        <li><a href="{{ route('contacto') }}">Contacto</a></li>
+        <li><a href="{{ route('nosotros') }}">Nosotros</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas</a></li>
+        <li><a href="{{ route('terminos') }}">Términos</a></li>
       </ul>
     </div>
 
     <!-- Columna 4: Suscripción -->
     <div class="footer-column footer-align footer-offset">
-      <h3>Subscribe</h3>
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
         <input type="email" placeholder="Tu email" class="subscribe-input">
@@ -274,6 +348,7 @@
 
 <!-- Scripts -->
 @section('scripts')
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('js/slider.js') }}"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
@@ -431,6 +506,7 @@
       });
 
       calendar.render();
+
 }});
 
 </script>

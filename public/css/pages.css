@@ -1,65 +1,23 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-}
-
-.step {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.left-section {
-    background-color: #f8f9fa;
-    padding: 20px;
-    height: 100%;
-    flex: 0 0 75%;
-}
-
-.right-section {
-    padding: 20px;
-    flex: 0 0 25%;
-}
-
-.reservation-info {
-    padding-right: 15px;
-}
-
-.payment-methods {
-    padding-left: 15px;
-}
-
 .card {
-    border-radius: 8px;
-    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.bg-primary {
-    background-color: black;
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.bg-info {
-    --bs-bg-opacity: 1;
-    background-color: #0D6EFD !important;
+.text-center {
+    margin-top: 100px;
 }
 
-.img-fluid {
-    max-width: 100%;
-    height: auto;
+.text-primary {
+    color: #007bff !important;
 }
 
-h2 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
+.text-secondary {
+    color: #6c757d !important;
 }
 
 /*Footer*/
@@ -67,6 +25,7 @@ footer {
     background-color: black; /* Fallback para navegadores sin soporte */
     background-size: cover;
     padding: 20px 0;
+    margin-top: 20px;
   }
   
   .footer-container {
@@ -169,26 +128,3 @@ footer {
   .footer p{
     color: white;
   }
-.btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-
-@media (max-width: 768px) {
-    .left-section, .right-section {
-        flex: 0 0 100%;
-        padding: 10px;
-    }
-
-    .row {
-        flex-direction: column;
-    }
-
-    .payment-methods {
-        width: 100%;
-    }
-}

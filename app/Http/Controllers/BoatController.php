@@ -10,6 +10,8 @@ use App\Models\Reservation;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use App\Models\Price;
+
 
 
 
@@ -192,7 +194,12 @@ public function showBoatPage($boat_id, Request $request)
             'engine' => 'nullable|numeric',
             'pickup_time' => 'required|date_format:H:i',
             'dropoff_time' => 'required|date_format:H:i',
-            'deposit' => 'required|numeric|min:0',        
+            'deposit' => 'required|numeric|min:0',
+            'seasons' => 'nullable|array',
+            'seasons.*.name' => 'required|string|max:255',
+            'seasons.*.start_date' => 'required|date',
+            'seasons.*.end_date' => 'required|date|after_or_equal:seasons.*.start_date',
+            'seasons.*.price_per_day' => 'required|numeric|min:0',
         ]);
             // Proveer un valor predeterminado para 'boat_id'
         $validated['boat_id'] = Boat::max('boat_id') + 1;
@@ -227,7 +234,14 @@ public function showBoatPage($boat_id, Request $request)
         if ($request->has('not_included_in_price')) {
             $boat->not_included_in_price = json_encode($request->not_included_in_price);
         }
-
+        // Guardar temporadas
+        if ($request->has('seasons')) {
+            foreach ($validated['seasons'] as $season) {
+                Log::info('Creando temporada:', $season);
+                $boat->seasons()->create($season);
+            }
+        }
+    
         return redirect()->route('boats.index')->with('success', 'Barco creado con éxito.');
     }
 
@@ -247,8 +261,12 @@ public function showBoatPage($boat_id, Request $request)
             'pickup_time' => 'required|date_format:H:i',
             'dropoff_time' => 'required|date_format:H:i',
             'deposit' => 'required|numeric|min:0',
+            'seasons' => 'nullable|array',
+            'seasons.*.name' => 'required|string|max:255',
+            'seasons.*.start_date' => 'required|date',
+            'seasons.*.end_date' => 'required|date|after_or_equal:seasons.*.start_date',
+            'seasons.*.price_per_day' => 'required|numeric|min:0',
         ]);
-
             // Obtener la descripción principal y las adicionales (si las hay)
         $description = $request->input('description'); // Descripción principal
         $descriptionData = [
@@ -269,6 +287,13 @@ public function showBoatPage($boat_id, Request $request)
             'deposit' => $validated['deposit'], // Fianza
             // Otros campos que puedas tener...
         ]);
+            // Actualizar temporadas
+        $boat->seasons()->delete(); // Eliminar todas las temporadas anteriores
+        if (!empty($validated['seasons'])) {
+            foreach ($validated['seasons'] as $season) {
+                $boat->seasons()->create($season);
+            }
+        }
 
     return redirect()->route('boats.index')->with('success', 'Barco actualizado con éxito.');
 }
@@ -304,6 +329,11 @@ public function create()
     $ports = Port::all(); // Obtener los puertos
     $equipments = Equipment::all(); // Obtener todos los equipamientos
     return view('admin.boats.create', compact('ports', 'equipments'));
+}
+public function getPriceList(Request $request)
+{
+    $prices = Price::with('boat')->get();
+    return response()->json($prices);
 }
 
 }

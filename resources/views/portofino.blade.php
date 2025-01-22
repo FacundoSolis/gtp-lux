@@ -31,8 +31,8 @@
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
             <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
-            <li class="li_links"><a href="#contacto" class="link">{{ __('contact') }}</a></li>
-            <li class="li_links"><a href="#quienes-somos" class="link">{{ __('about_us') }}</a></li>
+            <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
+            <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">
                 <div class="dropdown">
                     <span class="value">
@@ -61,27 +61,23 @@
   <h2>{{ __('sunseeker_portofino_53') }}</h2>
 </section>
 
-<section class="slider-with-arrows">
-  <button class="prev">←</button>
-  <div class="slides-container">
-    <div class="slides">
-        <img src="{{ asset('img/protofino/Portofino.png') }}" alt="Imagen 1">
-        <img src="{{ asset('img/protofino/portofino.lateral.jpg') }}" alt="Imagen 2">
-        <img src="{{ asset('img/protofino/portofino.lancha.jpeg') }}" alt="Imagen 3">
-        <img src="{{ asset('img/protofino/portofino.copa.jpeg') }}" alt="Imagen 4">
-        <img src="{{ asset('img/protofino/portofino.cama.jpeg') }}" alt="Imagen 5">
-        <img src="{{ asset('img/protofino/Portofino.dentro.png') }}" alt="Imagen 6">
-        <img src="{{ asset('img/protofino/Portofino.solar.jpeg') }}" alt="Imagen 7">
-        <img src="{{ asset('img/protofino/portofino.red.jpg') }}" alt="Imagen 8">
-    </div>
+<div class="slideshow-container">
+  <div class="slides">
+    <img src="{{ asset('img/protofino/Portofino.png') }}" alt="Imagen 1">
+    <img src="{{ asset('img/protofino/portofino.lateral.jpg') }}" alt="Imagen 2">
+    <img src="{{ asset('img/protofino/portofino.lancha.jpeg') }}" alt="Imagen 3">
+    <img src="{{ asset('img/protofino/portofino.copa.jpeg') }}" alt="Imagen 4">
+    <img src="{{ asset('img/protofino/portofino.cama.jpeg') }}" alt="Imagen 5">
+    <img src="{{ asset('img/protofino/Portofino.dentro.png') }}" alt="Imagen 6">
+    <img src="{{ asset('img/protofino/Portofino.solar.jpeg') }}" alt="Imagen 7">
+    <img src="{{ asset('img/protofino/portofino.red.jpg') }}" alt="Imagen 8">
   </div>
-  <button class="next">→</button>
-</section>
+  <button class="slider-button-prev" onclick="scrollSlides(-1)">&#10094;</button>
+  <button class="slider-button-next" onclick="scrollSlides(1)">&#10095;</button>
+</div>
 
 <section class="description-boat">
     <p>{!! __('sunseeker_portofino_53_section') !!}</p>
-    <!-- Botón para abrir el modal -->
-    <button id="loadMoreDescriptionButton" class="btn-ver-más">{{ __('more_info') }}</button>
 </section>
 
 <!-- Modal de descripción -->
@@ -240,8 +236,8 @@
             <section id="price-summary" class="price-card mt-3">
                 <h5>Resumen de precios</h5>
                 <p><strong>Total:</strong> <span id="total-price">0€</span></p>
-                <button id="price-list-button" class="btn btn-info mt-3">{{ __('check_price_list') }}</button>
-                    <form id="reservation-form" action="{{ route('form') }}" method="GET">
+                    <button id="price-list-button" class="btn btn-list-price mx-2">{{ __('check_price_list') }}</button>
+                <form id="reservation-form" action="{{ route('form') }}" method="GET">
                 @csrf
                     <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
                     <input type="hidden" name="name" value="Reserva sin nombre">
@@ -257,8 +253,6 @@
     </div>
 </div>
 
-
-
 <!-- Modal para lista de precios -->
 <div id="priceListModal" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -268,94 +262,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-price-list-container">
-                <!-- Contenido dinámico de la lista de precios -->
+                <div id="price-list-content">Cargando precios...</div>
             </div>
         </div>
     </div>
 </div>
 
-<section class="section-title py-5">
-    <div class="container text-center">
-        {!! __('h1_title_home') !!}
-        {!! __('h1_p_home') !!}
-    </div>
-</section>
-
-<section class="two-columns py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <img src="{{ asset('img/imagen1.jpg') }}" alt="Imagen 1" class="img-fluid rounded">
-            </div>
-            <div class="col-md-6">
-                {!! __('h2_title_home_1') !!}
-                {!! __('h2_p_home_1') !!}
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="two-columns py-5 bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                {!! __('h2_title_home_2') !!}
-                {!! __('h2_p_home_2') !!}
-            </div>
-            <div class="col-md-6">
-                <img src="{{ asset('img/imagen2.jpg') }}" alt="Imagen 2" class="img-fluid rounded">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="two-columns py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <img src="{{ asset('img/imagen3.jpg') }}" alt="Imagen 3" class="img-fluid rounded">
-            </div>
-            <div class="col-md-6">
-                {!! __('h2_title_home_3') !!}
-                {!! __('h2_p_home_3') !!}
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- Sección 5: Preguntas Frecuentes -->
-<section class="faq-section py-5 bg-light">
-    <div class="container">
-        {!! __('h2_title_home_4') !!}
-        <div class="accordion" id="faqAccordion">
-            <!-- Pregunta 1 -->
-            <div class="accordion" id="faqAccordion">
-            @php
-                $faqs = json_decode(__('h2_p_home_4'), true);
-            @endphp
-            @foreach ($faqs as $faq)
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq{{ $faq['id'] }}">
-                        <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $faq['id'] }}" aria-expanded="{{ $loop->first ? 'true' : 'false' }}" aria-controls="collapse{{ $faq['id'] }}">
-                            {{ $faq['question'] }}
-                        </button>
-                    </h2>
-                    <div id="collapse{{ $faq['id'] }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}" aria-labelledby="faq{{ $faq['id'] }}" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            {{ $faq['answer'] }}
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
-    <div class="footer-left">
+    <!-- Columna 1: Logo y descripción -->
+    <div class="footer-column">
       <a href="{{ url('/') }}">
         <img src="{{ asset('img/logo.png') }}" alt="{{ __('footer') }}" class="footer-logo">
       </a>
@@ -368,8 +285,33 @@
           <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
         </a>
       </div>
-      <p class="contact-email">contacto@empresa.com</p>
-      <p class="location">{{ __('location_address') }}</p>
+    </div>
+
+    <!-- Columna 2: Contacto -->
+    <div class="footer-column footer-align footer-offset">
+      <p>Teléfono: +34 123 456 789</p>
+      <p>Correo: contacto@empresa.com</p>
+      <p>Dirección: Marina de Denia, España</p>
+    </div>
+
+  <!-- Columna 3: Enlaces -->
+  <div class="footer-column footer-align footer-offset">
+      <ul class="footer-links">
+        <li><a href="{{ route('aviso') }}">Aviso Legal</a></li>
+        <li><a href="{{ route('contacto') }}">Contacto</a></li>
+        <li><a href="{{ route('nosotros') }}">Nosotros</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas</a></li>
+        <li><a href="{{ route('terminos') }}">Términos</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 4: Suscripción -->
+    <div class="footer-column footer-align footer-offset">
+      <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="Tu email" class="subscribe-input">
+        <button type="submit" class="subscribe-button">SUSCRIBE</button>
+      </form>
     </div>
   </div>
 </footer>
@@ -385,7 +327,6 @@
     ];
     </script>
 
-<script src="{{ asset('js/loadMoreDescription.js') }}"></script>
 <script src="{{ asset('js/listapreciosportofino.js') }}"></script>
 <script src="{{ asset('js/syncddate.js') }}"></script>
 <script src="{{ asset('js/slider2.js') }}"></script>

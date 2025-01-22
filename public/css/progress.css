@@ -1,0 +1,44 @@
+/* Card styling */
+.progress-card {
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Progress steps */
+.step .nav-link {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #6c757d;
+  border-radius: 50px;
+  padding: 10px 20px;
+  transition: none; /* Elimina las transiciones */
+  pointer-events: none; /* Desactiva la interacción */
+  cursor: default; /* Elimina la manito */
+}
+
+/* Active step */
+.step .nav-link.active {
+  background-color: #0D6EFD; /* Siempre azul */
+  color: #fff;
+}
+
+/* Disabled steps */
+.step .nav-link.disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Hover effect for enabled steps */
+.step .nav-link:not(.disabled):hover {
+  background-color: #0D6EFD; /* Siempre azul */
+  color: #fff;
+}
+
+/* Adjust spacing */
+.step .nav-pills {
+  gap: 10px;
+}

@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Log; // Importa la clase Log
 
 
+
 Route::middleware(['web'])->group(function () {
     // Rutas de inicio
     Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
@@ -39,9 +40,6 @@ Route::middleware(['web'])->group(function () {
         return response()->json(['success' => true, 'locale' => $locale]);
     })->name('set-locale');
     
-    
-    
-
     // Rutas para las páginas de barcos específicos
     Route::get('/sunseeker', [BoatController::class, 'showSunseekerPortofino'])->name('sunseeker');
     Route::get('/princess', [BoatController::class, 'showPrincessV65'])->name('princess');
@@ -89,6 +87,8 @@ Route::middleware(['web'])->group(function () {
     Route::get('/reservation/confirmation/{reservation}', [PaymentController::class, 'confirmation'])->name('confirmation');
     Route::post('/reservation/save', [ReservationController::class, 'saveDetails'])->name('reservation.saveDetails');
     Route::get('/redirect-dates', [ReservationController::class, 'redirectWithDates'])->name('redirect.dates');
+    Route::get('/prices/list', [BoatController::class, 'getPriceList'])->name('prices.list');
+    Route::get('/get-prices', [PriceController::class, 'getPricesForBoat']);
 
 
     Route::get('/calculate-price', [PriceController::class, 'calculatePrice'])->name('calculate.price');
@@ -177,4 +177,24 @@ Route::middleware(['web'])->group(function () {
 
     // Redirección tras inicio de sesión
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('pages/aviso', function () {
+    return view('pages.aviso');
+})->name('aviso');
+
+Route::get('pages/contacto', function () {
+    return view('pages.contacto');
+})->name('contacto');
+
+Route::get('pages/nosotros', function () {
+    return view('pages.nosotros');
+})->name('nosotros');
+
+Route::get('pages/politicas', function () {
+    return view('pages.politicas');
+})->name('politicas');
+
+Route::get('pages/terminos', function () {
+    return view('pages.terminos');
+})->name('terminos');
+
 });

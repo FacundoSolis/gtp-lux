@@ -15,6 +15,11 @@ class Boat extends Model
     protected $casts = [
         'description' => 'array',  // Esto convertirá el campo description en un array automáticamente
     ];
+    // Relación con los precios
+    public function prices()
+    {
+        return $this->hasMany(Price::class);
+    }
     public function port()
     {
         return $this->belongsTo(Port::class);
@@ -43,9 +48,9 @@ class Boat extends Model
         })
         ->exists();
 }
-    public function seasons()
-    {
-        return $this->hasMany(Season::class);
+public function seasons()
+{
+    return $this->hasMany(Season::class);
 }
 public function calculateDailyPrice($startDate, $endDate)
 {
