@@ -127,3 +127,38 @@ footer {
 .footer p{
   color: white;
 }
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-column {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .subscribe-form {
+    padding: 20px 0; /* Reducir el espacio en móviles */
+  }
+  
+  .subscribe-form {
+    display: flex;
+    flex-direction: column; /* Elementos apilados en el formulario */
+    align-items: center; /* Centra horizontalmente */
+    gap: 10px; /* Espacio entre el campo y el botón */
+  }
+  
+  .subscribe-input {
+    width: 90%; /* Ajusta el ancho del campo de entrada */
+    max-width: 300px; /* Limita el ancho máximo */
+    padding: 10px; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente adecuado */
+  }
+  
+  .subscribe-button {
+    width: 90%; /* Botón centrado con el campo de entrada */
+    max-width: 300px; /* Limita el ancho máximo */
+    padding: 10px; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente adecuado */
+  }
+  }

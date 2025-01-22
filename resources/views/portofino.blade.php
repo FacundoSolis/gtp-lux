@@ -289,19 +289,21 @@
 
     <!-- Columna 2: Contacto -->
     <div class="footer-column footer-align footer-offset">
-      <p>Teléfono: +34 123 456 789</p>
-      <p>Correo: contacto@empresa.com</p>
+      <p>Teléfono: +34 910 059 958</p>
+      <p>Correo: info@gtplux.com</p>
       <p>Dirección: Marina de Denia, España</p>
     </div>
 
-  <!-- Columna 3: Enlaces -->
-  <div class="footer-column footer-align footer-offset">
+    <!-- Columna 3: Enlaces -->
+    <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
         <li><a href="{{ route('aviso') }}">Aviso Legal</a></li>
+        <li><a href="{{ route('terminos') }}">Términos y condiciones</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Privacidad</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Cookies</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Cancelación</a></li>
+        <li><a href="{{ route('nosotros') }}">Sobre Nosotros</a></li>
         <li><a href="{{ route('contacto') }}">Contacto</a></li>
-        <li><a href="{{ route('nosotros') }}">Nosotros</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas</a></li>
-        <li><a href="{{ route('terminos') }}">Términos</a></li>
       </ul>
     </div>
 

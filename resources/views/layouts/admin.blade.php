@@ -75,6 +75,11 @@
                         <i class="fas fa-code me-2"></i> Códigos de Países e Idiomas
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.sections.index') }}" class="nav-link {{ request()->routeIs('admin.sections.*') ? 'active' : '' }}">
+                        <i class="fas fa-code me-2"></i> Deploy
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Contenido Principal -->

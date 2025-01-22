@@ -43,7 +43,9 @@
                     <ul class="dropdown-menu" id="languageDropdown">
                         @foreach (config('languages') as $code => $language)
                             <li>
-                                <a href="{{ route('set-locale', $code) }}" class="language">
+                            <a href="{{ url(App::getLocale() . '/set-locale/es') }}">Español</a>
+                            <a href="{{ url(App::getLocale() . '/set-locale/en') }}">English</a>
+                            <a href="{{ url(App::getLocale() . '/set-locale/fr') }}">Français</a>
                                     <img src="{{ asset('path_to_flags/' . $code . '.png') }}" 
                                          alt="{{ $language['name'] }}" class="flag-icon">
                                     {{ $language['name'] }}
@@ -82,7 +84,7 @@
                     <label for="message" class="form-label">Mensaje</label>
                     <textarea class="form-control" id="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
                 </div>
-                <div class="text-center">
+                <div class="text-center2">
                     <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
                 </div>
             </form>
@@ -111,19 +113,21 @@
 
     <!-- Columna 2: Contacto -->
     <div class="footer-column footer-align footer-offset">
-      <p>Teléfono: +34 123 456 789</p>
-      <p>Correo: contacto@empresa.com</p>
+      <p>Teléfono: +34 910 059 958</p>
+      <p>Correo: info@gtplux.com</p>
       <p>Dirección: Marina de Denia, España</p>
     </div>
 
-  <!-- Columna 3: Enlaces -->
-  <div class="footer-column footer-align footer-offset">
+    <!-- Columna 3: Enlaces -->
+    <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
         <li><a href="{{ route('aviso') }}">Aviso Legal</a></li>
+        <li><a href="{{ route('terminos') }}">Términos y condiciones</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Privacidad</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Cookies</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Cancelación</a></li>
+        <li><a href="{{ route('nosotros') }}">Sobre Nosotros</a></li>
         <li><a href="{{ route('contacto') }}">Contacto</a></li>
-        <li><a href="{{ route('nosotros') }}">Nosotros</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas</a></li>
-        <li><a href="{{ route('terminos') }}">Términos</a></li>
       </ul>
     </div>
 

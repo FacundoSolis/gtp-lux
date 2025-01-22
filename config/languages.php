@@ -2,7 +2,7 @@
 
 return [
     'en_us' => ['name' => 'Inglés Americano', 'flag' => 'en_us.png'],
-    'gb' => ['name' => 'Inglés Británico', 'flag' => 'gb.png'],
+    'en_gb' => ['name' => 'Inglés Británico', 'flag' => 'gb.png'],
     'es' => ['name' => 'Español', 'flag' => 'es.png'],
     'fr' => ['name' => 'Francés', 'flag' => 'fr.png'],
     'it' => ['name' => 'Italiano', 'flag' => 'it.png'],

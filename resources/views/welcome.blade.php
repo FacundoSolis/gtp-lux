@@ -11,41 +11,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- CSS embebido para rutas dinámicas -->
-  <style>
-    .slider-container {
-      background: linear-gradient(
-          rgba(0, 0, 0, 0.8),
-          rgba(0, 0, 0, 0.5)
-        ),url('{{ asset('img/fondo-mar.jpg') }}');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .form-container {
-      background: linear-gradient(
-          rgba(0, 0, 0, 0.8),
-          rgba(0, 0, 0, 0.5)
-        ),
-        url('{{ asset('img/fondo-form.jpg') }}'); /* Ruta actualizada con asset() */
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-    }
-    .map-form {
-      background: linear-gradient(
-          rgba(0, 0, 0, 0.8),
-          rgba(0, 0, 0, 0.5)
-        ),
-        url('{{ asset('img/lineas-mapa.jpg') }}');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-  </style>
 @endpush
 
   <!-- Banner Section -->
@@ -137,10 +104,13 @@
     </div>
 </div>
 
+<section class="highlight-section">
+  <h2 class="highlight-title">{{ __('unforgettable_experience') }}</h2>
+</section>
+
+
 <!-- Slider -->
 <section id="slider" class="slider-container">
-    <!-- Título principal -->
-  <h2 class="slider-title">{{ __('unforgettable_experience') }}</h2>
   <!-- Primera sección: Imagen derecha, texto izquierda -->
   <div class="info-row">
     <div class="slider-with-arrows">
@@ -227,52 +197,56 @@
     </div>
 </section>
 
-<section class="two-columns py-5">
+<section class="section-one py-5">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center-1">
             <div class="col-md-6">
-            <img src="{{ asset('img/princess/princes7.jpg') }}" alt="Imagen 1" class="img-fluid rounded">
+                <img src="{{ asset('img/princess/princes7.jpg') }}" alt="Imagen 1" class="img-fluid rounded">
             </div>
-            <div class="col-md-6">
-                {!! __('h2_title_home_1') !!}
-                {!! __('h2_p_home_1') !!}
+            <div class="col-md-6 text-right">
+                <h2 class="title-one">{!! __('h2_title_home_1') !!}</h2>
+                <p class="paragraph-one">{!! __('h2_p_home_1') !!}</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="two-columns py-5 bg-light">
+<section class="section-two py-5 bg-light">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
-                {!! __('h2_title_home_2') !!}
-                {!! __('h2_p_home_2') !!}
+            <!-- Texto a la izquierda -->
+            <div class="col-md-6 text-left">
+                <h2 class="title-two">{!! __('h2_title_home_2') !!}</h2>
+                <p class="paragraph-two">{!! __('h2_p_home_2') !!}</p>
             </div>
-            <div class="col-md-6">
-              <img src="{{ asset('img/protofino/portofino.copa.jpeg') }}" alt="Imagen 2" class="img-fluid rounded">
+            <!-- Imagen a la derecha -->
+            <div class="col-md-6 image-right">
+                <img src="{{ asset('img/protofino/portofino.copa.jpeg') }}" alt="Imagen 2" class="img-fluid rounded">
             </div>
         </div>
     </div>
 </section>
 
-<section class="two-columns py-5">
+<section class="section-three py-5">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="{{ asset('img/protofino/portofino2.jpg') }}" alt="Imagen 3" class="img-fluid rounded">
+            <!-- Imagen a la izquierda -->
+            <div class="col-md-6 image-left">
+                <img src="{{ asset('img/protofino/portofino2.jpg') }}" alt="Imagen 3" class="img-fluid rounded">
             </div>
-            <div class="col-md-6">
-                {!! __('h2_title_home_3') !!}
-                {!! __('h2_p_home_3') !!}
+            <!-- Texto a la derecha -->
+            <div class="col-md-6 text-right">
+                <h2 class="title-three">{!! __('h2_title_home_3') !!}</h2>
+                <p class="paragraph-three">{!! __('h2_p_home_3') !!}</p>
             </div>
         </div>
     </div>
 </section>
 
 
-<section class="faq-section py-5 bg-light">
-    <div class="container">
-        {!! __('h2_title_home_4') !!}
+<section class="faq-section2 py-5 bg-light2">
+    <div class="container2">
+        <h2 class="title-faq2">{!! __('h2_title_home_4') !!}</h2>
         <div class="accordion" id="faqAccordion">
             @php
                 $faqs = json_decode(__('h2_p_home_4'), true);
@@ -318,19 +292,21 @@
 
     <!-- Columna 2: Contacto -->
     <div class="footer-column footer-align footer-offset">
-      <p>Teléfono: +34 123 456 789</p>
-      <p>Correo: contacto@empresa.com</p>
+      <p>Teléfono: +34 910 059 958</p>
+      <p>Correo: info@gtplux.com</p>
       <p>Dirección: Marina de Denia, España</p>
     </div>
 
-  <!-- Columna 3: Enlaces -->
-  <div class="footer-column footer-align footer-offset">
+    <!-- Columna 3: Enlaces -->
+    <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
         <li><a href="{{ route('aviso') }}">Aviso Legal</a></li>
+        <li><a href="{{ route('terminos') }}">Términos y condiciones</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Privacidad</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Cookies</a></li>
+        <li><a href="{{ route('politicas') }}">Políticas de Cancelación</a></li>
+        <li><a href="{{ route('nosotros') }}">Sobre Nosotros</a></li>
         <li><a href="{{ route('contacto') }}">Contacto</a></li>
-        <li><a href="{{ route('nosotros') }}">Nosotros</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas</a></li>
-        <li><a href="{{ route('terminos') }}">Términos</a></li>
       </ul>
     </div>
 

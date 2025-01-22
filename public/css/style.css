@@ -269,36 +269,20 @@ line-height: 1;
   padding: 50px 20px;
   max-width: 100%;
   margin: 0;
+  background: linear-gradient(
+    to top,        /* Invertimos la dirección del degradado */
+    #0E222D,       /* Azul inicial (coincide con el final de la anterior) */
+    #0A1A26,       /* Azul ligeramente más oscuro */
+    #06131E        /* Azul profundo */
+  );
 }
 
-.slider-title {
-  font-size: 3rem;
-  color: white;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  text-align: center;
-  position: relative;
-  margin-left: 0;
-  margin-right: 0;
-}
-/* Linea titulo slider */
-.slider-title::after {
-  content: "";
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20%;
-  height: 2px;
-  background: linear-gradient(to right, transparent, white, transparent);
-  transition: height 0.3s ease-in-out;
-}
 /* 1º slider */
 .info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 0;
   gap: 30px;
   max-width: 1200px;
   margin-left: auto;
@@ -339,6 +323,25 @@ line-height: 1;
   overflow: hidden; /* Oculta las tarjetas que están fuera del slider visible */
   width: 100%;
   border-radius: 15px;
+}
+.highlight-section {
+  background: linear-gradient(
+    to bottom,
+    #0E222D,  /* Azul inicial */
+    #0A1A26,  /* Azul ligeramente más oscuro */
+    #06131E   /* Azul profundo */
+  );
+  padding-top: 1px; /* Agrega un pequeño relleno para evitar el colapso */
+  overflow: hidden; /* Alternativa para evitar el colapso */
+}
+.highlight-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 .slides {
   display: flex;
@@ -513,7 +516,15 @@ nav a {
   align-items: center;
   gap: 20px;
   padding: 50px;
-}
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.5)
+  ), url('/img/fondo-mar.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
 
 .map-title {
   font-size: 1.8rem;
@@ -703,18 +714,36 @@ footer {
 .footer p{
   color: white;
 }
-.text-center {
-  color: black;
-}
+/*FAQ*/
 
+.text-center {
+  color: WHITE;
+}
+.two-columns h2{
+color: black;
+}  
 .section-title {
   text-align: center;
-  background-color: #f8f9fa;
+  background-color: #EBF6FA;
   z-index: 0;
   position: relative;
+  background: linear-gradient(
+    to bottom,
+    #0E222D,  /* Azul inicial */
+    #0A1A26,  /* Azul ligeramente más oscuro */
+    #06131E   /* Azul profundo */
+  );
 }
-.align-items-center {
-color: black;
+.col-md-6.text-right{
+  color: black;
+}
+.bg-light{
+  background: linear-gradient(
+    to bottom,
+    #0E222D,  /* Azul inicial */
+    #0A1A26,  /* Azul ligeramente más oscuro */
+    #06131E   /* Azul profundo */
+  )!important;
 }
 .two-columns {
   padding: 50px 0;
@@ -726,20 +755,27 @@ color: black;
   border-radius: 10px;
 }
 
-.faq-section {
+.faq-section2 {
   padding: 50px 0;
   color: black;
 }
+.title.faq2{
+  color: black;
+}
 
-.faq-section .accordion-button {
+.faq-section2 .accordion-button {
   background-color: #f8f9fa;
   color: #212529;
 }
 
-.faq-section .accordion-button:hover {
+.faq-section2 .accordion-button:hover {
   background-color: #e9ecef;
   color: #000;
 }
+.py-5{
+  margin-bottom: 0;
+}
+
 
 /*RESPONSIVE*/
 
@@ -790,16 +826,8 @@ section.banner h2 {
   margin-bottom: 15px;
   margin-top: 20px;
 }
-.slider-title::after {
-  position: absolute;
-  bottom: -15px;
-  align-items: center;
-  justify-content: center;
-  transform: translateX(-50%);
-  width: 40%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, white, transparent);
-  transition: height 0.3s ease-in-out;
+.highlight-title{
+  font-size: 2rem;
 }
 .info-row {
   flex-direction: column;  /* Cambia a columna en lugar de fila */
@@ -880,14 +908,75 @@ button.prev, button.next {
 textarea {
   height: 70px;
 }
+.section-title {
+  padding: 30px 10px; /* Reducir espaciado para móviles */
+}
+
+.section-title h1 {
+  font-size: 1.5rem; /* Reducir el tamaño del título en móviles */
+}
+
+.section-title p {
+  font-size: 0.9rem; /* Reducir el tamaño del texto */
+  margin-bottom: 0;
+  margin-top: 35px;
+}
+.col-md-6.text-right{
+  margin-top: 35px;
+}
+.py-5{
+  margin-bottom: 0;
+  text-align: center;
+  padding: 30px 10px;
+}
+.two-columns img{
+  margin-bottom: 30px;
+}
+.section-two .text-left{
+  margin-top: 35px;
+}
+.section-two .row {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección a columna */
+}
+.section-two .image-right {
+  order: 1; /* Coloca la imagen primero */
+}
+.section-two .text-left {
+  order: 2; /* Coloca el texto después */
+}
+
 .footer-container {
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
-
 .footer-column {
   width: 100%;
   margin-bottom: 20px;
+}
+.subscribe-form {
+  padding: 20px 0; /* Reducir el espacio en móviles */
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column; /* Elementos apilados en el formulario */
+  align-items: center; /* Centra horizontalmente */
+  gap: 10px; /* Espacio entre el campo y el botón */
+}
+
+.subscribe-input {
+  width: 90%; /* Ajusta el ancho del campo de entrada */
+  max-width: 300px; /* Limita el ancho máximo */
+  padding: 10px; /* Espaciado interno */
+  font-size: 1rem; /* Tamaño de fuente adecuado */
+}
+
+.subscribe-button {
+  width: 90%; /* Botón centrado con el campo de entrada */
+  max-width: 300px; /* Limita el ancho máximo */
+  padding: 10px; /* Espaciado interno */
+  font-size: 1rem; /* Tamaño de fuente adecuado */
 }
 }

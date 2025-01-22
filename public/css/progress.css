@@ -1,6 +1,6 @@
 /* Card styling */
 .progress-card {
-  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+  background: #0D6EFD;
   border: 1px solid #dee2e6;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -11,7 +11,7 @@
 .step .nav-link {
   font-size: 1rem;
   font-weight: bold;
-  color: #6c757d;
+  color: black;
   border-radius: 50px;
   padding: 10px 20px;
   transition: none; /* Elimina las transiciones */
@@ -21,8 +21,8 @@
 
 /* Active step */
 .step .nav-link.active {
-  background-color: #0D6EFD; /* Siempre azul */
-  color: #fff;
+  background-color: white; /* Siempre azul */
+  color: black;
 }
 
 /* Disabled steps */

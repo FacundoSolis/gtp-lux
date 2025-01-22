@@ -16,4 +16,15 @@ class CountryLanguageCode extends Model
         'language_name',
         'flag',
     ];
+    public function translations()
+    {
+        return $this->hasManyThrough(
+            TranslationLanguage::class,
+            Translation::class,
+            'id', // Clave primaria en Translation
+            'translation_id', // Clave foránea en TranslationLanguage
+            'id', // Clave primaria en CountryLanguageCode
+            'id'  // Clave foránea en Translation
+        );
+    }
 }

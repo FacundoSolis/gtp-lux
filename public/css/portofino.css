@@ -75,7 +75,7 @@ header {
   margin-top: 15px; /* Espaciado superior */
 }
 .slideshow-container {
-  max-width: 100%;
+  max-width: 90%;
   position: relative;
   margin: auto;
   overflow: hidden; /* Oculta el contenido que se desborda */
@@ -679,6 +679,9 @@ footer {
 .modal-content {
   margin-top: 50px;
 }
+.container{
+  margin-bottom: 20px;
+}
 .container-valkyrya h2 {
   font-size: 2rem;
   padding-top: 120px;
@@ -847,34 +850,36 @@ footer {
   margin-top: 5px;
 }
 .footer-container {
-  display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  max-width: 1200px;
-  margin: 0 auto; 
-  padding: 20px; 
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
-.footer-left {
-  text-align: center; 
+.footer-column {
+  width: 100%;
+  margin-bottom: 20px;
 }
-.footer-logo {
-  max-width: 150px; 
-  margin-bottom: 15px; 
+.subscribe-form {
+  padding: 20px 0; /* Reducir el espacio en móviles */
 }
-.social-icons {
+
+.subscribe-form {
   display: flex;
-  justify-content: center; 
-  gap: 10px; 
-  margin: 15px 0; 
+  flex-direction: column; /* Elementos apilados en el formulario */
+  align-items: center; /* Centra horizontalmente */
+  gap: 10px; /* Espacio entre el campo y el botón */
 }
-.social-icons img {
-  width: 30px; 
-  height: 30px;
+
+.subscribe-input {
+  width: 90%; /* Ajusta el ancho del campo de entrada */
+  max-width: 300px; /* Limita el ancho máximo */
+  padding: 10px; /* Espaciado interno */
+  font-size: 1rem; /* Tamaño de fuente adecuado */
 }
-.contact-email,
-.location {
-  margin: 5px 0; 
+
+.subscribe-button {
+  width: 90%; /* Botón centrado con el campo de entrada */
+  max-width: 300px; /* Limita el ancho máximo */
+  padding: 10px; /* Espaciado interno */
+  font-size: 1rem; /* Tamaño de fuente adecuado */
 }
 }

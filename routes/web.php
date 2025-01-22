@@ -6,6 +6,7 @@ use App\Http\Controllers\BoatController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\AdminReservationController;
 use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -22,24 +23,27 @@ use Illuminate\Support\Facades\Log; // Importa la clase Log
 
 
 
+// Middleware 'SetLocaleMiddleware' manejará el segmento del idioma.
 Route::middleware(['web'])->group(function () {
-    // Rutas de inicio
-    Route::get('/', [ReservationController::class, 'showWelcomePage'])->name('welcome');
+    // Ruta principal con prefijo de idioma
+    Route::get('/{locale?}', [ReservationController::class, 'showWelcomePage'])
+        ->where(['locale' => implode('|', config('app.supported_locales')), 'any' => '.*'])
+        ->name('welcome');
+
+    // Ruta para cambiar el idioma desde el menú
     Route::get('/set-locale/{locale}', function ($locale) {
-        $availableLocales = ['es', 'en_us', 'en_gb', 'fr', 'de', 'it', 'pl', 'ru', 'nl', 'uk'];
-    
+        $availableLocales = config('app.supported_locales');
+
         if (in_array($locale, $availableLocales)) {
             Session::put('locale', $locale);
             App::setLocale($locale);
-            Log::info('Idioma cambiado a: ' . $locale); // Uso correcto de Log
         } else {
-            Log::warning('Idioma no válido: ' . $locale); // Manejo de error
             abort(400, 'Idioma no válido');
         }
-    
-        return response()->json(['success' => true, 'locale' => $locale]);
+
+        return back(); // Vuelve a la página anterior
     })->name('set-locale');
-    
+
     // Rutas para las páginas de barcos específicos
     Route::get('/sunseeker', [BoatController::class, 'showSunseekerPortofino'])->name('sunseeker');
     Route::get('/princess', [BoatController::class, 'showPrincessV65'])->name('princess');
@@ -155,6 +159,16 @@ Route::middleware(['web'])->group(function () {
             Route::put('/{id}', [CountryLanguageCodeController::class, 'update'])->name('update'); // Actualizar código
             Route::delete('/{id}', [CountryLanguageCodeController::class, 'destroy'])->name('destroy'); // Eliminar código
         });
+        Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+            // Otras rutas de administración aquí...
+        
+            // Rutas para gestionar las secciones
+            Route::get('/sections', [SectionController::class, 'index'])->name('sections.index'); // Lista de secciones
+            Route::get('/sections/{section}/edit', [SectionController::class, 'edit'])->name('sections.edit'); // Formulario de edición
+            Route::put('/sections/{section}', [SectionController::class, 'update'])->name('sections.update'); // Actualizar sección
+            Route::post('/sections/{section}/deploy', [SectionController::class, 'deploy'])->name('sections.deploy'); // Deploy de sección
+            Route::get('/sections/{section}', [SectionController::class, 'show'])->name('sections.show'); // Mostrar sección específica
+        });
         
         Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
         Route::put('/admin/users/{user}/password', [UserController::class, 'updatePassword'])->name('admin.users.updatePassword');
@@ -175,26 +189,28 @@ Route::middleware(['web'])->group(function () {
         Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
     });
 
+
+
     // Redirección tras inicio de sesión
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('pages/aviso', function () {
     return view('pages.aviso');
-})->name('aviso');
+        })->name('aviso');
 
-Route::get('pages/contacto', function () {
-    return view('pages.contacto');
-})->name('contacto');
+        Route::get('pages/contacto', function () {
+            return view('pages.contacto');
+        })->name('contacto');
 
-Route::get('pages/nosotros', function () {
-    return view('pages.nosotros');
-})->name('nosotros');
+        Route::get('pages/nosotros', function () {
+            return view('pages.nosotros');
+        })->name('nosotros');
 
-Route::get('pages/politicas', function () {
-    return view('pages.politicas');
-})->name('politicas');
+        Route::get('pages/politicas', function () {
+            return view('pages.politicas');
+        })->name('politicas');
 
-Route::get('pages/terminos', function () {
-    return view('pages.terminos');
-})->name('terminos');
+        Route::get('pages/terminos', function () {
+            return view('pages.terminos');
+        })->name('terminos');
 
 });
