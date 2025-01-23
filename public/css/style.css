@@ -787,6 +787,16 @@ color: black;
 .py-5{
   margin-bottom: 0;
 }
+#cookieModal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  background-color: white;
+}
+#cookieModal button {
+  border-radius: 5px;
+}
 /*RESPONSIVE*/
 
 @media (max-width: 768px) {

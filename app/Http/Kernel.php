@@ -19,6 +19,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\CorsMiddleware::class,
+        \App\Http\Middleware\CookieConsent::class,
+
 
     ];
 
@@ -60,5 +62,6 @@ class Kernel extends HttpKernel
     protected $commands = [
         \App\Console\Commands\ExportTranslations::class,
         \App\Console\Commands\ImportTranslationsFromJson::class,
+        \App\Console\Commands\SyncTranslations::class,
     ];
 }

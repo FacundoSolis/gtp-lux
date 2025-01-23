@@ -290,23 +290,21 @@
       </div>
     </div>
 
-    <!-- Columna 2: Contacto -->
-    <div class="footer-column footer-align footer-offset">
-      <p>Teléfono: +34 910 059 958</p>
-      <p>Correo: info@gtplux.com</p>
-      <p>Dirección: Marina de Denia, España</p>
-    </div>
-
+  <!-- Columna 2: Contacto -->
+  <div class="footer-column footer-align footer-offset">
+      <p>{{ __('phone') }}: +34 910 059 958</p>
+      <p>{{ __('email') }}: info@gtplux.com</p>
+      <p>{{ __('address') }}: Marina de Denia, España</p>
+  </div>
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">Aviso Legal</a></li>
-        <li><a href="{{ route('terminos') }}">Términos y condiciones</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Privacidad</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Cookies</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Cancelación</a></li>
-        <li><a href="{{ route('nosotros') }}">Sobre Nosotros</a></li>
-        <li><a href="{{ route('contacto') }}">Contacto</a></li>
+        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('politicas') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('nosotros') }}">{!! __('about_us_title') !!}</a></li>
+        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
 
@@ -327,6 +325,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('js/slider.js') }}"></script>
   <script src="{{ asset('js/menuhome.js') }}"></script>
+  <script src="{{ asset('js/cookieConsent.js') }}"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

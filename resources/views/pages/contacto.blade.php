@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 @endpush
 
 @section('title', 'Contacto')
@@ -60,8 +61,8 @@
 </header>
 
 <div class="contact-header text-center">
-    <h2 class="text-primary">Contáctanos</h2>
-    <p>Estamos aquí para responder a tus preguntas y comentarios. ¡Déjanos un mensaje!</p>
+    <h2 class="text-primary">{{ __('contact') }}</h2>
+    <p>{{ __('help_text') }}</p>
 </div>
 
 <div class="container">
@@ -69,23 +70,23 @@
         <div class="col-lg-8">
             <form>
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="name" placeholder="Escribe tu nombre completo" required>
+                    <label for="name" class="form-label">{{ __('name') }}</label>
+                    <input type="text" class="form-control" id="name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" placeholder="Escribe tu correo electrónico" required>
+                    <label for="email" class="form-label">{{ __('email') }}</label>
+                    <input type="email" class="form-control" id="email" required>
                 </div>
                 <div class="mb-3">
-                    <label for="subject" class="form-label">Asunto</label>
-                    <input type="text" class="form-control" id="subject" placeholder="Escribe el asunto de tu mensaje">
+                    <label for="subject" class="form-label">{{ __('subject') }}</label>
+                    <input type="text" class="form-control" id="subject">
                 </div>
                 <div class="mb-3">
-                    <label for="message" class="form-label">Mensaje</label>
-                    <textarea class="form-control" id="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+                    <label for="message" class="form-label">{{ __('message') }}</label>
+                    <textarea class="form-control" id="message" rows="5" required></textarea>
                 </div>
                 <div class="text-center2">
-                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    <button type="submit" class="btn btn-primary">{{ __('send') }}</button>
                 </div>
             </form>
         </div>
@@ -111,23 +112,21 @@
       </div>
     </div>
 
-    <!-- Columna 2: Contacto -->
-    <div class="footer-column footer-align footer-offset">
-      <p>Teléfono: +34 910 059 958</p>
-      <p>Correo: info@gtplux.com</p>
-      <p>Dirección: Marina de Denia, España</p>
-    </div>
-
+  <!-- Columna 2: Contacto -->
+  <div class="footer-column footer-align footer-offset">
+      <p>{{ __('phone') }}: +34 910 059 958</p>
+      <p>{{ __('email') }}: info@gtplux.com</p>
+      <p>{{ __('address') }}: Marina de Denia, España</p>
+  </div>
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">Aviso Legal</a></li>
-        <li><a href="{{ route('terminos') }}">Términos y condiciones</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Privacidad</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Cookies</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Cancelación</a></li>
-        <li><a href="{{ route('nosotros') }}">Sobre Nosotros</a></li>
-        <li><a href="{{ route('contacto') }}">Contacto</a></li>
+        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('politicas') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('nosotros') }}">{!! __('about_us_title') !!}</a></li>
+        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
 
@@ -143,25 +142,50 @@
 </footer>
 @endsection
 
-@push('scripts')
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+@endsection
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dropdownContainer = document.querySelector('.dropdown');
-        const dropdownValue = dropdownContainer.querySelector('.value');
-        const languageDropdown = document.getElementById('languageDropdown');
-
-        dropdownValue.addEventListener('click', function (event) {
-            event.stopPropagation();
-            const isDropdownOpen = languageDropdown.style.display === 'block';
-            languageDropdown.style.display = isDropdownOpen ? 'none' : 'block';
-        });
-
-        document.addEventListener('click', function (event) {
-            if (!dropdownContainer.contains(event.target)) {
-                languageDropdown.style.display = 'none';
-            }
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownContainer = document.querySelector('.dropdown');
+      const dropdownValue = dropdownContainer.querySelector('.value');
+      const languageDropdown = document.getElementById('languageDropdown');
+  
+    // Abrir o cerrar el menú al hacer clic en el contenedor
+    dropdownValue.addEventListener('click', function (event) {
+        event.stopPropagation(); // Evita el cierre inmediato
+        const isDropdownOpen = languageDropdown.style.display === 'block';
+        languageDropdown.style.display = isDropdownOpen ? 'none' : 'block';
     });
+
+    // Cerrar el menú al hacer clic fuera del dropdown
+    document.addEventListener('click', function (event) {
+        if (!dropdownContainer.contains(event.target)) {
+            languageDropdown.style.display = 'none';
+        }
+    });
+
+    // Manejar selección de idioma
+    languageDropdown.querySelectorAll('.language').forEach(function (item) {
+    item.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita la navegación del enlace
+
+        const selectedLang = this.getAttribute('href').split('/').pop(); // Extraer idioma del enlace
+        fetch(`/set-locale/${selectedLang}`) // Usa el idioma seleccionado dinámicamente
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Recargar la página para aplicar el cambio
+                } else {
+                    console.error('Error al cambiar el idioma.');
+                }
+            })
+            .catch(error => console.error('Error en la solicitud de cambio de idioma:', error));
+
+        // Cerrar el menú después de seleccionar un idioma
+        languageDropdown.style.display = 'none';
+    });
+    });
+});
 </script>
-@endpush
+

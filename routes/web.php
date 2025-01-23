@@ -172,7 +172,11 @@ Route::middleware(['web'])->group(function () {
         
         Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
         Route::put('/admin/users/{user}/password', [UserController::class, 'updatePassword'])->name('admin.users.updatePassword');
-
+        Route::post('/accept-cookies', function (Illuminate\Http\Request $request) {
+            return response('Cookies aceptadas')->cookie(
+                'cookie_consent', true, 525600 // 1 año
+            );
+        });
 
     });
     Route::middleware('guest')->group(function () {

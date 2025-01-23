@@ -7,12 +7,11 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 @endpush
 
-@section('title', 'Términos y Condiciones')
+@section('title', __('privacy_policy'))
 
 @section('content')
 <header class="header">
@@ -60,52 +59,50 @@
 </header>
 
 <div class="container mt-7">
-    <h1 class="text-center text-primary display-4">Términos y Condiciones de GTP Lux</h1>
+    <h1 class="text-center text-primary display-4">{!! __('privacy_policy') !!}</h1>
     <p class="text-center fs-5 text-muted mt-4">
-        Bienvenido a GTP Lux. Al utilizar nuestros servicios, aceptas los siguientes términos y condiciones. Te recomendamos leerlos detenidamente antes de realizar cualquier reserva.
+        {!! __('privacy_policy_h1_p') !!}
     </p>
 </div>
 
 <div class="container">
     <div class="row mt-5">
-        <h3 class="text-center text-primary fw-bold mb-4">1. Información General</h3>
+        <h2 class="text-center text-primary fw-bold mb-4">{!! __('privacy_policy_h2_1_title') !!}</h2>
         <p class="text-muted fs-5">
-            GTP Lux, con razón social GTP Lux S.L., se especializa en el alquiler de barcos para clientes internacionales. Nuestros servicios están sujetos a las leyes vigentes en España. Todas las reservas y el uso de nuestros bienes se rigen por los presentes términos.
+            {!! __('privacy_policy_h2_1_p') !!}
         </p>
 
-        <h3 class="text-center text-primary fw-bold mb-4">2. Reservas y Pagos</h3>
-        <h4>2.1 Métodos de Pago</h4>
-        <p class="text-muted fs-5">Aceptamos pagos mediante tarjeta de crédito/débito y PayPal. Todos los pagos se procesan de manera segura a través de plataformas certificadas.</p>
+        <h2 class="text-center text-primary fw-bold mb-4">{!! __('privacy_policy_h2_2_title') !!}</h2>
+        <p class="text-muted fs-5">
+            {!! __('privacy_policy_h2_2_p') !!}
+        </p>
 
-        <h4>2.2 Precios y Cargos Adicionales</h4>
-        <p class="text-muted fs-5">Los precios publicados incluyen el alquiler del barco. Sin embargo, el servicio de tripulación tiene un coste adicional, que deberá contratarse directamente con nosotros.</p>
+        <h2 class="text-center text-primary fw-bold mb-4">{!! __('privacy_policy_h2_3_title') !!}</h2>
+        <p class="text-muted fs-5">
+            {!! __('privacy_policy_h2_3_p') !!}
+        </p>
 
-        <h4>2.3 Política de Cancelación</h4>
-        <p class="text-muted fs-5">La cancelación de reservas está sujeta a nuestra política de cancelación, la cual puedes consultar aquí.</p>
+        <h2 class="text-center text-primary fw-bold mb-4">{!! __('privacy_policy_h2_4_title') !!}</h2>
+        <p class="text-muted fs-5">
+            {!! __('privacy_policy_h2_4_p') !!}
+        </p>
 
-        <h3 class="text-center text-primary fw-bold mb-4">3. Uso de los Bienes</h3>
-        <h4>3.1 Condiciones de Uso</h4>
-        <ul class="text-muted fs-5">
-            <li>Los barcos alquilados deben ser utilizados exclusivamente para fines recreativos.</li>
-            <li>Queda prohibido fumar a bordo, salvo en las áreas designadas.</li>
-            <li>No se permite el acceso a mascotas sin autorización previa.</li>
-        </ul>
+        <h2 class="text-center text-primary fw-bold mb-4">{!! __('privacy_policy_h2_5_title') !!}</h2>
+        <p class="text-muted fs-5">
+            {!! __('privacy_policy_h2_5_p') !!}
+        </p>
 
-        <h4>3.2 Responsabilidad del Cliente</h4>
-        <p class="text-muted fs-5">El cliente es responsable de cualquier daño causado al barco durante el periodo de alquiler. Se recomienda revisar el estado del barco al inicio del alquiler y reportar cualquier anomalía.</p>
+        <h2 class="text-center text-primary fw-bold mb-4">{!! __('privacy_policy_h2_6_title') !!}</h2>
+        <p class="text-muted fs-5">
+            {!! __('privacy_policy_h2_6_p') !!}
+        </p>
 
-        <h3 class="text-center text-primary fw-bold mb-4">4. Reclamaciones y Resolución de Conflictos</h3>
-        <h4>4.1 Procedimiento de Reclamaciones</h4>
-        <p class="text-muted fs-5">Cualquier reclamación debe ser enviada por escrito al correo electrónico support@gtplux.com en un plazo máximo de 15 días tras la finalización del alquiler.</p>
-
-        <h4>4.2 Ley Aplicable y Jurisdicción</h4>
-        <p class="text-muted fs-5">Estos términos se rigen por la legislación española. Cualquier conflicto que surja entre las partes será resuelto en los juzgados de Madrid, salvo disposición legal en contrario.</p>
-
-        <h3 class="text-center text-primary fw-bold mb-4">5. Modificaciones de los Términos</h3>
-        <p class="text-muted fs-5">GTP Lux se reserva el derecho de modificar estos términos en cualquier momento. Cualquier cambio será notificado en nuestra página web y entrará en vigor a partir de su publicación.</p>
+        <h2 class="text-center text-primary fw-bold mb-4">{!! __('privacy_policy_h2_7_title') !!}</h2>
+        <p class="text-muted fs-5">
+            {!! __('privacy_policy_h2_7_p') !!}
+        </p>
     </div>
 </div>
-
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
@@ -125,23 +122,21 @@
       </div>
     </div>
 
-    <!-- Columna 2: Contacto -->
-    <div class="footer-column footer-align footer-offset">
-      <p>Teléfono: +34 910 059 958</p>
-      <p>Correo: info@gtplux.com</p>
-      <p>Dirección: Marina de Denia, España</p>
-    </div>
-
+  <!-- Columna 2: Contacto -->
+  <div class="footer-column footer-align footer-offset">
+      <p>{{ __('phone') }}: +34 910 059 958</p>
+      <p>{{ __('email') }}: info@gtplux.com</p>
+      <p>{{ __('address') }}: Marina de Denia, España</p>
+  </div>
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">Aviso Legal</a></li>
-        <li><a href="{{ route('terminos') }}">Términos y condiciones</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Privacidad</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Cookies</a></li>
-        <li><a href="{{ route('politicas') }}">Políticas de Cancelación</a></li>
-        <li><a href="{{ route('nosotros') }}">Sobre Nosotros</a></li>
-        <li><a href="{{ route('contacto') }}">Contacto</a></li>
+        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('politicas') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('nosotros') }}">{!! __('about_us_title') !!}</a></li>
+        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
 
@@ -157,7 +152,50 @@
 </footer>
 @endsection
 
-@push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+@section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-@endpush
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+@endsection
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownContainer = document.querySelector('.dropdown');
+      const dropdownValue = dropdownContainer.querySelector('.value');
+      const languageDropdown = document.getElementById('languageDropdown');
+  
+    // Abrir o cerrar el menú al hacer clic en el contenedor
+    dropdownValue.addEventListener('click', function (event) {
+        event.stopPropagation(); // Evita el cierre inmediato
+        const isDropdownOpen = languageDropdown.style.display === 'block';
+        languageDropdown.style.display = isDropdownOpen ? 'none' : 'block';
+    });
+
+    // Cerrar el menú al hacer clic fuera del dropdown
+    document.addEventListener('click', function (event) {
+        if (!dropdownContainer.contains(event.target)) {
+            languageDropdown.style.display = 'none';
+        }
+    });
+
+    // Manejar selección de idioma
+    languageDropdown.querySelectorAll('.language').forEach(function (item) {
+    item.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita la navegación del enlace
+
+        const selectedLang = this.getAttribute('href').split('/').pop(); // Extraer idioma del enlace
+        fetch(`/set-locale/${selectedLang}`) // Usa el idioma seleccionado dinámicamente
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Recargar la página para aplicar el cambio
+                } else {
+                    console.error('Error al cambiar el idioma.');
+                }
+            })
+            .catch(error => console.error('Error en la solicitud de cambio de idioma:', error));
+
+        // Cerrar el menú después de seleccionar un idioma
+        languageDropdown.style.display = 'none';
+    });
+    });
+});
+</script>
+
