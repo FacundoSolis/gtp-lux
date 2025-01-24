@@ -10,8 +10,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 @endpush
 
-@section('title', __('legal_notice'))
-
 @section('content')
 <header class="header">
     <div class="topbar__logo">
@@ -58,10 +56,8 @@
 </header>
 
 <div class="container mt-5">
-    <h2 class="text-center">{{ __('legal_notice') }}</h2>
-    <div class="content mt-4">
-        <p>{!! __('legal_notice_h1_p') !!}</p>
-    </div>
+    <h1 class="text-center">{!! __('legal_notice') !!}</h1>
+    <p>{!! __('legal_notice_h1_p') !!}</p>
 </div>
 
 <!-- Footer personalizado -->

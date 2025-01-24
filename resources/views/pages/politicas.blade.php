@@ -11,8 +11,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 @endpush
 
-@section('title', __('privacy_policy'))
-
 @section('content')
 <header class="header">
     <div class="topbar__logo">

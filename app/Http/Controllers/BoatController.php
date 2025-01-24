@@ -82,11 +82,16 @@ class BoatController extends Controller
 }
 
 
-    public function showSunseekerPortofino(Request $request)
+public function showSunseekerPortofino(Request $request)
 {
+    Log::info('Entrando en showSunseekerPortofino', ['request_params' => $request->all()]);
+
     $boat = Boat::where('name', 'Sunseeker Portofino')->firstOrFail();
     $ports = Port::all();
     $fromWelcome = session('from_welcome', false); // Detectar si viene desde welcome
+
+    // Log para verificar si viene desde welcome
+    Log::info('Desde welcome: ' . ($fromWelcome ? 'Sí' : 'No'));
 
     $price = 0; // Precio inicial predeterminado
     // Obtener las fechas de inicio y fin del mes actual
@@ -108,6 +113,10 @@ class BoatController extends Controller
         $pickupDate = now()->toDateString(); // Hoy
         $returnDate = now()->addDay()->toDateString(); // Mañana
     }
+
+    // Si no hay fechas, mostrar reservas de todo el mes actual
+    $startDate = $pickupDate ?? now()->startOfMonth()->toDateString();
+    $endDate = $returnDate ?? now()->endOfMonth()->toDateString();
 
     // Obtener las reservas
     $reservations = [];

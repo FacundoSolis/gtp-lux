@@ -20,7 +20,6 @@
 
 <header class="header">
   <nav class="navbar">
-  <nav class="navbar">
         <!-- Menú hamburguesa -->
         <label class="label_hamburguesa" for="menu_hamburguesa">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="list_icon" viewBox="0 0 16 16">
@@ -302,8 +301,8 @@
         <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
         <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
         <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us_title') !!}</a></li>
+        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
         <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>

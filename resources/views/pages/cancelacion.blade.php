@@ -1,13 +1,16 @@
 @extends('layouts.public')
+
 @php
     use Illuminate\Support\Facades\App;
 @endphp
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/pages.css') }}">
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/pages.css') }}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 @endpush
+@section('title', 'Políticas de cancelación')
+
 
 @section('content')
 <header class="header">
@@ -54,37 +57,39 @@
     </nav>
 </header>
 
-<div class="contact-header text-center">
-    <h2 class="text-primary">{!! __('contact') !!}</h2>
-    <p>{!! __('help_text') !!}</p>
+<div class="container mt-1">
+    <h1>{!! __('cancellation_policy_h1_title') !!}</h1>
+    <p>{!! __('cancellation_policy_h1_p') !!}</p>
 </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <form>
-                <div class="mb-3">
-                    <label for="name" class="form-label">{!! __('name') !!}</label>
-                    <input type="text" class="form-control" id="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">{!! __('email') !!}</label>
-                    <input type="email" class="form-control" id="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="subject" class="form-label">{!! __('subject') !!}</label>
-                    <input type="text" class="form-control" id="subject">
-                </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">{!! __('message') !!}</label>
-                    <textarea class="form-control" id="message" rows="5" required></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">{!! __('send') !!}</button>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="container mt-5">
+    <h2>{!! __('cancellation_policy_h2_1_title') !!}</h2>
+    <p>{!! __('cancellation_policy_h2_1_p') !!}</p>
+</div>
+
+<div class="container mt-5">
+    <h3>{!! __('cancellation_policy_h3_1_title') !!}</h3>
+    <p>{!! __('cancellation_policy_h3_1_p') !!}</p>
+</div>
+
+<div class="container mt-5">
+    <h3>{!! __('cancellation_policy_h3_2_title') !!}</h3>
+    <p>{!! __('cancellation_policy_h3_2_p') !!}</p>
+</div>
+
+<div class="container mt-5">
+    <h3>{!! __('cancellation_policy_h3_3_title') !!}</h3>
+    <p>{!! __('cancellation_policy_h3_3_p') !!}</p>
+</div>
+
+<div class="container mt-5">
+    <h2>{!! __('cancellation_policy_h2_2_title') !!}</h2>
+    <p>{!! __('cancellation_policy_h2_2_p') !!}</p>
+</div>
+
+<div class="container mt-5">
+    <h2>{!! __('cancellation_policy_h2_3_title') !!}</h2>
+    <p>{!! __('cancellation_policy_h2_3_p') !!}</p>
 </div>
 
 <!-- Footer personalizado -->
@@ -135,8 +140,8 @@
   </div>
 </footer>
 @endsection
-
 @section('scripts')
+<script src="{{ asset('js/dropdown.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 @endsection
@@ -182,3 +187,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+

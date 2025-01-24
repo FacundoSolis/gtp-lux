@@ -52,13 +52,6 @@ Route::middleware(['web'])->group(function () {
         return view('welcome');
     });
     
-    Route::get('pages/contacto', function () {
-        return view('pages.contacto');
-    });
-    
-    Route::get('pages/nosotros', function () {
-        return view('pages/nosotros');
-    });
     // Rutas de disponibilidad de barcos
     Route::get('/available-boats', [ReservationController::class, 'showAvailableBoats'])->name('available.boats');
     Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort'])->name('boats.byPort');
@@ -216,5 +209,9 @@ Route::middleware(['web'])->group(function () {
         Route::get('pages/terminos', function () {
             return view('pages.terminos');
         })->name('terminos');
+
+        Route::get('pages/cancelacion', function () {
+            return view('pages.cancelacion');
+        })->name('cancelacion');
 
 });

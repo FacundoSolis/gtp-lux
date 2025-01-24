@@ -33,11 +33,11 @@
             <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
-            <li class="li_links settingsDropdown">
+            <li class="li_links">
                 <div class="dropdown">
                     <span class="value">
                         <img id="currentLanguageFlag" src="{{ asset('path_to_flags/' . App::getLocale() . '.png') }}" 
-                             alt="{{ config('languages')[App::getLocale()]['name'] }}" class="flag-icon">
+                            alt="{{ config('languages')[App::getLocale()]['name'] }}" class="flag-icon">
                         {{ config('languages')[App::getLocale()]['name'] }}
                     </span>
                     <ul class="dropdown-menu" id="languageDropdown">
@@ -45,7 +45,7 @@
                             <li>
                                 <a href="{{ route('set-locale', $code) }}" class="language">
                                     <img src="{{ asset('path_to_flags/' . $code . '.png') }}" 
-                                         alt="{{ $language['name'] }}" class="flag-icon">
+                                        alt="{{ $language['name'] }}" class="flag-icon">
                                     {{ $language['name'] }}
                                 </a>
                             </li>
@@ -239,7 +239,7 @@
                     <button id="price-list-button" class="btn btn-list-price mx-2">{{ __('check_price_list') }}</button>
                 <form id="reservation-form" action="{{ route('form') }}" method="GET">
                 @csrf
-                    <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
+                <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
                     <input type="hidden" name="name" value="Reserva sin nombre">
                     <input type="hidden" name="pickup_date" id="hidden-pickup-date" value="{{ request('pickup_date') }}">
                     <input type="hidden" name="return_date" id="hidden-return-date" value="{{ request('return_date') }}">
@@ -353,12 +353,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const pickupDateFromUrl = queryParams.get('pickup_date'); // Fecha inicial desde la URL
     const returnDateFromUrl = queryParams.get('return_date'); // Fecha final desde la URL
     const dropdownContainer = document.querySelector('.dropdown');
-      const dropdownValue = dropdownContainer.querySelector('.value');
-      const languageDropdown = document.getElementById('languageDropdown');
-      const proceedButton = document.getElementById('proceedToPaymentButton');
-      const reservationForm = document.getElementById('reservation-form');
-      proceedButton.addEventListener('click', function (event) {
-        event.preventDefault(); // Evitar el comportamiento por defecto
+    const dropdownValue = dropdownContainer.querySelector('.value');
+    const languageDropdown = document.getElementById('languageDropdown');
+    const hiddenPriceInput = document.getElementById('hidden-price');
+    const proceedButton = document.getElementById('proceedToPaymentButton');
+    const reservationForm = document.getElementById('reservation-form');
+    const portIdInput = document.getElementById('hidden-port-id'); // Campo oculto del puerto
+    const boatIdInput = document.querySelector('input[name="boat_id"]'); // Campo oculto del barco
+
+    proceedButton.addEventListener('click', (event) => {
+        event.preventDefault();
 
         // Validar que las fechas estén completas
         if (!pickupInput.value || !returnInput.value) {
@@ -366,14 +370,27 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Enviar directamente el formulario
-        reservationForm.submit();
+        // Asegurarse de que el precio esté sincronizado
+        if (totalPriceElement) {
+            hiddenPriceInput.value = totalPriceElement.textContent.replace('€', '').trim();
+        }
+
+        // Construir la URL con los parámetros necesarios
+        const params = new URLSearchParams({
+            _token: document.querySelector('input[name="_token"]').value,
+            boat_id: boatIdInput.value,
+            port_id: portIdInput.value,
+            pickup_date: pickupInput.value,
+            return_date: returnInput.value,
+            price: hiddenPriceInput.value, // Pasar el precio calculado
+        });
+
+        // Redirigir a la URL con los parámetros
+        window.location.href = `/reservation/form?${params.toString()}`;
     });
-      
-        // Verificar qué fechas se están obteniendo
-    console.log('Pickup Date from URL:', pickupDateFromUrl);
+    
+    console.log('Pickup Date from URL:', pickupDateFromUrl); // Verificar si el valor se extrae correctamente
     console.log('Return Date from URL:', returnDateFromUrl);
-        
 
     // Abrir o cerrar el menú al hacer clic en el contenedor
     dropdownValue.addEventListener('click', function (event) {
@@ -419,6 +436,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then((response) => {
                     const totalPrice = response.data.total_price;
+                    console.log('Precio calculado por el backend:', totalPrice); // Log del precio calculado
                     showPriceSummary(totalPrice);
                 })
                 .catch((error) => {
@@ -505,7 +523,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function highlightSelectedDates(startDate, endDate) {
         if (!startDate) return;
 
-        document.querySelectorAll('.fc-day[data-date]').forEach((dayCell) => {
+            const dayCells = document.querySelectorAll('.fc-day[data-date]');
+        const selectedDates = [];
+
+        // Restablece los estilos de todas las celdas
+        dayCells.forEach((dayCell) => {
             dayCell.style.backgroundColor = '';
             dayCell.style.color = '';
         });
@@ -529,10 +551,15 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('input[name="return_date"]').value = returnInput.value;
             document.getElementById('hidden-pickup-date').value = pickupInput.value;
             document.getElementById('hidden-return-date').value = returnInput.value;
-                if (totalPriceElement) {
-                    document.getElementById('hidden-price').value = totalPriceElement.textContent.replace('€', '').trim();
-            }
-        }
+    // Sincroniza el precio calculado
+    const totalPrice = totalPriceElement.textContent.replace('€', '').trim();
+    document.getElementById('hidden-price').value = totalPrice;
+    console.log('Hidden fields updated:', {
+        pickup_date: pickupInput.value,
+        return_date: returnInput.value,
+        price: totalPrice,
+    });
+}
 
     // Escuchar cambios en los inputs
     pickupInput.addEventListener('change', () => {

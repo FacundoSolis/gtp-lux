@@ -74,57 +74,63 @@ header {
   transition: background-color 0.3s ease;
   margin-top: 15px; /* Espaciado superior */
 }
-/* Contenedor principal del slider */
-.slider-with-arrows {
+.slideshow-container {
+  max-width: 90%;
   position: relative;
-  width: 90%;
-  margin: 20px auto;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Botones de navegación */
-.slider-with-arrows .prev,
-.slider-with-arrows .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  padding: 10px 15px;
-  z-index: 10;
-  font-size: 18px;
-  border-radius: 50%;
-}
-
-.slider-with-arrows .prev {
-  left: 10px;
-}
-
-.slider-with-arrows .next {
-  right: 10px;
-}
-
-/* Contenedor de las slides */
-.slides-container {
-  width: 100%;
-  overflow: hidden;
+  margin: auto;
+  overflow: hidden; /* Oculta el contenido que se desborda */
 }
 
 .slides {
   display: flex;
-  transition: transform 0.6s ease-in-out;
+  gap: 10px; /* Espacio entre las imágenes */
+  transition: transform 0.5s ease-in-out; /* Suaviza el desplazamiento */
 }
 
-/* Estilo de las imágenes */
 .slides img {
-  flex-shrink: 0;
-  width: 100%; /* Ancho dinámico para móvil */
-  height: auto;
   border-radius: 10px;
+  flex: 0 0 25%; /* 4 imágenes visibles en escritorio */
+  height: 300px; /* Altura fija para cuadrar */
+  object-fit: cover;
+}
+
+
+/* Estilos de botones de slider */
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+.slider-button-prev {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+
+.slider-button-next {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
 }
 
 .modal-content {
@@ -462,6 +468,23 @@ font-size: 16px;
 color: #007BFF;
 }
 
+/* Estilo personalizado para el botón de la lista de precios */
+.btn-list-price {
+  background-color: #d6d6d6; /* Gris claro */
+  color: #555; /* Texto oscuro */
+  border: 1px solid black; /* Borde gris oscuro */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+.btn-list-price:hover {
+  background-color: #b0b0b0; /* Gris más oscuro al pasar el ratón */
+  color: #333; /* Texto más oscuro en hover */
+  border-color: #999; /* Borde más oscuro */
+}
+
+
 /* Sección de Condiciones */
 .conditions-section {
   margin-top: 20px;
@@ -599,7 +622,7 @@ footer {
 .footer p{
   color: white;
 }
-
+/*
 .section-title {
   text-align: center;
   padding: 50px 0;
@@ -630,6 +653,7 @@ footer {
   background-color: #e9ecef;
   color: #000;
 }
+  */
 /* Responsive para escritorio */
 @media (min-width: 768px) {
   .slides img {
@@ -644,8 +668,19 @@ footer {
   width: 350px; 
   height: 350px; 
 }
+.slides {
+  transition: transform 0.5s ease-in-out;
+}
+.slides img {
+  width: 100%; /* Mostrar 1 imagen visible en móvil */
+  height: auto; /* Ajustar altura proporcionalmente */
+}
+
 .modal-content {
   margin-top: 50px;
+}
+.container{
+  margin-bottom: 20px;
 }
 .container-valkyrya h2 {
   font-size: 2rem;

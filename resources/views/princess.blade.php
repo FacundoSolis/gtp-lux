@@ -3,13 +3,14 @@
     use Illuminate\Support\Facades\App;
 @endphp
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/princess.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/princess.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @endpush
+
 @section('content')
 
 <header class="header">
@@ -32,11 +33,11 @@
             <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
-            <li class="li_links settingsDropdown">
+            <li class="li_links">
                 <div class="dropdown">
                     <span class="value">
                         <img id="currentLanguageFlag" src="{{ asset('path_to_flags/' . App::getLocale() . '.png') }}" 
-                             alt="{{ config('languages')[App::getLocale()]['name'] }}" class="flag-icon">
+                            alt="{{ config('languages')[App::getLocale()]['name'] }}" class="flag-icon">
                         {{ config('languages')[App::getLocale()]['name'] }}
                     </span>
                     <ul class="dropdown-menu" id="languageDropdown">
@@ -44,7 +45,7 @@
                             <li>
                                 <a href="{{ route('set-locale', $code) }}" class="language">
                                     <img src="{{ asset('path_to_flags/' . $code . '.png') }}" 
-                                         alt="{{ $language['name'] }}" class="flag-icon">
+                                        alt="{{ $language['name'] }}" class="flag-icon">
                                     {{ $language['name'] }}
                                 </a>
                             </li>
@@ -60,10 +61,8 @@
   <h2>{{ __('princess_v65') }}</h2>
 </section>
 
-<section class="slider-with-arrows">
-  <button class="prev">←</button>
-  <div class="slides-container">
-    <div class="slides">
+<div class="slideshow-container">
+  <div class="slides">
         <img src="{{ asset('img/princess/princess.jpg') }}" alt="Imagen 1">
         <img src="{{ asset('img/princess/princes7.jpg') }}" alt="Imagen 2">
         <img src="{{ asset('img/princess/princes1.jpg') }}" alt="Imagen 3">
@@ -72,15 +71,13 @@
         <img src="{{ asset('img/princess/princes4.jpg') }}" alt="Imagen 6">
         <img src="{{ asset('img/princess/princes5.jpg') }}" alt="Imagen 7">
         <img src="{{ asset('img/princess/princess6.jpg') }}" alt="Imagen 8">
-    </div>
-  </div>
-  <button class="next">→</button>
-</section>
+        </div>
+  <button class="slider-button-prev" onclick="scrollSlides(-1)">&#10094;</button>
+  <button class="slider-button-next" onclick="scrollSlides(1)">&#10095;</button>
+</div>
 
 <section class="description-boat">
     <p>{!! __('princess_v65_section') !!}</p>
-        <!-- Botón para abrir el modal -->
-     <button id="loadMoreDescription2Button" class="btn-ver-más">{{ __('see_more') }}</button>
 </section>
 
 <!-- Modal de descripción -->
@@ -198,7 +195,7 @@
     <div class="row justify-content-between align-items-start">
         <!-- Columna del calendario -->
         <div class="col-md-6">
-            <form id="reservation-form" action="{{ route('contacto') }}" method="GET">
+            <form id="reservation-form" action="{{ route('form') }}" method="GET">
             @csrf
                 <input type="hidden" name="boat_id" value="3">
 
@@ -237,21 +234,23 @@
             <section id="price-summary" class="price-card mt-3">
                 <h5>Resumen de precios</h5>
                 <p><strong>Total:</strong> <span id="total-price">0€</span></p>
-                <button id="price-list-button" class="btn btn-info mt-3">{{ __('check_price_list') }}</button>
-                <form id="reservation-form" action="{{ route('contacto', ['boatId' => $boat->id]) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
+                    <button id="price-list-button" class="btn btn-list-price mx-2">{{ __('check_price_list') }}</button>
+                <form id="reservation-form" action="{{ route('form') }}" method="GET">
+                @csrf
+                <input type="hidden" name="port_id" id="hidden-port-id" value="{{ request('port_id') }}">
                     <input type="hidden" name="name" value="Reserva sin nombre">
                     <input type="hidden" name="pickup_date" id="hidden-pickup-date" value="{{ request('pickup_date') }}">
                     <input type="hidden" name="return_date" id="hidden-return-date" value="{{ request('return_date') }}">
+                    <input type="hidden" name="boat_id" value="{{ request('boat_id') }}">
                     <input type="hidden" name="price" id="hidden-price" value="0">
 
-                    <button type="submit" class="btn btn-primary mt-3">{{ __('proceed_to_payment') }}</button>
+                    <button type="submit" id="proceedToPaymentButton" class="btn btn-primary mt-3">{{ __('proceed_to_payment') }}</button>
                 </form>
             </section>
         </div>
     </div>
-</div>          
+</div>
+
 <!-- Modal para lista de precios -->
 <div id="priceListModal" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -261,91 +260,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-price-list-container">
-                <!-- Contenido dinámico de la lista de precios -->
+                <div id="price-list-content">Cargando precios...</div>
             </div>
         </div>
     </div>
 </div>
 
-<section class="section-title py-5">
-    <div class="container text-center">
-        {!! __('h1_title_home') !!}
-        {!! __('h1_p_home') !!}
-    </div>
-</section>
-
-<section class="two-columns py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <img src="{{ asset('img/imagen1.jpg') }}" alt="Imagen 1" class="img-fluid rounded">
-            </div>
-            <div class="col-md-6">
-                {!! __('h2_title_home_1') !!}
-                {!! __('h2_p_home_1') !!}
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="two-columns py-5 bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                {!! __('h2_title_home_2') !!}
-                {!! __('h2_p_home_2') !!}
-            </div>
-            <div class="col-md-6">
-                <img src="{{ asset('img/imagen2.jpg') }}" alt="Imagen 2" class="img-fluid rounded">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="two-columns py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <img src="{{ asset('img/imagen3.jpg') }}" alt="Imagen 3" class="img-fluid rounded">
-            </div>
-            <div class="col-md-6">
-                {!! __('h2_title_home_3') !!}
-                {!! __('h2_p_home_3') !!}
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- Sección 5: Preguntas Frecuentes -->
-<section class="faq-section py-5 bg-light">
-    <div class="container">
-        {!! __('h2_title_home_4') !!}
-        <div class="accordion" id="faqAccordion">
-            <!-- Pregunta 1 -->
-            <div class="accordion" id="faqAccordion">
-            @php
-                $faqs = json_decode(__('h2_p_home_4'), true);
-            @endphp
-            @foreach ($faqs as $faq)
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq{{ $faq['id'] }}">
-                        <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $faq['id'] }}" aria-expanded="{{ $loop->first ? 'true' : 'false' }}" aria-controls="collapse{{ $faq['id'] }}">
-                            {{ $faq['question'] }}
-                        </button>
-                    </h2>
-                    <div id="collapse{{ $faq['id'] }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}" aria-labelledby="faq{{ $faq['id'] }}" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            {{ $faq['answer'] }}
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<!-- Footer personalizado -->
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
@@ -405,16 +325,16 @@
     ];
     </script>
 
-<script src="{{ asset('js/loadMoreDescription2.js') }}"></script>
-<script src="{{ asset('js/listapreciosprincess.js.js') }}"></script>
+<script src="{{ asset('js/listapreciosportofino.js') }}"></script>
 <script src="{{ asset('js/syncddate.js') }}"></script>
 <script src="{{ asset('js/slider2.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales/es.js"></script>
+
 @endsection
 
-<script>  
+<script>
 document.addEventListener('DOMContentLoaded', function () {
     const calendarEl = document.getElementById('availability-calendar');
     const portSelect = document.getElementById('port_id');
@@ -431,12 +351,44 @@ document.addEventListener('DOMContentLoaded', function () {
     const pickupDateFromUrl = queryParams.get('pickup_date'); // Fecha inicial desde la URL
     const returnDateFromUrl = queryParams.get('return_date'); // Fecha final desde la URL
     const dropdownContainer = document.querySelector('.dropdown');
-      const dropdownValue = dropdownContainer.querySelector('.value');
-      const languageDropdown = document.getElementById('languageDropdown');
-        // Verificar qué fechas se están obteniendo
-    console.log('Pickup Date from URL:', pickupDateFromUrl);
+    const dropdownValue = dropdownContainer.querySelector('.value');
+    const languageDropdown = document.getElementById('languageDropdown');
+    const hiddenPriceInput = document.getElementById('hidden-price');
+    const proceedButton = document.getElementById('proceedToPaymentButton');
+    const reservationForm = document.getElementById('reservation-form');
+    const portIdInput = document.getElementById('hidden-port-id'); // Campo oculto del puerto
+    const boatIdInput = document.querySelector('input[name="boat_id"]'); // Campo oculto del barco
+
+    proceedButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        // Validar que las fechas estén completas
+        if (!pickupInput.value || !returnInput.value) {
+            alert('Por favor selecciona las fechas antes de proceder.');
+            return;
+        }
+
+        // Asegurarse de que el precio esté sincronizado
+        if (totalPriceElement) {
+            hiddenPriceInput.value = totalPriceElement.textContent.replace('€', '').trim();
+        }
+
+        // Construir la URL con los parámetros necesarios
+        const params = new URLSearchParams({
+            _token: document.querySelector('input[name="_token"]').value,
+            boat_id: boatIdInput.value,
+            port_id: portIdInput.value,
+            pickup_date: pickupInput.value,
+            return_date: returnInput.value,
+            price: hiddenPriceInput.value, // Pasar el precio calculado
+        });
+
+        // Redirigir a la URL con los parámetros
+        window.location.href = `/reservation/form?${params.toString()}`;
+    });
+    
+    console.log('Pickup Date from URL:', pickupDateFromUrl); // Verificar si el valor se extrae correctamente
     console.log('Return Date from URL:', returnDateFromUrl);
-        
 
     // Abrir o cerrar el menú al hacer clic en el contenedor
     dropdownValue.addEventListener('click', function (event) {
@@ -482,6 +434,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then((response) => {
                     const totalPrice = response.data.total_price;
+                    console.log('Precio calculado por el backend:', totalPrice); // Log del precio calculado
                     showPriceSummary(totalPrice);
                 })
                 .catch((error) => {
@@ -568,7 +521,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function highlightSelectedDates(startDate, endDate) {
         if (!startDate) return;
 
-        document.querySelectorAll('.fc-day[data-date]').forEach((dayCell) => {
+            const dayCells = document.querySelectorAll('.fc-day[data-date]');
+        const selectedDates = [];
+
+        // Restablece los estilos de todas las celdas
+        dayCells.forEach((dayCell) => {
             dayCell.style.backgroundColor = '';
             dayCell.style.color = '';
         });
@@ -592,10 +549,15 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('input[name="return_date"]').value = returnInput.value;
             document.getElementById('hidden-pickup-date').value = pickupInput.value;
             document.getElementById('hidden-return-date').value = returnInput.value;
-                if (totalPriceElement) {
-                    document.getElementById('hidden-price').value = totalPriceElement.textContent.replace('€', '').trim();
-            }
-        }
+    // Sincroniza el precio calculado
+    const totalPrice = totalPriceElement.textContent.replace('€', '').trim();
+    document.getElementById('hidden-price').value = totalPrice;
+    console.log('Hidden fields updated:', {
+        pickup_date: pickupInput.value,
+        return_date: returnInput.value,
+        price: totalPrice,
+    });
+}
 
     // Escuchar cambios en los inputs
     pickupInput.addEventListener('change', () => {

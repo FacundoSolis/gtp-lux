@@ -26,15 +26,27 @@ class ReservationController extends Controller
         if ($request->boat_id) {
             $boatId = $request->boat_id;
             $portId = $request->input('port_id', 1); // Puerto predeterminado
-            $startDate = $request->pickup_date;
-            $endDate = $request->return_date;
+            $pickupDate = $request->input('pickup_date');
+            $returnDate = $request->input('return_date');
+            $price = $this->calculateTotalPrice($boatId, $pickupDate, $returnDate);
 
+ 
             if ($boatId == 3) {
-                return redirect()->route('sunseeker', compact('portId', 'startDate', 'endDate'))->with('from_welcome', true);
-            } elseif ($boatId == 4) {
-                return redirect()->route('princess', compact('portId', 'startDate', 'endDate'))->with('from_welcome', true);
+                return redirect()->route('sunseeker', [
+                    'port_id' => $portId,
+                    'pickup_date' => $request->input('pickup_date'),
+                    'return_date' => $request->input('return_date'),
+                    'price' => $price,
+                ])->with('from_welcome', true);
+            } elseif ($boatId == 4) {            
+                return redirect()->route('princess', [
+                    'port_id' => $portId,
+                    'pickup_date' => $request->input('pickup_date'),
+                    'return_date' => $request->input('return_date'),
+                    'price' => $price,
+                ])->with('from_welcome', true);
             }
-        }
+    }
         $locale = Session::get('locale', config('app.locale'));
         if (!$locale) {
             Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
@@ -60,19 +72,26 @@ class ReservationController extends Controller
             'pickup_date' => 'required|date|after:today',
             'return_date' => 'required|date|after:pickup_date',
             'num_persons' => 'nullable|integer|min:1|max:' . $boat->capacity,
-        ]);
 
-    // Cálculo del precio total
+        ]);
+            // Cálculo del precio total
     $totalPrice = $this->calculateTotalPrice($boatId, $validated['pickup_date'], $validated['return_date']);
-        $conflictingReservations = Reservation::where('boat_id', $boatId)
-            ->where(function ($query) use ($validated) {
-                $query->whereBetween('pickup_date', [$validated['pickup_date'], $validated['return_date']])
-                    ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
-                    ->orWhere(function ($query) use ($validated) {
-                        $query->where('pickup_date', '<=', $validated['pickup_date'])
-                            ->where('return_date', '>=', $validated['return_date']);
-                    });
-            })->exists();
+    if ($totalPrice <= 0) {
+        return redirect()->back()->withErrors([
+            'price' => 'No se pudo calcular el precio. Por favor verifica las fechas seleccionadas.',
+        ])->withInput();
+    }
+
+   // Verificar si hay conflictos en las reservas
+   $conflictingReservations = Reservation::where('boat_id', $boatId)
+   ->where(function ($query) use ($validated) {
+       $query->whereBetween('pickup_date', [$validated['pickup_date'], $validated['return_date']])
+           ->orWhereBetween('return_date', [$validated['pickup_date'], $validated['return_date']])
+           ->orWhere(function ($query) use ($validated) {
+               $query->where('pickup_date', '<=', $validated['pickup_date'])
+                   ->where('return_date', '>=', $validated['return_date']);
+           });
+   })->exists();
 
         if ($conflictingReservations) {
             return redirect()->back()->withErrors([
@@ -88,17 +107,27 @@ class ReservationController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
-            'total_price' => $this->calculateTotalPrice($boatId, $validated['pickup_date'], $validated['return_date']),
+            'total_price' => $totalPrice, // Aquí usamos el precio calculado
         ]);
-
-
         return redirect()->route('payment', ['reservation' => $reservation->id]);
-
     }
 
     // Función para calcular el precio total de la reserva
     public function calculateTotalPrice($boatId, $pickupDate, $returnDate)
     {
+        Log::info('Calculando precio total', [
+            'boat_id' => $boatId,
+            'pickup_date' => $pickupDate,
+            'return_date' => $returnDate,
+        ]);
+        if (!$pickupDate || !$returnDate || !$boatId) {
+            Log::error('Datos insuficientes para calcular el precio.', [
+                'boat_id' => $boatId,
+                'pickup_date' => $pickupDate,
+                'return_date' => $returnDate,
+            ]);
+            return 0; // Asegurarse de no devolver un precio erróneo
+        }
         $start = new \DateTime($pickupDate);
         $end = new \DateTime($returnDate);
         $totalPrice = 0;
@@ -116,17 +145,18 @@ class ReservationController extends Controller
                     $pricePerDay = $season->price_per_day;
                     $totalPrice += $pricePerDay;
                 } else {
-                    // Si no hay temporada, el precio por día es 0 (puedes manejar este caso según sea necesario)
-                    $totalPrice += 0;
+                    Log::warning('No se encontró temporada para la fecha.', [
+                        'date' => $start->format('Y-m-d'),
+                        'boat_id' => $boatId,
+                    ]);
                 }
         
                 // Avanza al siguiente día
                 $start->modify('+1 day');
             }
-        
+            Log::info('Precio total calculado correctamente', ['total_price' => $totalPrice]);
             return $totalPrice;
         }
-
     // Calendario de disponibilidad
     public function calendar($boatId, $portId)
     {
@@ -260,7 +290,7 @@ public function saveDetails(Request $request)
         'pickup_date' => 'required|date',
         'return_date' => 'required|date|after:pickup_date',
         'boat_id' => 'required|exists:boats,id',
-        'price' => 'required|numeric',
+        'price' => 'required|numeric|min:0', // Validar que el precio sea mayor a 0
         'name' => 'required|string|max:255',
         'surname' => 'required|string|max:255',
         'email' => 'required|email|max:255',
@@ -286,16 +316,37 @@ public function saveDetails(Request $request)
 
     public function showForm(Request $request)
 {
+    Log::info('Entrando en showForm', ['request_params' => $request->all()]);
+
     $portId = $request->input('port_id', 1);
     $pickupDate = $request->input('pickup_date');
     $returnDate = $request->input('return_date');
     $boatId = $request->input('boat_id');
-    $price = $request->input('price', 0);
+    $price = $request->input('price', 0); // Obtén el precio de la URL o usa 0 como predeterminado
 
-
-    if (!$portId || !$pickupDate || !$returnDate || !$boatId) {
+    
+    // Si no hay precio, calcula uno
+    if (!$price || $price === 0) {
+        Log::info('Calculando precio total', [
+            'boat_id' => $boatId,
+            'pickup_date' => $pickupDate,
+            'return_date' => $returnDate,
+        ]);
+        $price = $this->calculateTotalPrice($boatId, $pickupDate, $returnDate);
+        Log::info('Precio total calculado correctamente', ['total_price' => $price]);
+    }
+    if (!$portId || !$boatId || !$pickupDate || !$returnDate || $price <= 0) {
+        Log::error('Faltan datos necesarios para el formulario', [
+            'port_id' => $portId,
+            'pickup_date' => $pickupDate,
+            'return_date' => $returnDate,
+            'boat_id' => $boatId,
+            'price' => $price,
+        ]);        
         return redirect()->route('step1')->withErrors(['error' => 'Faltan datos necesarios para completar la reserva.']);
     }
+    Log::info('Preparando la vista con el precio calculado.', ['price' => $price]);
+
 
     $port = Port::findOrFail($portId);
     $boat = Boat::findOrFail($boatId);

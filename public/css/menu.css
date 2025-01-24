@@ -107,16 +107,22 @@ body {
 }
 
 .dropdown-menu {
-    position: absolute;
-    top: calc(100% + 5px);
-    right: 0;
+    position: absolute; /* Cambiar a fixed para ocupar toda la pantalla */
+    top: calc(100% + 5px); /* Alinea el menú justo debajo del botón */
+    left: 0; /* Alinea al borde izquierdo */
+    width: 100%; /* Ancho completo */
+    max-height: 80vh; /* Altura máxima para permitir el scroll */
     background-color: var(--dropdown-bg);
-    border-radius: 5px;
-    list-style: none;
+    border-radius: 0; /* Sin bordes redondeados */
     padding: 0;
-    z-index: 1050;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-    color: white;
+    z-index: 1050; /* Coloca el menú por encima de otros elementos */
+    display: none; /* Ocultar por defecto */
+    flex-direction: row; /* Cambiar a filas */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+    justify-content: center; /* Centrar los elementos */
+    align-items: center; /* Centrar verticalmente */
+    overflow-y: auto; /* Permitir el desplazamiento vertical */
+
 }
 
 .dropdown-menu li {
@@ -144,91 +150,91 @@ body {
         color: var(--menu-text);
         z-index: 1100;
     }
-
-    .ul_links {
-        display: none;
-        flex-direction: column;
-        background-color: white;
-        position: fixed;
-        top: var(--altura_header);
-        right: 0;
-        width: 100%;
-        height: calc(100vh - var(--altura_header));
-        justify-content: left;
-        align-items: center;
-        padding: 10px;
-        z-index: 999;
-    }
-
-    .menu_hamburguesa:checked ~ .ul_links {
-        display: flex;
-    }
-
-    .ul_links .li_links a {
-        color: black;
-        text-decoration: none;
-        font-size: 1rem;
-        padding: 10px 20px;
-        text-align: left;
-        width: 100%;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .ul_links .li_links a:hover {
-        color: var(--menu-hover);
-    }
-
-    .dropdown {
-        position: relative; /* Asegura que el menú se posicione relativo al contenedor */
-        width: 100%; /* Haz que el dropdown ocupe todo el ancho */
-    }
-
-    .dropdown .value {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: black; /* Cambia el color del texto a negro */
-        cursor: pointer;
-        font-weight: bold;
-        padding: 10px;
-        background-color: white; /* Asegura un fondo blanco para el botón */
-        border-radius: 5px; /* Bordes redondeados opcionales */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
-        width: 100%; /* Botón ocupa el mismo ancho que el contenedor */
-        text-align: center;
-    }
-
-    .dropdown-menu {
-        position: absolute;
-        top: calc(100% + 5px); /* Posiciona el menú debajo del botón */
-        left: 0; /* Alinea el menú al borde izquierdo */
-        width: calc(100% - 20px); /* Ancho dinámico con márgenes */
-        margin: 0 10px; /* Ajusta márgenes laterales */
-        background-color: white; /* Fondo del menú */
-        border-radius: 5px; /* Bordes redondeados */
-        padding: 0;
-        z-index: 1000; /* Coloca el menú por encima de otros elementos */
-    }
-
-    .dropdown-menu li {
-        padding: 10px 15px;
-        text-align: center;
-    }
-
-    .dropdown-menu li a {
-        text-decoration: none;
-        color: black; /* Texto en negro para los enlaces */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px; /* Espaciado entre el icono y el texto */
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .dropdown-menu li a:hover {
-        background-color: #f1f1f1; /* Fondo gris claro al pasar el cursor */
-        color: #333; /* Color del texto ligeramente más oscuro */
-    }
+ 
+.ul_links {
+            display: none;
+            flex-direction: column;
+            background-color: var(--menu-bg);
+            position: fixed;
+            top: var(--altura_header);
+            left: 0; /* Asegura que el menú ocupe todo el ancho */
+            width: 100%;
+            height: calc(100vh - var(--altura_header)); /* Ocupa toda la pantalla menos el header */
+            justify-content: flex-start; /* Alinea los elementos al inicio */
+            align-items: flex-start; /* Alinea los elementos al inicio */
+            padding: 1rem;
+            z-index: 999;
+            overflow-y: auto; /* Permite el scroll si hay demasiados elementos */
+        }
+    
+        .menu_hamburguesa:checked ~ .ul_links {
+            display: flex; /* Muestra el menú cuando el checkbox está seleccionado */
+        }
+    
+        .ul_links .li_links {
+            width: 100%;
+        }
+    
+        .ul_links .li_links a {
+            color: var(--menu-text);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 15px 20px;
+            width: 100%; /* Asegura que los enlaces ocupen todo el ancho */
+            text-align: left; /* Alinea el texto a la izquierda */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    
+        .ul_links .li_links a:hover {
+            background-color: var(--menu-hover); /* Fondo al pasar el cursor */
+            color: var(--menu-bg); /* Cambia el color del texto */
+        }
+    
+        .dropdown {
+            width: 100%;
+            position: relative;
+        }
+    
+        .dropdown-menu {
+            display: none;
+            flex-direction: column;
+            position: relative; /* Relativo para ajustarse al contenedor */
+            background-color: var(--dropdown-bg);
+            width: 100%;
+            padding: 0;
+        }
+    
+        .dropdown-menu li a {
+            color: black; /* Texto negro */
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 15px 20px;
+            width: 100%; /* Asegura que los enlaces ocupen todo el ancho */
+            text-align: left;
+            display: block; /* Para asegurar que ocupa el contenedor */
+            background-color: #0E1724; /* Fondo blanco */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    
+/* Efecto hover para enlaces dentro del dropdown */
+.dropdown-menu li a:hover {
+    background-color: var(--menu-hover); /* Fondo amarillo */
+    color: var(--menu-bg); /* Texto oscuro */
+}
+        .dropdown .value {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+    
+        .dropdown .value:hover + .dropdown-menu {
+            display: flex;
+        }       
 
     .flag-icon {
         width: 16px;

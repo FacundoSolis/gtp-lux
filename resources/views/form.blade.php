@@ -101,13 +101,11 @@
                 <h4 class="mb-3">Datos de Contacto</h4>
                 <form action="{{ route('reservation.saveDetails') }}" method="POST">
                     @csrf
-                    <!-- Campos ocultos -->
-                    <input type="hidden" name="port_id" value="{{ $portId }}">
-                    <input type="hidden" name="pickup_date" value="{{ $pickupDate }}">
-                    <input type="hidden" name="return_date" value="{{ $returnDate }}">
-                    <input type="hidden" name="boat_id" value="{{ $boatId }}">
-                    <input type="hidden" name="price" value="{{ $price }}">
-
+                    <input type="hidden" name="port_id" value="{{ $reservation['port_id'] }}">
+                    <input type="hidden" name="pickup_date" value="{{ $reservation['pickup_date'] }}">
+                    <input type="hidden" name="return_date" value="{{ $reservation['return_date'] }}">
+                    <input type="hidden" name="boat_id" value="{{ $reservation['boat_id'] }}">
+                    <input type="hidden" id="hidden-price" name="price" value="{{ $reservation['price'] }}">
                     <!-- Campos visibles -->
                     <div class="row">
                         <div class="col-md-6">
