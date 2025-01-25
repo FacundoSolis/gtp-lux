@@ -10,8 +10,8 @@ class SetLocaleMiddleware
 {
     public function handle($request, Closure $next)
     {
-        $locale = $request->segment(1); // Primer segmento de la URL
-
+        // Detectar el idioma del primer segmento de la URL
+        $locale = $request->segment(1); 
         // Comprueba si el idioma es soportado
         if (in_array($locale, array_keys(config('languages')))) {
             App::setLocale($locale);

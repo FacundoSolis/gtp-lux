@@ -12,6 +12,7 @@ class AdminTranslationController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
+        $perPage = $request->input('per_page', 25); // Número de resultados por página (por defecto 25)
         $translations = Translation::with('languages')
             ->when($search, function ($query) use ($search) {
                 $query->where('key_name', 'like', "%{$search}%")
@@ -20,8 +21,8 @@ class AdminTranslationController extends Controller
                           $query->where('value', 'like', "%{$search}%");
                       });
             })
-            ->get();
-
+            ->orderBy('id', 'desc') // Ordenar por las últimas traducciones agregadas
+            ->paginate($perPage); // Paginación
         return view('admin.translations.index', compact('translations'));
     }
 

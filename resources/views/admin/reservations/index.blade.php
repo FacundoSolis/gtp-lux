@@ -50,8 +50,17 @@
         </div>
     </div>
 
-    <!-- Botón Nueva Reserva -->
-    <div class="mb-4">
+    <!-- Botón Nueva Reserva y Selector de Paginación -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <form method="GET" action="{{ route('admin.reservations.index') }}" class="d-flex align-items-center">
+            <label for="per_page" class="me-2">Mostrar:</label>
+            <select name="per_page" id="per_page" class="form-select me-3" onchange="this.form.submit()">
+                <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
+            </select>
+            <input type="hidden" name="sort_by" value="{{ request('sort_by', 'created_at') }}">
+            <input type="hidden" name="sort_direction" value="{{ request('sort_direction', 'desc') }}">
+        </form>
         <a href="{{ route('admin.reservations.create') }}" class="btn btn-success">
             <i class="fas fa-plus-circle"></i> Nueva Reserva
         </a>
@@ -75,7 +84,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($reservations as $reservation)
+                    @forelse ($reservations as $reservation)
                         <tr>
                             <td><input type="checkbox" name="ids[]" value="{{ $reservation->id }}"></td>
                             <td>{{ $reservation->name }}</td>
@@ -88,17 +97,28 @@
                                 <a href="{{ route('admin.reservations.edit', $reservation->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="{{ route('admin.reservations.destroy', $reservation->id) }}" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta reserva?')">
+                                <button type="submit" formaction="{{ route('admin.reservations.destroy', $reservation->id) }}" formmethod="POST" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta reserva?')" title="Eliminar">
+                                    @csrf
+                                    @method('DELETE')
                                     <i class="fas fa-trash-alt"></i>
-                                </a>
+                                </button>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center">No se encontraron reservas.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
         <button type="submit" class="btn btn-danger mt-3">Eliminar Seleccionadas</button>
     </form>
+
+    <!-- Controles de Paginación -->
+    <div class="mt-3 d-flex justify-content-center">
+        {{ $reservations->appends(request()->query())->links('pagination::bootstrap-4') }}
+    </div>
 </div>
 
 <script>

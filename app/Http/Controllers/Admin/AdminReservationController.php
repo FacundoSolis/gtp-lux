@@ -17,14 +17,16 @@ class AdminReservationController extends Controller
     // Listar todas las reservas con opción de ordenarlas y filtrar por criterios
     public function index(Request $request)
     {
+        $perPage = $request->input('per_page', 25); // 25 elementos por defecto
+
         // Obtener el criterio de ordenación desde la solicitud
         $sortBy = $request->input('sort_by', 'name'); // Orden por nombre por defecto
-        $sortDirection = $request->input('sort_direction', 'asc'); // Ascendente por defecto
+        $sortDirection = $request->input('sort_direction', 'desc'); // Descendente por defecto
 
         // Filtrar y ordenar las reservas
         $reservations = Reservation::with('boat', 'port')
             ->orderBy($sortBy, $sortDirection)
-            ->get();
+            ->paginate($perPage); // Paginación
 
         return view('admin.reservations.index', compact('reservations', 'sortBy', 'sortDirection'));
     }

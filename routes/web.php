@@ -186,8 +186,6 @@ Route::middleware(['web'])->group(function () {
         Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
     });
 
-
-
     // Redirección tras inicio de sesión
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('pages/aviso', function () {

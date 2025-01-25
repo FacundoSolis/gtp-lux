@@ -761,8 +761,12 @@ color: black;
   align-items: center; /* Centra horizontalmente */
   justify-content: center; /* Centra verticalmente */
   padding: 2rem; /* Espaciado interno */
-  background-color: #f8f9fa; /* Fondo claro */
-  text-align: center; /* Asegura que el texto esté centrado */
+  background: linear-gradient(
+    to bottom,
+    #0E222D,  /* Azul inicial */
+    #0A1A26,  /* Azul ligeramente más oscuro */
+    #06131E   /* Azul profundo */
+  );  text-align: center; /* Asegura que el texto esté centrado */
 }
 .faq-section2 .container2 {
   width: 100%;
@@ -773,7 +777,7 @@ color: black;
 .faq-section2 h2 {
   font-size: 2rem; /* Tamaño del título */
   margin-bottom: 1rem; /* Espaciado debajo del título */
-  color: #333; /* Color del texto */
+  color: white; /* Color del texto */
 }
 
 .faq-section2 .accordion-button {

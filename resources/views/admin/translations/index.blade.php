@@ -13,14 +13,20 @@
     @endif
 
     <!-- Botón para añadir una nueva traducción -->
-    <div class="mb-3 d-flex justify-content-between">
+    <div class="mb-3 d-flex justify-content-between align-items-center">
         <a href="{{ route('admin.translations.create') }}" class="btn btn-primary">
             <i class="fas fa-plus"></i> Añadir Nueva Traducción
         </a>
         <a href="{{ route('admin.translations.export') }}" class="btn btn-success">
             <i class="fas fa-file-export"></i> Exportar Traducciones
         </a>
-        <form id="search-form" action="{{ route('admin.translations.index') }}" method="GET" class="d-flex">
+        <form id="search-form" action="{{ route('admin.translations.index') }}" method="GET" class="d-flex align-items-center">
+            <label for="per_page" class="me-2">Mostrar</label>
+            <select name="per_page" id="per_page" class="form-select me-2" style="width: auto;" onchange="this.form.submit()">
+                <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
+            </select>
+
             <input id="search-input" type="text" name="search" class="form-control me-2" placeholder="Buscar por clave o valor..." value="{{ request('search') }}">
             <button type="submit" class="btn btn-outline-primary">
                 <i class="fas fa-search"></i> Buscar
@@ -53,10 +59,10 @@
                     <td>
                         <input type="checkbox" name="ids[]" value="{{ $translation->id }}" class="select-checkbox">
                     </td>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $translation->key_name }}</td>
-                        <td>{{ $translation->is_multilanguage ? 'Yes' : 'No' }}</td>
-                        <td>{{ $translation->default_value }}</td>
+                    <td>{{ $loop->iteration + ($translations->currentPage() - 1) * $translations->perPage() }}</td>
+                    <td>{{ $translation->key_name }}</td>
+                    <td>{{ $translation->is_multilanguage ? 'Yes' : 'No' }}</td>
+                    <td>{{ $translation->default_value }}</td>
                     <td>
                         @foreach (config('languages') as $code => $language)
                             @php
@@ -68,6 +74,7 @@
                                     style="width: 24px;">
                             </span>
                         @endforeach
+                    </td>
                     <td>
                         <!-- Botones de Acciones -->
                         <a href="{{ route('admin.translations.edit', $translation->id) }}" class="btn btn-sm btn-warning">Editar</a>
@@ -82,6 +89,12 @@
             </tbody>
         </table>
     </form>
+
+    <!-- Controles de Paginación -->
+    <div class="mt-3 d-flex justify-content-center">
+    {{ $translations->appends(request()->query())->links('pagination::bootstrap-4') }}
+    </div>
+
 </div>
 
 <script>

@@ -163,31 +163,6 @@
 </iframe>
   </div>
 </section>
-<section>
-  <div class="form-container">
-    <div class="form-card">
-      <h3>{{ __('have_questions') }}</h3>
-      <form>
-        <label for="nombre">{{ __('name') }}</label>
-        <input type="text" id="nombre" name="nombre" placeholder="{{ __('example') }} Juan">
-
-        <label for="apellido">{{ __('surname') }}</label>
-        <input type="text" id="apellido" name="apellido" placeholder="{{ __('example') }} Pérez">
-
-        <label for="telefono">{{ __('phone') }}</label>
-        <input type="tel" id="telefono" name="telefono" placeholder="{{ __('example') }} +34 600 000 000">
-
-        <label for="correo">{{ __('email') }}</label>
-        <input type="email" id="correo" name="correo" placeholder="{{ __('example') }} juan.perez@correo.com">
-
-        <label for="motivo">{{ __('subject') }}</label>
-        <textarea id="motivo" name="motivo" placeholder="{{ __('help_text') }}"></textarea>
-
-        <button class="form-button">{{ __('send') }}</button>
-      </form>
-    </div>
-  </div>
-</section>
 
 <section class="section-title py-5">
     <div class="container text-center">
@@ -267,6 +242,32 @@
             @endforeach
         </div>
     </div>
+</section>
+
+<section>
+  <div class="form-container">
+    <div class="form-card">
+      <h3>{{ __('have_questions') }}</h3>
+      <form>
+        <label for="nombre">{{ __('name') }}</label>
+        <input type="text" id="nombre" name="nombre" placeholder="{{ __('example') }} Juan">
+
+        <label for="apellido">{{ __('surname') }}</label>
+        <input type="text" id="apellido" name="apellido" placeholder="{{ __('example') }} Pérez">
+
+        <label for="telefono">{{ __('phone') }}</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="{{ __('example') }} +34 600 000 000">
+
+        <label for="correo">{{ __('email') }}</label>
+        <input type="email" id="correo" name="correo" placeholder="{{ __('example') }} juan.perez@correo.com">
+
+        <label for="motivo">{{ __('subject') }}</label>
+        <textarea id="motivo" name="motivo" placeholder="{{ __('help_text') }}"></textarea>
+
+        <button class="form-button">{{ __('send') }}</button>
+      </form>
+    </div>
+  </div>
 </section>
 
 
