@@ -101,8 +101,8 @@
     <div class="footer-column footer-align footer-offset">
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
-        <input type="email" placeholder="Tu email" class="subscribe-input">
-        <button type="submit" class="subscribe-button">SUSCRIBE</button>
+      <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
+      <button type="submit" class="subscribe-button">SUSCRIBE</button>
       </form>
     </div>
   </div>

@@ -2051,7 +2051,10 @@
       "it": "Termini e Condizioni",
       "ru": "Условия и Положения",
       "uk": "Умови та Положення",
-      "nl": "Algemene Voorwaarden"
+      "nl": "Algemene Voorwaarden",
+      "en_gb": "Terms and Conditions",
+      "de": "Allgemeine Geschäftsbedingungen",
+      "pl": "Zasady i warunki"
     }
   },
   {
@@ -2489,7 +2492,12 @@
       "es": "Política de Privacidad",
       "fr": "Politique de Confidentialité",
       "it": "Informativa sulla Privacy",
-      "nl": "Privacybeleid"
+      "nl": "Privacybeleid",
+      "en_gb": "Privacy Policy",
+      "de": "Datenschutzerklärung",
+      "pl": "Polityka Prywatności",
+      "ru": "Политика Kонфиденциальности",
+      "uk": "Політика Kонфіденційності"
     }
   },
   {
@@ -2775,7 +2783,11 @@
       "fr": "Politique d’Annulation",
       "it": "Politica di Cancellazione",
       "de": "Stornierungsbedingungen",
-      "nl": "Annuleringsbeleid"
+      "nl": "Annuleringsbeleid",
+      "en_gb": "Cancellation Policy",
+      "pl": "Polityka anulowania rezerwacji",
+      "ru": "Политика Отмены Бронирования",
+      "uk": "Політика Скасування Бронювання"
     }
   },
   {
@@ -3006,7 +3018,15 @@
     "languages": {
       "en_us": "Legal Notice",
       "gb": "Legal Notice",
-      "es": "Aviso Legal"
+      "es": "Aviso Legal",
+      "en_gb": "Legal Notice",
+      "fr": "Mentions Légales",
+      "it": "Avviso Legale",
+      "de": "Rechtliche Hinweise",
+      "pl": "Informacja Prawna",
+      "ru": "Юридическое Уведомление",
+      "uk": "Юридичне Повідомлення",
+      "nl": "Juridische Kennisgeving"
     }
   },
   {
@@ -3015,7 +3035,15 @@
     "is_multilanguage": 1,
     "languages": {
       "en_us": "\u003Ch1\u003ELegal Notice\u003C/h1\u003E",
-      "es": "\u003Ch1\u003EAviso Legal\u003C/h1\u003E"
+      "es": "\u003Ch1\u003EAviso Legal\u003C/h1\u003E",
+      "en_gb": "\u003Ch1\u003ELegal Notice\u003C/h1\u003E",
+      "fr": "\u003Ch1\u003EMentions L&eacute;gales\u003C/h1\u003E",
+      "it": "\u003Ch1\u003EAvviso Legale\u003C/h1\u003E",
+      "de": "\u003Ch1\u003ERechtliche Hinweise\u003C/h1\u003E",
+      "pl": "\u003Ch1\u003EInformacja Prawna\u003C/h1\u003E",
+      "ru": "\u003Ch1\u003EЮридическое Уведомление\u003C/h1\u003E",
+      "uk": "\u003Ch1\u003EЮридичне Повідомлення\u003C/h1\u003E",
+      "nl": "\u003Ch1\u003EJuridische Kennisgeving\u003C/h1\u003E"
     }
   },
   {
@@ -3024,7 +3052,219 @@
     "is_multilanguage": 1,
     "languages": {
       "en_us": "\u003Cp\u003E1. Identification of the holder of the website\u003Cbr /\u003E In compliance with the provisions of Spanish Law 34/2002, of July 11, on Information Society Services and Electronic Commerce (LSSI-CE), it is reported that this website is owned by:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003ECompany Name:\u003C/strong\u003E GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECIF (tax number):\u003C/strong\u003E B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ELegal Form:\u003C/strong\u003E One-person Limited Company\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESector:\u003C/strong\u003E Business Services\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ERegistered Office:\u003C/strong\u003E Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid, Spain\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EContact email:\u003C/strong\u003E support@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EPhone Number:\u003C/strong\u003E +34 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Purpose of the website\u003Cbr /\u003E The purpose of the website \u003Ca href=\"http://www.gtplux.com\" target=\"_new\"\u003Ewww.gtplux.com\u003C/a\u003E is to offer information and services related to the rental of motor vehicles, including boats and other movable property.\u003C/p\u003E  \u003Cp\u003E3. General conditions of use\u003Cbr /\u003E The access and use of this website attributes the condition of &quot;User&quot; and implies the acceptance of these general conditions from the moment of access. The User agrees to make appropriate use of the contents and services, respecting current legislation.\u003C/p\u003E  \u003Cp\u003E4. Intellectual and industrial property\u003Cbr /\u003E All the contents of the website (texts, images, logos, graphics, software, etc.) are exclusive property of GTP Lux S.L.U. or feature the necessary licenses for their use. The reproduction, distribution, public communication or modification of said contents without express authorization is prohibited.\u003C/p\u003E  \u003Cp\u003E5. Liability\u003Cbr /\u003E GTP Lux S.L.U. is not liable for any damages or losses arising from:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EThe improper use of the website by Users.\u003C/li\u003E         \u003Cli\u003ETechnical failures, service interruptions or any technical incident that is not attributable to the company.\u003C/li\u003E         \u003Cli\u003EContents or services of third parties that can be accessed through external links on the website.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Personal data protection\u003Cbr /\u003E GTP Lux S.L.U. complies with current regulations on the protection of personal data. You can check our Privacy Policy for more information about the processing of personal data.\u003C/p\u003E  \u003Cp\u003E7. External links\u003Cbr /\u003E This website may contain links to third-party websites. GTP Lux S.L.U. is not responsible for the contents, privacy policies or practices of such other sites.\u003C/p\u003E  \u003Cp\u003E8. Jurisdiction and applicable law\u003Cbr /\u003E This legal notice is governed by Spanish legislation. In case of conflict or dispute, the courts and tribunals of Madrid will be competent, unless the applicable legislation determines another jurisdiction.\u003C/p\u003E",
-      "es": "\u003Cp\u003E1. Identificaci&oacute;n del titular del sitio web\u003Cbr /\u003E En cumplimiento de lo establecido en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informaci&oacute;n y de Comercio Electr&oacute;nico (LSSI-CE), se informa que el presente sitio web es titularidad de:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003ERaz&oacute;n Social:\u003C/strong\u003E GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECIF:\u003C/strong\u003E B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EForma Jur&iacute;dica:\u003C/strong\u003E Sociedad Limitada Unipersonal\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESector:\u003C/strong\u003E Servicios Empresariales\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EDomicilio Social:\u003C/strong\u003E Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECorreo electr&oacute;nico de contacto:\u003C/strong\u003E support@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ETel&eacute;fono:\u003C/strong\u003E +34 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Objeto del sitio web\u003Cbr /\u003E El sitio web \u003Ca href=\"http://www.gtplux.com\" target=\"_new\"\u003Ewww.gtplux.com\u003C/a\u003E tiene como objeto ofrecer informaci&oacute;n y servicios relacionados con el alquiler de veh&iacute;culos a motor, incluyendo barcos y otros bienes muebles.\u003C/p\u003E  \u003Cp\u003E3. Condiciones generales de uso\u003Cbr /\u003E El acceso y uso de este sitio web atribuye la condici&oacute;n de &quot;usuario&quot; e implica la aceptaci&oacute;n de las presentes condiciones generales desde el momento del acceso. El usuario se compromete a hacer un uso adecuado de los contenidos y servicios, respetando la legislaci&oacute;n vigente.\u003C/p\u003E  \u003Cp\u003E4. Propiedad intelectual e industrial\u003Cbr /\u003E Todos los contenidos del sitio web (textos, im&aacute;genes, logotipos, gr&aacute;ficos, software, etc.) son propiedad exclusiva de GTP Lux S.L.U. o cuentan con las licencias necesarias para su uso. Queda prohibida la reproducci&oacute;n, distribuci&oacute;n, comunicaci&oacute;n p&uacute;blica o modificaci&oacute;n de dichos contenidos sin autorizaci&oacute;n expresa.\u003C/p\u003E  \u003Cp\u003E5. Responsabilidad\u003Cbr /\u003E GTP Lux S.L.U. no se hace responsable de los da&ntilde;os o perjuicios derivados de:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EEl uso indebido del sitio web por parte de los usuarios.\u003C/li\u003E         \u003Cli\u003EFallos t&eacute;cnicos, interrupciones del servicio o cualquier incidencia t&eacute;cnica que no sea imputable a la empresa.\u003C/li\u003E         \u003Cli\u003EContenidos o servicios de terceros a los que se pueda acceder a trav&eacute;s de enlaces externos en el sitio web.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Protecci&oacute;n de datos personales\u003Cbr /\u003E GTP Lux S.L.U. cumple con la normativa vigente en materia de protecci&oacute;n de datos de car&aacute;cter personal. Puede consultar nuestra pol&iacute;tica de privacidad para m&aacute;s informaci&oacute;n sobre el tratamiento de datos personales.\u003C/p\u003E  \u003Cp\u003E7. Enlaces externos\u003Cbr /\u003E Este sitio web puede contener enlaces a sitios web de terceros. GTP Lux S.L.U. no se responsabiliza de los contenidos, pol&iacute;ticas de privacidad ni pr&aacute;cticas de dichos sitios.\u003C/p\u003E  \u003Cp\u003E8. Jurisdicci&oacute;n y legislaci&oacute;n aplicable\u003Cbr /\u003E El presente aviso legal se rige por la legislaci&oacute;n espa&ntilde;ola. En caso de conflicto o disputa, ser&aacute;n competentes los juzgados y tribunales de Madrid, salvo que la legislaci&oacute;n aplicable determine otro fuero.\u003C/p\u003E"
+      "es": "\u003Cp\u003E1. Identificaci&oacute;n del titular del sitio web\u003Cbr /\u003E En cumplimiento de lo establecido en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informaci&oacute;n y de Comercio Electr&oacute;nico (LSSI-CE), se informa que el presente sitio web es titularidad de:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003ERaz&oacute;n Social:\u003C/strong\u003E GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECIF:\u003C/strong\u003E B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EForma Jur&iacute;dica:\u003C/strong\u003E Sociedad Limitada Unipersonal\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESector:\u003C/strong\u003E Servicios Empresariales\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EDomicilio Social:\u003C/strong\u003E Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECorreo electr&oacute;nico de contacto:\u003C/strong\u003E support@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ETel&eacute;fono:\u003C/strong\u003E +34 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Objeto del sitio web\u003Cbr /\u003E El sitio web \u003Ca href=\"http://www.gtplux.com\" target=\"_new\"\u003Ewww.gtplux.com\u003C/a\u003E tiene como objeto ofrecer informaci&oacute;n y servicios relacionados con el alquiler de veh&iacute;culos a motor, incluyendo barcos y otros bienes muebles.\u003C/p\u003E  \u003Cp\u003E3. Condiciones generales de uso\u003Cbr /\u003E El acceso y uso de este sitio web atribuye la condici&oacute;n de &quot;usuario&quot; e implica la aceptaci&oacute;n de las presentes condiciones generales desde el momento del acceso. El usuario se compromete a hacer un uso adecuado de los contenidos y servicios, respetando la legislaci&oacute;n vigente.\u003C/p\u003E  \u003Cp\u003E4. Propiedad intelectual e industrial\u003Cbr /\u003E Todos los contenidos del sitio web (textos, im&aacute;genes, logotipos, gr&aacute;ficos, software, etc.) son propiedad exclusiva de GTP Lux S.L.U. o cuentan con las licencias necesarias para su uso. Queda prohibida la reproducci&oacute;n, distribuci&oacute;n, comunicaci&oacute;n p&uacute;blica o modificaci&oacute;n de dichos contenidos sin autorizaci&oacute;n expresa.\u003C/p\u003E  \u003Cp\u003E5. Responsabilidad\u003Cbr /\u003E GTP Lux S.L.U. no se hace responsable de los da&ntilde;os o perjuicios derivados de:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EEl uso indebido del sitio web por parte de los usuarios.\u003C/li\u003E         \u003Cli\u003EFallos t&eacute;cnicos, interrupciones del servicio o cualquier incidencia t&eacute;cnica que no sea imputable a la empresa.\u003C/li\u003E         \u003Cli\u003EContenidos o servicios de terceros a los que se pueda acceder a trav&eacute;s de enlaces externos en el sitio web.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Protecci&oacute;n de datos personales\u003Cbr /\u003E GTP Lux S.L.U. cumple con la normativa vigente en materia de protecci&oacute;n de datos de car&aacute;cter personal. Puede consultar nuestra pol&iacute;tica de privacidad para m&aacute;s informaci&oacute;n sobre el tratamiento de datos personales.\u003C/p\u003E  \u003Cp\u003E7. Enlaces externos\u003Cbr /\u003E Este sitio web puede contener enlaces a sitios web de terceros. GTP Lux S.L.U. no se responsabiliza de los contenidos, pol&iacute;ticas de privacidad ni pr&aacute;cticas de dichos sitios.\u003C/p\u003E  \u003Cp\u003E8. Jurisdicci&oacute;n y legislaci&oacute;n aplicable\u003Cbr /\u003E El presente aviso legal se rige por la legislaci&oacute;n espa&ntilde;ola. En caso de conflicto o disputa, ser&aacute;n competentes los juzgados y tribunales de Madrid, salvo que la legislaci&oacute;n aplicable determine otro fuero.\u003C/p\u003E",
+      "en_gb": "\u003Cp\u003E1. Identification of the holder of the website\u003Cbr /\u003E In compliance with the provisions of Spanish Law 34/2002, of July 11, on Information Society Services and Electronic Commerce (LSSI-CE), it is reported that this website is owned by:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003ECompany Name:\u003C/strong\u003E GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECIF (tax number):\u003C/strong\u003E B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ELegal Form:\u003C/strong\u003E One-person Limited Company\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESector:\u003C/strong\u003E Business Services\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ERegistered Office:\u003C/strong\u003E Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid, Spain\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EContact email:\u003C/strong\u003E support@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EPhone Number:\u003C/strong\u003E +34 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Purpose of the website\u003Cbr /\u003E The purpose of the website \u003Ca href=\"http://www.gtplux.com\" target=\"_new\"\u003Ewww.gtplux.com\u003C/a\u003E is to offer information and services related to the rental of motor vehicles, including boats and other movable property.\u003C/p\u003E  \u003Cp\u003E3. General conditions of use\u003Cbr /\u003E The access and use of this website attributes the condition of &quot;User&quot; and implies the acceptance of these general conditions from the moment of access. The User agrees to make appropriate use of the contents and services, respecting current legislation.\u003C/p\u003E  \u003Cp\u003E4. Intellectual and industrial property\u003Cbr /\u003E All the contents of the website (texts, images, logos, graphics, software, etc.) are exclusive property of GTP Lux S.L.U. or feature the necessary licenses for their use. The reproduction, distribution, public communication or modification of said contents without express authorisation is prohibited.\u003C/p\u003E  \u003Cp\u003E5. Liability\u003Cbr /\u003E GTP Lux S.L.U. is not liable for any damages or losses arising from:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EThe improper use of the website by Users.\u003C/li\u003E         \u003Cli\u003ETechnical failures, service interruptions or any technical incident that is not attributable to the company.\u003C/li\u003E         \u003Cli\u003EContents or services of third parties that can be accessed through external links on the website.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Personal data protection\u003Cbr /\u003E GTP Lux S.L.U. complies with current regulations on the protection of personal data. You can consult our Privacy Policy for more information about the processing of personal data.\u003C/p\u003E  \u003Cp\u003E7. External links\u003Cbr /\u003E This website may contain links to third-party websites. GTP Lux S.L.U. is not responsible for the contents, privacy policies or practices of such other sites.\u003C/p\u003E  \u003Cp\u003E8. Jurisdiction and applicable law\u003Cbr /\u003E This legal notice is governed by Spanish legislation. In case of conflict or dispute, the courts and tribunals of Madrid will be competent, unless the applicable legislation determines another jurisdiction.\u003C/p\u003E",
+      "fr": "\u003Cp\u003E1. Identification du titulaire du site web\u003Cbr /\u003E Conform&eacute;ment aux dispositions de la Loi 34/2002, du 11 juillet, sur les Services de la Soci&eacute;t&eacute; de l&#39;Information et de Commerce &Eacute;lectronique (LSSI-CE), nous vous informons par la pr&eacute;sente que ce site web est la propri&eacute;t&eacute; de :\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003ENom de la soci&eacute;t&eacute; :\u003C/strong\u003E GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECIF :\u003C/strong\u003E B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EForme juridique :\u003C/strong\u003E Entreprise Unipersonnelle &agrave; Responsabilit&eacute; Limit&eacute;e\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESecteur :\u003C/strong\u003E Services aux entreprises\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESi&egrave;ge social :\u003C/strong\u003E Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EAdresse &eacute;lectronique de contact\u003C/strong\u003E : \u003Ca href=\"mailto:support@gtplux.com\"\u003Esupport@gtplux.com\u003C/a\u003E\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ET&eacute;l&eacute;phone :\u003C/strong\u003E (+34) 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Objet du site web\u003Cbr /\u003E Le site web \u003Ca href=\"http://www.gtplux.com\"\u003Ewww.gtplux.com\u003C/a\u003E a pour objet de fournir des informations et des services relatifs &agrave; la location de v&eacute;hicules &agrave; moteur, y compris les bateaux et autres biens meubles.\u003C/p\u003E  \u003Cp\u003E3. Conditions g&eacute;n&eacute;rales d&rsquo;utilisation\u003Cbr /\u003E L&#39;acc&egrave;s et l&#39;utilisation de ce site web attribue la condition d&#39;&laquo; utilisateur &raquo; et implique l&#39;acceptation des pr&eacute;sentes conditions g&eacute;n&eacute;rales &agrave; partir du moment de l&#39;acc&egrave;s. L&#39;utilisateur s&#39;engage &agrave; faire un usage appropri&eacute; des contenus et des services, dans le respect de la l&eacute;gislation en vigueur.\u003C/p\u003E  \u003Cp\u003E4. Propri&eacute;t&eacute; intellectuelle et industrielle\u003Cbr /\u003E Tous les contenus du site web (textes, images, logos, graphiques, logiciels, etc.) sont la propri&eacute;t&eacute; exclusive de GTP Lux S.L.U. ou font l&#39;objet des licences n&eacute;cessaires &agrave; leur utilisation. La reproduction, la distribution, la communication publique ou la modification de ces contenus est interdite sans autorisation expresse.\u003C/p\u003E  \u003Cp\u003E5. Responsabilit&eacute;\u003Cbr /\u003E GTP Lux S.L.U. n&#39;est pas responsable des dommages r&eacute;sultant de :\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EL&#39;utilisation inappropri&eacute;e du site web par les utilisateurs.\u003C/li\u003E         \u003Cli\u003ED&eacute;faillances techniques, interruptions du service ou tout autre incident technique non imputable &agrave; l&#39;entreprise.\u003C/li\u003E         \u003Cli\u003EContenus ou services de tiers auxquels il est possible d&#39;acc&eacute;der par le biais de liens externes sur le site web.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Protection des donn&eacute;es personnelles\u003Cbr /\u003E GTP Lux S.L.U. respecte la l&eacute;gislation en vigueur en mati&egrave;re de protection des donn&eacute;es personnelles. Vous pouvez consulter notre politique de confidentialit&eacute; pour plus d&#39;informations sur le traitement des donn&eacute;es personnelles.\u003C/p\u003E  \u003Cp\u003E7. Liens externes\u003Cbr /\u003E Ce site web peut contenir des liens vers des sites web de tiers. GTP Lux S.L.U. n&#39;est pas responsable du contenu, des politiques de confidentialit&eacute; ou des pratiques de ces sites.\u003C/p\u003E  \u003Cp\u003E8. Juridiction et droit applicable\u003Cbr /\u003E La pr&eacute;sente mention l&eacute;gale est r&eacute;gie par la l&eacute;gislation espagnole. En cas de conflit ou de litige, les cours et tribunaux de Madrid seront comp&eacute;tents, &agrave; moins que la l&eacute;gislation applicable ne d&eacute;termine une autre juridiction.\u003C/p\u003E",
+      "it": "\u003Cp\u003E1. Identificazione del titolare del sito web\u003Cbr /\u003E In ottemperanza a quanto previsto dalla Legge 34/2002, dell&#39;11 luglio, sui Servizi della Societ&agrave; dell&#39;Informazione e Commercio Elettronico (LSSI-CE), si informa che il presente sito web &egrave; di propriet&agrave; di:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003ERagione Sociale:\u003C/strong\u003E GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECIF:\u003C/strong\u003E B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EForma Giuridica:\u003C/strong\u003E Societ&agrave; a Responsabilit&agrave; Limitata Unipersonale\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESettore\u003C/strong\u003E: Servizi alle Imprese\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESede Legale:\u003C/strong\u003E Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EE-mail di contatto:\u003C/strong\u003E support@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ETelefono:\u003C/strong\u003E +34 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Oggetto del sito web\u003Cbr /\u003E Il sito web \u003Ca href=\"http://www.gtplux.com\" target=\"_new\"\u003Ewww.gtplux.com\u003C/a\u003E ha come scopo quello di fornire informazioni e servizi relativi al noleggio di veicoli a motore, incluse imbarcazioni e altri beni mobili.\u003C/p\u003E  \u003Cp\u003E3. Condizioni generali d&rsquo;uso\u003Cbr /\u003E L&#39;accesso e l&#39;utilizzo di questo sito web attribuiscono lo status di &quot;utente&quot; e implicano l&#39;accettazione delle presenti condizioni generali dal momento dell&#39;accesso. L&#39;utente si impegna a fare un uso appropriato dei contenuti e dei servizi, nel rispetto della normativa vigente.\u003C/p\u003E  \u003Cp\u003E4. Propriet&agrave; intellettuale e industriale\u003Cbr /\u003E Tutti i contenuti del sito (testi, immagini, loghi, grafici, software, ecc.) sono di propriet&agrave; esclusiva di GTP Lux S.L.U. o dispongono delle licenze necessarie per il loro utilizzo. &Egrave; vietata la riproduzione, la distribuzione, la comunicazione pubblica o la modifica di tali contenuti senza espressa autorizzazione.\u003C/p\u003E  \u003Cp\u003E5. Responsabilit&agrave;\u003Cbr /\u003E GTP Lux S.L.U. non sar&agrave; responsabile di eventuali danni o inconvenienti derivanti da:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EUso improprio del sito web da parte degli utenti.\u003C/li\u003E         \u003Cli\u003EGuasti tecnici, interruzioni del servizio o qualsiasi altra problematica tecnica non imputabile all&#39;azienda.\u003C/li\u003E         \u003Cli\u003EContenuti o servizi di terzi a cui si pu&ograve; accedere tramite link esterni nel sito web.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Protezione dei dati personali\u003Cbr /\u003E GTP Lux S.L.U. rispetta la normativa vigente in materia di protezione dei dati di carattere personale. &Egrave; possibile consultare la nostra politica sulla privacy per ulteriori informazioni sul trattamento dei dati personali.\u003C/p\u003E  \u003Cp\u003E7. Link esterni\u003Cbr /\u003E Questo sito pu&ograve; contenere link a siti web di terzi. GTP Lux S.L.U. non &egrave; responsabile del contenuto, delle politiche sulla privacy o delle pratiche di tali siti.\u003C/p\u003E  \u003Cp\u003E8. Giurisdizione e legge applicabile\u003Cbr /\u003E Il presente avviso legale &egrave; regolato dalla legge spagnola. In caso di conflitto o controversia, saranno competenti le corti e i tribunali di Madrid, a meno che la legislazione applicabile stabilisca un foro diverso.\u003C/p\u003E",
+      "de": "\u003Cp\u003E1. Identifizierung des Inhabers der Webseite\u003Cbr /\u003E In &Uuml;bereinstimmung mit den Bestimmungen des spanischen Gesetzes 34/2002 vom 11. Juli &uuml;ber Dienste der Informationsgesellschaft und elektronischen Gesch&auml;ftsverkehr (LSSI-CE) wird informiert, dass die folgende Firma die Eigentumsrechte zu dieser Webseite besitzt:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003EFirmenname:\u003C/strong\u003E GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ECIF (Steuernummer):\u003C/strong\u003E B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ERechtsform:\u003C/strong\u003E Einpersonengesellschaft mit beschr&auml;nkter Haftung\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESektor:\u003C/strong\u003E Business-Services\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EGesch&auml;ftssitz:\u003C/strong\u003E Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid (Spanien)\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EE-Mail-Adresse:\u003C/strong\u003E support@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ETelefonnummer:\u003C/strong\u003E +34 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Zweck der Webseite\u003Cbr /\u003E Der Zweck der Webseite \u003Ca href=\"http://www.gtplux.com\" target=\"_new\"\u003Ewww.gtplux.com\u003C/a\u003E ist es, Informationen und Dienstleistungen im Zusammenhang mit der Vermietung von Kraftfahrzeugen, einschlie&szlig;lich Booten und anderen beweglichen G&uuml;tern, anzubieten.\u003C/p\u003E  \u003Cp\u003E3. Allgemeine Nutzungsbedingungen\u003Cbr /\u003E Der Zugriff und die Nutzung dieser Webseite macht den Besuchenden zu einem &quot;Nutzer&quot; und impliziert die Annahme der vorliegenden allgemeinen Gesch&auml;ftsbedingungen ab dem Zeitpunkt des Zugriffs. Der Nutzer verpflichtet sich, die Inhalte und Dienste unter Beachtung der geltenden Gesetzgebung angemessen zu nutzen.\u003C/p\u003E  \u003Cp\u003E4. Geistiges und gewerbliches Eigentum\u003Cbr /\u003E Alle Inhalte der Webseite (Texte, Bilder, Logos, Grafiken, Software usw.) sind das ausschlie&szlig;liche Eigentum von GTP Lux S.L.U. oder beinhalten die notwendigen Lizenzen f&uuml;r ihre Nutzung. Die Vervielf&auml;ltigung, Verbreitung, &ouml;ffentliche Wiedergabe oder &Auml;nderung dieser Inhalte ohne ausdr&uuml;ckliche Genehmigung ist untersagt.\u003C/p\u003E  \u003Cp\u003E5. Haftung\u003Cbr /\u003E GTP Lux S.L.U. haftet nicht f&uuml;r Sch&auml;den oder Verluste, die aufgrund der Folgenden entstehen:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EDie missbr&auml;uchliche Nutzung der Webseite durch Nutzer.\u003C/li\u003E         \u003Cli\u003ETechnische Ausf&auml;lle, Betriebsunterbrechungen oder technische Zwischenf&auml;lle, die nicht dem Unternehmen zuzurechnen sind.\u003C/li\u003E         \u003Cli\u003EInhalte oder Dienste Dritter, auf die &uuml;ber externe Links auf der Webseite zugegriffen werden kann.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Schutz personenbezogener Daten\u003Cbr /\u003E GTP Lux S.L.U. erf&uuml;llt die geltenden Vorschriften zum Schutz personenbezogener Daten. Weitere Informationen zur Verarbeitung personenbezogener Daten finden Sie in unserer Datenschutzrichtlinie.\u003C/p\u003E  \u003Cp\u003E7. Externe Links\u003Cbr /\u003E Diese Webseite kann Links zu Webseiten Dritter enthalten. GTP Lux S.L.U. ist nicht verantwortlich f&uuml;r die Inhalte, Datenschutzrichtlinien oder Praktiken dieser anderen Webseiten.\u003C/p\u003E  \u003Cp\u003E8. Zust&auml;ndige Gerichtsbarkeit und anwendbares Recht\u003Cbr /\u003E Diese Rechtlichen Hinweise richten sich nach der spanischen Gesetzgebung. Im Falle von Konflikten oder Streitigkeiten sind die Gerichte von Madrid zust&auml;ndig, es sei denn, die anwendbare Gesetzgebung bestimmt eine andere Gerichtsbarkeit.\u003C/p\u003E",
+      "pl": "\u003Cp\u003E1. Identyfikacja właściciela strony internetowej\u003Cbr /\u003E Zgodnie z przepisami Ustawy 34/2002 (hiszpańskiego prawa) z dnia 11 lipca o Usługach Społeczeństwa Informacyjnego i Handlu Elektronicznego (LSSI-CE) informuje się, że niniejsza strona internetowa jest własnością:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003ENazwa firmy:\u003C/strong\u003E GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ENumer podatkowy CIF:\u003C/strong\u003E B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EForma Prawna:\u003C/strong\u003E Jednoosobowa sp&oacute;łka z ograniczoną odpowiedzialnością\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ESektor:\u003C/strong\u003E Usługi Biznesowe\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EAdres siedziby:\u003C/strong\u003E Calle Polvoranca, 7, Legan&eacute;s, 28911, Madryt (Hiszpania)\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EKontaktowy adres e-mail: \u003C/strong\u003Esupport@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003ENumer telefonu:\u003C/strong\u003E +34 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Cel strony internetowej\u003Cbr /\u003E Strona \u003Ca href=\"http://www.gtplux.com\" target=\"_new\"\u003Ewww.gtplux.com\u003C/a\u003E ma na celu dostarczanie informacji i usług związanych z wynajmem pojazd&oacute;w silnikowych, w tym łodzi i innych ruchomości.\u003C/p\u003E  \u003Cp\u003E3. Og&oacute;lne Warunki Użytkowania\u003Cbr /\u003E Dostęp i korzystanie z tej strony internetowej przypisuje status &quot;Użytkownika&quot; i oznacza akceptację niniejszych Og&oacute;lnych Warunk&oacute;w od momentu dostępu. Użytkownik zobowiązuje się do właściwego korzystania z treści i usług zgodnie z obowiązującym prawem.\u003C/p\u003E  \u003Cp\u003E4. Własność intelektualna i przemysłowa\u003Cbr /\u003E Cała zawartość strony internetowej (teksty, obrazy, loga, grafika, oprogramowanie itp.) jest wyłączną własnością GTP Lux S.L.U. , bądź firma ta posiada niezbędne licencje, aby z niej korzystać. Powielanie, rozpowszechnianie, publiczne udostępnianie lub modyfikowanie tej zawartości bez wyraźnej zgody jest zabronione.\u003C/p\u003E  \u003Cp\u003E5. Odpowiedzialność prawna\u003Cbr /\u003E GTP Lux S.L.U. nie ponosi odpowiedzialności prawnej za jakiekolwiek szkody lub straty wynikające z:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003ENiewłaściwego korzystania ze strony internetowej przez Użytkownik&oacute;w.\u003C/li\u003E         \u003Cli\u003EUsterek technicznych, przerw w świadczeniu usług lub jakiekolwiek problem&oacute;w technicznych, kt&oacute;re nie mogą być przypisane firmie.\u003C/li\u003E         \u003Cli\u003ETreści lub usługi os&oacute;b trzecich, do kt&oacute;rych można uzyskać dostęp za pośrednictwem zewnętrznych link&oacute;w, znajdujących się na stronie internetowej.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Ochrona danych osobowych\u003Cbr /\u003E GTP Lux S.L.U. spełnia obowiązujące przepisy w zakresie ochrony danych osobowych. Możesz zapoznać się z naszą Polityką Prywatności, aby uzyskać więcej informacji na temat przetwarzania danych osobowych.\u003C/p\u003E  \u003Cp\u003E7. Linki zewnętrzne\u003Cbr /\u003E Ta strona internetowa może zawierać linki do witryn stron trzecich. GTP Lux S.L.U. nie ponosi odpowiedzialności za treści, polityki prywatności ani praktyki tych witryn.\u003C/p\u003E  \u003Cp\u003E8. Jurysdykcja i obowiązujące prawo\u003Cbr /\u003E Niniejsza informacja prawna podlega prawu hiszpańskiemu. W przypadku konfliktu lub sporu jurysdykcję dyktują sądy i trybunały w Madrycie, chyba że obowiązujące prawo przewiduje inną jurysdykcję.\u003C/p\u003E",
+      "ru": "\u003Ch2\u003E1. Идентификация владельца веб-сайта\u003C/h2\u003E  \u003Cp\u003EВ соответствии с положениями Закона 34/2002 от 11 июля об услугах информационного общества и электронной торговле (LSSI-CE), настоящим мы информируем вас о том, что данный веб-сайт принадлежит:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003EНазвание компании\u003C/strong\u003E: GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EКОД\u003C/strong\u003E: B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EОрганизационно-правовая форма\u003C/strong\u003E: Общество с ограниченной ответственностью с одним акционером\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EСектор\u003C/strong\u003E: Бизнес-услуги\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EЮридический адрес\u003C/strong\u003E: Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EКонтактный адрес электронной почты\u003C/strong\u003E: support@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EТелефон\u003C/strong\u003E: +34 910 059 958.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E&nbsp;\u003C/p\u003E  \u003Ch2\u003E2. Цель сайта\u003C/h2\u003E  \u003Cp\u003EЦелью сайта \u003Ca href=\"http://www.gtplux.com/\"\u003Ehttp://www.gtplux.com/\u003C/a\u003E является предоставление информации и услуг, связанных с арендой моторных суден, в том числе яхт, катеров и другого движимого имущества.\u003C/p\u003E  \u003Ch2\u003E3. Общие условия использования\u003C/h2\u003E  \u003Cp\u003EДоступ и использование данного сайта дает статус &quot;пользователь&quot; и подразумевает принятие настоящих общих условий с момента доступа. Пользователь обязуется надлежащим образом использовать содержимое и услуги, соблюдая действующее законодательство.\u003C/p\u003E  \u003Ch2\u003E4. Интеллектуальная и промышленная собственность\u003C/h2\u003E  \u003Cp\u003EВсе содержимое сайта (тексты, изображения, логотипы, графика, программное обеспечение и т.д.) являются исключительной собственностью GTP Lux S.L.U. или имеют необходимые лицензии на их использование. Воспроизведение, распространение, публичное сообщение или изменение указанных материалов запрещено без специального разрешения.\u003C/p\u003E  \u003Ch2\u003E5. Ответственность\u003C/h2\u003E  \u003Cp\u003EGTP Lux S.L.U. не несет ответственности за любой ущерб, возникающий в результате:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EНеправильного использования сайта пользователями.\u003C/li\u003E         \u003Cli\u003EТехнических сбоев, перерывов в обслуживании или любых технических инцидентов не по вине компании.\u003C/li\u003E         \u003Cli\u003EСодержания или услуг третьих лиц, доступ к которым может осуществляться через внешние ссылки на сайте.\u003C/li\u003E \u003C/ul\u003E  \u003Ch2\u003E6. Защита персональных данных\u003C/h2\u003E  \u003Cp\u003EGTP Lux S.L.U. соблюдает действующее законодательство о защите персональных данных. Вы можете ознакомиться с нашей политикой конфиденциальности для получения дополнительной информации об обработке персональных данных.\u003C/p\u003E  \u003Ch2\u003E7. Внешние ссылки\u003C/h2\u003E  \u003Cp\u003EДанный сайт может содержать ссылки на сайты третьих лиц. GTP Lux S.L.U. не несет ответственности за содержание, политику конфиденциальности или практику таких сайтов.\u003C/p\u003E  \u003Ch2\u003E8. Юрисдикция и применимое право\u003C/h2\u003E  \u003Cp\u003EНастоящее юридическое уведомление регулируется испанским законодательством. В случае возникновения каких-либо конфликтов или споров юрисдикция распространяется на суды и трибуналы Мадрида, если действующим законодательством не определена иная юрисдикция.\u003C/p\u003E",
+      "uk": "\u003Ch2\u003E1. Ідентифікація власника веб-сайту\u003C/h2\u003E  \u003Cp\u003EВідповідно до положень Закону 34/2002 від 11 липня про послуги інформаційного суспільства та електронну комерцію (LSSI-CE), ми повідомляємо вам, що власником цього веб-сайту є:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003E\u003Cstrong\u003EНазва компанії\u003C/strong\u003E: GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EКод\u003C/strong\u003E: B13668843\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EОрганізаційно-правова форма\u003C/strong\u003E: Товариство з обмеженою відповідальністю з одним акціонером\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EСектор\u003C/strong\u003E: Ділові послуги\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EЮридична адреса\u003C/strong\u003E: Calle Polvoranca, 7, Legan&eacute;s, 28911, Мадрид\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EКонтактна електронна пошта\u003C/strong\u003E: support@gtplux.com\u003C/li\u003E         \u003Cli\u003E\u003Cstrong\u003EТелефон\u003C/strong\u003E: +34 910 059 958\u003C/li\u003E \u003C/ul\u003E  \u003Ch2\u003E2. Мета веб-сайту\u003C/h2\u003E  \u003Cp\u003EМетою веб-сайту \u003Ca href=\"http://www.gtplux.com/\"\u003Ehttp://www.gtplux.com/\u003C/a\u003E є надання інформації та послуг, пов&#39;язаних з орендою моторного транспорту, в тому числі яхт, катерів та іншого рухомого майна.\u003C/p\u003E  \u003Ch2\u003E3. Загальні умови використання\u003C/h2\u003E  \u003Cp\u003EДоступ до цього веб-сайту та його використання надає статус &quot;користувач&quot; і передбачає прийняття цих загальних умов з моменту доступу. Користувач зобов&#39;язується використовувати вміст і послуги належним чином, дотримуючись чинного законодавства.\u003C/p\u003E  \u003Ch2\u003E4. Інтелектуальна та промислова власність\u003C/h2\u003E  \u003Cp\u003EВесь вміст веб-сайту (тексти, зображення, логотипи, графіка, програмне забезпечення тощо) є виключною власністю GTP Lux S.L.U. або має необхідні ліцензії на їх використання. Відтворення, розповсюдження, публічне сповіщення або зміна зазначеного змісту забороняється без спеціального дозволу.\u003C/p\u003E  \u003Ch2\u003E5. Відповідальність\u003C/h2\u003E  \u003Cp\u003EGTP Lux S.L.U. не несе відповідальності за будь-які збитки або втрати, що виникли внаслідок:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EНеправильного використання веб-сайту користувачами.\u003C/li\u003E         \u003Cli\u003EТехнічних збоїв, перебоїв у наданні послуг або будь-яких технічних інцидентів, не пов&#39;язаних з діяльністю компанії.\u003C/li\u003E         \u003Cli\u003EВміст або послуги третіх осіб, на які можна перейти за зовнішніми посиланнями на веб-сайті.\u003C/li\u003E \u003C/ul\u003E  \u003Ch2\u003E6. Захист персональних даних\u003C/h2\u003E  \u003Cp\u003EGTP Lux S.L.U. дотримується чинного законодавства про захист персональних даних. Ви можете ознайомитися з нашою політикою конфіденційності для отримання додаткової інформації про обробку персональних даних.\u003C/p\u003E  \u003Ch2\u003E7. Зовнішні посилання\u003C/h2\u003E  \u003Cp\u003EЦей веб-сайт може містити посилання на веб-сайти третіх осіб. GTP Lux S.L.U. не несе відповідальності за зміст, політику конфіденційності або практику таких сайтів.\u003C/p\u003E  \u003Ch2\u003E8. Юрисдикція та чинне законодавство\u003C/h2\u003E  \u003Cp\u003EЦе юридичне повідомлення регулюється іспанським законодавством. У разі будь-якого конфлікту або суперечки, юрисдикцією володіють суди і трибунали міста Мадрид, якщо чинне законодавство не визначає іншу юрисдикцію.\u003C/p\u003E",
+      "nl": "\u003Ch2\u003E1. Identificatie van de eigenaar van de website\u003C/h2\u003E  \u003Cp\u003EIn overeenstemming met de bepalingen van Wet 34/2002 van 11 juli, inzake Diensten van de Informatie Samenleving en Elektronische Handel (LSSI-CE), wordt meegedeeld dat deze website in bezit is van:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EBedrijfsnaam: GTP Lux S.L.U.\u003C/li\u003E         \u003Cli\u003EFiscaal identificatienummer (CIF): B13668843\u003C/li\u003E         \u003Cli\u003EJuridische vorm: Besloten Vennootschap met beperkte aansprakelijkheid\u003C/li\u003E         \u003Cli\u003ESector: Zakelijke diensten\u003C/li\u003E         \u003Cli\u003EMaatschappelijk adres: Calle Polvoranca, 7, Legan&eacute;s, 28911, Madrid\u003C/li\u003E         \u003Cli\u003EContact e-mailadres: \u003Ca href=\"mailto:support@gtplux.com\"\u003Esupport@gtplux.com\u003C/a\u003E\u003C/li\u003E         \u003Cli\u003ETelefoon: \u003Ca name=\"_Hlk187830805\"\u003E+34 910 059 958\u003C/a\u003E.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E2. Doel van de website\u003Cbr /\u003E De website \u003Ca href=\"http://www.gtplux.com\" target=\"_new\"\u003Ewww.gtplux.com\u003C/a\u003E heeft als doel informatie en diensten aan te bieden met betrekking tot de verhuur van motorvoertuigen, inclusief boten en andere roerende goederen.\u003C/p\u003E  \u003Cp\u003E3. Algemene gebruiksvoorwaarden\u003Cbr /\u003E De toegang tot en het gebruik van deze website geeft de status van &quot;gebruiker&quot; en impliceert de acceptatie van de algemene voorwaarden vanaf het moment van toegang. De gebruiker verbindt zich ertoe de inhoud en diensten op een juiste manier te gebruiken, in overeenstemming met de geldende wetgeving.\u003C/p\u003E  \u003Cp\u003E4. Intellectuele en industri&euml;le eigendom\u003Cbr /\u003E Alle inhoud op de website (teksten, afbeeldingen, logo&#39;s, grafieken, software, enz.) is exclusief eigendom van GTP Lux S.L.U. of beschikt over de benodigde licenties voor gebruik. Het is verboden om deze inhoud zonder uitdrukkelijke toestemming te reproduceren, verspreiden, openbaar te maken of te wijzigen.\u003C/p\u003E  \u003Cp\u003E5. Aansprakelijkheid\u003Cbr /\u003E GTP Lux S.L.U. is niet aansprakelijk voor schade of verlies die voortvloeit uit:\u003C/p\u003E  \u003Cul\u003E         \u003Cli\u003EOnjuist gebruik van de website door de gebruikers.\u003C/li\u003E         \u003Cli\u003ETecnische fouten, serviceonderbrekingen of enige technische incidenten die niet aan het bedrijf kunnen worden toegeschreven.\u003C/li\u003E         \u003Cli\u003EInhoud of diensten van derden die via externe links op de website toegankelijk zijn.\u003C/li\u003E \u003C/ul\u003E  \u003Cp\u003E6. Bescherming van persoonsgegevens\u003Cbr /\u003E GTP Lux S.L.U. voldoet aan de geldende wetgeving inzake de bescherming van persoonsgegevens. Raadpleeg ons privacybeleid voor meer informatie over de verwerking van persoonsgegevens.\u003C/p\u003E  \u003Cp\u003E7. Externe links\u003Cbr /\u003E Deze website kan links bevatten naar websites van derden. GTP Lux S.L.U. is niet verantwoordelijk voor de inhoud, privacybeleidsmaatregelen of praktijken van deze websites.\u003C/p\u003E  \u003Cp\u003E8. Jurisdictie en toepasselijke wetgeving\u003Cbr /\u003E Deze juridische kennisgeving wordt gereguleerd door de Spaanse wetgeving. In geval van conflict of geschil zijn de rechtbanken van Madrid bevoegd, tenzij de toepasselijke wetgeving anders bepaalt.\u003C/p\u003E"
+    }
+  },
+  {
+    "key": "nav_step_1",
+    "default_value": "1. Select dates",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "1. Select dates",
+      "en_gb": "1. Select dates",
+      "es": "1. Seleccionar fechas",
+      "fr": "1. Sélectionner les dates",
+      "it": "1. Selezionare le date",
+      "de": "1. Datum auswählen",
+      "pl": "1. Wybierz daty",
+      "ru": "1. Выберите даты",
+      "uk": "1. Виберіть дати",
+      "nl": "1. Datums selecteren"
+    }
+  },
+  {
+    "key": "nav_step_2",
+    "default_value": "2. Personal data",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "2. Personal data",
+      "en_gb": "2. Personal data",
+      "es": "2. Datos personales",
+      "fr": "2. Données personnelles",
+      "it": "2. Dati personali",
+      "de": "2. Personaldaten",
+      "pl": "2. Dane osobowe",
+      "ru": "2. Личные данные",
+      "uk": "2. Особисті дані",
+      "nl": "2. Persoonlijke gegevens"
+    }
+  },
+  {
+    "key": "nav_step_3",
+    "default_value": "3. Payment",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "3. Payment",
+      "en_gb": "3. Payment",
+      "es": "3. Pago",
+      "fr": "3. Paiement",
+      "it": "3. Pagamento",
+      "de": "3. Zahlung",
+      "pl": "3. Płatność",
+      "ru": "3. Оплата",
+      "uk": "3. Оплата",
+      "nl": "3. Betaling"
+    }
+  },
+  {
+    "key": "nav_step_4",
+    "default_value": "4. Confirmation",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "4. Confirmation",
+      "en_gb": "4. Confirmation",
+      "es": "4. Confirmación",
+      "fr": "4. Confirmation",
+      "it": "4. Conferma",
+      "de": "4. Bestätigung",
+      "pl": "4. Potwierdzenie",
+      "ru": "4. Подтверждение",
+      "uk": "4. Підтвердження",
+      "nl": "4. Bevestiging"
+    }
+  },
+  {
+    "key": "btn_form_select",
+    "default_value": "Select",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "Select",
+      "en_gb": "Select",
+      "es": "Seleccionar",
+      "fr": "Sélectionner",
+      "it": "Selezionare",
+      "de": "Wählen",
+      "pl": "Wybierz",
+      "ru": "Выберите",
+      "uk": "Виберіть",
+      "nl": "Selecteren"
+    }
+  },
+  {
+    "key": "price_total",
+    "default_value": "TOTAL",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "TOTAL",
+      "en_gb": "TOTAL",
+      "es": "TOTAL",
+      "fr": "TOTAL",
+      "it": "TOTALE",
+      "de": "INSGESAMT",
+      "pl": "RAZEM",
+      "ru": "ВСЕГО",
+      "uk": "ВСЬОГО",
+      "nl": "TOTAAL"
+    }
+  },
+  {
+    "key": "price_total_summary",
+    "default_value": "Total price:",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "Total price:",
+      "en_gb": "Total price:",
+      "es": "Precio total:",
+      "fr": "Prix total :",
+      "it": "Prezzo totale:",
+      "de": "Gesamtpreis:",
+      "pl": "Całkowity koszt:",
+      "ru": "Общая цена:",
+      "uk": "Загальна вартість:",
+      "nl": "Totale prijs:"
+    }
+  },
+  {
+    "key": "reserved_overlay_text",
+    "default_value": "Reserved",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "Reserved",
+      "en_gb": "Reserved",
+      "es": "Reservado",
+      "fr": "Réservé",
+      "it": "Riservato",
+      "de": "Reserviert",
+      "pl": "Zarezerwowane",
+      "ru": "Забронировано",
+      "uk": "Зарезервовано",
+      "nl": "Gereserveerd"
+    }
+  },
+  {
+    "key": "price_summary_title",
+    "default_value": "Price overview",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "Price overview",
+      "en_gb": "Price summary",
+      "es": "Resumen de precios",
+      "fr": "Résumé des prix",
+      "it": "Riassunto dei prezzi",
+      "de": "Preisübersicht",
+      "pl": "Podsumowanie kosztów",
+      "ru": "Сводные данные о ценах",
+      "uk": "Зведення цін",
+      "nl": "Prijsoverzicht"
+    }
+  },
+  {
+    "key": "alert_no_date_selected",
+    "default_value": "(Please select a date to check availability.)",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "(Please select a date to check availability.)",
+      "en_gb": "(Please select a date to check availability.)",
+      "es": "(Por favor, selecciona una fecha para ver disponibilidad.)",
+      "fr": "(S'il vous plaît, veuillez sélectionner une date pour consulter les disponibilités.)",
+      "it": "(Per favore, seleziona una data per verificare la disponibilità.)",
+      "de": "(Bitte wählen Sie ein Datum aus, um die Verfügbarkeit zu sehen.)",
+      "pl": "(Proszę wybrać datę, aby zobaczyć dostępność.)",
+      "ru": "(Пожалуйста, выберите дату, чтобы посмотреть наличие свободных мест).",
+      "uk": "(Будь ласка, оберіть дату, щоб побачити наявність вільних місць).",
+      "nl": "(Kies een datum om beschikbaarheid te bekijken.)"
+    }
+  },
+  {
+    "key": "price_list_title",
+    "default_value": "Price list",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "Price list",
+      "en_gb": "Price list",
+      "es": "Lista de precios",
+      "fr": "Liste de prix",
+      "it": "Lista dei prezzi",
+      "de": "Preisliste",
+      "pl": "Cennik",
+      "ru": "Прайс-лист",
+      "uk": "Прайс-лист",
+      "nl": "Prijzenlijst"
+    }
+  },
+  {
+    "key": "cookies_policy",
+    "default_value": "Cookies policy",
+    "is_multilanguage": 1,
+    "languages": {
+      "en_us": "Cookies policy",
+      "en_gb": "Cookies policy",
+      "es": "Política de Cookies",
+      "fr": "Politique de Cookies",
+      "it": "Politica sui Cookie",
+      "de": "Cookie-Richtlinie",
+      "pl": "Zasady dotyczące plików cookie",
+      "ru": "Политика использования файлов Cookie",
+      "uk": "Політика використання файлів Сookie",
+      "nl": "Cookiebeleid"
     }
   }
 ]

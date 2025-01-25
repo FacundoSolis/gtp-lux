@@ -87,7 +87,7 @@ return [
     'supported_locales' => [
         'es', // Español
         'en_us', // Inglés Americano
-        'en_gb', // Inglés Británico
+        'gb', // Inglés Británico
         'fr', // Francés
         'de', // Alemán
         'it', // Italiano

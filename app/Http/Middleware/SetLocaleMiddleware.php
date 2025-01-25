@@ -13,7 +13,7 @@ class SetLocaleMiddleware
         $locale = $request->segment(1); // Primer segmento de la URL
 
         // Comprueba si el idioma es soportado
-        if (in_array($locale, config('app.supported_locales'))) {
+        if (in_array($locale, array_keys(config('languages')))) {
             App::setLocale($locale);
             Session::put('locale', $locale);
         } elseif (Session::has('locale')) {

@@ -84,7 +84,7 @@
                         <li class="list-group-item"><strong>{{ __('surname') }}:</strong> {{ $reservation->surname }}</li>
                         <li class="list-group-item"><strong>{{ __('email') }}:</strong> {{ $reservation->email }}</li>
                         <li class="list-group-item"><strong>{{ __('phone') }}:</strong> {{ $reservation->phone }}</li>
-                        <li class="list-group-item"><strong>{{ __('total_price') }}:</strong> €{{ number_format($reservation->total_price, 2) }}</li>
+                        <li class="list-group-item"><strong>{{ __('price_total_summary') }}:</strong> €{{ number_format($reservation->total_price, 2) }}</li>
                     </ul>
                 </div>
             </div>
@@ -141,8 +141,8 @@
     <div class="footer-column footer-align footer-offset">
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
-        <input type="email" placeholder="Tu email" class="subscribe-input">
-        <button type="submit" class="subscribe-button">SUSCRIBE</button>
+      <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
+      <button type="submit" class="subscribe-button">SUSCRIBE</button>
       </form>
     </div>
   </div>

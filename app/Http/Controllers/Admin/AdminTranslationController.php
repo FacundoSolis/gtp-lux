@@ -26,10 +26,11 @@ class AdminTranslationController extends Controller
     }
 
     public function create()
-    {
-        $languages = ['es' => 'Español', 'en' => 'Inglés', 'fr' => 'Francés', 'de' => 'Alemán', 'it' => 'Italiano'];
-        return view('admin.translations.create', compact('languages'));
-    }
+{
+    $languages = config('languages'); // Obtiene los idiomas del archivo de configuración
+    return view('admin.translations.create', compact('languages'));
+}
+
 
     public function store(Request $request)
     {
@@ -63,11 +64,11 @@ class AdminTranslationController extends Controller
     }
 
     public function edit($id)
-    {
-        $translation = Translation::with('languages')->findOrFail($id);
-        $languages = ['es' => 'Español', 'en' => 'Inglés', 'fr' => 'Francés', 'de' => 'Alemán', 'it' => 'Italiano'];
-        return view('admin.translations.edit', compact('translation', 'languages'));
-    }
+{
+    $translation = Translation::with('languages')->findOrFail($id);
+    $languages = config('languages'); // Obtiene los idiomas del archivo de configuración
+    return view('admin.translations.edit', compact('translation', 'languages'));
+}
 
     public function update(Request $request, $id)
     {

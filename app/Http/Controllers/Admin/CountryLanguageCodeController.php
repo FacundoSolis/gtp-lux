@@ -30,16 +30,18 @@ class CountryLanguageCodeController extends Controller
 
     public function store(Request $request)
 {
+    $languages = config('languages'); // Obtenemos los idiomas configurados
     $request->validate([
         'country_code' => 'required|string|max:2|unique:country_language_codes',
         'country_name' => 'required|string',
         'language_code' => 'required|string|max:5|unique:country_language_codes',
         'language_name' => 'required|string',
         'flag' => [
-            'nullable',
-            function ($attribute, $value, $fail) {
-                if ($value && !file_exists(public_path("path_to_flags/{$value}.png"))) {
-                    $fail("La bandera '{$value}.png' no existe en la carpeta 'path_to_flags'.");
+            'required',
+            function ($attribute, $value, $fail) use ($languages) {
+                // Verificamos si la bandera existe en la configuración
+                if (!array_key_exists($value, $languages)) {
+                    $fail("La bandera para '{$value}' no existe en la configuración de idiomas.");
                 }
             },
         ],
@@ -60,29 +62,30 @@ class CountryLanguageCodeController extends Controller
 
 public function update(Request $request, $id)
 {
+    $languages = config('languages'); // Obtenemos los idiomas configurados
     $code = CountryLanguageCode::findOrFail($id);
 
     $request->validate([
-        'flag' => [
-            'nullable',
-            function ($attribute, $value, $fail) {
-                if ($value && !file_exists(public_path("path_to_flags/{$value}.png"))) {
-                    $fail("La bandera '{$value}.png' no existe en la carpeta 'path_to_flags'.");
-                }
-            },
-        ],
         'country_code' => 'required|string|max:2|unique:country_language_codes,country_code,' . $code->id,
         'country_name' => 'required|string',
         'language_code' => 'required|string|max:5|unique:country_language_codes,language_code,' . $code->id,
         'language_name' => 'required|string',
+        'flag' => [
+            'required',
+            function ($attribute, $value, $fail) use ($languages) {
+                if (!array_key_exists($value, $languages)) {
+                    $fail("La bandera para '{$value}' no existe en la configuración de idiomas.");
+                }
+            },
+        ],
     ]);
 
-    // Actualizar el registro
+    // Actualizamos el registro
     $code->update([
         'country_code' => $request->input('country_code'),
-        'country_name' => $request->input('custom_country') ?: $request->input('country_name'),
+        'country_name' => $request->input('country_name'),
         'language_code' => $request->input('language_code'),
-        'language_name' => $request->input('custom_language') ?: $request->input('language_name'),
+        'language_name' => $request->input('language_name'),
         'flag' => $request->input('flag'),
     ]);
 

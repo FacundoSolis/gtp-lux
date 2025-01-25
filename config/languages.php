@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'en_us' => ['name' => 'Inglés Americano', 'flag' => 'en_us.png'],
-    'en_gb' => ['name' => 'Inglés Británico', 'flag' => 'gb.png'],
-    'es' => ['name' => 'Español', 'flag' => 'es.png'],
-    'fr' => ['name' => 'Francés', 'flag' => 'fr.png'],
-    'it' => ['name' => 'Italiano', 'flag' => 'it.png'],
-    'de' => ['name' => 'Alemán', 'flag' => 'de.png'],
-    'pl' => ['name' => 'Polaco', 'flag' => 'pl.png'],
-    'ru' => ['name' => 'Ruso', 'flag' => 'ru.png'],
-    'uk' => ['name' => 'Ucraniano', 'flag' => 'uk.png'],
-    'nl' => ['name' => 'Neerlandés', 'flag' => 'nl.png'],
+    'en_us' => ['name' => 'English (US)', 'flag' => 'en_us.png'], // Inglés Americano
+    'gb' => ['name' => 'English (UK)', 'flag' => 'gb.png'],      // Inglés Británico
+    'es' => ['name' => 'Español', 'flag' => 'es.png'],            // Español
+    'fr' => ['name' => 'Français', 'flag' => 'fr.png'],           // Francés
+    'it' => ['name' => 'Italiano', 'flag' => 'it.png'],           // Italiano
+    'de' => ['name' => 'Deutsch', 'flag' => 'de.png'],            // Alemán
+    'pl' => ['name' => 'Polski', 'flag' => 'pl.png'],             // Polaco
+    'ru' => ['name' => 'Русский', 'flag' => 'ru.png'],            // Ruso
+    'uk' => ['name' => 'Українська', 'flag' => 'uk.png'],         // Ucraniano
+    'nl' => ['name' => 'Nederlands', 'flag' => 'nl.png'],         // Neerlandés
 ];

@@ -19,7 +19,7 @@
 @section('content')
 
 <header class="header">
-  <nav class="navbar">
+    <nav class="navbar">
         <!-- Menú hamburguesa -->
         <label class="label_hamburguesa" for="menu_hamburguesa">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="list_icon" viewBox="0 0 16 16">
@@ -27,32 +27,32 @@
             </svg>
         </label>
         <input class="menu_hamburguesa" type="checkbox" id="menu_hamburguesa">
-      <ul class="ul_links">
-          <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
-          <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
-          <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
-          <li class="li_links settingsDropdown">
-          <div class="dropdown">
-              <span class="value">
-                  <img id="currentLanguageFlag" src="{{ asset('path_to_flags/' . App::getLocale() . '.png') }}" 
-                       alt="{{ config('languages')[App::getLocale()]['name'] }}" class="flag-icon">
-                  {{ config('languages')[App::getLocale()]['name'] }}
-              </span>
-              <ul class="dropdown-menu" id="languageDropdown">
-                  @foreach (config('languages') as $code => $language)
-                      <li>
-                          <a href="{{ route('set-locale', $code) }}" class="language">
-                              <img src="{{ asset('path_to_flags/' . $code . '.png') }}" 
-                                   alt="{{ $language['name'] }}" class="flag-icon">
-                              {{ $language['name'] }}
-                          </a>
-                      </li>
-                  @endforeach
-              </ul>
-            </div>
-          </li>
-      </ul>
-  </nav>
+        <ul class="ul_links">
+            <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
+            <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
+            <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
+            <li class="li_links settingsDropdown">
+                <div class="dropdown">
+                    <span class="value">
+                        <img id="currentLanguageFlag" src="{{ asset('path_to_flags/' . App::getLocale() . '.png') }}" 
+                             alt="{{ __('' . config('languages')[App::getLocale()]['name']) }}" class="flag-icon">
+                        {{ __('' . config('languages')[App::getLocale()]['name']) }}
+                    </span>
+                    <ul class="dropdown-menu" id="languageDropdown">
+                        @foreach (config('languages') as $code => $language)
+                            <li>
+                                <a href="{{ route('set-locale', $code) }}" class="language">
+                                    <img src="{{ asset('path_to_flags/' . $code . '.png') }}" 
+                                         alt="{{ __('' . $language['name']) }}" class="flag-icon">
+                                    {{ __('' . $language['name']) }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
 </header>
 
 <section class="banner">
@@ -311,7 +311,7 @@
     <div class="footer-column footer-align footer-offset">
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
-        <input type="email" placeholder="Tu email" class="subscribe-input">
+        <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
         <button type="submit" class="subscribe-button">SUSCRIBE</button>
       </form>
     </div>

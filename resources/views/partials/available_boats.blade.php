@@ -11,11 +11,11 @@
         <p class="boat-card__description">{{ $boat->description }}</p>
         @if ($pickupDate && $returnDate)
             @if ($boat->isReserved($pickupDate, $returnDate))
-                <div class="reserved-overlay"><span>Reservado</span></div>
+                <div class="reserved-overlay"><span>{{ __('reserved_overlay_text') }}</span></div>
             @endif
 
             <div class="boat-card__price">
-                <p>Precio total: <span id="daily-price-{{ $boat->id }}">{{ $prices[$boat->id] ?? 'Calculando...' }}</span></p>
+                <p>{{ __('price_summary_title') }} <span id="daily-price-{{ $boat->id }}">{{ $prices[$boat->id] ?? 'Calculando...' }}</span></p>
             </div>
         @else
             <div class="boat-card__availability">
@@ -39,7 +39,7 @@
                 'price' => $prices[$boat->id] ?? 0
             ]) }}" 
                class="btn-form {{ $boat->isReserved($pickupDate, $returnDate) ? 'disabled' : '' }}">
-                Seleccionar {{ $boat->name }}
+               {{ __('btn_form_select') }} {{ $boat->name }}
             </a>
         @endif
     </div>

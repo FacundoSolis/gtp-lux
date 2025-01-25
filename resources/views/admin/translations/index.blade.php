@@ -53,20 +53,21 @@
                     <td>
                         <input type="checkbox" name="ids[]" value="{{ $translation->id }}" class="select-checkbox">
                     </td>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $translation->key_name }}</td>
-                    <td>{{ $translation->is_multilanguage ? 'Yes' : 'No' }}</td>
-                    <td>{{ $translation->default_value }}</td>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $translation->key_name }}</td>
+                        <td>{{ $translation->is_multilanguage ? 'Yes' : 'No' }}</td>
+                        <td>{{ $translation->default_value }}</td>
                     <td>
                         @foreach (config('languages') as $code => $language)
                             @php
                                 $hasTranslation = $translation->languages->firstWhere('language_code', $code);
                             @endphp
-                            <span title="{{ $language['name'] }}" style="opacity: {{ $hasTranslation ? 1 : 0.3 }};">
-                                {{ $language['flag'] }}
+                             <span title="{{ $language['name'] }}" style="opacity: {{ $hasTranslation ? 1 : 0.3 }};">
+                                <img src="{{ asset('path_to_flags/' . $language['flag']) }}" 
+                                    alt="{{ $language['name'] }}" 
+                                    style="width: 24px;">
                             </span>
                         @endforeach
-                    </td>
                     <td>
                         <!-- Botones de Acciones -->
                         <a href="{{ route('admin.translations.edit', $translation->id) }}" class="btn btn-sm btn-warning">Editar</a>

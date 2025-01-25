@@ -91,7 +91,7 @@
                             <li class="list-group-item"><strong>{{ __('pickup_date') }}</strong> {{ $reservation->pickup_date }}</li>
                             <li class="list-group-item"><strong>{{ __('drop_off_date') }}</strong> {{ $reservation->return_date }}</li>
                             <li class="list-group-item"><strong>{{ __('boat') }}</strong> {{ $reservation->boat->name }}</li>
-                            <li class="list-group-item"><strong>{{ __('Precio total') }}</strong> €{{ number_format($reservation->total_price, 2) }}</li>
+                            <li class="list-group-item"><strong>{{ __('price_total_summary') }}</strong> €{{ number_format($reservation->total_price, 2) }}</li>
                         </ul>
                         <li class="list-group-item">
                             <img src="{{ $boatImage }}" alt="Imagen de {{ $reservation->boat->name }}" class="img-fluid rounded">
@@ -170,8 +170,8 @@
     <div class="footer-column footer-align footer-offset">
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
-        <input type="email" placeholder="Tu email" class="subscribe-input">
-        <button type="submit" class="subscribe-button">SUSCRIBE</button>
+      <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
+      <button type="submit" class="subscribe-button">SUSCRIBE</button>
       </form>
     </div>
   </div>

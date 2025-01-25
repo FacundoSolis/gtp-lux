@@ -234,7 +234,7 @@
         <!-- Columna de la tarjeta de precios -->
         <div class="col-md-6">
             <section id="price-summary" class="price-card mt-3">
-                <h5>Resumen de precios</h5>
+                <h5>{{ __('price_summary_title') }}</h5>
                 <p><strong>Total:</strong> <span id="total-price">0€</span></p>
                     <button id="price-list-button" class="btn btn-list-price mx-2">{{ __('check_price_list') }}</button>
                 <form id="reservation-form" action="{{ route('form') }}" method="GET">
@@ -309,8 +309,8 @@
     <div class="footer-column footer-align footer-offset">
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
-        <input type="email" placeholder="Tu email" class="subscribe-input">
-        <button type="submit" class="subscribe-button">SUSCRIBE</button>
+      <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
+      <button type="submit" class="subscribe-button">SUSCRIBE</button>
       </form>
     </div>
   </div>
