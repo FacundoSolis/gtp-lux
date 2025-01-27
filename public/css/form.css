@@ -6,6 +6,9 @@ body {
   background-color: white;
   width: 100%;
 }
+.progress-card{
+  margin-top: 100px;
+}
 
 .page-title-container {
   text-align: center;
@@ -43,7 +46,7 @@ body {
 }
 
 .step {
-  margin-top: 90px;
+  margin-top: 5px;
   align-items: center;
 }
 
@@ -97,7 +100,6 @@ body {
 
 /* Form adjustments */
 form {
-  background-color: #ffffff;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -163,7 +165,7 @@ footer {
     #0E222D,  /* Azul inicial */
     #0A1A26,  /* Azul ligeramente más oscuro */
     #06131E   /* Azul profundo */
-  );    
+  );  
   background-size: cover;
   padding: 20px 0;
 }

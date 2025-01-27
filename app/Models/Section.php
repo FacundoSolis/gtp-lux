@@ -15,6 +15,7 @@ class Section extends Model
         'meta_title',
         'meta_description',
         'meta_keywords',
+        'content',
         'params',
     ];
 

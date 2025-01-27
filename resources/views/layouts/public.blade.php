@@ -6,6 +6,7 @@
     <title>@yield('title', 'GtpLux')</title>
     
     <!-- Metaetiquetas para SEO -->
+    <title>@yield('title', 'GtpLux - Tu experiencia única en Denia')</title>
     <meta name="description" content="@yield('meta_description', 'Descripción predeterminada de GtpLux')">
     <meta name="keywords" content="@yield('meta_keywords', 'barco, alquiler, yate, Denia')">
     <meta name="author" content="GtpLux">

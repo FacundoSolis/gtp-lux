@@ -4,12 +4,12 @@
 <div class="container">
     <h1>Editar Sección: {{ $section->section_name }}</h1>
 
-    <form action="{{ route('sections.update', $section) }}" method="POST">
+    <form action="{{ route('admin.sections.update', $section) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="mb-3">
-            <label for="meta_title" class="form-label">Título</label>
+            <label for="meta_title" class="form-label">Meta Título</label>
             <input type="text" id="meta_title" name="meta_title" class="form-control" value="{{ $section->meta_title }}">
         </div>
 
@@ -24,12 +24,12 @@
         </div>
 
         <div class="mb-3">
-            <label for="params" class="form-label">Parámetros (JSON)</label>
-            <textarea id="params" name="params" class="form-control">{{ json_encode($section->params, JSON_PRETTY_PRINT) }}</textarea>
+            <label for="content" class="form-label">Contenido</label>
+            <textarea id="content" name="content" class="form-control" rows="10">{{ $section->content }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="{{ route('sections.index') }}" class="btn btn-secondary">Volver</a>
+        <a href="{{ route('admin.sections.index') }}" class="btn btn-secondary">Volver</a>
     </form>
 </div>
 @endsection

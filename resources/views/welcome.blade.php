@@ -1,4 +1,7 @@
 @extends('layouts.public')
+@section('title', 'Alquiler de Barcos en Denia - GtpLux')
+@section('meta_description', 'Descubre los mejores barcos en Denia para disfrutar del mar Mediterráneo con GtpLux.')
+@section('meta_keywords', 'barcos, alquiler, Denia, Mediterráneo, lujo')
 @php
     use Illuminate\Support\Facades\App;
 

@@ -5,6 +5,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/portofino.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/effects.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -57,9 +58,15 @@
     </nav>
 </header>
 
-<section class="container-valkyrya">
-  <h2>{{ __('sunseeker_portofino_53') }}</h2>
+<section class="banner-card">
+  <div class="banner-image" style="background-image: url('{{ asset('img/protofino/portofino2.jpg') }}');"></div>
+  <div class="overlay"></div>
+  <div class="banner-content">
+    <h2>{{ __('sunseeker_portofino_53') }}</h2>
+  </div>
 </section>
+
+
 
 <div class="slideshow-container">
   <div class="slides">
@@ -267,6 +274,40 @@
         </div>
     </div>
 </div>
+<div class="content-wrapper">
+  <div class="dual-section">
+    <!-- Bloque del Clima -->
+    <div class="weather-card">
+      <h3 class="card-title">Condiciones Actuales</h3>
+      <div class="iframe-container">
+        <div id="ww_35f04e9f55df0" 
+             v='1.3' 
+             loc='id' 
+             a='{"t":"horizontal","lang":"es","sl_lpl":1,"ids":["wl4500"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
+          Más previsiones: 
+          <a href="https://oneweather.org/es/madrid/25_days/" id="ww_35f04e9f55df0_u" target="_blank">
+            Previsión tiempo 30 días Madrid
+          </a>
+        </div>
+        <script async src="https://app3.weatherwidget.org/js/?id=ww_35f04e9f55df0"></script>
+      </div>
+    </div>
+
+    <!-- Bloque del Mapa -->
+    <div class="map-card">
+      <h3 class="card-title">Nuestra Ubicación</h3>
+      <div class="iframe-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6215.198940442461!2d0.12064989999999999!3d38.8416328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129e1adfd387435b%3A0xde918d9340020fd2!2sMarina%20de%20D%C3%A9nia!5e0!3m2!1ses!2ses!4v1737275044808!5m2!1ses!2ses"
+          frameborder="0" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Footer personalizado -->
 <footer class="footer">
@@ -330,6 +371,7 @@
 <script src="{{ asset('js/listapreciosportofino.js') }}"></script>
 <script src="{{ asset('js/syncddate.js') }}"></script>
 <script src="{{ asset('js/slider2.js') }}"></script>
+<script src="{{ asset('js/effects.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales/es.js"></script>

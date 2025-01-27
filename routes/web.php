@@ -129,6 +129,8 @@ Route::middleware(['web'])->group(function () {
         Route::put('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('admin.users.update');
         Route::delete('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('admin.users.destroy');
         Route::get('/reservations/create', [AdminReservationController::class, 'create'])->name('admin.reservations.create');
+        Route::get('/section/{section_name}', [SectionController::class, 'show'])->name('section.show');
+
         // Gestión de pagos
         Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index');
         Route::resource('ports', \App\Http\Controllers\PortController::class)->except(['show']);
@@ -157,6 +159,8 @@ Route::middleware(['web'])->group(function () {
         
             // Rutas para gestionar las secciones
             Route::get('/sections', [SectionController::class, 'index'])->name('sections.index'); // Lista de secciones
+            Route::get('/sections/create', [SectionController::class, 'create'])->name('sections.create'); // Formulario de creación
+            Route::post('/sections', [SectionController::class, 'store'])->name('sections.store'); // Guardar nueva sección
             Route::get('/sections/{section}/edit', [SectionController::class, 'edit'])->name('sections.edit'); // Formulario de edición
             Route::put('/sections/{section}', [SectionController::class, 'update'])->name('sections.update'); // Actualizar sección
             Route::post('/sections/{section}/deploy', [SectionController::class, 'deploy'])->name('sections.deploy'); // Deploy de sección

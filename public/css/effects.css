@@ -1,0 +1,57 @@
+.modal.fade .modal-dialog {
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.modal.fade.show .modal-dialog {
+  transform: translateX(0);
+  opacity: 1;
+}
+/* Ocultar secciones antes de que aparezcan */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Cuando están visibles */
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Desde la izquierda */
+.section-from-left {
+  transform: translateX(-50px);
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-from-left.section-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Desde la derecha */
+.section-from-right {
+  transform: translateX(50px);
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-from-right.section-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Efecto de zoom */
+.section-zoom {
+  transform: scale(0.9);
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-zoom.section-visible {
+  transform: scale(1);
+  opacity: 1;
+}
