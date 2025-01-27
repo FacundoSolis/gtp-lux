@@ -791,6 +791,23 @@ iframe,
 
 /* RESPONSIVE ---------------------------------------------------------- */
 @media (max-width: 768px) {
+
+.banner-card{
+height: 400px;
+  }
+
+.banner-content h2{
+  font-size: 2.5rem;
+}
+.weather-card{
+  width: 90%;
+}
+.iframe-container{
+  margin-top: 20px;
+}
+.card-title h3{
+  margin-bottom: 20px;
+}
 .productCover__img--small {
   width: 350px; 
   height: 350px; 
