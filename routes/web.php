@@ -212,4 +212,10 @@ Route::middleware(['web'])->group(function () {
             return view('pages.cancelacion');
         })->name('cancelacion');
 
+        Route::get('/cookies', function () {
+            return view('pages.cookies');
+        })->name('cookies');
+        
+        
+
 });

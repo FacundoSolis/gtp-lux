@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p style="flex: 1; margin: 0; font-size: 16px;">
                     Usamos cookies analíticas, de personalización y publicitarias (propias y de terceros) para mostrarte contenido útil y basado en tus preferencias de navegación. 
                     Para aceptar este tipo de cookies, pulsa el botón <strong>Aceptar todas las cookies</strong>; para rechazarlas pulsa el botón <strong>Rechazar todas las cookies</strong>; 
-                    y para configurarlas pulsa en <strong><a href="/privacy-policy" style="color: #007bff;">Configuración de cookies</a></strong>. 
-                    Para más información, lee nuestra <a href="/privacy-policy" style="color: #007bff;">Política de Cookies</a>.
+                    y para configurarlas pulsa en <strong><a href="/cookies" style="color: #007bff;">Configuración de cookies</a></strong>. 
+                    Para más información, lee nuestra <a href="/cookies" style="color: #007bff;">Política de Cookies</a>.
                 </p>
                 <div style="display: flex; gap: 10px;">
                     <button id="rejectCookies" style="background: white; color: black; border: 1px solid black; padding: 10px 20px; cursor: pointer; border-radius: 5px;">

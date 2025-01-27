@@ -115,33 +115,38 @@ body {
         flex-direction: column;
         background-color: white; /* Fondo transparente */
         position: fixed; /* Para desplegar en relación con la ventana */
-        top: 70px; /* Justo debajo del header */
+        top: var(--altura_header);
         right: 0; /* Alineado a la derecha */
         width: 100%; /* Ajusta el ancho para pantallas móviles */
+        height: calc(100vh - var(--altura_header)); /* Ocupa toda la pantalla menos el header */
         max-width: 100%; /* Ancho máximo del menú */
         padding: 20px 0;
         border-radius: 10px; /* Bordes redondeados para un diseño moderno */
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
         z-index: 1000; /* Asegúrate de que esté encima del contenido */
-        color: black;
         align-items:center;
+        justify-content: flex-start; /* Alinea los elementos al inicio */
+        align-items: flex-start; /* Alinea los elementos al inicio */
+        padding: 1rem;
+        overflow-y: auto; /* Permite el scroll si hay demasiados elementos */
+    
     }
 
     .menu_hamburguesa:checked ~ .ul_links {
         display: flex;
     }
+    .ul_links .li_links {
+        width: 100%;
+    }
     .dropdown {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Centrar el contenido horizontalmente */
-        margin-top:0; /* Espaciado superior */
+        width: 100%;
         position: relative;
     }
     .dropdown-menu {
         display: none;
-        position: absolute; /* Relativo al contenedor `.dropdown` */
-        top: 100%; /* Coloca el menú justo debajo del contenedor */
-        left: 0; /* Alineado al borde izquierdo del contenedor */
+        flex-direction: column;
+        position: relative; /* Relativo al contenedor `.dropdown` */
+        width: 100%;
         background-color: white; /* Fondo blanco */
         list-style: none; /* Sin viñetas */
         padding: 10px 0; /* Espaciado interno */
@@ -149,17 +154,36 @@ body {
         border-radius: 5px; /* Bordes redondeados */
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
         z-index: 1000; /* Asegúrate de que esté sobre otros elementos */
-        min-width: 150px; /* Ancho mínimo para el menú */
     }
     .dropdown-menu li a {
         display: flex;
-        align-items: center; /* Centrar el texto y la bandera verticalmente */
+        text-align: left;
+        width: 100%;
         font-size: 1rem; /* Tamaño de fuente */
         color: black; /* Color del texto */
         text-decoration: none; /* Sin subrayado */
-        padding: 5px 10px; /* Espaciado interno */
+        padding: 15px 20px; /* Espaciado interno */
         transition: background-color 0.3s, color 0.3s; /* Transiciones */
     }
+    /* Efecto hover para enlaces dentro del dropdown */
+.dropdown-menu li a:hover {
+    background-color: var(--menu-hover); /* Fondo amarillo */
+    color: var(--menu-bg); /* Texto oscuro */
+}
+        .dropdown .value {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+    
+        .dropdown .value:hover + .dropdown-menu {
+            display: flex;
+        }       
 
     .label_hamburguesa {
         display: block;
@@ -172,6 +196,7 @@ body {
         color: black;
         text-decoration: none;
         font-size: 1rem;
+        width: 100%; /* Asegura que los enlaces ocupen todo el ancho */
         font-weight: normal; /* No en bold */
         padding: 10px 20px;
         transition: all 0.3s ease;
@@ -180,7 +205,7 @@ body {
     }
 
     .ul_links .li_links a:hover {
-        color: var(--menu-hover); /* Cambia de color al pasar el cursor */
+        background-color: var(--menu-hover); /* Fondo al pasar el cursor */
     }
     /* Mostrar el menú de enlaces en pantallas grandes */
 @media (min-width: 769px) {

@@ -543,6 +543,14 @@ nav a {
   margin-top: 0;
   padding: 50px;
   color: white;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.5)
+  ), url('/img/lineas-mapa.jpg');  
+  background-size:cover; /* Ajusta el ancho al 100% y la altura automática */
+  background-attachment: fixed;
+  background-position: center center; /* Centra la imagen horizontal y verticalmente */
+  background-repeat:no-repeat;
 }
 .form-card {
   width: 80%; /* Ajusta el ancho según necesidad */
@@ -609,7 +617,12 @@ textarea {
 
 /*Footer*/
 footer {
-  background-color: black; /* Fallback para navegadores sin soporte */
+  background: linear-gradient(
+    to bottom,
+    #0E222D,  /* Azul inicial */
+    #0A1A26,  /* Azul ligeramente más oscuro */
+    #06131E   /* Azul profundo */
+  );  
   background-size: cover;
   padding: 20px 0;
 }
@@ -755,39 +768,85 @@ color: black;
   border-radius: 10px;
 }
 
+
 .faq-section2 {
   display: flex; /* Activa flexbox */
   flex-direction: column; /* Asegura que los elementos estén en una columna */
   align-items: center; /* Centra horizontalmente */
   justify-content: center; /* Centra verticalmente */
-  padding: 2rem; /* Espaciado interno */
-  background: linear-gradient(
+  padding: 3rem 1.5rem;  background: linear-gradient(
     to bottom,
     #0E222D,  /* Azul inicial */
     #0A1A26,  /* Azul ligeramente más oscuro */
     #06131E   /* Azul profundo */
-  );  text-align: center; /* Asegura que el texto esté centrado */
-}
-.faq-section2 .container2 {
-  width: 100%;
-  max-width: 90%px; /* Limita el ancho máximo */
-  margin: 0 auto; /* Centra horizontalmente */
+  );  
+  text-align: center; /* Asegura que el texto esté centrado */
 }
 
-.faq-section2 h2 {
-  font-size: 2rem; /* Tamaño del título */
-  margin-bottom: 1rem; /* Espaciado debajo del título */
-  color: white; /* Color del texto */
+.title-faq2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0;
+  color: #333;
+}
+.h2 ,h2{
+  text-decoration: underline;
+  margin-bottom: 2rem;
 }
 
-.faq-section2 .accordion-button {
-  color: #212529;
+.container2 {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
 }
 
-.faq-section2 .accordion-button:hover {
-  background-color: #e9ecef;
-  color: #000;
+.accordion-item {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
+.accordion-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-button::after {
+  content: ''; /* Elimina el ícono predeterminado de Bootstrap */
+  display: none; /* Oculta el ícono predeterminado */
+}
+
+
+.accordion-button:hover {
+  background: #f1f1f1;
+  color: #007bff;
+}
+
+.accordion-button::after {
+  content: '▼'; /* Flecha para indicar desplegable */
+  font-size: 1rem;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+  transform: rotate(180deg); /* Rotar la flecha al expandir */
+}
+
+.accordion-body {
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #555;
+  background: #fff;
+}
+
+.accordion-body p {
+  margin: 0;
+}
+
 .py-5{
   margin-bottom: 0;
 }

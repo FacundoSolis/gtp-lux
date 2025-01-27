@@ -49,6 +49,9 @@ body {
 .bg-primary {
     background-color: black;
 }
+.card-header:first-child {
+  background-color: #0D6EFD !important;
+}
 
 .bg-info {
     --bs-bg-opacity: 1;
@@ -68,7 +71,12 @@ h2 {
 
 /*Footer*/
 footer {
-  background-color: black; /* Fallback para navegadores sin soporte */
+  background: linear-gradient(
+    to bottom,
+    #0E222D,  /* Azul inicial */
+    #0A1A26,  /* Azul ligeramente más oscuro */
+    #06131E   /* Azul profundo */
+  );    
   background-size: cover;
   padding: 20px 0;
 }

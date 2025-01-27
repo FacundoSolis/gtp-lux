@@ -291,7 +291,7 @@
   <div class="footer-column footer-align footer-offset">
       <p>{{ __('phone') }}: +34 910 059 958</p>
       <p>{{ __('email') }}: info@gtplux.com</p>
-      <p>{{ __('address') }}: Marina de Denia, España</p>
+      <p>{{ __('location_address') }}</p>
   </div>
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
@@ -299,8 +299,8 @@
         <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
         <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
         <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us_title') !!}</a></li>
+        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
         <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
@@ -309,8 +309,8 @@
     <div class="footer-column footer-align footer-offset">
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
-      <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
-      <button type="submit" class="subscribe-button">SUSCRIBE</button>
+        <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
+        <button type="submit" class="subscribe-button">SUSCRIBE</button>
       </form>
     </div>
   </div>

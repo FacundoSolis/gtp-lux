@@ -109,7 +109,7 @@ body {
 .dropdown-menu {
     position: absolute; /* Cambiar a fixed para ocupar toda la pantalla */
     top: calc(100% + 5px); /* Alinea el menú justo debajo del botón */
-    left: 0; /* Alinea al borde izquierdo */
+    left: -30; /* Alinea al borde izquierdo */
     width: 100%; /* Ancho completo */
     max-height: 80vh; /* Altura máxima para permitir el scroll */
     background-color: var(--dropdown-bg);

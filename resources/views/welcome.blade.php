@@ -216,33 +216,58 @@
         </div>
     </div>
 </section>
-
-
 <section class="faq-section2 py-5 bg-light2">
     <div class="container2">
         <h2 class="title-faq2">{!! __('h2_title_home_4') !!}</h2>
-        <div class="accordion" id="faqAccordion">
-            @php
-                $faqs = json_decode(__('h2_p_home_4'), true);
-            @endphp
-            @foreach ($faqs as $faq)
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faqHeader{{ $faq['id'] }}">
-                        <!-- El botón de la pregunta, con la clase collapsed por defecto para que inicie cerrado -->
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $faq['id'] }}" aria-expanded="false" aria-controls="collapse{{ $faq['id'] }}">
-                            {{ $faq['question'] }}
-                        </button>
-                    </h2>
-                    <div id="collapse{{ $faq['id'] }}" class="accordion-collapse collapse" aria-labelledby="faqHeader{{ $faq['id'] }}" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            {{ $faq['answer'] }}
+        <div class="row">
+            <!-- Primera columna -->
+            <div class="col-md-6">
+                <div class="accordion" id="faqAccordionLeft">
+                    @php
+                        $faqs = json_decode(__('h2_p_home_4'), true);
+                        $half = ceil(count($faqs) / 2); // Dividir en dos grupos
+                    @endphp
+                    @foreach (array_slice($faqs, 0, $half) as $faq)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeaderLeft{{ $faq['id'] }}">
+                                <button class="accordion-button collapsed no-icon" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeft{{ $faq['id'] }}" aria-expanded="false" aria-controls="collapseLeft{{ $faq['id'] }}">
+                                    {{ $faq['question'] }}
+                                </button>
+                            </h2>
+                            <div id="collapseLeft{{ $faq['id'] }}" class="accordion-collapse collapse" aria-labelledby="faqHeaderLeft{{ $faq['id'] }}" data-bs-parent="#faqAccordionLeft">
+                                <div class="accordion-body">
+                                    {{ $faq['answer'] }}
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
+            <!-- Segunda columna -->
+            <div class="col-md-6">
+                <div class="accordion" id="faqAccordionRight">
+                    @foreach (array_slice($faqs, $half) as $faq)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeaderRight{{ $faq['id'] }}">
+                                <button class="accordion-button collapsed no-icon" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRight{{ $faq['id'] }}" aria-expanded="false" aria-controls="collapseRight{{ $faq['id'] }}">
+                                    {{ $faq['question'] }}
+                                </button>
+                            </h2>
+                            <div id="collapseRight{{ $faq['id'] }}" class="accordion-collapse collapse" aria-labelledby="faqHeaderRight{{ $faq['id'] }}" data-bs-parent="#faqAccordionRight">
+                                <div class="accordion-body">
+                                    {{ $faq['answer'] }}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+
+
 
 <section>
   <div class="form-container">
@@ -294,7 +319,7 @@
   <div class="footer-column footer-align footer-offset">
       <p>{{ __('phone') }}: +34 910 059 958</p>
       <p>{{ __('email') }}: info@gtplux.com</p>
-      <p>{{ __('address') }}: Marina de Denia, España</p>
+      <p>{{ __('location_address') }}</p>
   </div>
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">

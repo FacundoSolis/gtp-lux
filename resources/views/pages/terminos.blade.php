@@ -132,7 +132,7 @@
   <div class="footer-column footer-align footer-offset">
       <p>{{ __('phone') }}: +34 910 059 958</p>
       <p>{{ __('email') }}: info@gtplux.com</p>
-      <p>{{ __('address') }}: Marina de Denia, España</p>
+      <p>{{ __('location_address') }}</p>
   </div>
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
