@@ -9,10 +9,15 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/princess.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/effects.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 @endpush
 
 @section('content')
@@ -90,11 +95,10 @@
 </section>
 
 <!-- Modal de descripción -->
-<div class="modal fade" id="descriptionModal2" tabindex="-1" aria-labelledby="descriptionModalLabel2" aria-hidden="true">
+<div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="descriptionModalLabel2">{{ __('boat_features') }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body modal-description-container">
@@ -313,19 +317,28 @@
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
-    <!-- Columna 1: Logo y descripción -->
+    <!-- Columna 1: Logo y Redes Sociales -->
     <div class="footer-column">
       <a href="{{ url('/') }}">
         <img src="{{ asset('img/logo.png') }}" alt="{{ __('footer') }}" class="footer-logo">
       </a>
       <div class="social-icons">
         <p>{{ __('social_media') }}</p>
-        <a href="https://instagram.com" target="_blank">
-          <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
-        </a>
-        <a href="https://facebook.com" target="_blank">
-          <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
-        </a>
+        <!-- Nuevos íconos sociales -->
+        <div class="content-center">
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/" target="_blank">
+                <i class="fa fa-facebook fa-2x"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/" target="_blank">
+                <i class="fa fa-instagram fa-2x"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -341,8 +354,8 @@
         <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
         <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
         <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us_title') !!}</a></li>
+        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
         <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
@@ -351,7 +364,7 @@
     <div class="footer-column footer-align footer-offset">
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
-        <input type="email" placeholder="Tu email" class="subscribe-input">
+        <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
         <button type="submit" class="subscribe-button">SUSCRIBE</button>
       </form>
     </div>
@@ -372,6 +385,7 @@
 <script src="{{ asset('js/listapreciosportofino.js') }}"></script>
 <script src="{{ asset('js/syncddate.js') }}"></script>
 <script src="{{ asset('js/slider2.js') }}"></script>
+<script src="{{ asset('js/effects.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales/es.js"></script>

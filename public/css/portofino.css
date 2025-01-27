@@ -130,6 +130,7 @@ header {
   position: relative;
   margin: auto;
   overflow: hidden; /* Oculta el contenido que se desborda */
+
 }
 
 .slides {
@@ -569,124 +570,21 @@ color: white;
 .form-label {
   color: black; /* Color de las etiquetas */
 }
+.mb-3{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.col{
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .form-control::placeholder {
   color: gray; /* Color del texto del placeholder */
 }
 .btn-primary {
   margin-bottom: 20px;
 }
-/*Footer*/
-footer {
-  background: linear-gradient(
-    to bottom,
-    #0E222D,  /* Azul inicial */
-    #0A1A26,  /* Azul ligeramente más oscuro */
-    #06131E   /* Azul profundo */
-  );    
-  background-size: cover;
-  padding: 20px 0;
-}
 
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2 rem;
-}
-.footer-align {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.footer-column {
-  width: 23%;
-  margin-bottom: 20px;
-}
-.footer-description {
-  margin: 15px 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-.footer-offset {
-  margin-top: 35px;
-}
-
-.footer-left,
-.footer-right {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.footer-logo {
-  max-width: 150px;
-  margin-bottom: 15px;
-
-}
-.footer-links {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  color: white;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.subscribe-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.subscribe-input {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 5px;
-}
-
-.subscribe-button {
-  padding: 10px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.subscribe-button:hover {
-  background-color: #0056b3;
-}
-.social-icons {
-  margin-top: 10px;
-}
-
-.social-icons a {
-  margin-right: 15px;
-  color: white;
-}
-
-.social-icons img {
-  width: 30px;
-  height: 30px;
-}
-
-.contact-email, .location {
-  margin-top: 10px;
-}
-
-.footer p{
-  color: white;
-}
 .content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -960,6 +858,15 @@ height: 400px;
 }
 .form label {
   font-size: 0.9rem;
+  margin-left: 20px;
+}
+.mb-3{
+  margin-left: 0;
+  margin-right: 0;
+}
+.col{
+  margin-left: 20px;
+  margin-right: 0;
 }
 .calendar-wrapper {
   max-width: 100%; /* Ancho máximo del calendario en móviles */
@@ -993,37 +900,5 @@ height: 400px;
   margin-left: .75em;
   margin-top: 5px;
 }
-.footer-container {
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.footer-column {
-  width: 100%;
-  margin-bottom: 20px;
-}
-.subscribe-form {
-  padding: 20px 0; /* Reducir el espacio en móviles */
-}
 
-.subscribe-form {
-  display: flex;
-  flex-direction: column; /* Elementos apilados en el formulario */
-  align-items: center; /* Centra horizontalmente */
-  gap: 10px; /* Espacio entre el campo y el botón */
-}
-
-.subscribe-input {
-  width: 90%; /* Ajusta el ancho del campo de entrada */
-  max-width: 300px; /* Limita el ancho máximo */
-  padding: 10px; /* Espaciado interno */
-  font-size: 1rem; /* Tamaño de fuente adecuado */
-}
-
-.subscribe-button {
-  width: 90%; /* Botón centrado con el campo de entrada */
-  max-width: 300px; /* Limita el ancho máximo */
-  padding: 10px; /* Espaciado interno */
-  font-size: 1rem; /* Tamaño de fuente adecuado */
-}
 }

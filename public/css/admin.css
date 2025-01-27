@@ -112,14 +112,31 @@
 
 /* Para pantallas menores a 768px */
 @media (max-width: 768px) {
+    .container {
+        --bs-gutter-x: 0;
+        width: 80%;
+        margin-left: 0;
+    }
+    .container h1{
+        font-size: 1rem;
+    }
+    .card {
+        width: 107%;
+    }
+
+    .admin-wrapper{
+        margin-top: 90px;
+    }
+
     .admin-sidebar {
-        width: 50px;
+        width: 150px;
         padding-top: 15px;
+        height: 100%;
     }
 
     .admin-content {
-        margin-left: 200px;
-        padding: 15px;
+        margin-left: 130px;
+        padding: 10px;
     }
 
     .admin-sidebar ul .nav-link {
@@ -131,56 +148,11 @@
     .admin-sidebar ul .nav-link i {
         font-size: 1rem;
     }
-}
 
-/* Para pantallas menores a 576px */
-@media (max-width: 576px) {
-    .admin-sidebar {
-        position: static;
-        width: 40%;
-        min-height: auto;
-        padding: 3px;
-    }
-
-    .admin-sidebar ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-
-    .admin-sidebar ul .nav-item {
-        margin: 0.5rem 0;
-        flex: 0 1 48%; /* Dos elementos por fila */
-    }
-
-    .admin-content {
-        margin-left: 0;
-        padding: 10px;
-    }
-
-    .admin-sidebar ul .nav-link {
-        padding: 5px 8px;
-        font-size: 0.8rem;
-        gap: 5px;
-    }
-
-    .admin-sidebar ul .nav-link i {
-        font-size: 0.9rem;
-    }
-    .h5, h5 {
-        font-size: 1rem;
-    }
-    /* Adjustments for small screens (max-width: 768px) */
-@media (max-width: 768px) {
-    .admin-content {
-        padding: 10px;
-    }
-  
     .card-header {
         font-size: 1rem;
         text-align: center;
     }
-    
 
     .form-select {
         font-size: 0.9rem;
@@ -190,11 +162,12 @@
         font-size: 0.9rem;
     }
 
+
     /* Table adjustments */
     .table thead {
-        display: none; 
+        display: none;
     }
-       
+
     .table tbody tr {
         display: block;
         margin-bottom: 1rem;
@@ -205,7 +178,6 @@
 
     .table tbody tr td {
         display: block;
-        text-align: right;
         font-size: 0.9rem;
         padding: 0.3rem 0;
         text-align: left;
@@ -221,27 +193,23 @@
     .table tbody tr td input {
         margin-top: 0.3rem;
     }
+    .table{
+        width: 80%;
+    }
+    .car-body2{
+        width: 80%;
+    }
+    .table-responsive{
+        padding-left: 10px;
+        width: 130%;
+    }
 
     /* Buttons */
-    .btn-warning, .btn-danger {
-        width: 100%;
+    .btn-warning,
+    .btn-danger {
+        width: 80%;
         margin-bottom: 0.5rem;
     }
 }
 
-/* Adjustments for very small screens (max-width: 576px) */
-@media (max-width: 576px) {
-    .table tbody tr td {
-        font-size: 0.8rem;
-    }
 
-
-    .form-select {
-        font-size: 0.8rem;
-    }
-
-    .btn {
-        font-size: 0.8rem;
-    }
-}
-}

@@ -260,7 +260,6 @@ line-height: 1;
   padding: 10px;
 }
 
-
 /* Contendor Slider */
 .slider-container {
   width: 100%;
@@ -727,6 +726,61 @@ footer {
 .footer p{
   color: white;
 }
+/* Footer Redes Sociales */
+.content-center ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.content-center ul li {
+  margin: 0 10px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white; /* Color blanco por defecto */
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.content-center ul li i {
+  color: white; /* Ícono blanco */
+  transition: all 0.3s ease;
+}
+.social-icons a{
+  margin-right: 0;
+}
+
+.content-center ul li:hover {
+  background-color: white; /* Fondo blanco al pasar el mouse */
+}
+
+.content-center ul li:hover i {
+  color: #000; /* Ícono negro al pasar el mouse */
+}
+
+.content-center ul li:nth-child(1) {
+  border-color: #3b5998; /* Color de Facebook */
+}
+
+.content-center ul li:nth-child(1):hover {
+  background-color: #3b5998;
+  color: white;
+}
+
+.content-center ul li:nth-child(2) {
+  border-color: #E1306C; /* Color de Instagram */
+}
+
+.content-center ul li:nth-child(2):hover {
+  background-color: #E1306C;
+  color: white;
+}
+
 /*FAQ*/
 
 .text-center {
@@ -1040,6 +1094,20 @@ textarea {
 }
 .subscribe-form {
   padding: 20px 0; /* Reducir el espacio en móviles */
+}
+.content-center ul {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  flex-wrap: wrap; /* Permitir varias filas si es necesario */
+  padding: 0;
+  gap: 5px; /* Reducir el espacio entre los íconos */
+}
+
+.content-center ul li {
+  margin: 5px; /* Reducir el margen entre los elementos */
+  width: 50px; /* Tamaño ajustado de los íconos */
+  height: 50px;
 }
 
 .subscribe-form {

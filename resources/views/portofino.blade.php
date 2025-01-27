@@ -1,4 +1,7 @@
 @extends('layouts.public')
+@section('title', $meta_title ?? 'Sunseeker Portofino - Alquiler de barcos')
+@section('meta_description', $meta_description ?? 'Descubre el Sunseeker Portofino, un barco de lujo ideal para tus aventuras en el Mediterráneo.')
+@section('meta_keywords', $meta_keywords ?? 'Sunseeker Portofino, alquiler de barcos, lujo, Denia')
 @php
     use Illuminate\Support\Facades\App;
 @endphp
@@ -6,10 +9,13 @@
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/portofino.css') }}">
     <link rel="stylesheet" href="{{ asset('css/effects.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 @endpush
 
 @section('content')
@@ -312,19 +318,28 @@
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
-    <!-- Columna 1: Logo y descripción -->
+    <!-- Columna 1: Logo y Redes Sociales -->
     <div class="footer-column">
       <a href="{{ url('/') }}">
         <img src="{{ asset('img/logo.png') }}" alt="{{ __('footer') }}" class="footer-logo">
       </a>
       <div class="social-icons">
         <p>{{ __('social_media') }}</p>
-        <a href="https://instagram.com" target="_blank">
-          <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
-        </a>
-        <a href="https://facebook.com" target="_blank">
-          <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
-        </a>
+        <!-- Nuevos íconos sociales -->
+        <div class="content-center">
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/" target="_blank">
+                <i class="fa fa-facebook fa-2x"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/" target="_blank">
+                <i class="fa fa-instagram fa-2x"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 

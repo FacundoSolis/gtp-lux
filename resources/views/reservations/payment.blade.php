@@ -5,9 +5,13 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/payment.css') }}">
+<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 @endpush
 
 @section('title', 'Método de Pago')
@@ -100,6 +104,7 @@
                 </div>
             </div>
         </section>
+        
 
         <!-- Sección de Métodos de Pago -->
         <section class="payment-methods col-md-6">
@@ -132,19 +137,28 @@
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
-    <!-- Columna 1: Logo y descripción -->
+    <!-- Columna 1: Logo y Redes Sociales -->
     <div class="footer-column">
       <a href="{{ url('/') }}">
         <img src="{{ asset('img/logo.png') }}" alt="{{ __('footer') }}" class="footer-logo">
       </a>
       <div class="social-icons">
         <p>{{ __('social_media') }}</p>
-        <a href="https://instagram.com" target="_blank">
-          <img src="{{ asset('img/instagram.png') }}" alt="Instagram">
-        </a>
-        <a href="https://facebook.com" target="_blank">
-          <img src="{{ asset('img/facebook.png') }}" alt="Facebook">
-        </a>
+        <!-- Nuevos íconos sociales -->
+        <div class="content-center">
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/" target="_blank">
+                <i class="fa fa-facebook fa-2x"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/" target="_blank">
+                <i class="fa fa-instagram fa-2x"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -160,8 +174,8 @@
         <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
         <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
         <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us_title') !!}</a></li>
+        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
         <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
@@ -170,13 +184,14 @@
     <div class="footer-column footer-align footer-offset">
       <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
       <form class="subscribe-form">
-      <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
-      <button type="submit" class="subscribe-button">SUSCRIBE</button>
+        <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
+        <button type="submit" class="subscribe-button">SUSCRIBE</button>
       </form>
     </div>
   </div>
 </footer>
 @endsection
+
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -221,6 +236,16 @@
             languageDropdown.style.display = 'none';
         });
     });
+  const targetDate = new Date("2025-12-31").getTime();
+  const countdown = document.getElementById('countdown');
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    countdown.innerHTML = `{{ __('Days left:') }} ${days}`;
+  }, 1000);
   });
 </script>
 
