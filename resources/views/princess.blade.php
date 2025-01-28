@@ -176,25 +176,23 @@
         </div>
     </section> 
 </main> 
-<!-- Detalles de precios -->
-<section class="pricing-details-columns">
-    <div class="characteristics2">
-        <h3>{{ __('included_in_price') }}</h3>
-        <div class="info-list2">
-            <div class="info-row2"><span>{{ __('full_insurance') }}</span><span>✔</span></div>
-            <div class="info-row2"><span>{{ __('drinks') }}</span><span>✔</span></div>
-            <div class="info-row2"><span>{{ __('snorkel_gear') }}</span><span>✔</span></div>
-            <div class="info-row2"><span>{{ __('paddle_surf') }}</span><span>✔</span></div>
-            <div class="info-row2"><span>{{ __('towels') }}</span><span>✔</span></div>
-        </div>
-    </div>
-    <div class="characteristics3">
-        <h3>{{ __('not_included_in_price') }}</h3>
-        <div class="info-list3">
-            <div class="info-row3"><span>{{ __('fuel') }}</span><span>✘</span></div>
-            <div class="info-row3"><span>{{ __('premium_drinks') }}</span><span>✘</span></div>
-            <div class="info-row3"><span>{{ __('special_equipment') }}</span><span>✘</span></div>
-        </div>
+
+
+<!-- Sección interactiva del barco -->
+<section class="boat-details-section">
+    <div class="model-container">
+        <!-- Título dentro de la imagen -->
+        <h2 class="model-title">{{ __('sunseeker_portofino_53') }} -3D</h2>
+        <!-- Model-viewer para controlar manualmente -->
+                <model-viewer
+            id="boatModel"
+            src="models/tripo_pbr_model_fc88fb62-435e-4823-98f4-af5d68f8e28a.glb"
+            alt="Barco Sunseeker"
+            camera-controls
+            field-of-view="70deg"
+            camera-orbit="75deg 80deg 3m"            
+            style="display: block;">
+        </model-viewer>
     </div>
 </section>
 
@@ -259,6 +257,27 @@
 
                     <button type="submit" id="proceedToPaymentButton" class="btn btn-primary mt-3">{{ __('proceed_to_payment') }}</button>
                 </form>
+            </section>
+        <!-- Detalles de precios -->
+        <section class="pricing-details-columns">
+                <div class="characteristics2">
+                    <h3>{{ __('included_in_price') }}</h3>
+                    <div class="info-list2">
+                        <div class="info-row2"><span>{{ __('full_insurance') }}</span><span>✔</span></div>
+                        <div class="info-row2"><span>{{ __('drinks') }}</span><span>✔</span></div>
+                        <div class="info-row2"><span>{{ __('snorkel_gear') }}</span><span>✔</span></div>
+                        <div class="info-row2"><span>{{ __('paddle_surf') }}</span><span>✔</span></div>
+                        <div class="info-row2"><span>{{ __('towels') }}</span><span>✔</span></div>
+                    </div>
+                </div>
+                <div class="characteristics3">
+                    <h3>{{ __('not_included_in_price') }}</h3>
+                    <div class="info-list3">
+                        <div class="info-row3"><span>{{ __('fuel') }}</span><span>✘</span></div>
+                        <div class="info-row3"><span>{{ __('premium_drinks') }}</span><span>✘</span></div>
+                        <div class="info-row3"><span>{{ __('special_equipment') }}</span><span>✘</span></div>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
@@ -386,10 +405,11 @@
 <script src="{{ asset('js/syncddate.js') }}"></script>
 <script src="{{ asset('js/slider2.js') }}"></script>
 <script src="{{ asset('js/effects.js') }}"></script>
+<script src="{{ asset('js/boat2.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales/es.js"></script>
-
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 @endsection
 
 <script>

@@ -33,10 +33,12 @@
         "@fullcalendar/timegrid": "^6.1.15",
         "@tailwindcss/forms": "^0.5.9",
         "@tailwindcss/typography": "^0.5.15",
+        "aos": "^2.3.4",
         "bootstrap": "^5.3.3",
         "normalize.css": "^8.0.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "sass": "^1.83.0"
+        "sass": "^1.83.0",
+        "three": "^0.172.0"
     }
 }

@@ -369,12 +369,27 @@ margin-bottom: 5px;
 }
 
 /* Calendario */
+
+.container {
+  max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  padding: 20px; /* Espaciado interior */
+  background: linear-gradient(
+    to bottom,
+    #0E222D, /* Azul inicial */
+    #0A1A26, /* Azul ligeramente más oscuro */
+    #06131E  /* Azul profundo */
+  ); 
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+  margin-top: 20px;
+}
 .container h1{
-  color: black;
+  color: white;
   margin: 20px;
 }
 .container h4{
-  color: black;
+  color: white;
 }
 .col-md-6 {
   flex: 1;
@@ -545,7 +560,63 @@ color: white;
   border-color: #999; /* Borde más oscuro */
 }
 
+.boat-details-section {
+    width: 100%;
+    max-width: 1400px; /* Tamaño máximo */
+    margin: 0 auto; /* Centrar horizontalmente */
+    text-align: center; /* Centrar contenido */
+    padding: 20px 0; /* Espaciado superior e inferior */
+  }
+  .model-container {
+    position: relative; /* Necesario para posicionar el título */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar el contenido dentro del contenedor */
+    justify-content: center; /* Centrar verticalmente si es necesario */
+  }
+  /* Título encima del modelo */
+.model-title {
+  position: absolute;
+  top: 20px; /* Ajusta la posición del título */
+  left: 50%; /* Centra horizontalmente */
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: white; /* Asegúrate de que sea visible sobre el fondo */
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Sombras */
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 10; /* Asegura que esté sobre el modelo */
+}
+.boat-details-section h2 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  -webkit-background-clip: text;
+  animation: glow 2s infinite alternate;
+  text-align: center;
+}
 
+model-viewer {
+  width: 99%; /* Ajusta el tamaño del modelo */
+  max-width: 1000px; /* Máximo tamaño para pantallas grandes */
+  height: 70vh; /* Más grande que antes */
+  margin-bottom: 20px;
+  margin: 0 auto; /* Centrar horizontalmente */
+
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.5)
+  ), url('/img/mar.jpg');
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7); /* Sombras */
+  background-size: cover; /* La imagen cubre todo el fondo */
+    background-position: center; /* Centrar la imagen en el fondo */
+    background-repeat: no-repeat; /* No repetir la imagen */
+}
 /* Sección de Condiciones */
 .conditions-section {
   margin-top: 20px;
@@ -568,7 +639,7 @@ color: white;
 }
 
 .form-label {
-  color: black; /* Color de las etiquetas */
+  color: white; /* Color de las etiquetas */
 }
 .mb-3{
   margin-left: 20px;
@@ -577,6 +648,7 @@ color: white;
 .col{
   margin-left: 20px;
   margin-right: 20px;
+
 }
 .form-control::placeholder {
   color: gray; /* Color del texto del placeholder */
@@ -865,7 +937,7 @@ height: 400px;
   margin-right: 0;
 }
 .col{
-  margin-left: 20px;
+  margin-left: 15px;
   margin-right: 0;
 }
 .calendar-wrapper {
@@ -900,5 +972,14 @@ height: 400px;
   margin-left: .75em;
   margin-top: 5px;
 }
-
+model-viewer {
+  width: 90%; /* Más ancho en pantallas pequeñas */
+  height: 55vh; /* Altura más reducida en móviles */
+}
+.boat-details-section h2{
+  font-size: 1rem;
+}
+.model-title {
+  font-size: 1.5rem; /* Reducir tamaño del título */
+}
 }

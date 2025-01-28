@@ -222,47 +222,42 @@
         </div>
     </div>
 </section>
+
 <section class="faq-section2 py-5 bg-light2">
     <div class="container2">
         <h2 class="title-faq2">{!! __('h2_title_home_4') !!}</h2>
         <div class="row">
+            @php
+                $faqs = json_decode(__('h2_p_home_4'), true);
+                $half = ceil(count($faqs) / 2); // Dividir en dos grupos
+            @endphp
+
             <!-- Primera columna -->
             <div class="col-md-6">
-                <div class="accordion" id="faqAccordionLeft">
-                    @php
-                        $faqs = json_decode(__('h2_p_home_4'), true);
-                        $half = ceil(count($faqs) / 2); // Dividir en dos grupos
-                    @endphp
+                <div class="accordion" id="accordionLeft">
                     @foreach (array_slice($faqs, 0, $half) as $faq)
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="faqHeaderLeft{{ $faq['id'] }}">
-                                <button class="accordion-button collapsed no-icon" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeft{{ $faq['id'] }}" aria-expanded="false" aria-controls="collapseLeft{{ $faq['id'] }}">
-                                    {{ $faq['question'] }}
-                                </button>
-                            </h2>
-                            <div id="collapseLeft{{ $faq['id'] }}" class="accordion-collapse collapse" aria-labelledby="faqHeaderLeft{{ $faq['id'] }}" data-bs-parent="#faqAccordionLeft">
-                                <div class="accordion-body">
-                                    {{ $faq['answer'] }}
-                                </div>
+                            <div class="accordion-header" id="faqHeaderLeft{{ $faq['id'] }}" onclick="toggleAccordion(this)">
+                                <span class="accordion-button">{{ $faq['question'] }}</span>
+                            </div>
+                            <div class="accordion-body" id="collapseLeft{{ $faq['id'] }}">
+                                {{ $faq['answer'] }}
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
+
             <!-- Segunda columna -->
             <div class="col-md-6">
-                <div class="accordion" id="faqAccordionRight">
+                <div class="accordion" id="accordionRight">
                     @foreach (array_slice($faqs, $half) as $faq)
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="faqHeaderRight{{ $faq['id'] }}">
-                                <button class="accordion-button collapsed no-icon" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRight{{ $faq['id'] }}" aria-expanded="false" aria-controls="collapseRight{{ $faq['id'] }}">
-                                    {{ $faq['question'] }}
-                                </button>
-                            </h2>
-                            <div id="collapseRight{{ $faq['id'] }}" class="accordion-collapse collapse" aria-labelledby="faqHeaderRight{{ $faq['id'] }}" data-bs-parent="#faqAccordionRight">
-                                <div class="accordion-body">
-                                    {{ $faq['answer'] }}
-                                </div>
+                            <div class="accordion-header" id="faqHeaderRight{{ $faq['id'] }}" onclick="toggleAccordion(this)">
+                                <span class="accordion-button">{{ $faq['question'] }}</span>
+                            </div>
+                            <div class="accordion-body" id="collapseRight{{ $faq['id'] }}">
+                                {{ $faq['answer'] }}
                             </div>
                         </div>
                     @endforeach
@@ -271,9 +266,6 @@
         </div>
     </div>
 </section>
-
-
-
 
 <section>
   <div class="form-container">
@@ -300,7 +292,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- Footer personalizado -->
 <footer class="footer">
@@ -366,6 +357,8 @@
   <script src="{{ asset('js/slider.js') }}"></script>
   <script src="{{ asset('js/menuhome.js') }}"></script>
   <script src="{{ asset('js/cookieConsent.js') }}"></script>
+  <script src="{{ asset('js/acordion.js') }}"></script>
+
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

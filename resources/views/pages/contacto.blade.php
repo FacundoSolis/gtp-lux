@@ -3,7 +3,7 @@
     use Illuminate\Support\Facades\App;
 @endphp
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/pages.css') }}">
+<link rel="stylesheet" href="{{ asset('css/contacto.css') }}">
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
@@ -58,35 +58,64 @@
     </nav>
 </header>
 
-<div class="contact-header text-center">
-    <h2 class="text-primary">{!! __('contact') !!}</h2>
+<div class="contact-header2 text-center2">
+    <h2 class="text-primary2">{!! __('contact') !!}</h2>
     <p>{!! __('help_text') !!}</p>
 </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <form>
-                <div class="mb-3">
-                    <label for="name" class="form-label">{!! __('name') !!}</label>
-                    <input type="text" class="form-control" id="name" required>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Columna izquierda: Formulario -->
+        <div class="col-md-6">
+            <form class="form">
+                <div class="form-heading">
+                    <h2>Contáctanos</h2>
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">{!! __('email') !!}</label>
-                    <input type="email" class="form-control" id="email" required>
+                <div class="form-field">
+                    <input type="text" class="input-field" placeholder="Nombre" required>
                 </div>
-                <div class="mb-3">
-                    <label for="subject" class="form-label">{!! __('subject') !!}</label>
-                    <input type="text" class="form-control" id="subject">
+                <div class="form-field">
+                    <input type="email" class="input-field" placeholder="Correo Electrónico" required>
                 </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">{!! __('message') !!}</label>
-                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                <div class="form-field">
+                    <input type="text" class="input-field" placeholder="Asunto">
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">{!! __('send') !!}</button>
+                <div class="form-field">
+                    <textarea class="input-field" rows="5" placeholder="Mensaje" required></textarea>
                 </div>
+                <button type="submit" class="sendMessage-btn">Enviar</button>
             </form>
+        </div>
+
+
+        <!-- Columna derecha: Íconos y Mapa -->
+        <div class="col-md-6">
+            <!-- Íconos -->
+            <div class="d-flex justify-content-between mb-4">
+                <div class="text-center">
+                    <i class="fa-solid fa-phone"></i>                    
+                    <p>{{ __('phone') }}: 
+                      +34 910 059 958</p>
+                    </div>
+                <div class="text-center">
+                    <i class="fa-solid fa-location-dot"></i>                    
+                    <p>{{ __('location_address') }}</p>
+                    </div>
+                <div class="text-center">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>{{ __('email') }}: info@gtplux.com</p>
+                </div>
+            </div>
+
+            <!-- Mapa -->
+            <div class="card shadow map-card">
+              <div class="map-container">
+                  <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6215.198940442461!2d0.12064989999999999!3d38.8416328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129e1adfd387435b%3A0xde918d9340020fd2!2sMarina%20de%20D%C3%A9nia!5e0!3m2!1ses!2ses!4v1737275044808!5m2!1ses!2ses"
+                      width="100%" height="300" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+              </div>
+          </div>
         </div>
     </div>
 </div>

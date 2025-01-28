@@ -1,323 +1,144 @@
-/* General */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg, /* Ángulo de la línea diagonal */
+    #ffffff 30%, /* Color del lado superior izquierdo */
+    #0A1A26 30% /* Color del lado inferior derecho */
+  );
+  font-family: Arial, sans-serif; /* O cualquier fuente que uses */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.text-center2 {  
+color:white !important;
+margin-top: 150px;
+text-align: center;
+}
+.text-center p{
+  color: white;
+}
+.row {
+  margin-bottom: 30px;
+}
+/* Mapa */
+/* Tarjeta del mapa */
+.card {
+  width: 100%; /* Ajusta el ancho de la tarjeta */
+  background: white;
+  border-radius: 10px;
+  transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-h2 {
-    margin-top: 50px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
+.shadow {
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+              0 0 0 2px rgb(190, 190, 190),
+              0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
-button, .btn {
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
+/* Contenedor del mapa */
+.map-container {
+  border-radius: 0; /* Bordes redondeados para el contenedor */
+  overflow: hidden; /* Asegura que el mapa se ajuste a los bordes de la tarjeta */
 }
 
-.btn-primary {
-    background-color: #0d6efd;
-    color: white;
-    transition: background-color 0.3s ease;
+/* Estilo del iframe del mapa */
+.map-container iframe {
+  width: 100%;
+  height: 300px;
+  border: none; /* Quita el borde predeterminado */
 }
 
-.btn-primary:hover {
-    background-color: #0b5ed7;
+.mt-5{
+  margin-top: 0;
+}
+.mb-4 {
+  margin-top: 0;
+}
+/* Íconos */
+.d-flex {
+  gap: 20px;
+}
+.text-center i {
+  color: white;
+  margin-bottom: 5px;
+  font-size: 2.5rem;
+}
+.text-center p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: white;
 }
 
-/* Formulario */
-form {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 20px;
-}
-
-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-form .btn {
-    width: 100%;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Información de Reserva */
-.reservation-info {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.reservation-info ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.reservation-info ul li {
-    padding: 10px 0;
-    border-bottom: 1px solid #f1f1f1;
-}
-
-.reservation-info ul li:last-child {
-    border-bottom: none;
-}
-
-.reservation-info img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
-/* Métodos de Pago */
-.payment-methods {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.payment-methods .btn {
-    margin-bottom: 10px;
-    width: 100%;
-}
-
-.payment-methods .btn-dark {
-    background-color: #343a40;
-    color: white;
-}
-
-.payment-methods .btn-dark:hover {
-    background-color: #23272b;
-}
-
-.payment-methods .btn-warning {
-    background-color: #ffc107;
-    color: white;
-}
-
-.payment-methods .btn-warning:hover {
-    background-color: #e0a800;
-}
-
-/* Progress Bar */
-.progress-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px 0;
-}
-
-.step {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #0d6efd;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    margin: 0 10px;
-}
-
-.step.active {
-    background-color: #0b5ed7;
-}
-
-.progress-line {
-    width: 100px;
-    height: 4px;
-    background-color: #0d6efd;
-}
-/*Footer*/
-footer {
+/* Estilos del formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  font-family: inherit;
+  gap: 10px;
+  padding-inline: 2em;
+  padding-bottom: 0.4em;
   background: linear-gradient(
     to bottom,
-    #0E222D,  /* Azul inicial */
-    #0A1A26,  /* Azul ligeramente más oscuro */
-    #06131E   /* Azul profundo */
+    #0E222D, /* Azul inicial */
+    #0A1A26, /* Azul ligeramente más oscuro */
+    #06131E  /* Azul profundo */
   );    
-  background-size: cover;
-  padding: 20px 0;
+  border-radius: 20px;
 }
 
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2 rem;
-}
-.footer-align {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.footer-column {
-  width: 23%;
-  margin-bottom: 20px;
-}
-.footer-description {
-  margin: 15px 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-.footer-offset {
-  margin-top: 35px;
-}
-
-.footer-left,
-.footer-right {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.footer-logo {
-  max-width: 150px;
-  margin-bottom: 15px;
-
-}
-.footer-links {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  color: white;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.subscribe-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.subscribe-input {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 5px;
-}
-
-.subscribe-button {
-  padding: 10px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.subscribe-button:hover {
-  background-color: #0056b3;
-}
-.social-icons {
-  margin-top: 10px;
-}
-
-.social-icons a {
-  margin-right: 15px;
-  color: white;
-}
-
-.social-icons img {
-  width: 30px;
-  height: 30px;
-}
-
-.contact-email, .location {
-  margin-top: 10px;
-}
-
-.footer p{
-  color: white;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .reservation-info, .payment-methods {
-        padding: 15px;
-    }
-
-    .btn {
-        font-size: 14px;
-    }
-
-    .progress-bar {
-        flex-direction: column;
-    }
-
-    .progress-line {
-        width: 50px;
-    }
-    
-.footer-container {
-  flex-direction: column;
-  align-items: center;
+.form-heading {
   text-align: center;
-}
-.footer-column {
-  width: 100%;
-  margin-bottom: 20px;
-}
-.subscribe-form {
-  padding: 20px 0; /* Reducir el espacio en móviles */
+  margin: 2em;
+  color: white;
+  font-size: 1.2em;
+  background-color: transparent;
+  align-self: center;
 }
 
-.subscribe-form {
+.form-field {
   display: flex;
-  flex-direction: column; /* Elementos apilados en el formulario */
-  align-items: center; /* Centra horizontalmente */
-  gap: 10px; /* Espacio entre el campo y el botón */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 10px;
+  padding: 0.6em;
+  border: none;
+  outline: none;
+  color: black;
+  background-color: white;
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
 
-.subscribe-input {
-  width: 90%; /* Ajusta el ancho del campo de entrada */
-  max-width: 300px; /* Limita el ancho máximo */
-  padding: 10px; /* Espaciado interno */
-  font-size: 1rem; /* Tamaño de fuente adecuado */
+.input-field {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: white;
+  padding-inline: 1em;
 }
 
-.subscribe-button {
-  width: 90%; /* Botón centrado con el campo de entrada */
-  max-width: 300px; /* Limita el ancho máximo */
-  padding: 10px; /* Espaciado interno */
-  font-size: 1rem; /* Tamaño de fuente adecuado */
+.sendMessage-btn {
+  cursor: pointer;
+  margin-bottom: 3em;
+  padding: 1em;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  outline: 1px solid white;
+  transition: all ease-in-out 0.3s;
+  padding-top: 10px;
 }
+
+.sendMessage-btn:hover {
+  transition: all ease-in-out 0.3s;
+  background-color: #64ffda;
+  color: #000;
+  cursor: pointer;
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
