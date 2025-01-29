@@ -834,7 +834,7 @@ color: black;
     #06131E   /* Azul profundo */
   );  
   text-align: center; /* Asegura que el texto esté centrado */
-  height: 500px; /* Altura fija para que no crezca */
+  height: 550px; /* Altura fija para que no crezca */
   overflow: hidden; /* Evita que el contenido haga crecer la sección */
 }
 .title-faq2 {

@@ -10,6 +10,8 @@
     <meta name="description" content="@yield('meta_description', 'Descripción predeterminada de GtpLux')">
     <meta name="keywords" content="@yield('meta_keywords', 'barco, alquiler, yate, Denia')">
     <meta name="author" content="GtpLux">
+    <link rel="icon" type="image/png" href="{{ asset('img/icon.jpg') }}">
+
 
     <!-- CSS Global -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -19,7 +21,6 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.css">
-    <link rel="icon" type="image/png" href="{{ asset('img/logo.png.png') }}">
 
     @stack('styles')
 
