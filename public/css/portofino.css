@@ -367,7 +367,10 @@ margin-bottom: 5px;
 .info-row2 span, .info-row3 span {
   font-size: 0.9rem;
 }
-
+ul {
+  list-style-type: none; /* Elimina los puntos */
+  padding: 0; /* Elimina el espacio a la izquierda */
+}
 /* Calendario */
 
 .container {
