@@ -84,7 +84,7 @@
 
 <div class="container mt-5">
     <div class="page-title-container text-center">
-        <h1 class="page-title">¡Completa tu Reserva!</h1>
+        <h1 class="page-title">{{ __(key: 'reservation_form') }}:</h1>
         <p class="page-subtitle">Proporciónanos tus datos para finalizar tu experiencia de navegación.</p>
     </div>
 
@@ -93,19 +93,19 @@
         <div class="col-md-6">
             <!-- Tarjeta de información de la reserva -->
             <div class="reservation-summary bg-light p-3 rounded mb-4 shadow-sm">
-                <h3 class="text-center">Detalles de tu Reserva</h3>
+                <h3 class="text-center">{{ __('reservation_details') }}</h3>
                 <ul class="list-unstyled">
-                    <li><strong>Puerto:</strong> Marina de Denia</li>
-                    <li><strong>Fecha de Recogida:</strong> {{ $pickupDate }}</li>
-                    <li><strong>Fecha de Entrega:</strong> {{ $returnDate }}</li>
-                    <li><strong>Barco Seleccionado:</strong> {{ $boatName }}</li>
-                    <li><strong>Precio Total:</strong> €{{ number_format($price, 2) }}</li>
+                    <li><strong>{{ __('port') }}</strong> Marina de Denia</li>
+                    <li><strong>{{ __('pickup_date') }}</strong> {{ $pickupDate }}</li>
+                    <li><strong>{{ __('drop_off_date') }}</strong> {{ $returnDate }}</li>
+                    <li><strong>{{ __('boat') }}</strong> {{ $boatName }}</li>
+                    <li><strong>{{ __('price_total_summary') }}</strong> €{{ number_format($price, 2) }}</li>
                 </ul>
             </div>
 
             <!-- Tarjeta del formulario -->
             <div class="bg-white p-4 rounded shadow-sm">
-                <h4 class="mb-3">Datos de Contacto</h4>
+                <h4 class="mb-3">{!! __('contact') !!}</h4>
                 <form action="{{ route('reservation.saveDetails') }}" method="POST">
                     @csrf
                     <input type="hidden" name="port_id" value="{{ $reservation['port_id'] }}">
@@ -116,32 +116,32 @@
                     <!-- Campos visibles -->
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Nombre</label>
+                            <label for="name" class="form-label">{{ __('name') }}:</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="surname" class="form-label">Apellidos</label>
+                            <label for="surname" class="form-label">{{ __('surname') }}:</label>
                             <input type="text" class="form-control" id="surname" name="surname" required>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <label for="email" class="form-label">{{ __('email') }}:</label>
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="email_confirm" class="form-label">Confirmar Correo Electrónico</label>
+                            <label for="email_confirm" class="form-label">{{ __('email') }}:</label>
                             <input type="email" class="form-control" id="email_confirm" name="email_confirm" required>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <label for="phone" class="form-label">Teléfono</label>
+                            <label for="phone" class="form-label">{{ __('phone') }}:</label>
                             <input type="text" class="form-control" id="phone" name="phone" required>
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg">Ir al Pago</button>
+                        <button type="submit" class="btn btn-primary btn-lg">{{ __('proceed_to_payment') }}:</button>
                     </div>
                 </form>
             </div>
