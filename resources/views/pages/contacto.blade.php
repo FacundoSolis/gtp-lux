@@ -1,4 +1,7 @@
 @extends('layouts.public')
+@section('title', $meta_title ?? 'Contacto - GtpLux')
+@section('meta_description', $meta_description ?? '¿Tienes preguntas? Contáctanos y te ayudaremos con todo lo que necesites sobre el alquiler de barcos en Denia.')
+@section('meta_keywords', $meta_keywords ?? 'contacto, alquiler de barcos, atención al cliente, GtpLux, Denia')
 @php
     use Illuminate\Support\Facades\App;
 @endphp
@@ -31,7 +34,7 @@
 
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
+            <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">

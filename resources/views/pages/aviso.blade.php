@@ -1,5 +1,9 @@
 @extends('layouts.public')
+@section('title', $meta_title ?? 'Aviso Legal - GtpLux')
+@section('meta_description', $meta_description ?? 'Lee nuestro aviso legal para conocer la información sobre el uso del sitio web y los términos legales aplicables a los servicios de GtpLux.')
+@section('meta_keywords', $meta_keywords ?? 'aviso legal, términos legales, normativa, condiciones legales, GtpLux')
 @php
+
     use Illuminate\Support\Facades\App;
 @endphp
 @push('styles')
@@ -32,8 +36,8 @@
 
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
-            <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
+          <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
+          <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">
                 <div class="dropdown">

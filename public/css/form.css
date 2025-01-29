@@ -2,10 +2,18 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: white;
-  width: 100%;
+  min-height: 100vh;
+  background: 
+    linear-gradient(
+      135deg, /* Primera línea diagonal (arriba izquierda) */
+      #ffffff 25%, /* Primera línea blanca */
+      #0A1A26 25%, /* Color central */
+      #0A1A26 75%, /* Mantiene el color en el centro */
+      #ffffff 75% /* Segunda línea blanca */
+    );
+  font-family: Arial, sans-serif; /* Fuente */
 }
+  
 .progress-card{
   margin-top: 100px;
 }
@@ -18,12 +26,12 @@ body {
 .page-title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #2c3e50;
+  color:white;
 }
 
 .page-subtitle {
   font-size: 1.2rem;
-  color: #7f8c8d;
+  color: white;
 }
 
 /* Container adjustments */
@@ -100,12 +108,21 @@ body {
 
 /* Form adjustments */
 form {
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .bg-white {
-  background-color: #fff;
+  background: linear-gradient(
+    to bottom,
+    #0E222D, /* Azul inicial */
+    #0A1A26, /* Azul más oscuro */
+    #06131E  /* Azul profundo */
+  );
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 .shadow-sm {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -113,27 +130,44 @@ form {
 
 form label {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  font-size: 1rem;
 }
 
 form .form-control {
-  border-radius: 5px;
-  border: 1px solid #ddd;
-}
-
-form .btn {
-  background-color: #3498db;
+  border-radius: 10px;
   border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  color: #fff;
+  outline: none;
+  padding: 0.6em;
+  background-color: white;
+  color: black;
+  box-shadow: inset 2px 5px 10px rgba(5, 5, 5, 0.2);
+}
+h4 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+form .btn {
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 1em;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  outline: 1px solid white;
+  transition: all ease-in-out 0.3s;
 }
 
 form .btn:hover {
-  background-color: #1f618d;
+  background-color: #64ffda;
+  color: #000;
+  cursor: pointer;
+  box-shadow: inset 2px 5px 10px rgba(5, 5, 5, 0.2);
 }
 
 /* Card and details adjustments */

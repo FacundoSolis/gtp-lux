@@ -1,10 +1,17 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-  }
-
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: 
+    linear-gradient(
+      -135deg, /* Invertimos la dirección de las líneas */
+      #ffffff 25%, /* Primera línea blanca */
+      #0A1A26 25%, /* Color central */
+      #0A1A26 75%, /* Mantiene el color en el centro */
+      #ffffff 75% /* Segunda línea blanca */
+    );
+  font-family: Arial, sans-serif; /* Fuente */
+}
 .step {
     display: flex;
     justify-content: center;

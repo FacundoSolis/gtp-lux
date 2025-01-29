@@ -21,7 +21,6 @@ text-align: center;
 .row {
   margin-bottom: 30px;
 }
-/* Mapa */
 /* Tarjeta del mapa */
 .card {
   width: 100%; /* Ajusta el ancho de la tarjeta */
@@ -141,4 +140,49 @@ text-align: center;
   color: #000;
   cursor: pointer;
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+}
+@media (max-width: 768px) { /* Para móviles */
+  .contact-header2 h2,
+  .contact-header2 p {
+    color: black !important; /* Fuerza el color negro */
+  }
+
+  /* Contenedor de los íconos y textos */
+  .d-flex {
+    flex-direction: column; /* Poner en columna */
+    align-items: left; /* Centra los elementos */
+    gap: 20px; /* Espacio entre cada elemento */
+  }
+
+  /* Cada bloque individual de icono + texto */
+  .text-center {
+    display: flex;
+    align-items: center; /* Alinea verticalmente */
+    gap: 10px; /* Espacio entre el icono y el texto */
+    width: 100%; /* Ocupa todo el ancho */
+    text-align: left; /* Mantiene el texto alineado a la izquierda */
+    justify-content: start; /* Alinea los elementos a la izquierda */
+  }
+
+  /* Íconos alineados verticalmente */
+  .text-center i {
+    font-size: 22px; /* Tamaño del icono */
+    min-width: 30px; /* Mantiene el espacio uniforme */
+    text-align: left;
+  }
+
+  /* Texto más pequeño para móviles */
+  .text-center p {
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  /* Margen superior para separar de otros elementos */
+  .mb-4 {
+    margin-top: 20px;
+  }
+  .sendMessage-btn {
+    margin-top: 35px;
 }

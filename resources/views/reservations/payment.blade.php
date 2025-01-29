@@ -1,4 +1,7 @@
 @extends('layouts.public')
+@section('title', $meta_title ?? 'Método de Pago - GtpLux')
+@section('meta_description', $meta_description ?? 'Elige tu método de pago seguro y confirma tu reserva de barco en GtpLux. Pagos con tarjeta, PayPal y más.')
+@section('meta_keywords', $meta_keywords ?? 'pago seguro, reserva de barcos, PayPal, tarjeta de crédito, GtpLux, Denia')
 @php
     use Illuminate\Support\Facades\App;
 @endphp
@@ -45,7 +48,7 @@
 
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
+            <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">

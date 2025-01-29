@@ -1,6 +1,9 @@
 @extends('layouts.public')
-
+@section('title', $meta_title ?? 'Política de Cancelación - GtpLux')
+@section('meta_description', $meta_description ?? 'Consulta nuestras políticas de cancelación para conocer las condiciones y requisitos para modificar o cancelar tu reserva.')
+@section('meta_keywords', $meta_keywords ?? 'política de cancelación, reembolso, modificación de reservas, GtpLux, condiciones de reserva')
 @php
+
     use Illuminate\Support\Facades\App;
 @endphp
 @push('styles')
@@ -34,8 +37,8 @@
 
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
-            <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
+          <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
+          <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">
                 <div class="dropdown">

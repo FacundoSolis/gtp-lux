@@ -1,5 +1,9 @@
 @extends('layouts.public')
+@section('title', $meta_title ?? 'Política de Cookies - GtpLux')
+@section('meta_description', $meta_description ?? 'Consulta nuestra política de cookies para saber cómo utilizamos las cookies en GtpLux y cómo puedes gestionarlas.')
+@section('meta_keywords', $meta_keywords ?? 'política de cookies, privacidad, cookies en GtpLux, configuración de cookies')
 @php
+
     use Illuminate\Support\Facades\App;
 @endphp
 @push('styles')
@@ -29,8 +33,8 @@
         </label>
         <input class="menu_hamburguesa" type="checkbox" id="menu_hamburguesa">
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
-            <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
+          <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
+          <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">
                 <div class="dropdown">

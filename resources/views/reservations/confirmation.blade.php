@@ -1,4 +1,7 @@
 @extends('layouts.public')
+@section('title', $meta_title ?? 'Confirmación de Reserva - GtpLux')
+@section('meta_description', $meta_description ?? '¡Tu reserva ha sido confirmada! Disfruta de una experiencia inolvidable navegando en nuestros barcos de lujo en Denia.')
+@section('meta_keywords', $meta_keywords ?? 'reserva confirmada, alquiler de barcos, Denia, GtpLux, experiencia de navegación, Mediterráneo')
 @php
     use Illuminate\Support\Facades\App;
 @endphp
@@ -32,8 +35,8 @@
 
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
-            <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
+          <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
+          <li class="li_links"><a href="{{ url('pages/contacto') }}" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="{{ url('pages/nosotros') }}" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">
                 <div class="dropdown">
@@ -64,8 +67,8 @@
 <div class="container mt-5">
     <!-- Mensaje de Éxito -->
     <div class="text-center">
-        <i class="bi bi-check-circle text-success" style="font-size: 4rem;"></i>
-        <h1 class="text-success mt-3">{{ __('reservation_confirmed') }}</h1>
+        <i class="bi bi-check-circle text-white" style="font-size: 4rem;"></i>
+        <h1 class="text-white mt-3">{{ __('reservation_confirmed') }}</h1>
         <p class="lead mt-3">{{ __('thank_you') }}</p>
     </div>
 

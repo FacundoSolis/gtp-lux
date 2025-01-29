@@ -9,7 +9,9 @@
     position: fixed;
     width: 250px;
 }
-
+table {
+    width: 100% !important;
+}
 .admin-sidebar ul {
     padding: 0;
     list-style: none;
@@ -193,9 +195,7 @@
     .table tbody tr td input {
         margin-top: 0.3rem;
     }
-    .table{
-        width: 80%;
-    }
+
     .car-body2{
         width: 80%;
     }

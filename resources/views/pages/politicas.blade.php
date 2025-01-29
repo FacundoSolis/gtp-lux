@@ -1,5 +1,7 @@
 @extends('layouts.public')
-
+@section('title', $meta_title ?? 'Política de Privacidad - GtpLux')
+@section('meta_description', $meta_description ?? 'Conoce cómo protegemos tu información y garantizamos tu privacidad en GtpLux. Lee nuestra política de privacidad.')
+@section('meta_keywords', $meta_keywords ?? 'privacidad, protección de datos, seguridad, GtpLux, alquiler de barcos')
 @php
     use Illuminate\Support\Facades\App;
 @endphp
@@ -33,7 +35,7 @@
 
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
+            <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
             <li class="li_links"><a href="#contacto" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="#quienes-somos" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">

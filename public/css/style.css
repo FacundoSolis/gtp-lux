@@ -824,8 +824,6 @@ color: black;
 
 
 .faq-section2 {
-  display: flex; /* Activa flexbox */
-  flex-direction: column; /* Asegura que los elementos estén en una columna */
   align-items: center; /* Centra horizontalmente */
   justify-content: center; /* Centra verticalmente */
   padding: 2rem 1rem; /* Reduce el espacio en la sección */
@@ -836,66 +834,24 @@ color: black;
     #06131E   /* Azul profundo */
   );  
   text-align: center; /* Asegura que el texto esté centrado */
+  height: 500px; /* Altura fija para que no crezca */
+  overflow: hidden; /* Evita que el contenido haga crecer la sección */
 }
-
 .title-faq2 {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0;
   color: #333;
+  text-align: center;
 }
 .h2 ,h2{
   text-decoration: underline;
   margin-bottom: 2rem;
 }
-
-.container2 {
-  max-width: 100%; /* Asegura que el contenedor sea más ancho */
-  margin: 0 auto;
-  border-radius: 8px;
-}
-.accordion {
-  border: none;
-}
-
-.accordion-item {
-  margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  max-width: 100%; /* Asegura que se extiendan al ancho disponible */
-  height: auto; /* Elimina el ajuste de tamaño dinámico */
-
-}
-
-.accordion-header {
-  background-color: #f8f9fa;
-  padding: 0.75rem 1rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.accordion-header:hover {
-  background-color: #e9ecef;
-}
-
-.accordion-button {
-  font-size: 0.95rem;
-  font-weight: bold;
-}
-
-.accordion-body {
-  padding: 0.75rem 1rem;
-  display: none;
-  font-size: 0.85rem;
-  background-color: #fff;
-}
-
-.accordion-body p {
-  margin: 0;
+details {
+  display: block;
+  border: 1px solid #bbb;
+  padding: 10px;
 }
 
 .py-5{
@@ -912,15 +868,6 @@ color: black;
   border-radius: 5px;
 }
 /*RESPONSIVE*/
-/* Ajuste para versión de escritorio */
-@media (min-width: 1024px) {
-  .accordion-body {
-    display: block; /* Siempre visible en escritorio */
-    max-height: 200px; /* Altura fija para evitar expansión */
-    overflow-y: auto; /* Scroll si el contenido excede el tamaño fijo */
-  }
-}
-
 
 @media (max-width: 768px) {
 section.banner h1{
@@ -1071,6 +1018,7 @@ textarea {
   margin-bottom: 0;
   text-align: center;
   padding: 30px 10px;
+  height: 100%;
 }
 .two-columns img{
   margin-bottom: 30px;

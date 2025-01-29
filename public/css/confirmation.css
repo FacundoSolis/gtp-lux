@@ -1,14 +1,25 @@
 /* General adjustments for spacing */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-    width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: 
+    linear-gradient(
+      135deg, /* Primera línea diagonal (arriba izquierda) */
+      #ffffff 25%, /* Primera línea blanca */
+      #0A1A26 25%, /* Color central */
+      #0A1A26 75%, /* Mantiene el color en el centro */
+      #ffffff 75% /* Segunda línea blanca */
+    );
+  font-family: Arial, sans-serif; /* Fuente */
 }
 .text-center{
   margin-top: 0;
+  color: white !important;
+  margin: 20px 0;
 }
+
+
 /* Container adjustments */
 .container {
     padding: 20px;
@@ -57,13 +68,20 @@ margin-top: 100px;
     padding: 10px 15px;
 }
 
-.text-center {
-    margin: 20px 0;
-}
 
 .btn {
     padding: 10px 15px;
     font-size: 16px;
+
+}
+.btn-success {
+  background-color: #0D6EFD !important;
+  border-color: #0D6EFD !important;
+}
+
+.btn-success:hover {
+  background-color: #0b5ed7 !important; /* Un tono más oscuro al pasar el mouse */
+  border-color: #0b5ed7 !important;
 }
 
 /*Footer*/

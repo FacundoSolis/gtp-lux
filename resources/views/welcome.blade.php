@@ -234,38 +234,35 @@
 
             <!-- Primera columna -->
             <div class="col-md-6">
-                <div class="accordion" id="accordionLeft">
+                <div class="faq-list" id="faqLeft">
                     @foreach (array_slice($faqs, 0, $half) as $faq)
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="faqHeaderLeft{{ $faq['id'] }}" onclick="toggleAccordion(this)">
-                                <span class="accordion-button">{{ $faq['question'] }}</span>
-                            </div>
-                            <div class="accordion-body" id="collapseLeft{{ $faq['id'] }}">
+                        <details class="faq-item">
+                            <summary class="faq-question">{{ $faq['question'] }}</summary>
+                            <div class="faq-answer">
                                 {{ $faq['answer'] }}
                             </div>
-                        </div>
+                        </details>
                     @endforeach
                 </div>
             </div>
 
             <!-- Segunda columna -->
             <div class="col-md-6">
-                <div class="accordion" id="accordionRight">
+                <div class="faq-list" id="faqRight">
                     @foreach (array_slice($faqs, $half) as $faq)
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="faqHeaderRight{{ $faq['id'] }}" onclick="toggleAccordion(this)">
-                                <span class="accordion-button">{{ $faq['question'] }}</span>
-                            </div>
-                            <div class="accordion-body" id="collapseRight{{ $faq['id'] }}">
+                        <details class="faq-item">
+                            <summary class="faq-question">{{ $faq['question'] }}</summary>
+                            <div class="faq-answer">
                                 {{ $faq['answer'] }}
                             </div>
-                        </div>
+                        </details>
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section>
   <div class="form-container">

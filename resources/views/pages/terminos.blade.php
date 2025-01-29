@@ -1,5 +1,7 @@
 @extends('layouts.public')
-
+@section('title', $meta_title ?? 'Términos y Condiciones - GtpLux')
+@section('meta_description', $meta_description ?? 'Consulta los términos y condiciones para el alquiler de barcos en GtpLux y disfruta de una experiencia sin preocupaciones.')
+@section('meta_keywords', $meta_keywords ?? 'términos y condiciones, alquiler de barcos, normativa, GtpLux, Denia')
 @php
     use Illuminate\Support\Facades\App;
 @endphp
@@ -33,8 +35,8 @@
 
         <!-- Enlaces de navegación -->
         <ul class="ul_links">
-            <li class="li_links"><a href="#" class="link">{{ __('home') }}</a></li>
-            <li class="li_links"><a href="#contacto" class="link">{{ __('contact') }}</a></li>
+          <li class="li_links"><a href="{{ url('/') }}" class="link">{{ __('home') }}</a></li>
+          <li class="li_links"><a href="#contacto" class="link">{{ __('contact') }}</a></li>
             <li class="li_links"><a href="#quienes-somos" class="link">{{ __('about_us') }}</a></li>
             <li class="li_links settingsDropdown">
                 <div class="dropdown">
