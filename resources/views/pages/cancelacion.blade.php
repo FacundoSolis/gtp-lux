@@ -16,7 +16,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 @endpush
-@section('title', 'Políticas de cancelación')
 
 
 @section('content')
@@ -64,14 +63,13 @@
     </nav>
 </header>
 
-<div class="container mt-1">
-    <h1>{!! __('cancellation_policy_h1_title') !!}</h1>
+<div class="container mt-5">
+    <h1 class="text-center">{!! __('cancellation_policy_h1_title') !!}</h1>
     <p>{!! __('cancellation_policy_h1_p') !!}</p>
 </div>
 
 <div class="container mt-5">
     <h2>{!! __('cancellation_policy_h2_1_title') !!}</h2>
-    <p>{!! __('cancellation_policy_h2_1_p') !!}</p>
 </div>
 
 <div class="container mt-5">
@@ -136,14 +134,15 @@
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
-        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
-        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
+      <li><a href="{{ route('pages.show', 'aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'nosotros') }}">{!! __('about_us') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
+
 
     <!-- Columna 4: Suscripción -->
     <div class="footer-column footer-align footer-offset">

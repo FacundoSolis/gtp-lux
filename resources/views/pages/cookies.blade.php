@@ -60,10 +60,11 @@
     </nav>
 </header>
 
-<div class="container mt-5">
-    <h1 class="text-center">{{ __('cookies_policy') }}</h1>
-
+<div class="container mt-7">
+    <h1 class="text-center text-primary display-4">{!! __('cookies_policy_h1') !!}</h1>
+    <p class="text-center fs-5 text-muted mt-4">{!! __('cookies_policy_h1_p') !!}</p>
 </div>
+
 
 <!-- Footer personalizado -->
 <footer class="footer">
@@ -102,14 +103,15 @@
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
-        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
-        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
+      <li><a href="{{ route('pages.show', 'aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'nosotros') }}">{!! __('about_us') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
+
 
     <!-- Columna 4: Suscripción -->
     <div class="footer-column footer-align footer-offset">
@@ -122,3 +124,49 @@
   </div>
 </footer>
 @endsection
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+@endsection
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownContainer = document.querySelector('.dropdown');
+      const dropdownValue = dropdownContainer.querySelector('.value');
+      const languageDropdown = document.getElementById('languageDropdown');
+  
+    // Abrir o cerrar el menú al hacer clic en el contenedor
+    dropdownValue.addEventListener('click', function (event) {
+        event.stopPropagation(); // Evita el cierre inmediato
+        const isDropdownOpen = languageDropdown.style.display === 'block';
+        languageDropdown.style.display = isDropdownOpen ? 'none' : 'block';
+    });
+
+    // Cerrar el menú al hacer clic fuera del dropdown
+    document.addEventListener('click', function (event) {
+        if (!dropdownContainer.contains(event.target)) {
+            languageDropdown.style.display = 'none';
+        }
+    });
+
+    // Manejar selección de idioma
+    languageDropdown.querySelectorAll('.language').forEach(function (item) {
+    item.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita la navegación del enlace
+
+        const selectedLang = this.getAttribute('href').split('/').pop(); // Extraer idioma del enlace
+        fetch(`/set-locale/${selectedLang}`) // Usa el idioma seleccionado dinámicamente
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Recargar la página para aplicar el cambio
+                } else {
+                    console.error('Error al cambiar el idioma.');
+                }
+            })
+            .catch(error => console.error('Error en la solicitud de cambio de idioma:', error));
+
+        // Cerrar el menú después de seleccionar un idioma
+        languageDropdown.style.display = 'none';
+    });
+    });
+});
+</script>

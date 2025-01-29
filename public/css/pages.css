@@ -13,19 +13,46 @@
 .text-center {
     margin-top: 100px;
     margin-bottom: 35px;
+    color: black !important;
 }
 .text-center2 {
   margin-top: 35px;
   margin-bottom: 35px;
   text-align: center;
 }
+ h1 {
+  font-size: 20px;
+}
+.mt-5{
+  font-size: 15px;
+}
+p {
+  margin-bottom: 0rem;
+}
+/* Eliminar negritas de todos los h2 */
+h2 {
+  font-size: 1rem; /* Ajusta el tamaño de la fuente si es necesario */
+  font-weight: normal; /* Elimina la negrita */
+}
 
-.text-primary {
-    color: #007bff !important;
+/* Quitar los puntos de las listas */
+ul {
+  list-style-type: none; /* Elimina los puntos de la lista */
+  padding-left: 0; /* Opcional: elimina el margen izquierdo de la lista */
+}
+
+/* Opcional: Si las listas tienen <strong>, eliminar la negrita */
+ul li strong {
+  font-weight: normal;
 }
 
 .text-secondary {
     color: #6c757d !important;
+}
+.container h2,
+.content h2, .container h3 {
+    font-size: 1rem;
+    font-weight: normal;
 }
 
 /*Footer*/
@@ -142,7 +169,10 @@ footer {
 }
 .container.mt-1{
   margin-top: 6.25rem !important;
+
 }
+
+
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;

@@ -19,6 +19,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminTranslationController;
 use App\Http\Controllers\Admin\CountryLanguageCodeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\PageController;
+
+
 use Illuminate\Support\Facades\Log; // Importa la clase Log
 
 
@@ -43,7 +46,7 @@ Route::middleware(['web'])->group(function () {
 
         return back(); // Vuelve a la página anterior
     })->name('set-locale');
-
+    
     // Rutas para las páginas de barcos específicos
     Route::get('/sunseeker', [BoatController::class, 'showSunseekerPortofino'])->name('sunseeker');
     Route::get('/princess', [BoatController::class, 'showPrincessV65'])->name('princess');
@@ -51,7 +54,8 @@ Route::middleware(['web'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    
+    Route::get('/pages/{page}', [PageController::class, 'show'])->name('pages.show');
+
     // Rutas de disponibilidad de barcos
     Route::get('/available-boats', [ReservationController::class, 'showAvailableBoats'])->name('available.boats');
     Route::get('/boats/by-port/{portId}', [BoatController::class, 'getByPort'])->name('boats.byPort');
@@ -192,34 +196,5 @@ Route::middleware(['web'])->group(function () {
 
     // Redirección tras inicio de sesión
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('pages/aviso', function () {
-    return view('pages.aviso');
-        })->name('aviso');
-
-        Route::get('pages/contacto', function () {
-            return view('pages.contacto');
-        })->name('contacto');
-
-        Route::get('pages/nosotros', function () {
-            return view('pages.nosotros');
-        })->name('nosotros');
-
-        Route::get('pages/politicas', function () {
-            return view('pages.politicas');
-        })->name('politicas');
-
-        Route::get('pages/terminos', function () {
-            return view('pages.terminos');
-        })->name('terminos');
-
-        Route::get('pages/cancelacion', function () {
-            return view('pages.cancelacion');
-        })->name('cancelacion');
-
-        Route::get('/cookies', function () {
-            return view('pages.cookies');
-        })->name('cookies');
-        
-        
-
-});
+    
+});    

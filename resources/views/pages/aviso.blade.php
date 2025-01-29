@@ -105,14 +105,15 @@
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
-        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
-        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
+      <li><a href="{{ route('pages.show', 'aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'nosotros') }}">{!! __('about_us') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
+
 
     <!-- Columna 4: Suscripción -->
     <div class="footer-column footer-align footer-offset">

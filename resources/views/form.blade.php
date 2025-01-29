@@ -3,6 +3,7 @@
 @section('meta_description', $meta_description ?? 'Finaliza tu experiencia de alquiler de barcos con GtpLux. Ingresa tus datos y asegura tu viaje de lujo en el Mediterráneo.')
 @section('meta_keywords', $meta_keywords ?? 'alquiler de barcos, reserva, yates, Denia, GtpLux, lujo, Mediterráneo')
 @php
+
     use Illuminate\Support\Facades\App;
     // Obtener datos de la URL
     $boatId = request()->query('boat_id');
@@ -84,7 +85,7 @@
 
 <div class="container mt-5">
     <div class="page-title-container text-center">
-        <h1 class="page-title">{{ __(key: 'reservation_form') }}:</h1>
+        <h1 class="page-title">{{ __('reservation_form') }}</h1>
         <p class="page-subtitle">Proporciónanos tus datos para finalizar tu experiencia de navegación.</p>
     </div>
 
@@ -195,14 +196,15 @@
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
-        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
-        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
+      <li><a href="{{ route('pages.show', 'aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'nosotros') }}">{!! __('about_us') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
+
 
     <!-- Columna 4: Suscripción -->
     <div class="footer-column footer-align footer-offset">

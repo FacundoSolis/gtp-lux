@@ -360,6 +360,14 @@ public function saveDetails(Request $request)
         'boat_id' => $boatId,
         'price' => $price,
     ];
+    $locale = Session::get('locale', config('app.locale'));
+        if (!$locale) {
+            Log::warning("Idioma no encontrado en la sesión. Usando predeterminado: " . config('app.locale'));
+        }
+
+        Log::info("Idioma actual: $locale");
+
+        App::setLocale($locale);
 
     return view('form', compact('reservation'));
 }

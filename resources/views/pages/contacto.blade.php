@@ -75,18 +75,18 @@
                     <h2>Contáctanos</h2>
                 </div>
                 <div class="form-field">
-                    <input type="text" class="input-field" placeholder="Nombre" required>
+                    <input type="text" class="input-field" placeholder="{{ __('name') }}" required>
                 </div>
                 <div class="form-field">
-                    <input type="email" class="input-field" placeholder="Correo Electrónico" required>
+                    <input type="email" class="input-field" placeholder="{{ __('email') }}" required>
                 </div>
                 <div class="form-field">
-                    <input type="text" class="input-field" placeholder="Asunto">
+                    <input type="text" class="input-field" placeholder="{{ __('subject') }}">
                 </div>
                 <div class="form-field">
-                    <textarea class="input-field" rows="5" placeholder="Mensaje" required></textarea>
+                    <textarea class="input-field" rows="5" placeholder="{{ __('help_text') }}" required></textarea>
                 </div>
-                <button type="submit" class="sendMessage-btn">Enviar</button>
+                <button type="submit" class="sendMessage-btn">{{ __('send') }}</button>
             </form>
         </div>
 
@@ -160,14 +160,15 @@
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
-        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
-        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
+      <li><a href="{{ route('pages.show', 'aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'nosotros') }}">{!! __('about_us') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
+
 
     <!-- Columna 4: Suscripción -->
     <div class="footer-column footer-align footer-offset">

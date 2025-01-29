@@ -62,14 +62,12 @@
     </nav>
 </header>
 
-@section('title', __('terms_and_conditions'))
 
 @section('content')
-<div class="container mt-7">
-    <h1 class="text-center text-primary display-4">{!! __('terms_and_conditions_h1_title') !!}</h1>
-    <p class="text-center fs-5 text-muted mt-4">{!! __('terms_and_conditions_h1_p') !!}</p>
+<div class="container mt-5">
+    <h1 class="text-center">{!! __('terms_and_conditions_h1_title') !!}</h1>
+    {!! __('terms_and_conditions_h1_p') !!}
 </div>
-
 
 <div class="container">
     <div class="row mt-5">
@@ -115,6 +113,7 @@
     </div>
 </div>
 
+
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">
@@ -152,14 +151,15 @@
     <!-- Columna 3: Enlaces -->
     <div class="footer-column footer-align footer-offset">
       <ul class="footer-links">
-        <li><a href="{{ route('aviso') }}">{!! __('legal_notice') !!}</a></li>
-        <li><a href="{{ route('terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
-        <li><a href="{{ route('politicas') }}">{!! __('privacy_policy') !!}</a></li>
-        <li><a href="{{ route('cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
-        <li><a href="{{ route('nosotros') }}">{!! __('about_us') !!}</a></li>
-        <li><a href="{{ route('contacto') }}">{!! __('contact') !!}</a></li>
+      <li><a href="{{ route('pages.show', 'aviso') }}">{!! __('legal_notice') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'terminos') }}">{!! __('terms_and_conditions') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'politicas') }}">{!! __('privacy_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'cancelacion') }}">{!! __('cancellation_policy') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'nosotros') }}">{!! __('about_us') !!}</a></li>
+        <li><a href="{{ route('pages.show', 'contacto') }}">{!! __('contact') !!}</a></li>
       </ul>
     </div>
+
 
     <!-- Columna 4: Suscripción -->
     <div class="footer-column footer-align footer-offset">
