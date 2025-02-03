@@ -4,14 +4,15 @@ body {
   min-height: 100vh;
   background: 
     linear-gradient(
-      -135deg, /* Invertimos la dirección de las líneas */
-      #ffffff 25%, /* Primera línea blanca */
-      #0A1A26 25%, /* Color central */
-      #0A1A26 75%, /* Mantiene el color en el centro */
-      #ffffff 75% /* Segunda línea blanca */
+      to right, /* De izquierda a derecha */
+      rgba(255, 255, 255, 1) 50%, /* Blanco a la izquierda hasta la mitad */
+      #3999bf 50%, /* Comienza el degradado azul */
+      #1e6f97 100%  /* Termina el degradado azul a la derecha */
     );
-  font-family: Arial, sans-serif; /* Fuente */
+  font-family: Arial, sans-serif;
 }
+
+
 .step {
     display: flex;
     justify-content: center;
@@ -19,7 +20,7 @@ body {
     margin-top: 0;
 }
 .progress-card{
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .container {
@@ -62,6 +63,9 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.rounded{
+  margin-top: 30px;
 }
 .bg-primary {
     background-color: black;

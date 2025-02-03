@@ -5,14 +5,15 @@ body {
   min-height: 100vh;
   background: 
     linear-gradient(
-      135deg, /* Primera línea diagonal (arriba izquierda) */
+      135deg, /* Mantiene la inclinación */
       #ffffff 25%, /* Primera línea blanca */
-      #0A1A26 25%, /* Color central */
-      #0A1A26 75%, /* Mantiene el color en el centro */
+      #3999bf 25%, /* Inicio del degradado azul */
+      #1e6f97 75%, /* Fin del degradado azul */
       #ffffff 75% /* Segunda línea blanca */
     );
   font-family: Arial, sans-serif; /* Fuente */
 }
+
 .text-center{
   margin-top: 0;
   color: white !important;
@@ -54,6 +55,7 @@ margin-top: 100px;
 .card {
     margin-bottom: 20px;
     border-radius: 5px;
+    
 }
 
 .card-header {

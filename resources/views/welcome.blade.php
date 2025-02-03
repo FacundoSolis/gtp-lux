@@ -304,12 +304,12 @@
         <div class="content-center">
           <ul>
             <li>
-              <a href="https://www.facebook.com/" target="_blank">
-                <i class="fa fa-facebook fa-2x"></i>
+              <a href="https://www.tiktok.com/@gtp.lux" target="_blank">
+              <i class="fa-brands fa-tiktok fa-2x"></i>              
               </a>
             </li>
             <li>
-              <a href="https://instagram.com/" target="_blank">
+              <a href="https://www.instagram.com/gtp_lux/?igsh=MTJscWxwd2Vqa2l5bw%3D%3D#" target="_blank">
                 <i class="fa fa-instagram fa-2x"></i>
               </a>
             </li>
@@ -339,10 +339,11 @@
 
     <!-- Columna 4: Suscripción -->
     <div class="footer-column footer-align footer-offset">
-      <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
+      <h3>{{ __('footer_subscribe_title') }}</h3>
+      <p>{{ __('footer_subscribe_text') }}</p>
       <form class="subscribe-form">
         <input type="email" placeholder="{{ __('email') }}" class="subscribe-input">
-        <button type="submit" class="subscribe-button">SUSCRIBE</button>
+        <button type="submit" class="subscribe-button">{{ __('footer_subscribe_button') }}</button>
       </form>
     </div>
   </div>
@@ -354,14 +355,58 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('js/slider.js') }}"></script>
   <script src="{{ asset('js/menuhome.js') }}"></script>
-  <script src="{{ asset('js/cookieConsent.js') }}"></script>
   <script src="{{ asset('js/acordion.js') }}"></script>
-
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function () {
+    // Verifica si ya se ha aceptado o rechazado la cookie
+      // Verifica si ya se ha aceptado o rechazado la cookie
+    if (!document.cookie.includes('cookie_consent=accepted') && !document.cookie.includes('cookie_consent=rejected')) {
+        const cookieModal = document.createElement('div');
+        cookieModal.id = 'cookieModal';
+        cookieModal.style.position = 'fixed';
+        cookieModal.style.bottom = '0';
+        cookieModal.style.width = '100%';
+        cookieModal.style.backgroundColor = 'white';
+        cookieModal.style.color = '#333';
+        cookieModal.style.padding = '20px';
+        cookieModal.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
+        cookieModal.style.zIndex = '1000';
+        cookieModal.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="flex: 1; margin-right: 20px;">
+                    <h3 style="margin: 0; font-size: 18px;">{{ __('cookies_titles') }}</h3>
+                    <p style="margin: 0; font-size: 16px;">
+                        {{ __('cookies_text') }}
+                        <a href="/cookies" style="color: #007bff;">{{ __('cookies_policy') }}</a>
+                    </p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button id="rejectCookies" style="background: white; color: black; border: 1px solid black; padding: 10px 20px; cursor: pointer; border-radius: 5px;">
+                        Rechazar todas las cookies
+                    </button>
+                    <button id="acceptCookies" style="background: black; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px;">
+                        Aceptar todas las cookies
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(cookieModal);
+    
+        document.getElementById('acceptCookies').addEventListener('click', function () {
+            // Establece la cookie y elimina el modal
+            document.cookie = 'cookie_consent=accepted; path=/; max-age=' + (60 * 60 * 24 * 365);
+            document.getElementById('cookieModal').remove();
+        });
+    
+        document.getElementById('rejectCookies').addEventListener('click', function () {
+            // Establece la cookie y elimina el modal
+            document.cookie = 'cookie_consent=rejected; path=/; max-age=' + (60 * 60 * 24 * 365);
+            document.getElementById('cookieModal').remove();
+        });
+    }
       const form = document.querySelector('form'); 
       const calendarEl = document.getElementById('availability-calendar');
       const portSelect = document.getElementById('port_id');

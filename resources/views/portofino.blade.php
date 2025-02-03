@@ -131,7 +131,7 @@
             </div>
             <div class="info-row light">
                 <span><strong>{{ __('crew') }}</strong></span>
-                <span>2 {{ __('people') }}</span>
+                <span>2 {{ __('person') }}</span>
             </div>
             <div class="info-row">
                 <span><strong>{{ __('engine') }}</strong></span>
@@ -176,26 +176,6 @@
         </div>
     </section> <!-- Cierre de section.right-boxes -->
 </main> <!-- Cierre correcto del main -->
-
-<!-- Sección interactiva del barco -->
-<section class="boat-details-section">
-    <div class="model-container">
-        <!-- Título dentro de la imagen -->
-        <h2 class="model-title">{{ __('sunseeker_portofino_53') }} -3D</h2>
-
-        <!-- Model-viewer para controlar manualmente -->
-        <model-viewer
-            id="boatModel"
-            src="models/tripo_pbr_model_e22151ce-c15a-43dd-8940-d8c875acb556.glb"
-            alt="Barco Sunseeker"
-            camera-controls
-            field-of-view="70deg"
-            camera-orbit="160deg 80deg 2m"  
-            style="display: block;">
-        </model-viewer>
-    </div>
-</section>
-
 
 @include('partials.progress-bar', ['step' => 1])
 
@@ -298,40 +278,68 @@
         </div>
     </div>
 </div>
-<div class="content-wrapper">
-  <div class="dual-section">
-    <!-- Bloque del Clima -->
-    <div class="weather-card">
-      <h3 class="card-title">Condiciones Actuales</h3>
-      <div class="iframe-container">
-        <div id="ww_35f04e9f55df0" 
-             v='1.3' 
-             loc='id' 
-             a='{"t":"horizontal","lang":"es","sl_lpl":1,"ids":["wl4500"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
-          Más previsiones: 
-          <a href="https://oneweather.org/es/madrid/25_days/" id="ww_35f04e9f55df0_u" target="_blank">
-            Previsión tiempo 30 días Madrid
-          </a>
-        </div>
-        <script async src="https://app3.weatherwidget.org/js/?id=ww_35f04e9f55df0"></script>
-      </div>
-    </div>
 
-    <!-- Bloque del Mapa -->
-    <div class="map-card">
-      <h3 class="card-title">Nuestra Ubicación</h3>
-      <div class="iframe-container">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6215.198940442461!2d0.12064989999999999!3d38.8416328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129e1adfd387435b%3A0xde918d9340020fd2!2sMarina%20de%20D%C3%A9nia!5e0!3m2!1ses!2ses!4v1737275044808!5m2!1ses!2ses"
-          frameborder="0" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
+<!-- Sección interactiva del barco -->
+<section class="boat-details-section">
+    <div class="model-container">
+        <!-- Título dentro de la imagen -->
+        <h2 class="model-title">{{ __('sunseeker_portofino_53') }} -3D</h2>
+
+        <!-- Model-viewer para controlar manualmente -->
+        <model-viewer
+            id="boatModel"
+            src="models/tripo_pbr_model_e22151ce-c15a-43dd-8940-d8c875acb556.glb"
+            alt="Barco Sunseeker"
+            camera-controls
+            field-of-view="70deg"
+            camera-orbit="160deg 80deg 2m"  
+            style="display: block;">
+        </model-viewer>
     </div>
-  </div>
-</div>
+</section>
+
+<section class="section-title2">
+    <div class="container2">
+        {!! __('sunseeker_portofino_53_h1_title') !!}
+        {!! __('sunseeker_portofino_53_h1_p') !!}
+    </div>
+</section>
+
+<section class="section-one">
+    <div class="container3">
+        <div class="image-box">
+            <img src="{{ asset('img/princess/princes7.jpg') }}" alt="Imagen 1" class="img-fluid rounded">
+        </div>
+        <div class="text-box">
+            <h2 class="title-one">{!! __('sunseeker_portofino_53_h2_1_title') !!}</h2>
+            <p class="paragraph-one">{!! __('sunseeker_portofino_53_h2_1_p') !!}</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-two">
+    <div class="container4">
+        <div class="text-box">
+            <h2 class="title-two">{!! __('sunseeker_portofino_53_h2_2_title') !!}</h2>
+            <p class="paragraph-two">{!! __('sunseeker_portofino_53_h2_2_p') !!}</p>
+        </div>
+        <div class="image-box">
+            <img src="{{ asset('img/protofino/portofino.copa.jpeg') }}" alt="Imagen 2" class="img-fluid rounded">
+        </div>
+    </div>
+</section>
+
+<section class="section-three">
+    <div class="container5">
+        <div class="image-box">
+            <img src="{{ asset('img/protofino/portofino2.jpg') }}" alt="Imagen 3" class="img-fluid rounded">
+        </div>
+        <div class="text-box">
+            <h2 class="title-three">{!! __('sunseeker_portofino_53_h2_3_title') !!}</h2>
+            <p class="paragraph-three">{!! __('sunseeker_portofino_53_h2_3_p') !!}</p>
+        </div>
+    </div>
+</section>
 
 <!-- Footer personalizado -->
 <footer class="footer">

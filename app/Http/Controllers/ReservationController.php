@@ -11,8 +11,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-
-
+use App\Mail\ReservationConfirmationMail;
+use Illuminate\Support\Facades\Mail;
 
 
 class ReservationController extends Controller
@@ -634,6 +634,28 @@ public function getAllReservations($boatId)
 
     return response()->json($events);
 }
+public function confirmReservation($reservationId)
+{
+    $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
 
+    // Actualizar el estado de la reserva a "pagado"
+    $reservation->update(['status' => 'paid']);
+    
+    Mail::to($reservation->email)->send(new ReservationConfirmationMail(
+        $reservation->name,
+        $reservation->boat->name,
+        $reservation->pickup_date,
+        $reservation->departure_time ?? '12:00', // Ajusta si no tienes este campo
+        $reservation->port->address
+    ));
+
+    return redirect()->route('reservation.confirmed', ['reservation' => $reservationId])
+                     ->with('success', __('email.confirmation_sent'));
+}
+public function showConfirmation($reservationId)
+{
+    $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
+    return view('pages.confirmation', compact('reservation'));
+}
 
 }

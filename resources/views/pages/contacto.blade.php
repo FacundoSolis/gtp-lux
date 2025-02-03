@@ -62,7 +62,7 @@
 </header>
 
 <div class="contact-header2 text-center2">
-    <h2 class="text-primary2">{!! __('contact') !!}</h2>
+    <h2 class="text-primary2">{!! __('contact_header_title') !!}</h2>
     <p>{!! __('help_text') !!}</p>
 </div>
 
@@ -70,25 +70,57 @@
     <div class="row">
         <!-- Columna izquierda: Formulario -->
         <div class="col-md-6">
-            <form class="form">
-                <div class="form-heading">
-                    <h2>Contáctanos</h2>
-                </div>
-                <div class="form-field">
-                    <input type="text" class="input-field" placeholder="{{ __('name') }}" required>
-                </div>
-                <div class="form-field">
-                    <input type="email" class="input-field" placeholder="{{ __('email') }}" required>
-                </div>
-                <div class="form-field">
-                    <input type="text" class="input-field" placeholder="{{ __('subject') }}">
-                </div>
-                <div class="form-field">
-                    <textarea class="input-field" rows="5" placeholder="{{ __('help_text') }}" required></textarea>
-                </div>
-                <button type="submit" class="sendMessage-btn">{{ __('send') }}</button>
-            </form>
+    <form action="{{ route('contact.send') }}" method="POST" class="form">
+        @csrf
+        <div class="form-heading">
+            <h2>{{ __('contact_header_text') }}</h2>
         </div>
+        
+        <!-- Campo Nombre -->
+        <div class="form-field">
+            <label for="name">{{ __('contact_form_input_name') }}:</label>
+            <input type="text" name="name" id="name" class="input-field" required>
+        </div>
+
+        <!-- Campo Email -->
+        <div class="form-field">
+            <label for="email">{{ __('contact_form_input_email') }}:</label>
+            <input type="email" name="email" id="email" class="input-field" required>
+        </div>
+
+        <!-- Campo Asunto -->
+        <div class="form-field">
+            <label for="subject">{{ __('contact_form_textarea_message') }}:</label>
+            <input type="text" name="subject" id="subject" class="input-field" required>
+        </div>
+
+        <!-- Campo Mensaje -->
+        <div class="form-field">
+            <label for="message">{{ __('contact_form_label_message') }}:</label>
+            <textarea name="message" id="message" class="input-field" rows="5" required></textarea>
+        </div>
+
+        <!-- Botón de Envío -->
+        <button type="submit" class="sendMessage-btn">{{ __('contact_form_button_submit') }}</button>
+    </form>
+
+    <!-- Mensaje de éxito -->
+    @if (session('success'))
+        <p class="alert alert-success mt-3">{{ session('success') }}</p>
+    @endif
+
+    <!-- Mostrar errores de validación -->
+    @if ($errors->any())
+        <div class="alert alert-danger mt-3">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</div>
+
 
 
         <!-- Columna derecha: Íconos y Mapa -->

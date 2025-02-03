@@ -138,7 +138,49 @@ return [
     'aliases' => [
         // Otros alias...
         'Auth' => Illuminate\Support\Facades\Auth::class,
+        'DB' => Illuminate\Support\Facades\DB::class,
+        'Hash' => Illuminate\Support\Facades\Hash::class,
+        'hash'      => Illuminate\Support\Facades\Hash::class,
+
+        'Validator' => Illuminate\Support\Facades\Validator::class,
+        'Mail' => Illuminate\Support\Facades\Mail::class,
+        'Lang' => Illuminate\Support\Facades\Lang::class,
+
+
     ],
+    'providers' => [
+    /*
+     * Laravel Framework Service Providers...
+     */
+    Illuminate\Auth\AuthServiceProvider::class,
+    Illuminate\Broadcasting\BroadcastServiceProvider::class,
+    Illuminate\Bus\BusServiceProvider::class,
+    Illuminate\Cache\CacheServiceProvider::class,
+    Illuminate\Database\DatabaseServiceProvider::class, // <<-- Asegúrate de que esté presente
+    Illuminate\Filesystem\FilesystemServiceProvider::class,
+    Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+    Illuminate\Cookie\CookieServiceProvider::class,
+    Illuminate\Encryption\EncryptionServiceProvider::class,
+    Illuminate\Pagination\PaginationServiceProvider::class,
+    Illuminate\Session\SessionServiceProvider::class,
+    Illuminate\View\ViewServiceProvider::class,
+    Illuminate\Hashing\HashServiceProvider::class, // ¡Agrega esta línea!
 
 
+    // **Asegúrate de que esté este provider:**
+    Illuminate\Translation\TranslationServiceProvider::class,
+    Illuminate\Validation\ValidationServiceProvider::class,
+    Illuminate\Mail\MailServiceProvider::class,
+    Illuminate\Notifications\NotificationServiceProvider::class,
+
+
+
+    // ...
+    App\Providers\AppServiceProvider::class,
+    App\Providers\RouteServiceProvider::class,
+    App\Providers\FortifyServiceProvider::class,
+
+],
+
+    
 ];

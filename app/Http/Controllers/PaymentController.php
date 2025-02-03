@@ -6,6 +6,11 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReservationConfirmationMail;
+use Illuminate\Support\Facades\Log;
+
+
 
 class PaymentController extends Controller
 {
@@ -71,13 +76,30 @@ class PaymentController extends Controller
         // Redirigir al usuario a la sesión de pago de Stripe
     return view('reservations.payment', compact('reservation'));
     }
-        public function confirmation($reservationId)
-    {
-        $reservation = Reservation::findOrFail($reservationId);
+    public function confirmation($reservationId)
+{
+    // Cargar la reserva con las relaciones necesarias
+    $reservation = Reservation::with('boat', 'port')->findOrFail($reservationId);
 
-        // Actualizar el estado de la reserva a "pagado"
-        $reservation->update(['status' => 'paid']);
+    // Actualizamos el estado a 'paid'
+    $reservation->update(['status' => 'paid']);
 
-        return view('reservations.confirmation', compact('reservation'));
+    // Si aún no se ha enviado el correo, lo enviamos
+    if (!$reservation->email_sent) {
+        try {
+            // Envío usando el objeto completo de la reserva
+            Mail::to($reservation->email)->send(new ReservationConfirmationMail($reservation));
+            
+            // Actualizamos el flag para indicar que ya se envió el correo
+            $reservation->update(['email_sent' => true]);
+        } catch (\Exception $e) {
+            Log::error('Error al enviar correo de confirmación: ' . $e->getMessage());
+        }
     }
-    }
+
+    // Retornamos la vista de confirmación con un mensaje flash
+    return view('reservations.confirmation', compact('reservation'))
+           ->with('success', __('email.confirmation_sent'));
+}
+
+}

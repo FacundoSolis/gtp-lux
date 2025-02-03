@@ -177,25 +177,6 @@
     </section> 
 </main> 
 
-
-<!-- Sección interactiva del barco -->
-<section class="boat-details-section">
-    <div class="model-container">
-        <!-- Título dentro de la imagen -->
-        <h2 class="model-title">{{ __('sunseeker_portofino_53') }} -3D</h2>
-        <!-- Model-viewer para controlar manualmente -->
-                <model-viewer
-            id="boatModel"
-            src="models/tripo_pbr_model_fc88fb62-435e-4823-98f4-af5d68f8e28a.glb"
-            alt="Barco Sunseeker"
-            camera-controls
-            field-of-view="70deg"
-            camera-orbit="75deg 80deg 3m"            
-            style="display: block;">
-        </model-viewer>
-    </div>
-</section>
-
 @include('partials.progress-bar', ['step' => 1])
 
 
@@ -332,6 +313,67 @@
     </div>
   </div>
 </div>
+
+<!-- Sección interactiva del barco -->
+<section class="boat-details-section">
+    <div class="model-container">
+        <!-- Título dentro de la imagen -->
+        <h2 class="model-title">{{ __('princess_v65') }} -3D</h2>
+        <!-- Model-viewer para controlar manualmente -->
+                <model-viewer
+            id="boatModel"
+            src="models/tripo_pbr_model_fc88fb62-435e-4823-98f4-af5d68f8e28a.glb"
+            alt="Barco Sunseeker"
+            camera-controls
+            field-of-view="70deg"
+            camera-orbit="75deg 80deg 3m"            
+            style="display: block;">
+        </model-viewer>
+    </div>
+</section>
+
+<section class="section-title2">
+    <div class="container2">
+        {!! __('princess_v65_h1_title') !!}
+        {!! __('princess_v65_h1_p') !!}
+    </div>
+</section>
+
+<section class="section-one">
+    <div class="container3">
+        <div class="image-box">
+            <img src="{{ asset('img/princess/princes7.jpg') }}" alt="Imagen 1" class="img-fluid rounded">
+        </div>
+        <div class="text-box">
+            <h2 class="title-one">{!! __('princess_v65_h2_1_title') !!}</h2>
+            <p class="paragraph-one">{!! __('princess_v65_h2_1_p') !!}</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-two">
+    <div class="container4">
+        <div class="text-box">
+            <h2 class="title-two">{!! __('princess_v65_h2_2_title') !!}</h2>
+            <p class="paragraph-two">{!! __('princess_v65_h2_2_p') !!}</p>
+        </div>
+        <div class="image-box">
+            <img src="{{ asset('img/protofino/portofino.copa.jpeg') }}" alt="Imagen 2" class="img-fluid rounded">
+        </div>
+    </div>
+</section>
+
+<section class="section-three">
+    <div class="container5">
+        <div class="image-box">
+            <img src="{{ asset('img/protofino/portofino2.jpg') }}" alt="Imagen 3" class="img-fluid rounded">
+        </div>
+        <div class="text-box">
+            <h2 class="title-three">{!! __('princess_v65_h2_3_title') !!}</h2>
+            <p class="paragraph-three">{!! __('princess_v65_h2_3_p') !!}</p>
+        </div>
+    </div>
+</section>
 
 <!-- Footer personalizado -->
 <footer class="footer">

@@ -82,34 +82,7 @@
 
 <div class="container mt-5">
     <div class="row">
-        <!-- Sección de Información de la Reserva -->
-        <section class="reservation-info col-md-6">
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-info text-white">
-                    <h4>{{ __('reservation_details') }}</h4>
-                </div>
-                <div class="card-body">
-                <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>{{ __('name') }}</strong> {{ $reservation->name }}</li>
-                            <li class="list-group-item"><strong>{{ __('surname') }}:</strong> {{ $reservation->surname }}</li>
-                            <li class="list-group-item"><strong>{{ __('email') }}</strong> {{ $reservation->email }}</li>
-                            <li class="list-group-item"><strong>{{ __('phone') }}</strong> {{ $reservation->phone }}</li>
-                            <li class="list-group-item"><strong>{{ __('port') }}</strong> {{ __('marina_de_denia') }}</li>
-                            <li class="list-group-item"><strong>{{ __('pickup_date') }}</strong> {{ $reservation->pickup_date }}</li>
-                            <li class="list-group-item"><strong>{{ __('drop_off_date') }}</strong> {{ $reservation->return_date }}</li>
-                            <li class="list-group-item"><strong>{{ __('boat') }}</strong> {{ $reservation->boat->name }}</li>
-                            <li class="list-group-item"><strong>{{ __('price_total_summary') }}</strong> €{{ number_format($reservation->total_price, 2) }}</li>
-                        </ul>
-                        <li class="list-group-item">
-                            <img src="{{ $boatImage }}" alt="Imagen de {{ $reservation->boat->name }}" class="img-fluid rounded">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-
-        <!-- Sección de Métodos de Pago -->
+        <!-- Sección de Métodos de Pago (Izquierda) -->
         <section class="payment-methods col-md-6">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
@@ -124,7 +97,6 @@
                                 <i class="bi bi-stripe me-2"></i> {{ __('pay_with_card') }}
                             </button>
                         </form>
-                        </form>
                         <!-- Pago con PayPal -->
                         <a href="{{ route('paypal.create', $reservation->id) }}" class="btn btn-warning btn-lg">
                             <i class="bi bi-paypal me-2"></i> {{ __('pay_with_paypal') }}
@@ -132,9 +104,35 @@
                     </div>
                 </div>
             </div>
+            <li class="list-group-item">
+                            <img src="{{ $boatImage }}" alt="Imagen de {{ $reservation->boat->name }}" class="img-fluid rounded">
+                        </li>
+        </section>
+
+        <!-- Sección de Información de la Reserva (Derecha) -->
+        <section class="reservation-info col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-info text-white">
+                    <h4>{{ __('reservation_details') }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>{{ __('name') }}</strong> {{ $reservation->name }}</li>
+                        <li class="list-group-item"><strong>{{ __('surname') }}:</strong> {{ $reservation->surname }}</li>
+                        <li class="list-group-item"><strong>{{ __('email') }}</strong> {{ $reservation->email }}</li>
+                        <li class="list-group-item"><strong>{{ __('phone') }}</strong> {{ $reservation->phone }}</li>
+                        <li class="list-group-item"><strong>{{ __('port') }}</strong> {{ __('marina_de_denia') }}</li>
+                        <li class="list-group-item"><strong>{{ __('pickup_date') }}</strong> {{ $reservation->pickup_date }}</li>
+                        <li class="list-group-item"><strong>{{ __('drop_off_date') }}</strong> {{ $reservation->return_date }}</li>
+                        <li class="list-group-item"><strong>{{ __('boat') }}</strong> {{ $reservation->boat->name }}</li>
+                        <li class="list-group-item"><strong>{{ __('price_total_summary') }}</strong> €{{ number_format($reservation->total_price, 2) }}</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </div>
 </div>
+
 
 
 <!-- Footer personalizado -->

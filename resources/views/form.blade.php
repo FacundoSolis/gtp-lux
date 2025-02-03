@@ -90,21 +90,8 @@
     </div>
 
     <div class="row">
-        <!-- Columna de la izquierda -->
+        <!-- Columna izquierda: Formulario -->
         <div class="col-md-6">
-            <!-- Tarjeta de información de la reserva -->
-            <div class="reservation-summary bg-light p-3 rounded mb-4 shadow-sm">
-                <h3 class="text-center">{{ __('reservation_details') }}</h3>
-                <ul class="list-unstyled">
-                    <li><strong>{{ __('port') }}</strong> Marina de Denia</li>
-                    <li><strong>{{ __('pickup_date') }}</strong> {{ $pickupDate }}</li>
-                    <li><strong>{{ __('drop_off_date') }}</strong> {{ $returnDate }}</li>
-                    <li><strong>{{ __('boat') }}</strong> {{ $boatName }}</li>
-                    <li><strong>{{ __('price_total_summary') }}</strong> €{{ number_format($price, 2) }}</li>
-                </ul>
-            </div>
-
-            <!-- Tarjeta del formulario -->
             <div class="bg-white p-4 rounded shadow-sm">
                 <h4 class="mb-3">{!! __('contact') !!}</h4>
                 <form action="{{ route('reservation.saveDetails') }}" method="POST">
@@ -114,6 +101,7 @@
                     <input type="hidden" name="return_date" value="{{ $reservation['return_date'] }}">
                     <input type="hidden" name="boat_id" value="{{ $reservation['boat_id'] }}">
                     <input type="hidden" id="hidden-price" name="price" value="{{ $reservation['price'] }}">
+                    
                     <!-- Campos visibles -->
                     <div class="row">
                         <div class="col-md-6">
@@ -142,14 +130,27 @@
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg">{{ __('proceed_to_payment') }}:</button>
+                        <button type="submit" class="btn btn-primary btn-lg">{{ __('proceed_to_payment') }}</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <!-- Columna de la derecha -->
-        <div class="col-md-6">
+        <!-- Columna derecha: Datos de la reserva y foto del barco -->
+        <div class="col-md-6 d-flex flex-column">
+            <!-- Datos de la reserva (arriba) -->
+            <div class="reservation-summary bg-light p-3 rounded shadow-sm mb-4">
+                <h3 class="text-center">{{ __('reservation_details') }}</h3>
+                <ul class="list-unstyled">
+                    <li><strong>{{ __('port') }}</strong> Marina de Denia</li>
+                    <li><strong>{{ __('pickup_date') }}</strong> {{ $pickupDate }}</li>
+                    <li><strong>{{ __('drop_off_date') }}</strong> {{ $returnDate }}</li>
+                    <li><strong>{{ __('boat') }}</strong> {{ $boatName }}</li>
+                    <li><strong>{{ __('price_total_summary') }}</strong> €{{ number_format($price, 2) }}</li>
+                </ul>
+            </div>
+
+            <!-- Imagen del barco (debajo) -->
             <div class="card shadow-sm">
                 <img src="{{ $boatImage }}" alt="{{ $boatName }}" class="card-img-top img-fluid" style="height: 250px; object-fit: cover;">
                 <div class="card-body text-center">
@@ -159,6 +160,7 @@
         </div>
     </div>
 </div>
+
 <!-- Footer personalizado -->
 <footer class="footer">
   <div class="footer-container">

@@ -268,12 +268,7 @@ line-height: 1;
   padding: 50px 20px;
   max-width: 100%;
   margin: 0;
-  background: linear-gradient(
-    to top,        /* Invertimos la dirección del degradado */
-    #0E222D,       /* Azul inicial (coincide con el final de la anterior) */
-    #0A1A26,       /* Azul ligeramente más oscuro */
-    #06131E        /* Azul profundo */
-  );
+  background: linear-gradient(135deg, #3999bf 0%, #1e6f97 70%);
 }
 
 /* 1º slider */
@@ -314,7 +309,11 @@ line-height: 1;
   margin-right: 0;
   border-radius: 20px;
   transition: box-shadow 0.3s ease;
+  border: 5px solid rgba(255, 255, 255, 0.8); /* Borde blanco semitransparente */
+  padding: 0px; /* Añadir espacio interno para que no pegue con el borde */
+  background: rgba(255, 255, 255, 0.2); /* Fondo semitransparente opcional */
 }
+
 /* slider*/
 .slider {
   display: flex;
@@ -324,12 +323,7 @@ line-height: 1;
   border-radius: 15px;
 }
 .highlight-section {
-  background: linear-gradient(
-    to bottom,
-    #0E222D,  /* Azul inicial */
-    #0A1A26,  /* Azul ligeramente más oscuro */
-    #06131E   /* Azul profundo */
-  );
+  background: linear-gradient(187deg, #1e6f97 30%, #3999bf 100%);
   padding-top: 1px; /* Agrega un pequeño relleno para evitar el colapso */
   overflow: hidden; /* Alternativa para evitar el colapso */
 }
@@ -543,9 +537,9 @@ nav a {
   padding: 50px;
   color: white;
   background: linear-gradient(
-    rgba(0, 0, 0, 0.8),
-    rgba(0, 0, 0, 0.5)
-  ), url('/img/lineas-mapa.jpg');  
+    rgba(255, 255, 255, 0.6), /* Más claridad */
+    rgba(255, 255, 255, 0.4)  /* Transición suave */
+  ), url('/img/lineas-mapa.jpg');   
   background-size:cover; /* Ajusta el ancho al 100% y la altura automática */
   background-attachment: fixed;
   background-position: center center; /* Centra la imagen horizontal y verticalmente */
@@ -794,23 +788,15 @@ color: black;
   background-color: #EBF6FA;
   z-index: 0;
   position: relative;
-  background: linear-gradient(
-    to bottom,
-    #0E222D,  /* Azul inicial */
-    #0A1A26,  /* Azul ligeramente más oscuro */
-    #06131E   /* Azul profundo */
-  );
+  background: linear-gradient(135deg, #3999bf, #1e6f97)
 }
 .col-md-6.text-right{
   color: black;
 }
 .bg-light{
-  background: linear-gradient(
-    to bottom,
-    #0E222D,  /* Azul inicial */
-    #0A1A26,  /* Azul ligeramente más oscuro */
-    #06131E   /* Azul profundo */
-  )!important;
+  background: linear-gradient(135deg, #3999bf, #1e6f97)
+  /* Azul profundo */
+  !important;
 }
 .two-columns {
   padding: 50px 0;
@@ -821,18 +807,11 @@ color: black;
   height: auto;
   border-radius: 10px;
 }
-
-
 .faq-section2 {
   align-items: center; /* Centra horizontalmente */
   justify-content: center; /* Centra verticalmente */
   padding: 2rem 1rem; /* Reduce el espacio en la sección */
-  background: linear-gradient(
-    to bottom,
-    #0E222D,  /* Azul inicial */
-    #0A1A26,  /* Azul ligeramente más oscuro */
-    #06131E   /* Azul profundo */
-  );  
+  background: linear-gradient(135deg, #3999bf, #1e6f97);
   text-align: center; /* Asegura que el texto esté centrado */
   height: 550px; /* Altura fija para que no crezca */
   overflow: hidden; /* Evita que el contenido haga crecer la sección */
